@@ -143,13 +143,18 @@ def main():
         p = l.rstrip("\n").split("\t")
         if len(p) >= 2 and p[0] != "id":
             it[int(p[0], 16)] = p[1]
+    alloc = {}
+    if "--no-vwf" not in sys.argv:
+        import vwf
+        alloc = vwf.alloc_from_dialog(os.path.join(here, "..", "text", "it.tsv"))
+        print("VWF: %d coppie di celle precomposte" % len(alloc))
     msgs, done = [], 0
     jpd = {int(r[0], 16): r[2] for r in jp}
     for mid in ids:
         if mid in it:
-            msgs.append(charmap_it.encode_text(it[mid])); done += 1
+            msgs.append(charmap_it.encode_text(it[mid], alloc)); done += 1
         else:
-            msgs.append(charmap_it.encode_text(placeholder(jpd[mid], mid)))
+            msgs.append(charmap_it.encode_text(placeholder(jpd[mid], mid), alloc))
     print("messaggi: %d (tradotti %d)" % (len(ids), done))
 
     tree, blobs, codes = hufpack.encode_messages(msgs)
@@ -171,6 +176,8 @@ def main():
             p = pos[i] + k
             data[16 + (16 + p // UNIT) * UNIT + p % UNIT] = byte
     print("glifi latini ridisegnati:", patch_font(data, prg_size))
+    if alloc:
+        print("glifi VWF (coppie):", vwf.patch_pair_glyphs(data, prg_size, alloc))
     up = os.path.join(here, "..", "text", "ui_it.tsv")
     if os.path.exists(up):
         import ui_patch
@@ -197,4 +204,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

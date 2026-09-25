@@ -17,9 +17,15 @@ def tokens(s):
     return TOKEN.findall(s)
 
 
+ALLOC = {}
+
+
 def visible_lines(s):
     out = []
     for seg in s.split("<05>"):
+        if ALLOC:
+            import vwf
+            out.append(vwf.text_width(seg, ALLOC)); continue
         seg = TOKEN.sub(lambda m: "xxxx" if m.group(0).startswith("$") else "", seg)
         out.append(len(seg))
     return out
@@ -38,6 +44,9 @@ if __name__ == "__main__":
     jp = load(sys.argv[1] if len(sys.argv) > 1 else "text/dialog_jp.tsv", 3)
     it = load(sys.argv[2] if len(sys.argv) > 2 else "text/it.tsv", 2)
     bad = 0
+    if "--no-vwf" not in sys.argv:
+        import vwf
+        ALLOC = vwf.alloc_from_dialog(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "text", "it.tsv"))
     for k, row in it.items():
         if k not in jp:
             print(k, "id inesistente"); bad += 1; continue
@@ -51,7 +60,7 @@ if __name__ == "__main__":
             print(k, "contiene caratteri giapponesi"); bad += 1
         try:
             import charmap_it
-            n_raw = len(charmap_it.encode_text(row[1]))
+            n_raw = len(charmap_it.encode_text(row[1], ALLOC))
             if n_raw > 254:
                 print(k, "messaggio troppo lungo: %d byte (max 254, buffer del gioco)" % n_raw); bad += 1
         except ValueError as e:

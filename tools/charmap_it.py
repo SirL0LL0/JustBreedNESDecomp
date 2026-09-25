@@ -36,9 +36,24 @@ for _c in "0123456789!?.:-()*+/%&":
     DRAW[ord(_c)] = _c
 
 
-def encode_text(s):
-    """Stringa italiana (con token <XX>, {cc:pp}) -> byte grezzi del messaggio."""
+def encode_text(s, alloc=None):
+    """Stringa italiana (con token <XX>, {cc:pp}) -> byte grezzi del messaggio.
+    alloc = {(a,b): id_tile}: attiva le celle a larghezza variabile (vedi vwf.py); solo per i dialoghi."""
     import re
+    if alloc:
+        import vwf
+        out = bytearray()
+        for n, line in enumerate(s.split("<05>")):
+            if n:
+                out.append(0x05)
+            for c in vwf.cells(line, alloc):
+                if c[0] == "c":
+                    out.append(IT[c[1]])
+                elif c[0] == "p":
+                    out.append(alloc[(c[1], c[2])])
+                else:
+                    out += encode_text(c[1])
+        return bytes(out)
     out, i = bytearray(), 0
     tok = re.compile(r"<([0-9A-F]{2})>|\{([0-9A-F]{2}):([0-9A-F]{2})\}")
     while i < len(s):

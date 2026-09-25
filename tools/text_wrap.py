@@ -17,7 +17,15 @@ TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?
 LETTER = re.compile(r"[A-Za-zàèéìòùÀÈÉÌÒÙ぀-ヿ一-鿿]")
 
 
+ALLOC = {}                     # coppie VWF (vedi vwf.py); vuoto = larghezza fissa
+
+
 def width(s):
+    if ALLOC:
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import vwf
+        return vwf.text_width(s, ALLOC)
     w = 0
     pos = 0
     for m in TOKEN.finditer(s):
@@ -84,6 +92,11 @@ def wrap_message(s):
 
 if __name__ == "__main__":
     src, dst = sys.argv[1], sys.argv[2]
+    if "--no-vwf" not in sys.argv:
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import vwf
+        ALLOC = vwf.alloc_from_dialog(src)
     with open(dst, "w", encoding="utf-8") as f:
         for l in open(src, encoding="utf-8"):
             p = l.rstrip("\n").split("\t")
