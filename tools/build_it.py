@@ -70,6 +70,27 @@ def patch_tables(data, tsv_path):
     return n
 
 
+import re
+_TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?\d+|[+\-%&]\d+|\.\d+")
+_JPTEXT = re.compile(r"[぀-ヿ一-鿿＀-￯…「-』・]")
+
+
+def placeholder(jp_display, mid):
+    """Messaggio non ancora tradotto: tiene TUTTE le righe di comando (#!.., *.., +n, %n, ...) che pilotano il gioco
+    e sostituisce il testo con una sola riga 'Msg NNNN'. Senza i comandi la storia non avanza."""
+    out, placed = [], False
+    for l in jp_display.split("<05>"):
+        if _JPTEXT.search(_TOKEN.sub("", l)):
+            if not placed:
+                out.append("“Msg %04X”" % mid)
+                placed = True
+        elif l.strip() == "<5E>":
+            continue
+        else:
+            out.append(l)
+    return "<05>".join(out)
+
+
 def main():
     rom_path, tsv, out = sys.argv[1], sys.argv[2], sys.argv[3]
     data = bytearray(open(rom_path, "rb").read())
@@ -82,11 +103,12 @@ def main():
         if len(p) >= 2 and p[0] != "id":
             it[int(p[0], 16)] = p[1]
     msgs, done = [], 0
+    jpd = {int(r[0], 16): r[2] for r in jp}
     for mid in ids:
         if mid in it:
             msgs.append(charmap_it.encode_text(it[mid])); done += 1
         else:
-            msgs.append(charmap_it.encode_text("“Msg %04X”<05>" % mid))
+            msgs.append(charmap_it.encode_text(placeholder(jpd[mid], mid)))
     print("messaggi: %d (tradotti %d)" % (len(ids), done))
 
     tree, blobs, codes = hufpack.encode_messages(msgs)
