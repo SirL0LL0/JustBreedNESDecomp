@@ -21,7 +21,7 @@ def load(path):
         return bytes((1 if b & 1 else 0) | (2 if b & 0x0C else 0) for b in d)
     if len(d) != PRG_SIZE:
         sys.exit("%s: dimensione %d inattesa (PRG=%d)" % (path, len(d), PRG_SIZE))
-    return d
+    return bytes(b & 3 for b in d)      # exec.bin / cov: bit0 opcode, bit1 entry (bit2 = operand, ignorato)
 
 
 def union(paths):

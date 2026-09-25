@@ -7,6 +7,7 @@
 #include "mapper.h"
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -18,7 +19,14 @@ uint32_t game_get_expected_crc32(void) {
     return getenv("JB_ANY_ROM") ? 0u : 0x735528D8u;
 }
 
-void game_on_init(void) {}                       /* dopo il caricamento ROM + runtime_init() */
+void game_on_init(void) {                        /* dopo il caricamento ROM + runtime_init() */
+    /* Registrazione della copertura del codice mentre giochi: crea un file vuoto "coverage.on" nella
+     * cartella da cui avvii il gioco. Scrive jb_coverage.bin (+ .win e .ram) ogni ~600 frame e all'uscita. */
+    if (!getenv("NESRECOMP_COV_FILE")) {
+        FILE *f = fopen("coverage.on", "rb");
+        if (f) { fclose(f); _putenv("NESRECOMP_COV_FILE=jb_coverage.bin"); }
+    }
+}
 #include <stdio.h>
 /* Strumento di reverse engineering: JB_DUMP_FRAMES="1800,1810" scrive, ai frame indicati, la
  * nametable (4KB), le palette e la RAM di lavoro (2KB) in C:/temp/jb_dump_<frame>_{nt,pal,ram}.bin. */
