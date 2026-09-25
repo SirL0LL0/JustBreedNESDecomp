@@ -8,7 +8,7 @@ Usato da tools/decompile.py. Due 'sapori' dallo stesso IR:
 import collections, os, re
 
 FLAGS = "NZCVDI"
-ALL = frozenset(FLAGS)
+ALL = frozenset(FLAGS + "axy")          # flag N Z C V D I + registri a x y (minuscoli)
 BR_FLAG = {"BCC": ("C", 0), "BCS": ("C", 1), "BEQ": ("Z", 1), "BNE": ("Z", 0), "BMI": ("N", 1), "BPL": ("N", 0),
            "BVC": ("V", 0), "BVS": ("V", 1)}
 NZ_DEF = {"LDA", "LDX", "LDY", "AND", "ORA", "EOR", "TAX", "TAY", "TXA", "TYA", "INX", "INY", "DEX", "DEY", "INC", "DEC", "PLA", "TSX"}
@@ -31,6 +31,39 @@ def uses_of(name):
     if name in BR_FLAG:
         return frozenset(BR_FLAG[name][0])
     return frozenset(USES.get(name, ""))
+
+
+REG_USE = {"STA": "a", "STX": "x", "STY": "y", "TAX": "a", "TAY": "a", "TXA": "x", "TYA": "y", "TXS": "x",
+           "ADC": "a", "SBC": "a", "AND": "a", "ORA": "a", "EOR": "a", "CMP": "a", "BIT": "a", "CPX": "x", "CPY": "y",
+           "INX": "x", "DEX": "x", "INY": "y", "DEY": "y", "PHA": "a"}
+REG_DEF = {"LDA": "a", "TXA": "a", "TYA": "a", "PLA": "a", "ADC": "a", "SBC": "a", "AND": "a", "ORA": "a", "EOR": "a",
+           "LDX": "x", "TAX": "x", "INX": "x", "DEX": "x", "TSX": "x", "LDY": "y", "TAY": "y", "INY": "y", "DEY": "y"}
+
+
+def uses_i(i):
+    """Flag e registri letti da un'istruzione (modo di indirizzamento compreso)."""
+    n = i.name
+    u = set(uses_of(n))
+    if n in REG_USE:
+        u.add(REG_USE[n])
+    if n in ("ASL", "LSR", "ROL", "ROR") and i.mode == "acc":
+        u.add("a")
+    m = i.mode
+    if m in ("zpx", "abx", "inx"):
+        u.add("x")
+    elif m in ("zpy", "aby", "iny"):
+        u.add("y")
+    return frozenset(u)
+
+
+def defs_i(i):
+    n = i.name
+    d = set(defs_of(n))
+    if n in REG_DEF:
+        d.add(REG_DEF[n])
+    if n in ("ASL", "LSR", "ROL", "ROR") and i.mode == "acc":
+        d.add("a")
+    return frozenset(d)
 
 
 def writes_reg(i):
@@ -446,12 +479,37 @@ def mark_carry(body, preds):
                 i.carry_const = 1 if r[0].name == "SEC" else 0
 
 
+def reg_value(c, body, preds, k, reg):
+    """Espressione leggibile del registro reg ('a','x','y') subito prima dell'istruzione k, o 'A'/'X'/'Y' se ignota."""
+    cur = k
+    name = reg.upper()
+    for _ in range(24):
+        ps = preds.get(cur, [])
+        if len(ps) != 1:
+            break
+        p = body[ps[0]]
+        d = defs_i(p)
+        if reg in d:
+            n = p.name
+            if n in ("LDA", "LDX", "LDY"):
+                return mem_read(c, p) if p.mode in ("imm", "zpg", "abs") else "%s" % mem_read(c, p)
+            if n in ("TAX", "TAY"): return "A"
+            if n in ("TXA",): return "X"
+            if n in ("TYA",): return "Y"
+            break
+        if p.name in ("JSR", "JMP", "RTS", "RTI", "BRK") or p.extra is not None:
+            break
+        cur = (p.u, p.off)
+    return name
+
+
 # ------------------------------------------------------------------ analisi flag tra funzioni
 class Summaries:
     def __init__(self, fn_ok, rom=None):
         self.entry_live = {e: frozenset() for e in fn_ok}
         self.must_def = {e: ALL for e in fn_ok}
         self.ret_live = {e: ALL for e in fn_ok}
+        self.may_def_regs = {}            # funzione -> registri che puo' modificare (a,x,y)
         self.reads_mode = False           # True: ret_live trattato come vuoto (si calcolano solo i flag LETTI dalla funzione)
         self.by_addr = collections.defaultdict(list)   # indirizzo CPU -> funzioni con quell'ingresso (per le chiamate dinamiche)
         if rom is not None:
@@ -527,10 +585,10 @@ def live_in_of(i, body, succ_live, S, entry, rom, fn_ok, jmp_internal):
         return S.entry_live[g] | (rl - S.must_def[g])
     if n in ("RTI", "BRK"):
         return ALL
-    u = uses_of(n)
+    u = uses_i(i)
     if getattr(i, "carry_const", None) is not None:
         u = u - {"C"}
-    return u | (succ_live - defs_of(n))
+    return u | (succ_live - defs_i(i))
 
 
 def function_liveness(entry, body, successors, rom, fn_ok, S, exact):
@@ -597,7 +655,7 @@ def must_def_of(entry, body, successors, rom, fn_ok, S):
             D[k] = din
         i = body[k]
         n = i.name
-        dout = din | defs_of(n)
+        dout = din | defs_i(i)
         if n == "JSR":
             g = call_target(i, fn_ok)
             if g:
@@ -689,6 +747,19 @@ def ipa(c, fn_emit, successors, rom, open_fns, fn_ok):
     S.reads_mode = False
     for e, body in fn_ok.items():
         function_liveness(e, body, successors, rom, fn_ok, S, c.exact)
+    # registri modificabili: definiti nel corpo o da un chiamato
+    md = {e: {r for i in b.values() for r in defs_i(i) if r in "axy"} for e, b in fn_ok.items()}
+    for _ in range(8):
+        ch = False
+        for e, b in fn_ok.items():
+            for i in b.values():
+                g = call_target(i, fn_ok) or tail_all(i, fn_ok)
+                if g and not md[g] <= md[e]:
+                    md[e] |= md[g]
+                    ch = True
+        if not ch:
+            break
+    S.may_def_regs = md
     return S
 
 
@@ -820,6 +891,7 @@ class Fn:
         self.goto_targets = set()
         self.emitted = set()
         self.u = entry[0]
+        self.preds = preds
 
     # -- istruzioni
     def step(self, i):
@@ -873,7 +945,16 @@ class Fn:
         if tgt in self.fn_ok:
             if self.c.runnable:
                 return "JSR(%s, 0x%04X);" % (self.fname_of(tgt), ret)
-            return "%s();" % self.fname_of(tgt)
+            S = getattr(self.c, "S", None)
+            args = ""
+            outs = ""
+            if S is not None and tgt in S.entry_live:
+                params = [r for r in "axy" if r in S.entry_live[tgt]]
+                args = ", ".join("%s=%s" % (r.upper(), reg_value(self.c, self.body, self.preds, (i.u, i.off), r)) for r in params)
+                o = [r.upper() for r in "axy" if r in S.ret_live[tgt] and r in S.may_def_regs.get(tgt, set())]
+                if o:
+                    outs = "  /* -> %s */" % ", ".join(o)
+            return "%s(%s);%s" % (self.fname_of(tgt), args, outs)
         self.needs_s0 = True
         return "JSR_DYN(0x%04X, 0x%04X);" % (a, ret) if self.c.runnable else "call_dyn(%s);" % self.faddr(a)
 

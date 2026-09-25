@@ -758,6 +758,7 @@ def main():
     if "--closed" in sys.argv:              # ipotesi: nessun chiamante ignoto (i flag restituiti servono solo ai chiamanti noti)
         open_fns = set(hard_bodies)
     S = E.ipa(c, fn_ok, successors, rom, open_fns, fn_all)
+    c.S = S
     if exact:
         for body in fn_ok.values():
             for i in body.values():
@@ -777,6 +778,11 @@ def main():
             head.append("    uint8_t _s0 = g_cpu.S;")
         for t in sorted(F.temps):
             head.append("    uint8_t %s;" % t)
+        if readable:
+            ins_r = [r.upper() for r in "axy" if r in S.entry_live[e]]
+            out_r = [r.upper() for r in "axy" if r in S.ret_live[e] and r in S.may_def_regs.get(e, set())]
+            if ins_r or out_r:
+                head.insert(0, "/* in: %s   out: %s */" % (", ".join(ins_r) or "-", ", ".join(out_r) or "-"))
         if not readable:
             head.append("    DEC_GUARD(%d, 0x%04X);" % (fn_index[e], rom.base[u] + e[1]))
         if readable:
