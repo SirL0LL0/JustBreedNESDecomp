@@ -33,3 +33,4 @@ __pycache__/
 build_rom/
 assets/*.hex.bak
 scratch/
+disasm/

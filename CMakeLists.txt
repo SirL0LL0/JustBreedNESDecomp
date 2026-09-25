@@ -27,6 +27,14 @@ add_executable(JustBreedRecomp
 if(JB_INTERP_ONLY)
     # Bootstrap: nessun codice ricompilato, tutto passa dall'interprete del runner.
     target_sources(JustBreedRecomp PRIVATE interp_boot.c)
+    # Blocchi base tradotti in C (python tools/mmc5_blocks.py baserom_jp.nes generated/blocks analysis/all.bin):
+    # l'interprete li esegue al posto della decodifica. JB_BLOCKS=OFF li esclude.
+    option(JB_BLOCKS "Usa i blocchi C tradotti (generated/blocks) sopra l'interprete" ON)
+    file(GLOB JB_BLOCK_SRC CONFIGURE_DEPENDS generated/blocks/jb_blocks_*.c)
+    if(JB_BLOCKS AND JB_BLOCK_SRC)
+        target_sources(JustBreedRecomp PRIVATE ${JB_BLOCK_SRC})
+        target_compile_definitions(JustBreedRecomp PRIVATE JB_BLOCKS=1)
+    endif()
 else()
     # Prodotti da NESRecomp.exe (prefisso = output_prefix in game.toml)
     file(GLOB JB_GENERATED CONFIGURE_DEPENDS generated/justbreed_full*.c generated/justbreed_dispatch.c)

@@ -22,6 +22,9 @@ void func_RESET(void) {
     /* BRK come sull'hardware: alcune routine con dati inline ne dipendono.
      * JB_NO_HW_BRK=1 lo disattiva (solo per confronti A/B). */
     g_interp_hw_brk = getenv("JB_NO_HW_BRK") ? 0 : 1;
+#ifdef JB_BLOCKS
+    { extern void jb_blocks_init(void); jb_blocks_init(); }
+#endif
     nes_interp_resume(nes_read16(0xFFFC));
     /* Non dovrebbe mai tornare: se succede, dice perche' (kind: 0 declined, 1 return, 2 rti, 3 native, 4 stack, 5 brk). */
     NesInterpExit ex;
