@@ -191,9 +191,19 @@ def main():
 
     tree, blobs, codes = hufpack.encode_messages(msgs)
     assert len(tree) <= 512, "albero troppo grande: %d" % len(tree)
-    pos, used = hufpack.layout(blobs)
-    print("albero %d byte, %d simboli; blob %d byte (%.1f unita', max 11.0)" % (len(tree), len(codes), used, used / UNIT))
-    assert used <= 11 * UNIT, "blob non entrano nelle unita' 16-26"
+    # Regioni libere per i blob: unita' 16-27 (27 e' vuota nel gioco originale) + code libere (FF/00) delle unita' 28-31.
+    regions = [(0, 12 * UNIT)]
+    for u in (28, 29, 30, 31):
+        seg = data[16 + u * UNIT:16 + (u + 1) * UNIT]
+        t = len(seg)
+        while t > 0 and seg[t - 1] in (0, 0xFF):
+            t -= 1
+        start = t + 16 + ((t + 16) & 1)                     # 16 byte di margine, allineato a 2
+        if start < UNIT - 64:
+            regions.append(((u - 16) * UNIT + start, (u - 16) * UNIT + UNIT))
+    pos, used = hufpack.layout_regions(blobs, regions)
+    print("albero %d byte, %d simboli; blob %d byte (%.1f unita'; regioni libere %d byte)" % (
+        len(tree), len(codes), used, used / UNIT, sum(hi - lo for lo, hi in regions)))
     assert max(len(b) for b in blobs) <= 256, "blob > 256 byte: id %04X (%d)" % (
         ids[max(range(len(blobs)), key=lambda i: len(blobs[i]))], max(len(b) for b in blobs))
 

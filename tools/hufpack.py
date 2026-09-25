@@ -116,6 +116,28 @@ def layout(blobs, first_unit=16, last_unit=31, start_unit_off=0):
     return pos, p
 
 
+def layout_regions(blobs, regions):
+    """Posiziona i blob in piu' regioni lineari [(inizio, fine_esclusa)] (coordinate come layout(): dall'inizio dell'unita' 16).
+    Nella prima regione i blob possono attraversare i confini di unita'; nelle altre (code libere di unita') mai.
+    Ritorna (posizioni, byte_usati) oppure solleva ValueError se non entrano."""
+    pos = [None] * len(blobs)
+    cur = [r[0] for r in regions]
+    order = sorted(range(len(blobs)), key=lambda i: i)      # ordine originale per la regione principale
+    used = 0
+    for i in order:
+        b = blobs[i]
+        for ri, (lo, hi) in enumerate(regions):
+            p = cur[ri] + (cur[ri] & 1)
+            if p + len(b) <= hi:
+                pos[i] = p
+                cur[ri] = p + len(b)
+                used += len(b)
+                break
+        else:
+            raise ValueError("blob %d di %d byte non entra nelle regioni libere" % (i, len(b)))
+    return pos, used
+
+
 def pointer_entry(linear):
     g, off = divmod(linear, UNIT)
     assert off % 2 == 0 and off // 2 < 0x1000 and g < 16, (g, off)
