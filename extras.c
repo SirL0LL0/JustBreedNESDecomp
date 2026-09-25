@@ -4,9 +4,11 @@
  */
 #include "game_extras.h"
 #include "nes_runtime.h"
+#include "mapper.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 
 const char *game_get_name(void) { return "Just Breed"; }
 
@@ -21,6 +23,21 @@ void game_on_init(void) {}                       /* dopo il caricamento ROM + ru
 /* Strumento di reverse engineering: JB_DUMP_FRAMES="1800,1810" scrive, ai frame indicati, la
  * nametable (4KB), le palette e la RAM di lavoro (2KB) in C:/temp/jb_dump_<frame>_{nt,pal,ram}.bin. */
 void game_on_frame(uint64_t frame) {
+    /* JB_DUMP_EVERY=N: accoda (frame:u32 + nametable 4KB + ExRAM 1KB) a C:/temp/jb_nt_all.bin ogni N frame,
+     * solo se la nametable e' cambiata dall'ultima registrazione. */
+    static int s_every = -1;
+    if (s_every < 0) { const char *e = getenv("JB_DUMP_EVERY"); s_every = e ? atoi(e) : 0; }
+    if (s_every > 0 && frame % (unsigned)s_every == 0) {
+        static uint8_t last[0x1000]; static FILE *all;
+        if (!all) all = fopen("C:/temp/jb_nt_all.bin", "wb");
+        if (all && memcmp(last, g_ppu_nt, sizeof last) != 0) {
+            uint32_t f = (uint32_t)frame;
+            fwrite(&f, 4, 1, all); fwrite(g_ppu_nt, 1, sizeof last, all);
+            { static const uint8_t zero[0x400] = {0}; const uint8_t *ex = mapper_get_exram(); fwrite(ex ? ex : zero, 1, 0x400, all); }
+            fflush(all);
+            memcpy(last, g_ppu_nt, sizeof last);
+        }
+    }
     static const char *s_list = (const char *)-1;
     if (s_list == (const char *)-1) s_list = getenv("JB_DUMP_FRAMES");
     if (!s_list) return;
@@ -32,6 +49,8 @@ void game_on_frame(uint64_t frame) {
             FILE *o = fopen(path, "wb"); if (o) { fwrite(g_ppu_nt, 1, sizeof g_ppu_nt, o); fclose(o); }
             snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_pal.bin", (unsigned long long)frame);
             o = fopen(path, "wb"); if (o) { fwrite(g_ppu_pal, 1, sizeof g_ppu_pal, o); fclose(o); }
+            snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_ex.bin", (unsigned long long)frame);
+            o = fopen(path, "wb"); if (o) { const uint8_t *ex = mapper_get_exram(); if (ex) fwrite(ex, 1, 0x400, o); fclose(o); }
             snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_ram.bin", (unsigned long long)frame);
             o = fopen(path, "wb"); if (o) { fwrite(g_ram, 1, 0x800, o); fclose(o); }
         }
