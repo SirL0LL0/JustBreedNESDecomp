@@ -33,18 +33,19 @@ def words(s):
     return [w for w in s.split(" ") if w != ""]
 
 
-def wrap_paragraph(text_lines):
+def wrap_paragraph(text_lines, in_quote=False):
     joined = " ".join(l.strip() for l in text_lines)
-    indent = 1 if joined.startswith(("“", "<59>")) else 0
+    indent = 1 if (in_quote or joined.startswith(("“", "<59>"))) else 0
     out, cur = [], ""
+    first = True
     for w in words(joined):
-        cand = (cur + " " + w) if cur else w
-        limit = WIDTH
-        if width(cand) > limit and cur:
+        cand = (cur + " " + w) if cur else ((" " * indent) + w if in_quote and first else w)
+        if width(cand) > WIDTH and cur.strip():
             out.append(cur)
             cur = (" " * indent) + w
         else:
             cur = cand
+        first = False
     if cur:
         out.append(cur)
     return out
@@ -53,12 +54,16 @@ def wrap_paragraph(text_lines):
 def wrap_message(s):
     lines = s.split("<05>")
     out, para, after_choice = [], [], False
+    quote_open = False                       # un “ e' aperto: le righe successive (anche dopo <5E>) hanno rientro
 
     def flush():
-        nonlocal para
+        nonlocal para, quote_open
         if not para:
             return
-        wrapped = wrap_paragraph(para)
+        wrapped = wrap_paragraph(para, in_quote=quote_open)
+        joined = " ".join(para)
+        opens, closes = joined.count("“"), joined.count("”")
+        quote_open = quote_open + opens > closes and (opens > closes or quote_open)
         for i in range(0, len(wrapped), PAGE_LINES):
             if i:
                 out.extend(["<5E>"])

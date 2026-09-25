@@ -5,7 +5,8 @@
 it.tsv: una riga per messaggio  ID<TAB>testo italiano  (stessa sintassi di dialog_jp.tsv: <XX> = byte grezzo,
 {cc:pp} = comando con parametro, $n = nome, #!nn / *.nnn / +n / -n / %n = comandi in ASCII; <05> = a capo).
 """
-import re, sys
+import os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 MAXLINE = 26
 TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?\d+|[+\-%&]\d+|\.\d+")
@@ -48,6 +49,13 @@ if __name__ == "__main__":
             print(k, "TOKEN diversi\n   JP:", a, "\n   IT:", b); bad += 1
         if JPCHAR.search(row[1]):
             print(k, "contiene caratteri giapponesi"); bad += 1
+        try:
+            import charmap_it
+            n_raw = len(charmap_it.encode_text(row[1]))
+            if n_raw > 254:
+                print(k, "messaggio troppo lungo: %d byte (max 254, buffer del gioco)" % n_raw); bad += 1
+        except ValueError as e:
+            print(k, "errore:", e); bad += 1
         for n in visible_lines(row[1]):
             if n > MAXLINE:
                 print(k, "riga di %d caratteri (max %d): %s" % (n, MAXLINE, row[1][:70])); bad += 1; break

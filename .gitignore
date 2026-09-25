@@ -30,3 +30,5 @@ text/
 *.tsv
 __pycache__/
 *.pyc
+build_rom/
+assets/*.hex.bak
