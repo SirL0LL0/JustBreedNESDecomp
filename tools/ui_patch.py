@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Patch delle stringhe inline dell'interfaccia (banco 58): le stringhe italiane vanno nell'unita' 47 (libera) e ogni
 chiamata  JSR $97CF + stringa + 00  viene sostituita da  JSR PrintFar + idx + skip.
 
@@ -62,7 +62,7 @@ def apply_ui(data, ui_tsv):
 
     strings, entries = bytearray(), []
     rows = []
-    for l in open(ui_tsv, encoding="utf-8"):
+    for l in open(ui_tsv, encoding="utf-8-sig"):
         p = l.rstrip("\n").split("\t")
         if len(p) >= 2 and p[0] != "offset":
             rows.append((int(p[0], 16), p[1]))
@@ -88,3 +88,4 @@ def apply_ui(data, ui_tsv):
         data[t0 + 2 * i:t0 + 2 * i + 2] = bytes([v & 0xFF, v >> 8])
     data[t0 + STR_START:t0 + STR_START + len(strings)] = strings
     return len(rows), len(strings)
+

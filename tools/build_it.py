@@ -47,7 +47,7 @@ def patch_font(data, prg_size):
 
 # Tabelle di nomi a record fissi: nome -> (offset PRG, larghezza record in byte, numero record)
 # Il record e' 'testo + spazi' fino a larghezza-1 colonne, poi 00 (kanji = 2 colonne, come nell'originale).
-TABLES = {"items": (0x4C000, 8, 154), "spells": (0x4C4D0, 8, 74), "places": (0x4D2B4, 10, 29), "chars": (0x72000, 6, 37)}
+TABLES = {"items": (0x4C000, 8, 154), "spells": (0x4C4D0, 8, 74), "places": (0x4D2B4, 10, 29), "chars": (0x72000, 6, 37), "ranks": (0x747C4, 8, 4)}
 
 
 def patch_tables(data, tsv_path):
@@ -204,5 +204,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
