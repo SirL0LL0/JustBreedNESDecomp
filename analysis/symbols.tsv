@@ -1,0 +1,19 @@
+# Nomi simbolici per il decompilatore (tools/decompile.py). Modifica e rigenera: i nomi compaiono ovunque.
+#   R <indirizzo RAM esadecimale> <nome>          variabile / buffer / puntatore
+#   F <unita'>:<indirizzo CPU esadecimale> <nome>   funzione
+# Le righe sotto sono deduzioni gia' confermate dal reverse engineering della traduzione.
+R 00BE msg_ptr_lo
+R 00BF msg_ptr_hi
+R 00BC prg8000_shadow
+R 00BD prga000_shadow
+R 0700 text_buffer            # messaggio decodificato (<= 254 byte)
+R 6400 window_text            # testo copiato nella finestra di dialogo
+F 62:C21D far_call            # JSR far_call; .byte banco|$80, lo, hi
+F 62:C184 set_prg_8000
+F 62:C193 set_prg_A000
+F 62:C278 read_inline_byte
+F 62:D094 load_message
+F 58:97CF print_inline_string
+F 62:C1D3 skip_strings
+F 63:E143 nmi_handler
+F 63:E000 reset_handler

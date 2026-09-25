@@ -35,9 +35,11 @@ static FILE *s_blog = NULL; static unsigned long s_blog_n = 0, s_blog_max = 0;
 static void blog_rec(uint16_t pc, int cy) {
     (void)cy;
     if (s_blog_n >= s_blog_max) return;
-    unsigned char rec[8] = { (unsigned char)pc, (unsigned char)(pc >> 8), g_cpu.A, g_cpu.X, g_cpu.Y, g_cpu.S,
-                             g_ram[0x100 + (uint8_t)(g_cpu.S + 1)], g_ram[0x100 + (uint8_t)(g_cpu.S + 2)] };
-    fwrite(rec, 1, 8, s_blog);
+    unsigned char rec[12] = { (unsigned char)pc, (unsigned char)(pc >> 8), g_cpu.A, g_cpu.X, g_cpu.Y, g_cpu.S,
+                             g_ram[0x100 + (uint8_t)(g_cpu.S + 1)], g_ram[0x100 + (uint8_t)(g_cpu.S + 2)],
+                             (unsigned char)g_mmc5_win_bank8k[0], (unsigned char)g_mmc5_win_bank8k[1],
+                             (unsigned char)g_mmc5_win_bank8k[2], (unsigned char)g_mmc5_win_bank8k[3] };
+    fwrite(rec, 1, 12, s_blog);
     s_blog_n++;
     if ((s_blog_n & 0xFFF) == 0) fflush(s_blog);
 }

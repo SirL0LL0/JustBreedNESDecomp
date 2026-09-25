@@ -3,7 +3,7 @@
 
   python tools/seqdiff.py a.log b.log [--ctx 6]
 
-Record da 8 byte: pc(2) A X Y S lo-ritorno hi-ritorno. Se lo stato (A,X,Y,S) diverge prima del pc, l'istruzione PRECEDENTE e' quella sbagliata.
+Record da 12 byte: pc(2) A X Y S lo-ritorno hi-ritorno unita-nelle-4-finestre. Se lo stato (A,X,Y,S) diverge prima del pc, l'istruzione PRECEDENTE e' quella sbagliata.
 """
 import sys
 
@@ -12,23 +12,31 @@ def main():
     a = open(sys.argv[1], "rb").read()
     b = open(sys.argv[2], "rb").read()
     ctx = int(sys.argv[sys.argv.index("--ctx") + 1]) if "--ctx" in sys.argv else 6
-    n = min(len(a), len(b)) // 8
+    if "--notop" in sys.argv:            # ignora i 2 byte in cima allo stack (P impilato dagli interrupt cambia con la potatura dei flag)
+        strip = lambda d: b"".join(d[k:k + 6] + d[k + 8:k + 12] for k in range(0, len(d) - 11, 12))
+        a, b = strip(a), strip(b)
+        R = 10
+    else:
+        R = 12
+    n = min(len(a), len(b)) // R
     i = 0
     # confronto veloce a blocchi
-    step = 8 * 4096
+    step = R * 4096
     off = 0
     while off < min(len(a), len(b)) and a[off:off + step] == b[off:off + step]:
         off += step
-    i = off // 8
-    while i < n and a[i * 8:i * 8 + 8] == b[i * 8:i * 8 + 8]:
+    i = off // R
+    while i < n and a[i * R:i * R + R] == b[i * R:i * R + R]:
         i += 1
-    print("record: A=%d B=%d, identici per i primi %d" % (len(a) // 8, len(b) // 8, i))
+    print("record: A=%d B=%d, identici per i primi %d" % (len(a) // R, len(b) // R, i))
     if i >= n:
         print("nessuna divergenza nel tratto comune")
         return 0
     for k in range(max(0, i - ctx), min(n, i + 3)):
-        ra, rb = a[k * 8:k * 8 + 8], b[k * 8:k * 8 + 8]
-        fmt = lambda r: "pc=%04X A=%02X X=%02X Y=%02X S=%02X top=%02X%02X" % (r[0] | r[1] << 8, r[2], r[3], r[4], r[5], r[7], r[6])
+        ra, rb = a[k * R:k * R + R], b[k * R:k * R + R]
+        if R == 10:
+            ra, rb = ra[:6] + b"\x00\x00" + ra[6:], rb[:6] + b"\x00\x00" + rb[6:]
+        fmt = lambda r: "pc=%04X A=%02X X=%02X Y=%02X S=%02X top=%02X%02X w=%d,%d,%d,%d" % (r[0] | r[1] << 8, r[2], r[3], r[4], r[5], r[7], r[6], *[(x if x < 128 else -1) for x in r[8:12]])
         print("%s #%d  A: %s   B: %s" % (">>" if k == i else "  ", k, fmt(ra), fmt(rb)))
     return 1
 

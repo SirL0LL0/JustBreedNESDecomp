@@ -14,7 +14,7 @@ una funzione C `void fUU_AAAA(void)`:
 Senza --readable ogni istruzione chiama NB_STEP (campionamento NMI, copertura): e' la versione eseguibile.
 Con --readable NB_STEP sparisce: e' il sorgente da leggere (non va compilato).
 """
-import os, sys, collections
+import os, sys, collections, re
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, here)
 import disasm
@@ -66,7 +66,7 @@ def uses_of(name):
 
 
 class Ins:
-    __slots__ = ("u", "off", "pc", "name", "mode", "ops", "ln", "op", "succ", "kind", "extra", "live_out", "label")
+    __slots__ = ("u", "off", "pc", "name", "mode", "ops", "ln", "op", "succ", "kind", "extra", "live_out", "label", "fused", "temp", "callee", "jcallee", "carry_const")
 
     def __repr__(self):
         return "%04X %s" % (self.pc, self.name)
@@ -110,7 +110,11 @@ def build(rom, code, outdir, readable):
     inline = disasm.inline_routines(rom)
     prg = rom.prg
     ins = {}                                    # (u, off) -> Ins
+    # solo le unita' in cui si e' visto eseguire codice: nelle altre il "codice" trovato dall'analisi e' quasi sempre dati
+    code_units = {u for u in range(rom.nunits) if any(rom.op[u * UNIT:(u + 1) * UNIT])}
     for u in range(rom.nunits):
+        if u not in code_units:
+            continue
         for off, ln in code[u].items():
             i = Ins()
             i.u, i.off, i.ln = u, off, ln
@@ -120,6 +124,11 @@ def build(rom, code, outdir, readable):
             i.ops = prg[u * UNIT + off + 1:u * UNIT + off + ln]
             i.kind = None
             i.extra = None
+            i.callee = None
+            i.jcallee = None
+            i.carry_const = None
+            i.fused = None
+            i.temp = None
             ins[(u, off)] = i
 
     # ---- chiamate: tipo dei siti JSR, ingressi di funzione ----
@@ -167,6 +176,14 @@ def build(rom, code, outdir, readable):
                 else:
                     i.kind = ("call", tu, to)
                     entries.add((tu, to))
+            if i.kind and i.kind[0] in ("call", "inline", "table"):
+                i.callee = (tu, to)
+    for (u, off), i in ins.items():
+        if i.name == "JMP" and i.mode == "abs":
+            a = i.ops[0] | (i.ops[1] << 8)
+            tu, to = rom.unit_of(a, u)
+            if tu is not None and not (0xC000 <= a < 0xE000 and rom.base[u] != 0xC000):
+                i.jcallee = (tu, to)
     entries = {e for e in entries if e in ins}
     entries_all = set(entries)
 
@@ -598,9 +615,50 @@ def emit_function(entry, body, ins, rom, entries, fn_ok, runnable, fname_of, fn_
     return "\n".join(head + out + ["}", ""])
 
 
+def readable_line(s):
+    """Sintassi da leggere: registri A/X/Y, flag N/Z/C/V, chiamate senza macro."""
+    s = re.sub(r"\brA\b", "A", s)
+    s = re.sub(r"\brX\b", "X", s)
+    s = re.sub(r"\brY\b", "Y", s)
+    s = re.sub(r"g_cpu\.([NZCVDI])\b", r"\1", s)
+    s = s.replace("call_dyn(", "call(")
+    s = s.replace("(uint8_t)", "").replace("(uint16_t)", "")
+    return s
+
+
+def asm_text(i, syms, rom):
+    n = i.name.lower()
+    a = i.ops[0] if len(i.ops) == 1 else (i.ops[0] | (i.ops[1] << 8)) if i.ops else 0
+    m = i.mode
+    if m in ("imp",):
+        return n
+    if m == "acc":
+        return n + " a"
+    if m == "imm":
+        return "%s #$%02X" % (n, a)
+    if m == "rel":
+        rel = i.ops[0] - 256 if i.ops[0] > 127 else i.ops[0]
+        return "%s $%04X" % (n, (i.pc + 2 + rel) & 0xFFFF)
+    nm = syms.mem(a) if (a in HW or a in syms.ram or a in syms.auto) else ("$%04X" % a if a > 0xFF else "$%02X" % a)
+    return {"abs": "%s %s", "abx": "%s %s,x", "aby": "%s %s,y", "zpg": "%s %s", "zpx": "%s %s,x", "zpy": "%s %s,y",
+            "ind": "%s (%s)", "inx": "%s (%s,x)", "iny": "%s (%s),y"}[m] % (n, nm)
+
+
+def instr_preds(body, successors):
+    preds = collections.defaultdict(list)
+    for k, i in body.items():
+        for s in successors(i):
+            if s in body and k not in preds[s]:
+                preds[s].append(k)
+    return preds
+
+
 def main():
+    import decomp_emit as E
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     readable = "--readable" in sys.argv
+    exact = "--exact" in sys.argv
+    use_ipa = "--ipa" in sys.argv or "--closed" in sys.argv
     global RUNNABLE
     RUNNABLE = not readable
     rom_path, outdir, covs = args[0], args[1], args[2:]
@@ -609,20 +667,21 @@ def main():
 
     # scelta funzioni esprimibili
     fn_ok = {}
-    reasons = collections.Counter()
     hard_list = []
+    hard_bodies = {}
     for e, body in sorted(funcs.items()):
         ok, why = analyze_function(e, body, ins, entries, rom, successors)
         if ok:
             fn_ok[e] = body
         else:
             hard_list.append((e, why))
-            reasons[why.split(" a ")[0].split(" a $")[0][:40]] += 1
+            hard_bodies[e] = body
     # codice non coperto da nessuna funzione: frammenti orfani (raggiunti solo da chiamate dinamiche)
     covered = set()
     for body in fn_ok.values():
         covered |= set(body)
     orphans = 0
+    orphan_set = set()
     succs = {k: successors(i) for k, i in ins.items()}
     while True:
         rest = [k for k in sorted(ins) if k not in covered]
@@ -651,25 +710,78 @@ def main():
         if ok:
             fn_ok[k] = body
             orphans += 1
+            orphan_set.add(k)
         else:
             hard_list.append((k, why))
+            hard_bodies[k] = body
     os.makedirs(outdir, exist_ok=True)
     for f in os.listdir(outdir):
         if f.startswith("jb_dec_") and (f.endswith(".c") or f.endswith(".h")):
             os.remove(os.path.join(outdir, f))
 
+    syms_path = os.path.join(here, "..", "analysis", "symbols.tsv")
+    syms = E.Symbols(HW, syms_path)
+
     def fname_of(e):
+        k = (e[0], rom.base[e[0]] + e[1])
+        if k in syms.func:
+            return syms.func[k]
         return "f%02d_%04X" % (e[0], rom.base[e[0]] + e[1])
 
+    import decomp_names
+    decomp_names.auto_names(syms, fn_ok, rom)
+    fn_all = dict(hard_bodies)
+    fn_all.update(fn_ok)
+
+    E.READABLE = readable
+    c = E.Ctx(not readable, syms, exact, use_ipa)
+    # funzioni con chiamanti non tutti noti staticamente (ret_live = tutti i flag)
+    static_called = set()
+    dyn_addrs = set()
     for e, body in fn_ok.items():
-        liveness(e, body, successors)
-        if "--exact" in sys.argv:            # niente potatura dei flag: per il collaudo esatto (anche i byte P impilati dagli interrupt)
+        for i in body.values():
+            if i.name == "JSR" and i.kind and i.kind[0] == "call":
+                static_called.add((i.kind[1], i.kind[2]))
+            g = E.tail_target(i, rom, fn_ok)
+            if g:
+                static_called.add(g)
+            if i.name == "JSR" and i.kind and i.kind[0] == "dyn":
+                dyn_addrs.add(i.kind[1])
+            if i.name == "JMP" and E.tail_target(i, rom, fn_ok) is None:
+                dyn_addrs.add(E.opv(i))
+    open_fns = set(hard_bodies) | {e for e in fn_ok if e not in static_called or e in orphan_set or (rom.base[e[0]] + e[1]) in dyn_addrs}
+    if not exact:
+        for e, body in fn_all.items():
+            pr = instr_preds(body, successors)
+            E.mark_fusion(c, body, pr)
+            E.mark_carry(body, pr)
+    if "--closed" in sys.argv:              # ipotesi: nessun chiamante ignoto (i flag restituiti servono solo ai chiamanti noti)
+        open_fns = set(hard_bodies)
+    S = E.ipa(c, fn_ok, successors, rom, open_fns, fn_all)
+    if exact:
+        for body in fn_ok.values():
             for i in body.values():
-                i.live_out = set(ALL)
+                i.live_out = E.ALL
     fn_index = {e: n for n, e in enumerate(sorted(fn_ok))}
     per_unit = collections.defaultdict(list)
+    fallback = 0
     for e in sorted(fn_ok):
-        per_unit[e[0]].append(emit_function(e, fn_ok[e], ins, rom, entries, fn_ok, not readable, fname_of, fn_index))
+        try:
+            F, lines = E.render_function(c, e, fn_ok[e], successors, rom, fn_ok, fname_of, fn_index)
+        except Exception as ex:                       # struttura non gestita: nessuna funzione persa, ma si segnala
+            print("ATTENZIONE: strutturazione fallita per %s: %r" % (fname_of(e), ex))
+            raise
+        u = e[0]
+        head = ["/* unita' %d  $%04X */" % (u, rom.base[u] + e[1]), "void %s(void) {" % fname_of(e)]
+        if F.needs_s0 and not readable:
+            head.append("    uint8_t _s0 = g_cpu.S;")
+        for t in sorted(F.temps):
+            head.append("    uint8_t %s;" % t)
+        if not readable:
+            head.append("    DEC_GUARD(%d, 0x%04X);" % (fn_index[e], rom.base[u] + e[1]))
+        if readable:
+            lines = [readable_line(x) for x in lines]
+        per_unit[u].append("\n".join(head + lines + ["}", ""]))
     suffix = "_readable" if readable else ""
     for u, funcs_txt in per_unit.items():
         hdr = '#include "nes_decomp.h"\n#include "jb_dec_decls.h"\n\n' if not readable else ""
@@ -682,6 +794,9 @@ def main():
         with open(os.path.join(outdir, "jb_dec_syms.h"), "w") as f:
             for a, nme in sorted(HW.items()):
                 f.write("#define %s 0x%04X\n" % (nme, a))
+            for a, nme in sorted(list(syms.ram.items()) + list(syms.auto.items())):
+                if a not in HW:
+                    f.write("#define %s 0x%04X\n" % (nme, a))
         with open(os.path.join(outdir, "jb_dec_tab.c"), "w") as f:
             f.write('#include "jb_dec_decls.h"\n\n')
             for e in sorted(fn_ok):
@@ -695,12 +810,32 @@ def main():
                     h = fnv(rom.prg[e[0] * UNIT + o:e[0] * UNIT + o + l], h)
                 f.write("    {%d, %d, 0x%04X, %s, 0x%08XU, r%d},\n" % (e[0], win, e[1], fname_of(e), h, fn_index[e]))
             f.write("};\n\nuint8_t jb_dec_valid[%d];\nvoid jb_decomp_init(void) { nes_decomp_install(s_tab, %d, jb_dec_valid); }\n" % (len(fn_ok), len(fn_ok)))
+    else:
+        with open(os.path.join(outdir, "jb_symbols.h"), "w", encoding="utf-8") as f:
+            f.write("/* nomi simbolici usati dal sorgente leggibile (modificabili in analysis/symbols.tsv) */\n")
+            for a, nme in sorted(list(syms.ram.items()) + list(syms.auto.items())):
+                f.write("%-28s /* $%04X */\n" % (nme, a))
+    if readable:
+        # routine non esprimibili come funzione C: listato assembly commentato con il motivo
+        why_of = dict(hard_list)
+        with open(os.path.join(outdir, "jb_dec_hard_readable.c"), "w", encoding="utf-8") as f:
+            f.write("/* Routine che non si possono scrivere come funzioni C (manipolano lo stack o i byte dopo la chiamata):\n"
+                    " * nel gioco le esegue l'interprete. Qui sono elencate in assembly con il motivo. */\n\n")
+            for e in sorted(hard_bodies):
+                body = hard_bodies[e]
+                f.write("/* unita' %d $%04X - %s */\nvoid %s(void) {\n" % (e[0], rom.base[e[0]] + e[1], why_of.get(e, "?"), fname_of(e)))
+                for k in sorted(body, key=lambda x: x[1]):
+                    i = body[k]
+                    f.write("    asm(\"%s\");  /* %04X */\n" % (asm_text(i, syms, rom), i.pc))
+                f.write("}\n\n")
     n_ins = sum(len(b) for b in fn_ok.values())
     print("funzioni decompilate: %d (di cui frammenti orfani %d), istruzioni %d/%d" % (len(fn_ok), orphans, n_ins, len(ins)))
     print("funzioni NON esprimibili (le esegue l'interprete): %d" % len(hard_list))
+    fused = sum(1 for b in fn_ok.values() for i in b.values() if getattr(i, "fused", None))
+    print("salti fusi in condizioni: %d" % fused)
     rc = collections.Counter(w[:44] for _, w in hard_list)
-    for w, c in rc.most_common(8):
-        print("   %4d  %s" % (c, w))
+    for w, cn in rc.most_common(8):
+        print("   %4d  %s" % (cn, w))
 
 
 if __name__ == "__main__":
