@@ -37,6 +37,11 @@ for row in rows:
             if n >= minlen:
                 hits[c] = max(hits[c], n)
 
+if len(sys.argv) > 4:
+    with open(sys.argv[4], "w") as f:
+        for off in sorted(hits):
+            f.write("%d\t%d\n" % (off, hits[off]))
+
 per_unit = collections.Counter()
 for off, n in hits.items():
     per_unit[off // 8192] += 1

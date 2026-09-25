@@ -26,3 +26,5 @@ analysis/trace*.txt
 analysis/entries.csv
 analysis/justbreed_mesen.json
 analysis/mmc5_regs.txt
+text/
+*.tsv
