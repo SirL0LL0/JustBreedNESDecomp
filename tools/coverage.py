@@ -18,10 +18,34 @@ def load(path):
     d = open(path, "rb").read()
     if d[:5] == b"CDLv2":
         d = d[9:9 + PRG_SIZE]
-        return bytes((1 if b & 1 else 0) | (2 if b & 0x0C else 0) for b in d)
+        # Il flag Code di Mesen copre TUTTI i byte di un'istruzione (opcode + operandi): ricostruisco gli opcode
+        # decodificando dall'inizio di ogni tratto (o da un bersaglio di salto); gli operandi diventano bit2.
+        here = os.path.dirname(os.path.abspath(__file__))
+        sys.path.insert(0, here)
+        import disasm
+        rp = os.environ.get("CDL_ROM") or os.path.join(here, "..", "baserom.nes")   # la ROM da cui e' stato registrato il CDL
+        rd = open(rp, "rb").read()
+        prg = rd[16:16 + PRG_SIZE]
+        out = bytearray(len(d))
+        i = 0
+        while i < len(d):
+            b = d[i]
+            if not b & 1:
+                i += 1
+                continue
+            name, mode = disasm.OPS[prg[i]]
+            ln = disasm.LEN[mode] if name != "???" else 1
+            out[i] = 1 | (2 if b & 0x0C else 0)
+            for k in range(1, ln):
+                if i + k < len(d) and d[i + k] & 1 and not d[i + k] & 0x0C:
+                    out[i + k] |= 4
+                else:
+                    break                    # tratto troncato: il byte dopo e' un nuovo inizio
+            i += ln
+        return bytes(out)
     if len(d) != PRG_SIZE:
         sys.exit("%s: dimensione %d inattesa (PRG=%d)" % (path, len(d), PRG_SIZE))
-    return bytes(b & 3 for b in d)      # exec.bin / cov: bit0 opcode, bit1 entry (bit2 = operand, ignorato)
+    return bytes(b & 7 for b in d)      # exec.bin / cov: bit0 opcode, bit1 entry, bit2 operando
 
 
 def union(paths):

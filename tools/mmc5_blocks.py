@@ -111,6 +111,9 @@ def build(rom_path, outdir, covs):
         for o in offs:
             codebits[u * 1024 + (o >> 3)] |= 1 << (o & 7)
         leaders = set(targets[u])
+        for o in offs:                       # ingressi visti in gioco (arrivo non sequenziale): sempre inizio blocco
+            if rom.ent[u * UNIT + o]:
+                leaders.add(o)
         prev_end, prev_term = None, True
         for o in offs:
             name, _ = OPS[d[o]]
