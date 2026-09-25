@@ -6,14 +6,38 @@
 #include "nes_runtime.h"
 #include <stdint.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 const char *game_get_name(void) { return "Just Breed"; }
 
 /* CRC32 dei soli dati ROM (header escluso): Just Breed (Japan) [T-Eng by Stealth Translations v1.00]. */
-uint32_t game_get_expected_crc32(void) { return 0x735528D8u; }
+uint32_t game_get_expected_crc32(void) {
+    /* JB_ANY_ROM=1 salta il controllo (sviluppo: ROM giapponese, ROM patchate). */
+    return getenv("JB_ANY_ROM") ? 0u : 0x735528D8u;
+}
 
 void game_on_init(void) {}                       /* dopo il caricamento ROM + runtime_init() */
-void game_on_frame(uint64_t frame) { (void)frame; }   /* ogni VBlank, prima di NMI */
+#include <stdio.h>
+/* Strumento di reverse engineering: JB_DUMP_FRAMES="1800,1810" scrive, ai frame indicati, la
+ * nametable (4KB), le palette e la RAM di lavoro (2KB) in C:/temp/jb_dump_<frame>_{nt,pal,ram}.bin. */
+void game_on_frame(uint64_t frame) {
+    static const char *s_list = (const char *)-1;
+    if (s_list == (const char *)-1) s_list = getenv("JB_DUMP_FRAMES");
+    if (!s_list) return;
+    for (const char *p = s_list; *p; ) {
+        unsigned long f = strtoul(p, (char **)&p, 10);
+        if (f == frame) {
+            char path[128];
+            snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_nt.bin", (unsigned long long)frame);
+            FILE *o = fopen(path, "wb"); if (o) { fwrite(g_ppu_nt, 1, sizeof g_ppu_nt, o); fclose(o); }
+            snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_pal.bin", (unsigned long long)frame);
+            o = fopen(path, "wb"); if (o) { fwrite(g_ppu_pal, 1, sizeof g_ppu_pal, o); fclose(o); }
+            snprintf(path, sizeof path, "C:/temp/jb_dump_%llu_ram.bin", (unsigned long long)frame);
+            o = fopen(path, "wb"); if (o) { fwrite(g_ram, 1, 0x800, o); fclose(o); }
+        }
+        if (*p == ',') p++; else if (*p) break;
+    }
+}
 void game_post_nmi(uint64_t frame) { (void)frame; }   /* ogni VBlank, dopo NMI */
 
 int game_handle_arg(const char *key, const char *val) { (void)key; (void)val; return 0; }
