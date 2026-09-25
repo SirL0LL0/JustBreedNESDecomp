@@ -118,7 +118,7 @@ class Editor(tk.Tk):
         self.status = tk.StringVar(value="pronto")
         ttk.Label(bar, textvariable=self.status).pack(side="right")
         self.nb = ttk.Notebook(self); self.nb.pack(fill="both", expand=True, padx=6, pady=4)
-        self.tab_dialog(); self.tab_ui(); self.tab_tables(); self.tab_glyphs()
+        self.tab_dialog(); self.tab_ui(); self.tab_tables(); self.tab_blocks(); self.tab_glyphs()
         self.log = tk.Text(self, height=7, state="disabled", bg="#111", fg="#ccc"); self.log.pack(fill="x", padx=6, pady=4)
 
     def logmsg(self, s):
@@ -314,6 +314,31 @@ class Editor(tk.Tk):
         v = list(self.tv_tab.item(sel[0], "values")); v[3] = text; self.tv_tab.item(sel[0], values=v)
         self.tab_info.set(""); self.dirty = True
 
+    # ------------------------------------------------------------ scheda testi fissi (intro)
+    def tab_blocks(self):
+        f = ttk.Frame(self.nb); self.nb.add(f, text="Testi fissi (intro)")
+        self.blk_name = "intro"
+        off, size = build_it.BLOCKS[self.blk_name]
+        ttk.Label(f, text="Una riga per riga di schermo (righe vuote/spazio = pause del gioco, come nell'originale). "
+                  "Spazio massimo: %d byte, 1 byte per carattere piu' 1 per riga." % size).pack(anchor="w", padx=6, pady=4)
+        self.t_blk = tk.Text(f, height=16, width=40, font=("Consolas", 12)); self.t_blk.pack(anchor="w", padx=6)
+        p = os.path.join(TEXT, self.blk_name + "_it.tsv")
+        if os.path.exists(p):
+            self.t_blk.insert("1.0", open(p, encoding="utf-8-sig").read().rstrip("\n"))
+        self.blk_info = tk.StringVar(); ttk.Label(f, textvariable=self.blk_info).pack(anchor="w", padx=6, pady=4)
+        self.t_blk.bind("<KeyRelease>", lambda e: self.blk_check())
+        self.blk_check()
+
+    def blk_check(self):
+        size = build_it.BLOCKS[self.blk_name][1]
+        try:
+            lines = self.t_blk.get("1.0", "end-1c").split("\n")
+            n = sum(len(charmap_it.encode_text(l)) + 1 for l in lines)
+            self.blk_info.set("%d / %d byte%s" % (n, size, "  <-- TROPPO LUNGO" if n > size else ""))
+        except ValueError as e:
+            self.blk_info.set(str(e))
+        self.dirty = True
+
     # ------------------------------------------------------------ scheda glifi stretti
     def tab_glyphs(self):
         f = ttk.Frame(self.nb); self.nb.add(f, text="Glifi stretti (VWF)")
@@ -399,6 +424,8 @@ class Editor(tk.Tk):
             f.write("table\tid\tit\n")
             for (tab, i), t in sorted(self.tab_it.items(), key=lambda kv: (list(build_it.TABLES).index(kv[0][0]), kv[0][1])):
                 f.write("%s\t%d\t%s\n" % (tab, i, t))
+        with open(os.path.join(TEXT, self.blk_name + "_it.tsv"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(self.t_blk.get("1.0", "end-1c") + "\n")
         self.dirty = False
         self.realloc()
         self.update_preview()

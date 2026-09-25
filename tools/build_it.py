@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Costruisce la ROM di prova in italiano a partire dalla ROM giapponese.
 
   python tools/build_it.py baserom_jp.nes text/it_wrapped.tsv out.nes
@@ -111,6 +111,27 @@ def patch_name_grid(data):
     data[base + 0x8FB7:base + 0x8FB9] = b"\xEA\xEA"
 
 
+# Blocchi di testo inline a lunghezza fissa (righe terminate da 00, ultima riga vuota = fine): nome -> (offset PRG, byte)
+BLOCKS = {"intro": (0x4AB37, 226)}
+
+
+def patch_blocks(data, tsv_dir):
+    n = 0
+    for name, (off, size) in BLOCKS.items():
+        p = os.path.join(tsv_dir, name + "_it.tsv")
+        if not os.path.exists(p):
+            continue
+        lines = open(p, encoding="utf-8-sig").read().split("\n")
+        if lines and lines[-1] == "":
+            lines.pop()                                  # newline finale del file
+        raw = b"".join(charmap_it.encode_text(l) + b"\x00" for l in lines)
+        if len(raw) > size:
+            raise ValueError("blocco %s: %d byte (max %d)" % (name, len(raw), size))
+        data[16 + off:16 + off + size] = raw + bytes(size - len(raw))
+        n += 1
+    return n
+
+
 import re
 _TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?\d+|[+\-%&]\d+|\.\d+")
 _JPTEXT = re.compile(r"[぀-ヿ一-鿿＀-￯…「-』・]")
@@ -186,6 +207,7 @@ def main():
     tp = os.path.join(here, "..", "text", "tables_it.tsv")
     if os.path.exists(tp):
         print("voci di tabella tradotte:", patch_tables(data, tp))
+    print("blocchi di testo:", patch_blocks(data, os.path.join(here, "..", "text")))
     patch_name_grid(data)
     print("griglia nomi: latina")
     open(out, "wb").write(data)
