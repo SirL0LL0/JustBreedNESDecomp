@@ -28,3 +28,5 @@ analysis/justbreed_mesen.json
 analysis/mmc5_regs.txt
 text/
 *.tsv
+__pycache__/
+*.pyc
