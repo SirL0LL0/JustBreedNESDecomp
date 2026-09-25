@@ -8,6 +8,9 @@ set(CMAKE_CXX_STANDARD 17)
 # nesrecomp/ e' un submodule git (vedi .gitmodules): setup.bat / setup.sh lo scaricano.
 set(NESRECOMP_ROOT ${CMAKE_SOURCE_DIR}/nesrecomp)
 
+# Mod (cheat) attivabili dal launcher: pacchetti in mods/packages, plugin in cheats.c
+set(NESRECOMP_ENABLE_MODS ON CACHE BOOL "" FORCE)
+
 # Fornisce NESRECOMP_RUNNER_SOURCES, NESRECOMP_RUNNER_INCLUDE_DIRS, NESRECOMP_RUNNER_ROOT
 include(${NESRECOMP_ROOT}/runner/runner.cmake)
 
@@ -17,6 +20,7 @@ find_package(SDL2 REQUIRED)
 add_executable(JustBreedRecomp
     ${NESRECOMP_RUNNER_SOURCES}
     extras.c
+    cheats.c
 )
 if(JB_INTERP_ONLY)
     # Bootstrap: nessun codice ricompilato, tutto passa dall'interprete del runner.
@@ -41,7 +45,14 @@ include(${CMAKE_SOURCE_DIR}/recomp-ui/recomp_ui.cmake)
 recomp_target_launcher_ui(JustBreedRecomp CONSOLE nes)
 
 # Gioco a un solo giocatore: nasconde la scheda Player 2 nel launcher.
-target_compile_definitions(JustBreedRecomp PRIVATE NESRECOMP_GAME_PLAYERS=1)
+target_compile_definitions(JustBreedRecomp PRIVATE NESRECOMP_GAME_PLAYERS=1
+    NESRECOMP_GAME_ID="just-breed" NESRECOMP_GAME_ROM_CRC32="a77ee1ce")
+
+# Pacchetti mod accanto all'eseguibile (mods/packages/<id>/<versione>/manifest.toml)
+add_custom_command(TARGET JustBreedRecomp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/mods/packages"
+        "$<TARGET_FILE_DIR:JustBreedRecomp>/mods/packages")
 
 if(WIN32)
     target_link_libraries(JustBreedRecomp PRIVATE ws2_32)

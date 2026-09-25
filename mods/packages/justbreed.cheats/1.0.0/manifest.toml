@@ -1,0 +1,223 @@
+format_version = 1
+id = "justbreed.cheats"
+version = "1.0.0"
+name = "Just Breed - Cheat"
+author = "JustBreed_NES_Recomp"
+description = "Cheat classici per Just Breed (codici RAM e Game Genie), attivabili dal launcher."
+license = "MIT"
+resolver = "declarative"
+save_compatibility = "shared"
+
+# Identita' ROM = CRC32 del banco fisso 62 (vedi cheats.c): vale per Just Breed giapponese, per la traduzione
+# italiana e per la patch inglese di Stealth (che il runtime normalizza a questo valore).
+[[target]]
+game_id = "just-breed"
+rom_crc32 = "a77ee1ce"
+
+# ---- Esperienza ----
+[[feature]]
+id = "exp_lots"
+name = "Molta EXP a fine battaglia"
+description = "Ogni battaglia assegna moltissima esperienza (byte basso a 255)."
+group = "Esperienza"
+exclusive_group = "exp"
+default_enabled = false
+
+[[feature]]
+id = "exp_max"
+name = "EXP al massimo a fine battaglia"
+description = "Ogni battaglia assegna il massimo dell'esperienza (255 + 255*256)."
+group = "Esperienza"
+exclusive_group = "exp"
+default_enabled = false
+
+# ---- Oro ----
+[[feature]]
+id = "gold_lots"
+name = "Molto oro a fine battaglia"
+description = "Ogni battaglia assegna molto oro (byte basso a 255)."
+group = "Oro"
+exclusive_group = "gold"
+default_enabled = false
+
+[[feature]]
+id = "gold_max"
+name = "Oro al massimo a fine battaglia"
+description = "Ogni battaglia assegna il massimo dell'oro (255 + 255*256)."
+group = "Oro"
+exclusive_group = "gold"
+default_enabled = false
+
+# ---- Salute e magia del gruppo ----
+[[feature]]
+id = "hp_hero"
+name = "Salute massima (eroe)"
+description = "Mantiene la salute dell'eroe al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_hero"
+name = "Magia massima (eroe)"
+description = "Mantiene la magia dell'eroe al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "hp_p2"
+name = "Salute massima (compagno)"
+description = "Mantiene la salute del compagno al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_p2"
+name = "Magia massima (compagno)"
+description = "Mantiene la magia del compagno al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "hp_p3"
+name = "Salute massima (spadaccino/arciere 1)"
+description = "Mantiene la salute del membro 1 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_p3"
+name = "Magia massima (spadaccino/arciere 1)"
+description = "Mantiene la magia del membro 1 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "hp_p4"
+name = "Salute massima (spadaccino/arciere 2)"
+description = "Mantiene la salute del membro 2 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_p4"
+name = "Magia massima (spadaccino/arciere 2)"
+description = "Mantiene la magia del membro 2 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "hp_p5"
+name = "Salute massima (spadaccino/arciere 3)"
+description = "Mantiene la salute del membro 3 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_p5"
+name = "Magia massima (spadaccino/arciere 3)"
+description = "Mantiene la magia del membro 3 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "hp_p6"
+name = "Salute massima (spadaccino/arciere 4)"
+description = "Mantiene la salute del membro 4 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+[[feature]]
+id = "mp_p6"
+name = "Magia massima (spadaccino/arciere 4)"
+description = "Mantiene la magia del membro 4 al massimo."
+group = "Gruppo"
+default_enabled = false
+
+# ---- Nemici ----
+[[feature]]
+id = "enemies_no_hp"
+name = "Nemici senza salute"
+description = "Azzera la salute di tutti i nemici: cadono al primo colpo."
+group = "Nemici"
+default_enabled = false
+
+# ---- Audio ----
+[[feature]]
+id = "dpcm_popreduce"
+name = "Riduzione del pop DPCM"
+description = "Codice Game Genie SZVIZESE: evita il click del campione DPCM."
+group = "Audio"
+default_enabled = false
+
+# ---- Plugin nativi (registrati in cheats.c) ----
+[[plugin]]
+feature = "exp_lots"
+id = "justbreed.exp_lots"
+
+[[plugin]]
+feature = "exp_max"
+id = "justbreed.exp_max"
+
+[[plugin]]
+feature = "gold_lots"
+id = "justbreed.gold_lots"
+
+[[plugin]]
+feature = "gold_max"
+id = "justbreed.gold_max"
+
+[[plugin]]
+feature = "hp_hero"
+id = "justbreed.hp_hero"
+
+[[plugin]]
+feature = "mp_hero"
+id = "justbreed.mp_hero"
+
+[[plugin]]
+feature = "hp_p2"
+id = "justbreed.hp_p2"
+
+[[plugin]]
+feature = "mp_p2"
+id = "justbreed.mp_p2"
+
+[[plugin]]
+feature = "hp_p3"
+id = "justbreed.hp_p3"
+
+[[plugin]]
+feature = "mp_p3"
+id = "justbreed.mp_p3"
+
+[[plugin]]
+feature = "hp_p4"
+id = "justbreed.hp_p4"
+
+[[plugin]]
+feature = "mp_p4"
+id = "justbreed.mp_p4"
+
+[[plugin]]
+feature = "hp_p5"
+id = "justbreed.hp_p5"
+
+[[plugin]]
+feature = "mp_p5"
+id = "justbreed.mp_p5"
+
+[[plugin]]
+feature = "hp_p6"
+id = "justbreed.hp_p6"
+
+[[plugin]]
+feature = "mp_p6"
+id = "justbreed.mp_p6"
+
+[[plugin]]
+feature = "enemies_no_hp"
+id = "justbreed.enemies_no_hp"
+
+[[plugin]]
+feature = "dpcm_popreduce"
+id = "justbreed.dpcm_popreduce"

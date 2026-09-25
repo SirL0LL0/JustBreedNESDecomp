@@ -5,6 +5,7 @@
 #include "game_extras.h"
 #include "nes_runtime.h"
 #include "mapper.h"
+#include "cheats.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -42,6 +43,7 @@ void game_on_init(void) {                        /* dopo il caricamento ROM + ru
 /* Strumento di reverse engineering: JB_DUMP_FRAMES="1800,1810" scrive, ai frame indicati, la
  * nametable (4KB), le palette e la RAM di lavoro (2KB) in C:/temp/jb_dump_<frame>_{nt,pal,ram}.bin. */
 void game_on_frame(uint64_t frame) {
+    cheats_on_frame();
     /* JB_DUMP_EVERY=N: accoda (frame:u32 + nametable 4KB + ExRAM 1KB) a C:/temp/jb_nt_all.bin ogni N frame,
      * solo se la nametable e' cambiata dall'ultima registrazione. */
     static int s_every = -1;
