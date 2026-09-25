@@ -13,13 +13,24 @@
 
 const char *game_get_name(void) { return "Just Breed"; }
 
-/* CRC32 dei soli dati ROM (header escluso): Just Breed (Japan) [T-Eng by Stealth Translations v1.00]. */
-uint32_t game_get_expected_crc32(void) {
-    /* JB_ANY_ROM=1 salta il controllo (sviluppo: ROM giapponese, ROM patchate). */
-    return getenv("JB_ANY_ROM") ? 0u : 0x735528D8u;
+/* Il launcher non confronta il CRC dell'intera ROM (cambia a ogni build della patch italiana): 0 = nessun controllo.
+ * Il riconoscimento avviene in game_on_init() sul banco fisso 62, che non modifichiamo mai:
+ *   A77EE1CE = Just Breed (Japan) e le ROM derivate (traduzione italiana)
+ *   E9C39604 = Just Breed (Japan) [T-Eng by Stealth Translations v1.00] */
+uint32_t game_get_expected_crc32(void) { return 0u; }
+
+#include "crc32.h"
+static void verify_known_rom(void) {
+    const uint8_t *bank = runner_get_prg_bank_rw(31);       /* 16KB: unita' 62 + 63 */
+    if (!bank) return;
+    uint32_t c = crc32_compute(bank, 0x2000);                /* unita' 62 */
+    if (c != 0xA77EE1CEu && c != 0xE9C39604u)
+        fprintf(stderr, "[JB] ATTENZIONE: ROM non riconosciuta (CRC banco 62 = %08X). "
+                        "Attesa Just Breed (Japan) o una sua derivata.\n", c);
 }
 
 void game_on_init(void) {                        /* dopo il caricamento ROM + runtime_init() */
+    verify_known_rom();
     /* Registrazione della copertura del codice mentre giochi: crea un file vuoto "coverage.on" nella
      * cartella da cui avvii il gioco. Scrive jb_coverage.bin (+ .win e .ram) ogni ~600 frame e all'uscita. */
     if (!getenv("NESRECOMP_COV_FILE")) {

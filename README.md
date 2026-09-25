@@ -1,4 +1,4 @@
-# JustBreedRecomp
+﻿# JustBreedRecomp
 
 Ricompilazione statica di un gioco NES per PC nativo, basata su
 [nesrecomp](https://github.com/mstan/nesrecomp) e strutturata come
@@ -112,7 +112,7 @@ build_interp\JustBreedRecomp.exe baserom.nes
 ```
 
 Senza argomenti si apre il launcher grafico (recomp-ui) che chiede la ROM e verifica il CRC32
-(`735528D8`, ROM traduzione Stealth v1.00).
+(nessun CRC obbligatorio: il gioco riconosce la ROM dal banco fisso 62 e accetta la ROM giapponese, quella di Stealth e le ROM derivate).
 
 Con `--script file.txt` gira senza finestra (vedi `nesrecomp/CLAUDE.md`: WAIT, HOLD, SCREENSHOT, EXIT).
 Ogni indirizzo raggiunto viene scritto in `dispatch_misses.log`: e' la copertura del codice che ci serve per il
