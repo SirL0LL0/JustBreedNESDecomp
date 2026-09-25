@@ -10,6 +10,8 @@ set(NESRECOMP_ROOT ${CMAKE_SOURCE_DIR}/nesrecomp)
 
 # Mod (cheat) attivabili dal launcher: pacchetti in mods/packages, plugin in cheats.c
 set(NESRECOMP_ENABLE_MODS ON CACHE BOOL "" FORCE)
+# Menu di gioco (recomp-ui runtime UI): Esc apre, mette in pausa; vedi nesrecomp/runner/include/runtime_ui_host.h
+set(NESRECOMP_ENABLE_RUNTIME_UI ON CACHE BOOL "" FORCE)
 
 # Fornisce NESRECOMP_RUNNER_SOURCES, NESRECOMP_RUNNER_INCLUDE_DIRS, NESRECOMP_RUNNER_ROOT
 include(${NESRECOMP_ROOT}/runner/runner.cmake)
@@ -42,7 +44,8 @@ target_link_libraries(JustBreedRecomp PRIVATE ${SDL2_LIBRARIES})
 # ---- Launcher grafico pre-avvio (recomp-ui / Dear ImGui, submodule) ----
 # Definisce RECOMP_LAUNCHER, che attiva il blocco launcher in main() di nesrecomp.
 include(${CMAKE_SOURCE_DIR}/recomp-ui/recomp_ui.cmake)
-recomp_target_launcher_ui(JustBreedRecomp CONSOLE nes)
+recomp_target_launcher_ui(JustBreedRecomp CONSOLE nes LANGUAGE it)
+recomp_target_runtime_ui_sdlrenderer2(JustBreedRecomp)
 
 # Gioco a un solo giocatore: nasconde la scheda Player 2 nel launcher.
 target_compile_definitions(JustBreedRecomp PRIVATE NESRECOMP_GAME_PLAYERS=1
