@@ -45,6 +45,31 @@ def patch_font(data, prg_size):
     return n
 
 
+# Tabelle di nomi a record fissi: nome -> (offset PRG, larghezza record in byte, numero record)
+# Il record e' 'testo + spazi' fino a larghezza-1 colonne, poi 00 (kanji = 2 colonne, come nell'originale).
+TABLES = {"items": (0x4C000, 8, 154), "spells": (0x4C4D0, 8, 74), "places": (0x4D2B4, 10, 29), "chars": (0x72000, 6, 37)}
+
+
+def patch_tables(data, tsv_path):
+    n = 0
+    for l in open(tsv_path, encoding="utf-8"):
+        p = l.rstrip("\n").split("\t")
+        if len(p) < 3 or p[0] == "table":
+            continue
+        tab, idx, text = p[0], int(p[1]), p[2]
+        base, width, count = TABLES[tab]
+        if not 0 <= idx < count:
+            raise ValueError("%s: id %d fuori tabella" % (tab, idx))
+        raw = charmap_it.encode_text(text)
+        if len(raw) > width - 1:
+            raise ValueError("%s[%d] %r: %d colonne (max %d)" % (tab, idx, text, len(raw), width - 1))
+        rec = raw + b"\x20" * (width - 1 - len(raw)) + b"\x00"
+        off = 16 + base + idx * width
+        data[off:off + width] = rec
+        n += 1
+    return n
+
+
 def main():
     rom_path, tsv, out = sys.argv[1], sys.argv[2], sys.argv[3]
     data = bytearray(open(rom_path, "rb").read())
@@ -83,6 +108,14 @@ def main():
             p = pos[i] + k
             data[16 + (16 + p // UNIT) * UNIT + p % UNIT] = byte
     print("glifi latini ridisegnati:", patch_font(data, prg_size))
+    up = os.path.join(here, "..", "text", "ui_it.tsv")
+    if os.path.exists(up):
+        import ui_patch
+        n, nb = ui_patch.apply_ui(data, up)
+        print("stringhe di interfaccia tradotte: %d (%d byte in unita' 47)" % (n, nb))
+    tp = os.path.join(here, "..", "text", "tables_it.tsv")
+    if os.path.exists(tp):
+        print("voci di tabella tradotte:", patch_tables(data, tp))
     open(out, "wb").write(data)
     print("scritta", out)
 

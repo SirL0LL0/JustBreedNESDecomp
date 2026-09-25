@@ -25,7 +25,7 @@ IT["”"] = 0xA3          # ”  (sostituisce il glifo 」)
 _put(0xB1, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 # caratteri con glifo gia' presente e ID = ASCII (non si ridisegnano)
-for c in " !\"#$%&()*+-./0123456789:?":
+for c in " !\"#$%&()*+-./0123456789:<>?":
     IT[c] = ord(c)
 
 # glifi da (ri)disegnare dal font Unscii: ID -> carattere Unicode
