@@ -30,6 +30,10 @@ for c in " !\"#$%&()*+-./0123456789:<>?":
 
 # glifi da (ri)disegnare dal font Unscii: ID -> carattere Unicode
 DRAW = {v: k for k, v in IT.items() if v not in range(0x20, 0x40)}
+# cifre e punteggiatura gia' presenti nel font originale: ridisegnate in Unscii per uniformare lo stile
+# (esclusi 0x27/0x2C/0x3B/0x3D = icone HP/G/L/X e gli ID usati come comandi)
+for _c in "0123456789!?.:-()*+/%&":
+    DRAW[ord(_c)] = _c
 
 
 def encode_text(s):

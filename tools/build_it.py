@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Costruisce la ROM di prova in italiano a partire dalla ROM giapponese.
 
   python tools/build_it.py baserom_jp.nes text/it_wrapped.tsv out.nes
@@ -70,6 +70,47 @@ def patch_tables(data, tsv_path):
     return n
 
 
+# Schermata di scelta del nome (unita' 58, CPU $8000): griglia 10 colonne x 6 righe, cursore X = riga*10+colonna.
+# Il testo della griglia e' una stringa inline ($8E87) di celle "20 xx"; la tabella X -> carattere e' a $90B6;
+# X=$39/$3A erano i tasti dakuten/handakuten (X-0x70 / X-0x75 sul codice), X=$3B e' "fine".
+# Italiano: colonne 0-4 maiuscole, 5-9 minuscole; il dakuten diventa una cella normale; SELECT (cambio kana) disattivato.
+NAME_UNIT = 58
+GRID_STR = 0x8E87                      # primo byte dopo JSR $97CF
+GRID_ROWS = ["ABCDE" "abcde", "FGHIJ" "fghij", "KLMNO" "klmno", "PQRST" "pqrst", "UVWXY" "uvwxy",
+             "Z'-.!" "zéàè"]           # 5 righe da 10 + riga finale da 9 celle (+ "Fin" alla cella 59)
+
+
+def patch_name_grid(data):
+    base = 16 + NAME_UNIT * UNIT - 0x8000
+    def cell(ch): return charmap_it.IT[ch]
+    cells = [cell(c) for row in GRID_ROWS for c in row]
+    assert len(cells) == 59
+    # stringa inline: 5 righe da 10 celle, riga 6 da 9 celle + " Fin", ogni riga chiusa da 05
+    s = bytearray()
+    for r in range(5):
+        for c in cells[r * 10:r * 10 + 10]:
+            s += bytes([0x20, c])
+        s.append(0x05)
+    for c in cells[50:59]:
+        s += bytes([0x20, c])
+    s += bytes([0x20]) + charmap_it.encode_text("Fin") + bytes([0x05])
+    old_end = data.index(b"\x05\x00", base + GRID_STR) + 1        # il 05 finale, poi il 00 terminatore
+    assert old_end - (base + GRID_STR) == len(s), "lunghezza griglia diversa: %d/%d" % (old_end - base - GRID_STR, len(s))
+    assert data[base + GRID_STR - 3:base + GRID_STR] == bytes([0x20, 0xCF, 0x97])
+    data[base + GRID_STR:base + GRID_STR + len(s)] = s
+    # tabella cella -> codice (58 celle di carattere; la 59a e' "fine")
+    t = base + 0x90B6
+    assert data[t] == 0x71
+    data[t:t + 59] = bytes(cells)
+    # dakuten/handakuten: i confronti CPX #$3A ($8FE7) e CPX #$39 ($901A) non devono piu' scattare
+    for a, v in ((0x8FE7, 0x3A), (0x901A, 0x39)):
+        assert data[base + a:base + a + 2] == bytes([0xE0, v]), hex(a)
+        data[base + a + 1] = 0xFF
+    # SELECT: BMI $8FCE (30 xx a $8FB7) -> NOP NOP
+    assert data[base + 0x8FB7] == 0x30
+    data[base + 0x8FB7:base + 0x8FB9] = b"\xEA\xEA"
+
+
 import re
 _TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?\d+|[+\-%&]\d+|\.\d+")
 _JPTEXT = re.compile(r"[぀-ヿ一-鿿＀-￯…「-』・]")
@@ -138,6 +179,8 @@ def main():
     tp = os.path.join(here, "..", "text", "tables_it.tsv")
     if os.path.exists(tp):
         print("voci di tabella tradotte:", patch_tables(data, tp))
+    patch_name_grid(data)
+    print("griglia nomi: latina")
     open(out, "wb").write(data)
     print("scritta", out)
 
@@ -154,3 +197,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
