@@ -60,6 +60,8 @@ def patch_tables(data, tsv_path):
         base, width, count = TABLES[tab]
         if not 0 <= idx < count:
             raise ValueError("%s: id %d fuori tabella" % (tab, idx))
+        if tab == "chars" and idx == count - 1:
+            width = 5                       # l'ultimo record e' di 5 byte: subito dopo iniziano i nomi dei mostri
         raw = charmap_it.encode_text(text)
         if len(raw) > width - 1:
             raise ValueError("%s[%d] %r: %d colonne (max %d)" % (tab, idx, text, len(raw), width - 1))
@@ -112,7 +114,7 @@ def patch_name_grid(data):
 
 
 # Blocchi di testo inline a lunghezza fissa (righe terminate da 00, ultima riga vuota = fine): nome -> (offset PRG, byte)
-BLOCKS = {"intro": (0x4AB37, 226)}
+BLOCKS = {"intro": (0x4AB37, 226), "monsters": (0x73D77, 649)}
 
 
 def patch_blocks(data, tsv_dir):
@@ -130,6 +132,15 @@ def patch_blocks(data, tsv_dir):
         data[16 + off:16 + off + size] = raw + bytes(size - len(raw))
         n += 1
     return n
+
+
+def patch_monster_ptr(data):
+    """La routine unit57:$9727 cerca i nomi dei mostri saltando N stringhe a partire da $80D8 (LDA #$D8 / LDA #$80).
+    I nomi italiani sono piu' lunghi: la nuova tabella sta nella coda libera dell'unita' 57, a $9D77."""
+    base = 16 + 57 * UNIT - 0x8000
+    assert data[base + 0x972B:base + 0x972D] == bytes([0xA9, 0xD8]) and data[base + 0x972F:base + 0x9731] == bytes([0xA9, 0x80])
+    data[base + 0x972C] = 0x77
+    data[base + 0x9730] = 0x9D
 
 
 import re
@@ -208,6 +219,8 @@ def main():
     if os.path.exists(tp):
         print("voci di tabella tradotte:", patch_tables(data, tp))
     print("blocchi di testo:", patch_blocks(data, os.path.join(here, "..", "text")))
+    if os.path.exists(os.path.join(here, "..", "text", "monsters_it.tsv")):
+        patch_monster_ptr(data)
     patch_name_grid(data)
     print("griglia nomi: latina")
     open(out, "wb").write(data)
