@@ -26,6 +26,12 @@ BRANCH = {"BCC": "!g_cpu.C", "BCS": "g_cpu.C", "BEQ": "g_cpu.Z", "BNE": "!g_cpu.
 STACK_LIFT = ("PLA", "PLP", "TXS")   # il blocco finisce qui: l'interprete controlla il pavimento dello stack
 
 
+def fnv(data, h=2166136261):
+    for b in data:
+        h = ((h ^ b) * 16777619) & 0xFFFFFFFF
+    return h
+
+
 def ea(mode, ops):
     a = ops[0] if len(ops) == 1 else (ops[0] | (ops[1] << 8)) if ops else 0
     return {
@@ -129,6 +135,7 @@ def build(rom_path, outdir, covs):
             if L not in cs:
                 continue
             body, o, cnt = [], L, 0
+            end = L
             while True:
                 name, mode = OPS[d[o]]
                 ln = cs[o]
@@ -143,6 +150,7 @@ def build(rom_path, outdir, covs):
                     t = (pc + 2 + rel) & 0xFFFF
                     body.append(step + "return (%s) ? 0x%04X : 0x%04X;" % (BRANCH[name], t, (pc + 2) & 0xFFFF))
                     cnt += 1
+                    end = o + ln
                     break
                 c = emit_insn(name, mode, ops)
                 if c is None:            # istruzione non modellata: il blocco finisce prima
@@ -150,6 +158,7 @@ def build(rom_path, outdir, covs):
                     break
                 body.append(step + c)
                 cnt += 1
+                end = o + ln
                 nxt = o + ln
                 if name in STACK_LIFT or nxt in leaders or nxt not in cs:
                     body.append("    return 0x%04X;" % ((base + nxt) & 0xFFFF))
@@ -161,7 +170,7 @@ def build(rom_path, outdir, covs):
             lines.append("uint16_t %s(void) {" % fn)
             lines += body
             lines.append("}")
-            table.append((u, win, L, cnt, fn))
+            table.append((u, win, L, cnt, fn, end - L, fnv(rom.prg[u * UNIT + L:u * UNIT + end])))
             n_insn += cnt
         with open(os.path.join(outdir, "jb_blocks_u%02d.c" % u), "w") as f:
             f.write("\n".join(lines) + "\n")
@@ -171,8 +180,8 @@ def build(rom_path, outdir, covs):
         for t in table:
             f.write("uint16_t %s(void);\n" % t[4])
         f.write("\nstatic const NesBlockEntry s_tab[] = {\n")
-        for u, win, off, cnt, fn in table:
-            f.write("    {%d, %d, 0x%04X, %d, %s},\n" % (u, win, off, cnt, fn))
+        for u, win, off, cnt, fn, nb, hs in table:
+            f.write("    {%d, %d, 0x%04X, %d, %s, %d, 0x%08XU},\n" % (u, win, off, cnt, fn, nb, hs))
         f.write("};\n\nstatic const uint8_t s_codebits[%d] = {" % len(codebits))
         for i, b in enumerate(codebits):
             if i % 32 == 0: f.write("\n")
