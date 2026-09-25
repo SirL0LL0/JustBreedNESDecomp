@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Disassemblatore per Just Breed (MMC5): analisi ricorsiva per banco da 8K + copertura registrata.
 
   python tools/disasm.py baserom_jp.nes OUTDIR [cov1.bin cov2.bin ...]
@@ -142,6 +142,99 @@ def learn_inline(rom, maxk=48):
 
 
 LONG_RUN = 24
+
+
+_pull_cache = {}
+
+
+def pulls_return(rom, u, off):
+    """La routine legge/estrae l'indirizzo di ritorno dallo stack (PLA senza PHA prima, oppure TSX + $01xx,X)."""
+    key = (id(rom), u, off)
+    if key in _pull_cache:
+        return _pull_cache[key]
+    d = rom.prg[u * UNIT:(u + 1) * UNIT]
+    pushed = False
+    r = False
+    o, n = off, 0
+    while o < UNIT and n < 30:
+        name, mode = OPS[d[o]]
+        if name == "???" or o + LEN[mode] > UNIT:
+            break
+        if name == "PHA":
+            pushed = True
+        if name == "PLA" and not pushed:
+            r = True
+            break
+        if name == "TSX":
+            r = True
+            break
+        if name in ("RTS", "RTI") or name == "JMP":
+            break
+        o += LEN[mode]
+        n += 1
+    _pull_cache[key] = r
+    return r
+
+
+def site_skip_emu(rom, u, site_off, tu, to):
+    """Byte inline al sito, per emulazione con due insiemi di registri (devono concordare); con cache."""
+    c = getattr(rom, "_emu", None)
+    if c is None:
+        c = rom._emu = {}
+    k = (u, site_off)
+    if k not in c:
+        c[k] = None
+        if pulls_return(rom, tu, to):
+            a = emu_inline_skip(rom, u, site_off, tu, to, regs=(0, 0, 0))
+            b = emu_inline_skip(rom, u, site_off, tu, to, regs=(0x35, 0x11, 0x22)) if a is not None else None
+            c[k] = a if a is not None and a == b else None
+    return c[k]
+
+
+def emu_inline_skip(rom, u, site_off, tu, to, max_steps=60000, regs=(0, 0, 0)):
+    """Esegue la routine chiamata (py65) sui byte reali del sito: dove RTS ritorna dice quanti byte inline salta.
+    Ritorna il numero di byte inline (>=0) o None se l'emulazione non e' affidabile."""
+    try:
+        from py65.devices.mpu6502 import MPU
+    except Exception:
+        return None
+    mem = bytearray(65536)
+
+    def load(unit, base):
+        mem[base:base + UNIT] = rom.prg[unit * UNIT:(unit + 1) * UNIT]
+
+    for unit, base in ((tu, rom.base[tu]), (u, rom.base[u])):
+        load(unit, base)
+    if u not in (62, 63) and tu not in (62,):
+        load(62, 0xC000)
+    load(63, 0xE000)
+    mpu = MPU(memory=mem)
+    site = rom.base[u] + site_off
+    ret = (site + 2) & 0xFFFF
+    mem[0x1FF] = ret >> 8
+    mem[0x1FE] = ret & 0xFF
+    mpu.sp = 0xFD
+    mpu.pc = rom.base[tu] + to
+    mpu.a, mpu.x, mpu.y = regs
+    for _ in range(max_steps):
+        pc = mpu.pc
+        op = mem[pc]
+        if op == 0x00 or OPS[op][0] == "???" or pc < 0x8000:
+            return None
+        if op == 0x60 and mpu.sp == 0xFD:        # RTS che ripristina il ritorno originale (dopo i 2 byte estratti)
+            pass
+        was = mpu.sp
+        mpu.step()
+        if (op == 0x60 or op == 0x6C) and mpu.sp == 0xFF:   # RTS / JMP (ind) con lo stack "pulito": ripresa
+            skip = mpu.pc - (site + 3)
+            return skip if 0 <= skip <= 250 else None
+        if op == 0x60 and mpu.sp > 0xFF:
+            return None
+        if mpu.sp > 0xFF or (mpu.pc < 0x8000):
+            return None
+    return None
+
+
 _table_cache = {}
 
 
@@ -180,11 +273,13 @@ def _inline_skip(rom, u, d, off, name, a):
     """Offset dopo i byte inline se JSR a una routine con argomenti inline nota (dalla copertura), altrimenti None."""
     if name != "JSR":
         return None
-    lr = getattr(rom, "learned", None)
-    if not lr:
-        return None
+    lr = getattr(rom, "learned", None) or {}
     tu, to = rom.unit_of(a, u)
     v = lr.get((tu, to)) if tu is not None else None
+    if not v and tu is not None:
+        n = site_skip_emu(rom, u, off, tu, to)
+        if n is not None:
+            return off + 3 + n
     if not v:
         return None
     if v[0] == "n":
@@ -464,7 +559,8 @@ def analyze_pass(rom, tiers):
                         targets[tu].add(to); work.append((tu, to))
                     else:
                         ext[u].add(a)
-                    if name == "JSR" and tu is not None and is_table_routine(rom, tu, to):
+                    en = site_skip_emu(rom, u, off, tu, to) if (name == "JSR" and tu is not None) else None
+                    if name == "JSR" and tu is not None and en is None and (tu, to) not in learned and is_table_routine(rom, tu, to):
                         # tabella di puntatori inline: ogni voce (indirizzo o indirizzo-1) e' un ingresso; la JSR non ritorna
                         p = off + ln
                         dd = rom.prg[u * UNIT:(u + 1) * UNIT]
@@ -481,6 +577,8 @@ def analyze_pass(rom, tiers):
                             p += 2
                         break
                     lr = learned.get((tu, to)) if name == "JSR" and tu is not None else None
+                    if en is not None and en > 0:
+                        lr = ("n", en)
                     if lr and lr[0] == "n":
                         # chiamata "far": argomenti inline = (banco|$80, lo, hi) -> ingresso in un'altra unita'
                         for k in range(0, lr[1] - 2):
