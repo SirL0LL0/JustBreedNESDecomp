@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
 project(JustBreedRecomp C CXX)
-option(JB_INTERP_ONLY "Build senza codice ricompilato: solo interprete 6502" OFF)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -24,32 +23,9 @@ add_executable(JustBreedRecomp
     extras.c
     cheats.c
 )
-if(JB_INTERP_ONLY)
-    # Bootstrap: nessun codice ricompilato, tutto passa dall'interprete del runner.
-    target_sources(JustBreedRecomp PRIVATE interp_boot.c)
-    # Blocchi base tradotti in C (python tools/mmc5_blocks.py baserom_jp.nes generated/blocks analysis/all.bin):
-    # l'interprete li esegue al posto della decodifica. JB_BLOCKS=OFF li esclude.
-    option(JB_BLOCKS "Usa i blocchi C tradotti (generated/blocks) sopra l'interprete" ON)
-    file(GLOB JB_BLOCK_SRC CONFIGURE_DEPENDS generated/blocks/jb_blocks_*.c)
-    if(JB_BLOCKS AND JB_BLOCK_SRC)
-        target_sources(JustBreedRecomp PRIVATE ${JB_BLOCK_SRC})
-        target_compile_definitions(JustBreedRecomp PRIVATE JB_BLOCKS=1)
-    endif()
-    # Funzioni C decompilate (python tools/decompile.py baserom_jp.nes generated/decomp analysis/all.bin):
-    # l'interprete le chiama al posto di interpretare la routine (modo handoff 'safe'). JB_DECOMP=OFF le esclude.
-    option(JB_DECOMP "Usa le funzioni decompilate (generated/decomp)" ON)
-    file(GLOB JB_DEC_SRC CONFIGURE_DEPENDS generated/decomp/jb_dec_u*.c generated/decomp/jb_dec_tab.c)
-    list(FILTER JB_DEC_SRC EXCLUDE REGEX "_readable\\.c$")
-    if(JB_DECOMP AND JB_DEC_SRC)
-        target_sources(JustBreedRecomp PRIVATE ${JB_DEC_SRC})
-        target_include_directories(JustBreedRecomp PRIVATE ${CMAKE_SOURCE_DIR}/generated/decomp)
-        target_compile_definitions(JustBreedRecomp PRIVATE JB_DECOMP=1)
-    endif()
-else()
-    # Prodotti da NESRecomp.exe (prefisso = output_prefix in game.toml)
-    file(GLOB JB_GENERATED CONFIGURE_DEPENDS generated/justbreed_full*.c generated/justbreed_dispatch.c)
-    target_sources(JustBreedRecomp PRIVATE ${JB_GENERATED})
-endif()
+# Backend MMC5 di nesrecomp: interprete + blocchi tradotti + funzioni decompilate.
+# Si rigenera dalla ROM con:  python nesrecomp/tools/mmc5/mmc5_regen.py --rom baserom_jp.nes   (-> generated/mmc5)
+nesrecomp_mmc5_tier(JustBreedRecomp ${CMAKE_SOURCE_DIR}/generated/mmc5)
 
 target_include_directories(JustBreedRecomp PRIVATE
     ${NESRECOMP_RUNNER_INCLUDE_DIRS}

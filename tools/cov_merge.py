@@ -1,22 +1,14 @@
-#!/usr/bin/env python3
-"""Unisce (OR) file di copertura: cov_merge.py OUT.bin IN1.bin IN2.bin ...  (con .win/.ram/.wramw se presenti)."""
-import os, sys
-
-out, ins = sys.argv[1], sys.argv[2:]
-for suffix in ("", ".win", ".ram", ".wramw"):
-    acc = None
-    for p in ins:
-        q = p + suffix
-        if not os.path.exists(q):
-            continue
-        b = open(q, "rb").read()
-        if acc is None:
-            acc = bytearray(b)
-        else:
-            if len(b) > len(acc):
-                acc.extend(bytes(len(b) - len(acc)))
-            for i, v in enumerate(b):
-                acc[i] |= v
-    if acc is not None:
-        open(out + suffix, "wb").write(acc)
-        print("scritto", out + suffix, len(acc))
+"""Wrapper: lo strumento vive in nesrecomp/tools/mmc5/cov_merge.py (backend MMC5 di nesrecomp)."""
+import os, sys, runpy, importlib.util
+_p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "nesrecomp", "tools", "mmc5", "cov_merge.py")
+_d = os.path.dirname(_p)
+if _d not in sys.path:
+    sys.path.insert(0, _d)
+if __name__ == "__main__":
+    runpy.run_path(_p, run_name="__main__")
+else:
+    _spec = importlib.util.spec_from_file_location("_mmc5_cov_merge", _p)
+    _m = importlib.util.module_from_spec(_spec)
+    sys.modules["_mmc5_cov_merge"] = _m
+    _spec.loader.exec_module(_m)
+    globals().update({k: v for k, v in vars(_m).items() if not k.startswith("__")})

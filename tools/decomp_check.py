@@ -1,64 +1,14 @@
-#!/usr/bin/env python3
-"""Collaudo differenziale: le funzioni decompilate devono dare lo STESSO stato finale dell'interprete puro.
-
-  python tools/decomp_check.py RUNNER_DIR ROM [--frames 2000] [--seeds 2] [--states a.sav ...]
-
-Per ogni (savestate, seme): stessi input casuali, una volta con NESRECOMP_DECOMP=0 (solo interprete + blocchi) e
-una con le funzioni decompilate; confronta l'hash del savestate finale (RAM, PPU, mapper, CPU).
-"""
-import argparse, glob, hashlib, os, random, subprocess, sys, tempfile
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from explore import make_script
-
-
-def run(runner_dir, rom, script, env_extra, timeout):
-    env = dict(os.environ, JB_ANY_ROM="1", **env_extra)
-    r = subprocess.run([os.path.join(runner_dir, "JustBreedRecomp.exe"), rom, "--script", script], cwd=runner_dir,
-                       env=env, capture_output=True, text=True, timeout=timeout)
-    return r
-
-
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("runner_dir")
-    ap.add_argument("rom")
-    ap.add_argument("--frames", type=int, default=2000)
-    ap.add_argument("--seeds", type=int, default=2)
-    ap.add_argument("--states", nargs="*")
-    ap.add_argument("--timeout", type=int, default=300)
-    a = ap.parse_args()
-    rd, rom = os.path.abspath(a.runner_dir), os.path.abspath(a.rom)
-    states = [os.path.abspath(s) for s in a.states] if a.states else sorted(glob.glob(os.path.join(rd, "savestates", "*.sav")))
-    tmp = tempfile.mkdtemp(prefix="jbchk_", dir="C:\\temp")
-    bad = 0
-    for st in states:
-        rel = os.path.relpath(st, rd).replace("\\", "/")
-        for sd in range(a.seeds):
-            tag = "%s_s%d" % (os.path.splitext(os.path.basename(st))[0], sd)
-            hashes = {}
-            for mode, env in (("interp", {"NESRECOMP_DECOMP": "0"}), ("decomp", {})):
-                script = os.path.join(tmp, "%s_%s.txt" % (tag, mode))
-                out = os.path.join(tmp, "%s_%s.sav" % (tag, mode)).replace("\\", "/")
-                make_script(st, 500 + sd, a.frames, script, rel)
-                s = open(script).read().replace("EXIT 0", "SAVE_STATE %s\nEXIT 0" % out)
-                open(script, "w").write(s)
-                try:
-                    r = run(rd, rom, script, env, a.timeout)
-                except subprocess.TimeoutExpired:
-                    hashes[mode] = "TIMEOUT"
-                    continue
-                hashes[mode] = hashlib.md5(open(out, "rb").read()).hexdigest() if os.path.exists(out) else "NOSAVE"
-                if mode == "decomp":
-                    dec = [l for l in r.stderr.splitlines() if "[interp] WATCHDOG" in l or "Fault" in l or "fault" in l]
-                    if dec:
-                        print("   avvisi:", dec[:2])
-            ok = hashes["interp"] == hashes["decomp"] and hashes["interp"] not in ("NOSAVE", "TIMEOUT")
-            bad += 0 if ok else 1
-            print("%-12s %s  interp=%s decomp=%s" % (tag, "IDENTICO" if ok else "DIVERSO", hashes["interp"][:8], hashes["decomp"][:8]), flush=True)
-    print("RISULTATO: %s" % ("tutti identici" if not bad else "%d diversi" % bad))
-    return bad
-
-
+"""Wrapper: lo strumento vive in nesrecomp/tools/mmc5/decomp_check.py (backend MMC5 di nesrecomp)."""
+import os, sys, runpy, importlib.util
+_p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "nesrecomp", "tools", "mmc5", "decomp_check.py")
+_d = os.path.dirname(_p)
+if _d not in sys.path:
+    sys.path.insert(0, _d)
 if __name__ == "__main__":
-    sys.exit(1 if main() else 0)
+    runpy.run_path(_p, run_name="__main__")
+else:
+    _spec = importlib.util.spec_from_file_location("_mmc5_decomp_check", _p)
+    _m = importlib.util.module_from_spec(_spec)
+    sys.modules["_mmc5_decomp_check"] = _m
+    _spec.loader.exec_module(_m)
+    globals().update({k: v for k, v in vars(_m).items() if not k.startswith("__")})
