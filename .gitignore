@@ -2,6 +2,7 @@ build/
 build_release/
 *.nes
 *.bin
+!analysis/all.bin
 *.sav
 *.log
 *.zip
@@ -26,8 +27,6 @@ analysis/trace*.txt
 analysis/entries.csv
 analysis/justbreed_mesen.json
 analysis/mmc5_regs.txt
-text/
-*.tsv
 __pycache__/
 *.pyc
 build_rom/

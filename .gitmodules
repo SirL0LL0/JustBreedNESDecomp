@@ -1,7 +1,7 @@
 [submodule "nesrecomp"]
 	path = nesrecomp
 	url = https://github.com/SirL0LL0/nesrecomp.git
-	branch = mmc5-support
+	branch = cycle-app
 [submodule "recomp-ui"]
 	path = recomp-ui
 	url = https://github.com/RetroPortingToolKit/recomp-ui.git

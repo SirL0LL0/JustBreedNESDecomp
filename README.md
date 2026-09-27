@@ -1,127 +1,74 @@
-﻿# JustBreedRecomp
+# JustBreedRecomp
 
-Ricompilazione statica di un gioco NES per PC nativo, basata su
-[nesrecomp](https://github.com/mstan/nesrecomp) e strutturata come
-[FaxanaduRecomp](https://github.com/mstan/FaxanaduRecomp).
+Porting nativo per PC di Just Breed (NES, giapponese), con una traduzione italiana completa applicata alla ROM
+in fase di build. Gira sul **backend cycle-accurate di nesrecomp** (upstream, `runner/cyc`): ogni istruzione
+della ROM e' ricompilata in C ciclo per ciclo su una macchina NES cycle-accurate (CPU, PPU, APU, MMC5 con
+ExRAM, moltiplicatore, IRQ a scanline). Il codice non ancora incontrato gira sull'interprete della stessa
+macchina (identico ciclo per ciclo, solo piu' lento): non e' un'emulazione approssimata.
 
-Non e' un emulatore: il codice 6502 della ROM viene tradotto **una volta sola, in fase di build**, in C,
-che poi il compilatore trasforma in codice x64 nativo.
+Sopra c'e' il livello applicazione del fork (`nesrecomp/runner/cyc/app`, branch `cycle-app`): launcher
+grafico, menu di gioco, mod (cheat), salvataggi di stato. Di questo repository restano solo l'identita' del
+gioco (`game.c`), i cheat (`cheats.c`) e **tutto il lavoro di traduzione** (`text/`, `tools/`, `assets/`,
+`docs/`).
 
-## Come funziona (idea generale)
-
-```
-gioco.nes
-   |  NESRecomp.exe gioco.nes --game game.toml       (fase 1: recompiler, offline)
-   v
-generated/justbreed_full.c       ogni funzione 6502 -> funzione C  (JSR = chiamata, branch = goto)
-generated/justbreed_dispatch.c   call_by_address(): tabella indirizzo -> funzione, per salti indiretti
-   |  + runner (nesrecomp/runner) + extras.c + SDL2  (fase 2: CMake/MSVC)
-   v
-JustBreedRecomp.exe              PPU, APU, mapper, input, video, audio, savestate simulati dal runner
-```
-
-Tre attori:
-
-| Pezzo | Dove | Ruolo |
-|-------|------|-------|
-| **Recompiler** | `nesrecomp/recompiler/src` | Legge la ROM, trova le funzioni (BFS da RESET/NMI/IRQ, poi scanner di tabelle di puntatori), emette C. Decoder per tutti i 256 opcode. |
-| **Runner** | `nesrecomp/runner` | Libreria comune: memoria NES, PPU (`ppu_renderer.c`), APU, mapper (0/1/4/66), SDL2 (`main_runner.c`), input, savestate, interprete di fallback. Non cambia per gioco. |
-| **Il tuo repo** | questa cartella | Solo: `game.toml`, `extras.c`, `CMakeLists.txt`, script. `generated/` e' artefatto di build. |
-
-## Struttura del repo
+## Compilare e giocare
 
 ```
-JustBreedRecomp/
-  nesrecomp/        submodule git (framework), agganciato a un commit preciso
-  game.toml         configurazione del recompiler (mapper, bank switch, tabelle, seed funzioni)
-  extras.c/.h       hook del gioco (implementa runner/include/game_extras.h)
-  CMakeLists.txt    include runner.cmake, aggiunge extras.c + generated/*.c, linka SDL2
-  setup.bat/.sh     scarica il submodule nesrecomp
-  build.bat         pipeline completa: recompiler -> generazione C -> exe
-  generated/        (ignorato da git) output del recompiler
+git clone --recurse-submodules <url di questo repo>
+python tools/build_it.py baserom_jp.nes text/it_wrapped.tsv build_rom/jb_it_preview.nes
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+build\JustBreedRecomp.exe                              # launcher (recomp-ui): scegli la ROM, Mod, Gioca
+build\JustBreedRecomp.exe build_rom\jb_it_preview.nes   # senza launcher
 ```
 
-Nota: il submodule si aggancia a un commit fisso (come FaxanaduRecomp, che pinna `7f6377b`), cosi' il
-codice generato e' riproducibile anche se nesrecomp cambia.
+`baserom_jp.nes` (Just Breed, Giappone) non e' incluso: procurati la tua copia legale. CMake cerca
+`./nesrecomp` e `./recomp-ui` (submodule); in alternativa `-DNESRECOMP_ROOT=...` e `-DRECOMP_UI_ROOT=...`.
+Serve Python 3.11+ (la generazione del codice avviene durante la configurazione).
 
-## Uso
+Il riconoscimento della ROM (launcher e mod) non usa il CRC32 dell'intero file, perche' cambia a ogni build
+della traduzione: usa il CRC32 del banco fisso 62, mai toccato dalla patch italiana (vedi `cheats.c`).
 
-Servono: Git, Visual Studio 2022 (C++ desktop), CMake 3.20+. SDL2 e' incluso in `nesrecomp/runner/external`.
-La ROM **non** e' inclusa: usa la tua copia legale.
+## Controlli, cheat, salvataggi di stato
 
-```bash
-setup.bat                       # scarica nesrecomp
-build.bat C:\percorso\gioco.nes # build completa
-build\Release\JustBreedRecomp.exe C:\percorso\gioco.nes
+Uguali a Castlevania3Recomp (stesso livello applicazione): Esc apre il menu di gioco (schermo, grafica, audio,
+salva/carica stato), F1-F12 carica lo slot, Maiusc+F1-F12 salva lo slot (`savestates/`, accanto all'exe), Tab
+avanti veloce, Ctrl+F11 overlay con le statistiche (nativo/interprete), Ctrl+F12 screenshot.
+
+I cheat sono in `mods/packages/justbreed.cheats` (18 codici RAM: vite/PM/oro/esperienza dei 6 personaggi,
+nemici senza salute) e si attivano dalla pagina **Mod** del launcher.
+
+## Il lavoro di traduzione
+
+| Cartella | Contenuto |
+|----------|-----------|
+| `text/` | **la traduzione stessa.** `dialog_jp.tsv`/`inline_jp.tsv` (testo giapponese estratto), `it.tsv` (la nostra traduzione, id -> italiano), `it_wrapped.tsv` (impaginata, quella che legge `build_it.py`), `tables_it.tsv`/`monsters_it.tsv`/`ui_it.tsv`/`intro_it.tsv` (nomi, interfaccia, intro) |
+| `tools/` | pipeline di estrazione/traduzione/verifica (vedi sotto) e il disassemblatore/decompilatore usati per trovare nuovo testo |
+| `assets/` | font Unscii (pubblico dominio) patchato nella ROM al posto dei kana |
+| `docs/` | `script_codes.md` (i comandi inline del testo), `REVERSE_ENGINEERING.md`, `editor.md` |
+| `analysis/all.bin` (+ `.ram`/`.win`/`.wramw`) | copertura del codice unita da tutte le sessioni di gioco/esplorazione: dice quali indirizzi sono codice eseguito, base per trovare nuovo testo e per `cycle_seeds.txt` |
+
+Pipeline principale (vedi i docstring dei singoli script per i dettagli):
+
+```
+tools/dialog_decode.py       decodifica i messaggi di dialogo (l'interprete Huffman del gioco, via py65)
+tools/text_wrap.py           impagina text/it.tsv -> text/it_wrapped.tsv (26 colonne, 4 righe, interruzioni pagina)
+tools/text_check.py          verifica lunghezze/token prima di costruire la ROM
+tools/build_it.py            costruisce la ROM: font, tabelle nomi, dialoghi, interfaccia (vedi sopra)
+tools/disasm.py              disassembla la ROM usando analysis/all.bin come copertura (trova funzioni/tabelle)
+tools/inline_strings.py      trova stringhe non ancora catalogate (pattern: dopo una routine di stampa nota)
+tools/coverage.py            merge/report della copertura (CDL Mesen + jb_exec.bin -> analysis/all.bin)
 ```
 
-In alternativa, la CLI precompilata di nesrecomp (`nesrecomp.exe build --rom ... --output ...`) genera una
-`game.toml` proposta, ma non produce da sola un gioco giocabile.
+**Stato (verificato di persona, non dalla memoria di sessioni precedenti):** dialoghi 1816/1994 messaggi
+tradotti (i restanti 178 sono solo comandi, senza testo); le 83 stringhe di interfaccia del banco 58 sono
+tutte gestite (43 tradotte, le altre 40 sono formattazione pura o sigle gia' latine tipo `HP`/`MP`/`LV`);
+tabelle nomi (298 righe: oggetti/magie/luoghi/personaggi) e nomi mostri (80 righe) presenti. Il codice
+disassemblato copre il 15.7% della ROM: schermate mai visitate (risultati di battaglia, negozio) potrebbero
+avere testo non ancora trovato. Il font a larghezza variabile (`tools/vwf.py`) e' ancora abbozzato.
 
-## Il flusso di lavoro per portare un gioco
+## Copertura del codice nativo (opzionale)
 
-1. **Prima generazione** con `game.toml` minimo. Vedi la mapper della ROM (byte 6/7 dell'header iNES).
-   Supportati: 0 NROM, 1 MMC1, 4 MMC3, 66 GxROM. Gli altri (2, 3, 7, 9...) richiedono lavoro nel runner.
-2. **Bank switching** (mapper 1/4): individua nel disassemblato la routine che cambia banco e mettila in
-   `[mapper] bank_switch` o come `[[trampoline]] ` se il gioco usa `JSR routine` + byte inline.
-3. **Salti dinamici**: giochi con `RTS`-dispatch, tabelle di puntatori per AI/stati/suoni non sono visibili
-   staticamente. Si aggiungono con `[[known_table]]`, `[[split_table]]`, `[functions]` / `[[extra_func]]`.
-   `extra_label` se l'indirizzo cade *dentro* una funzione esistente (altrimenti la spezzi e il gioco si blocca).
-4. **Scopri cosa manca a runtime**: se un indirizzo non e' stato ricompilato, il runner ripiega su un
-   interprete 6502 e scrive `dispatch_misses.log` (righe `extra_func` pronte da incollare) e
-   `fallback_telemetry.jsonl`. Incollale in `game.toml` e rigenera.
-5. **Dati scambiati per codice**: `[[data_region]]`. **Stack-hack incompatibili**: `[[nop_jsr]]`.
-6. **extras.c**: nome, CRC32 della ROM, argomenti CLI, patch per frame, ecc.
-7. Non modificare mai `generated/`: se il C e' sbagliato, correggi `game.toml` (o il recompiler) e rigenera.
-
-## Hook in extras.c
-
-| Funzione | Quando |
-|----------|--------|
-| `game_get_name` / `game_get_expected_crc32` | titolo finestra; verifica ROM (0 = salta) |
-| `game_on_init` | dopo il caricamento ROM |
-| `game_on_frame` / `game_post_nmi` | ogni VBlank, prima/dopo NMI |
-| `game_handle_arg` / `game_arg_usage` | opzioni CLI proprie |
-| `game_dispatch_override` | indirizzo non trovato (es. codice copiato in SRAM) |
-| `game_ram_read_hook` | modifica letture RAM per call-site |
-| `game_run_nmi` / `game_run_main` | default: `func_NMI()` / `func_RESET()` |
-| `game_post_render` | disegna sopra il framebuffer (widescreen, overlay) |
-| `game_fill_frame_record` / `game_handle_debug_cmd` | debug server TCP |
-
-## Extra del runner (gia' inclusi)
-
-Hotkey: `Tab` turbo, `F1-F12` carica slot, `Shift+F1-F12` salva slot, `Alt+Enter` fullscreen.
-`keybinds.ini` viene generato al primo avvio (tastiera P1, gamepad P1/P2 via SDL). Opzioni CMake:
-`-DNESRECOMP_ENABLE_TRACE=ON` (debug server TCP), `-DNESRECOMP_ENABLE_MODS=ON` (mod package).
-Il gioco di riferimento aggiunge inoltre un launcher grafico (`recomp-ui`, ImGui) e override di testo
-(`override_text.c`): non inclusi qui per restare minimali, copiali da FaxanaduRecomp se servono.
-
-## Licenza
-
-Il codice qui e' tuo; nesrecomp ha la sua licenza (vedi il submodule). Nessuna ROM inclusa.
-
-## Build solo-interprete (giocabile subito)
-
-Il recompiler non ha ancora un modello dei banchi MMC5, ma il runner ha un interprete 6502 che legge il codice
-attraverso la mappatura MMC5 live. `interp_boot.c` lo usa per tutto il gioco, senza `generated/`:
-
-```bash
-cmake -S . -B build_interp -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DJB_INTERP_ONLY=ON
-cmake --build build_interp
-build_interp\JustBreedRecomp.exe baserom.nes
-```
-
-Senza argomenti si apre il launcher grafico (recomp-ui) che chiede la ROM e verifica il CRC32
-(nessun CRC obbligatorio: il gioco riconosce la ROM dal banco fisso 62 e accetta la ROM giapponese, quella di Stealth e le ROM derivate).
-
-Con `--script file.txt` gira senza finestra (vedi `nesrecomp/CLAUDE.md`: WAIT, HOLD, SCREENSHOT, EXIT).
-Ogni indirizzo raggiunto viene scritto in `dispatch_misses.log`: e' la copertura del codice che ci serve per il
-recompiler, ottenuta giocando (formato `extra_func <banco> <indirizzo>`; il "banco" e' ancora g_current_bank).
-`NESRECOMP_MMC5_TRACE=1` stampa le scritture ai registri MMC5.
-
-## Strumenti (cartella tools/)
-
-- `mesen_justbreed_trace.lua`: script per Mesen 2 (Script Window, con accesso I/O). Salva in `C:/temp/justbreed/`
-  la copertura del codice per banco ROM reale, il log dei registri MMC5 e l'eventuale codice eseguito da RAM.
-- `coverage.py report|merge|entries`: unisce CDL Mesen e `jb_exec.bin` e mostra la copertura per banco.
-- `test_trace_lua.py`: prova lo script Lua con un finto `emu` (serve `pip install lupa`).
+`cycle_seeds.txt` elenca gli indirizzi da compilare in codice nativo (18379, dalla vecchia copertura). Il
+resto funziona lo stesso, sull'interprete, solo piu' lento. Per ampliarla giocando: crea un file vuoto
+`miss.on` accanto all'exe; all'uscita scrive `cycle_seeds_played.txt` (si accumula tra le sessioni).
