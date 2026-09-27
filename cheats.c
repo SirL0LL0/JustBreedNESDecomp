@@ -6,9 +6,10 @@
  * i byte indicati vengono riscritti nella RAM di lavoro del cartuccio ($6000-$7FFF, indirizzi come nel file .cht),
  * con cyc_bus_write (il mapper la instrada come farebbe con una scrittura della CPU: vedi cyc_ext.h).
  *
- * Il cheat Game Genie del runner precedente (DPCM pop-reducer, STA $4011 -> LDA $4011) non e' stato portato: il
- * backend a cicli non applica patch di ROM in lettura (una patch attiva costringerebbe la macchina sull'interprete,
- * vedi Castlevania3Recomp). Se vuoi quella correzione va applicata alla ROM in fase di build (tools/build_it.py).
+ * Solo cheat RAM: il cheat Game Genie del runner precedente (DPCM pop-reducer, STA $4011 -> LDA $4011) non e'
+ * stato portato, ne' la sua feature nel manifest. Il backend a cicli non applica patch di ROM in lettura (una
+ * patch attiva costringerebbe la macchina sull'interprete, vedi Castlevania3Recomp). Se vuoi quella correzione
+ * va applicata alla ROM in fase di build (tools/build_it.py), non come cheat.
  */
 #include "cheats.h"
 #include "mod_runtime.h"

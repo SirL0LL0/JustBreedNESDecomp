@@ -3,7 +3,7 @@ id = "justbreed.cheats"
 version = "1.0.0"
 name = "Just Breed - Cheat"
 author = "JustBreed_NES_Recomp"
-description = "Cheat classici per Just Breed (codici RAM e Game Genie), attivabili dal launcher."
+description = "Cheat classici per Just Breed (codici RAM), attivabili dal launcher."
 license = "MIT"
 resolver = "declarative"
 save_compatibility = "shared"
@@ -141,14 +141,6 @@ description = "Azzera la salute di tutti i nemici: cadono al primo colpo."
 group = "Nemici"
 default_enabled = false
 
-# ---- Audio ----
-[[feature]]
-id = "dpcm_popreduce"
-name = "Riduzione del pop DPCM"
-description = "Codice Game Genie SZVIZESE: evita il click del campione DPCM."
-group = "Audio"
-default_enabled = false
-
 # ---- Plugin nativi (registrati in cheats.c) ----
 [[plugin]]
 feature = "exp_lots"
@@ -217,7 +209,3 @@ id = "justbreed.mp_p6"
 [[plugin]]
 feature = "enemies_no_hp"
 id = "justbreed.enemies_no_hp"
-
-[[plugin]]
-feature = "dpcm_popreduce"
-id = "justbreed.dpcm_popreduce"
