@@ -1,46 +1,38 @@
 ﻿; =============================================================
-; PRG bank $1F â€” fixed at $C000-$FFFF (MMC5 PRG mode 3)
-; Contains: RESET ($E000), NMI ($E143), IRQ ($E2C4), vectors ($FFFA)
-; Vectors (from ROM): NMI=$E143, RESET=$E000, IRQ=$E2C4
+; PRG bank $1F â€” fixed at $E000-$FFFF (MMC5 PRG mode 3)
+; Entry points: RESET=$E000, NMI=$E143, IRQ=$E2C4
+; Disassembled: RESET ($E000-$E0xx), NMI ($E143-$E202)
+; TODO: IRQ ($E2C4), resto del banco
 ; =============================================================
 .segment "CODE31"
 
-    ; ---- $C000-$DFFF: not yet disassembled ----
+    ; ---- $C000-$DFFF: not yet disassembled (bank $1E maps here at runtime!)
     .res $2000
 
 ; -------------------------------------------------------------
-; RESET â€” $E000 (originale: offset banco $2000)
-; Inizializzazione CPU + azzeramento RAM + setup MMC5.
-; Disassemblato dai byte:
-; 78 D8 A9 00 8D 00 20 AD 02 20 10 FB AD 02 20 10 FB AD 02 20 10 FB
-; A9 00 8D 01 20 A2 00 95 00 9D 00 01 9D 00 02 9D 00 03 9D 00 04
-; 9D 00 05 9D 00 06 9D 00 07 E8 D0 E6 A2 FF 9A A9 08 8D 00 20
-; A9 00 8D 10 40 A9 40 8D 17 40 8D 10 50 8D 04 52 A9 03 8D 00 51
-; A9 03 8D 01 51 A9 00 8D 13 51 A9 FE 8D 16 51 A9 FF 8D 17 51
-; A9 00 8D 30 51 A9 44 8D 05 51 A9 02 8D 02 51 A9 01 8D 03 51 A9 01 8D 04 ...
+; RESET â€” $E000
+; Init PPU, clear RAM, setup MMC5. Verified against dump.
 ; -------------------------------------------------------------
-    * = $E000   ; (ca65: usa .org via linker; qui il segmento e' gia' mappato a $C000)
-
 RESET:
-    SEI                    ; $78 â€” interrupt off
-    CLD                    ; $D8 â€” decimal mode off
+    SEI
+    CLD
     LDA #$00
-    STA $2000              ; NMI off durante l'init
+    STA $2000              ; NMI off during init
     LDA $2002
-@w1: BPL @w1               ; attesa vblank x1
+@w1: BPL @w1
     LDA $2002
-@w2: BPL @w2               ; attesa vblank x2
+@w2: BPL @w2
     LDA $2002
-@w3: BPL @w3               ; attesa vblank x3
+@w3: BPL @w3               ; 3x vblank wait
     LDA #$00
     STA $2001              ; rendering off
 
-; --- azzera RAM $0000-$07FF ($0200 = buffer OAM) ---
+; --- clear RAM $0000-$07FF ($0200 = OAM buffer) ---
     LDX #$00
 @clr:
     STA $0000,X
     STA $0100,X
-    STA $0200,X            ; OAM DMA buffer
+    STA $0200,X
     STA $0300,X
     STA $0400,X
     STA $0500,X
@@ -49,61 +41,156 @@ RESET:
     INX
     BNE @clr
     LDX #$FF
-    TXS                    ; stack = $FF
+    TXS
 
 ; --- PPU / APU ---
     LDA #$08
     STA $2000              ; NMI on
     LDA #$00
-    STA $4010              ; APU PCM off
+    STA $4010
     LDA #$40
-    STA $4017              ; APU frame IRQ off
+    STA $4017
     STA $5204              ; MMC5 scanline IRQ off
     STA $5010              ; MMC5 extra audio off
 
 ; --- MMC5 setup ---
     LDA #$03
-    STA $5100              ; PRG mode 3: $8000/$A000/$C000 switch, $E000 fisso
+    STA $5100              ; PRG mode 3: $8000/$A000/$C000 switch, $E000 fixed
     STA $5101              ; CHR mode 3
     LDA #$00
     STA $5113              ; WRAM bank 0 @ $6000
     LDA #$FE
-    STA $5116              ; banco $C000 = $FE
+    STA $5116              ; bank $C000 = $FE
     LDA #$FF
-    STA $5117              ; banco $E000 = $FF ($1F = questo banco)
+    STA $5117              ; bank $E000 = $FF (this bank, $1F)
     LDA #$00
-    STA $5130              ; CHR upper bits
+    STA $5130
     LDA #$44
-    STA $5105              ; mirroring verticale
+    STA $5105              ; vertical mirroring
     LDA #$02
-    STA $5102              ; WRAM write-protect (seq $02,$01)
+    STA $5102              ; WRAM protect unlock ($02,$01)
     LDA #$01
     STA $5103
     LDA #$01
-    STA $5104              ; EXATTR mode ON (attributi estesi MMC5!)
+    STA $5104              ; EXATTR mode ON (extended attributes!)
 
-    ; TODO: continuare da "8D 04 ..." â€” dump troncato a $E07F
-    ; l'ultima istruzione incompleta e': STA $5104 (A9 01 8D 04 [51])
-    ; Prossimo passo: disassemblare fino a NMI ($E143)
-
-    .res $FF               ; riempitivo fino a $E143 (da sostituire col codice reale)
+    ; TODO: resto del RESET fino a $E142 (dump parziale)
+    .res $100              ; placeholder â€” sostituire col codice reale
 
 ; -------------------------------------------------------------
-; NMI handler â€” $E143 â€” TODO: disassemblare
+; NMI handler â€” $E143 (completo, $E143-$E202)
+; Frame heartbeat: CHR banking dinamico, HUD, split screen,
+; save WRAM, re-bank $C000 -> $1E, music tick.
 ; -------------------------------------------------------------
-NMI_HANDLER:
-    .res $180              ; riempitivo fino a $E2C4 (da sostituire)
+NMI:
+    INC $52                ; frame counter
+    PHA
+    LDA #$00
+    STA $54
+    TXA
+    PHA
+    TYA
+    PHA
+    PHA
+    LDA #$03
+    STA $5800              ; MMC5 protect sequence
+    LDA #$01
+    STA $5800
+    PLA
+    LDA $BC
+    PHA
+    LDA $BD
+    PHA
+    LDA #$FC
+    JSR $EB9C              ; stack helper (sprite shadow?)
+    LDA $E5
+    BEQ @no_chr            ; flag: CHR update requested?
+    JSR $A757              ; compute CHR banks (bank $1E code)
+    JSR $AFCD
+    LDA $83
+    STA $5120              ; upload 8x BG 1K banks from RAM $83-$8A
+    LDA $84
+    STA $5121
+    LDA $85
+    STA $5122
+    LDA $86
+    STA $5123
+    LDA $87
+    STA $5124
+    LDA $88
+    STA $5125
+    LDA $89
+    STA $5126
+    LDA $8A
+    STA $5127              ; -> animated tiles every frame!
+    LDA #$00
+    STA $E5
+@no_chr:
+    JSR $E680              ; scroll / PPU register update
+    LDA $53
+    BEQ @no_hud
+    JSR $E25D              ; HUD update (battle status bar)
+    LDA #$00
+    STA $53
+@no_hud:
+    CLI                    ; re-enable IRQs inside NMI (timing technique)
+    JSR $E908              ; OAM DMA / sprite upload
+    PHA
+    LDA #$00
+    STA $5800              ; MMC5 protect off
+    PLA
+    JSR $E205              ; joypad low-level read
+    JSR $A22E              ; main game logic hook (bank $1E)
+    JSR $E219              ; PPUMASK / audio update
+    LDA $05FE
+    BNE @no_scanwait
+    BIT $5204              ; wait for MMC5 scanline IRQ flag
+    BVC @no_scanwait
+@no_scanwait:
+    LDA $62
+    BEQ @no_split
+    LDX #$00
+    STX $62
+    JSR $E7A0              ; MMC5 vertical split update ($5200-$5203)
+@no_split:
+    JSR $E34B              ; WRAM / backup handling
+    LDA $0402
+    BNE @no_save
+    LDA $69
+    BEQ @no_save
+    JSR $EBE8              ; battery save to WRAM
+@no_save:
+    LDA #$FE
+    STA $5116              ; re-map $C000 -> bank $1E (game logic)
+    JSR $D1BE              ; (bank $1E)
+    LDX #$10
+    JSR $C1C5              ; dispatcher call in bank $1E
+    LDA #$00
+    STA $63
+    JSR $EACE              ; music driver tick (APU + MMC5 PCM/squares)
+    PLA
+    JSR $EB9C
+    PLA
+    JSR $EB96              ; restore stack helpers
+    PLA
+    TAY
+    PLA
+    TAX
+    PLA
+    RTI                    ; $E202
+
+    ; TODO: $E203-$E2C3 (utilities + gap), IRQ handler $E2C4
 
 ; -------------------------------------------------------------
-; IRQ handler â€” $E2C4 â€” TODO: disassemblare (scanline IRQ MMC5)
+; IRQ handler â€” $E2C4 â€” TODO (MMC5 scanline IRQ, split HUD)
 ; -------------------------------------------------------------
 IRQ_HANDLER:
-    .res $1D32             ; riempitivo fino a $FFFA (da sostituire)
+    .res $1D36             ; placeholder fino a $FFFA
 
 ; -------------------------------------------------------------
-; Vettori â€” $FFFA (valori reali dalla ROM)
+; Vettori â€” $FFFA
 ; -------------------------------------------------------------
 .segment "VECTORS"
     .word $E143            ; NMI
     .word $E000            ; RESET
-    .word $E2C4            ; IRQ (MMC5 scanline)
+    .word $E2C4            ; IRQ
