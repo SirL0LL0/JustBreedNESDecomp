@@ -143,6 +143,40 @@ def patch_monster_ptr(data):
     data[base + 0x9730] = 0x9D
 
 
+# Messaggi di fine battaglia (unita' 59): NON fanno parte del sistema Huffman dei dialoghi. Sono testo incorporato
+# direttamente nel flusso di codice, dopo "jsr $9E01" (unit58:$9E01: legge la stringa a cui il chiamante ha appena
+# saltato, la stampa carattere per carattere fino allo 0x00, poi riprende l'esecuzione da li' - vedi disasm/unit58.asm).
+# Il ritorno e' calcolato dinamicamente (JMP (BE) dopo aver trovato lo 0x00): un testo piu' corto dell'originale va
+# bene, PIU' LUNGO no (sovrascriverebbe l'istruzione vera che segue). "budget" = byte totali disponibili (originale
+# giapponese compreso 0x00), verificato scorrendo disasm/unit59.asm dal punto della jsr fino alla prossima istruzione
+# reale. mai giocate/verificate a schermo: il gioco le stampa solo a fine round di combattimento.
+BATTLE_MESSAGES = [
+    # (unita, offset dall'inizio unita (unit*UNIT), testo italiano, budget byte incl. 0x00, byte JP attesi per la verifica)
+    (59, 0x58A, "$2 +ESP da $0<05>", 17, bytes.fromhex("24328a202430897972799d816674800500")),
+    (59, 0x5F9, "$2 +oro da $0<05>", 16, bytes.fromhex("24328a20243047897576886674800500")),
+    (59, 0x65D, "$2 sale liv!<05>", 14, bytes.fromhex("24328a20dafdd90671066f800500")),
+    (59, 0x88D, "$0 impara $2<05>", 18, bytes.fromhex("24308a202432890108010a66751e74800500")),
+]
+
+
+def patch_battle_messages(data):
+    """Scrive i messaggi di BATTLE_MESSAGES sopra il testo giapponese, entro il budget di byte disponibile
+    (il resto, se avanza spazio, resta a 0x00: byte morti, mai raggiunti dall'esecuzione)."""
+    n = 0
+    for unit, off, text, budget, jp_expected in BATTLE_MESSAGES:
+        base = 16 + unit * UNIT + off
+        got = bytes(data[base:base + len(jp_expected)])
+        assert got == jp_expected, (
+            "battle msg unit %d off 0x%04X: atteso %s, trovato %s (ROM diversa da quella prevista?)" %
+            (unit, off, jp_expected.hex(" "), got.hex(" ")))
+        enc = charmap_it.encode_text(text) + b"\x00"
+        assert len(enc) <= budget, "messaggio troppo lungo: %r (%d byte, budget %d)" % (text, len(enc), budget)
+        data[base:base + len(enc)] = enc
+        data[base + len(enc):base + budget] = bytes(budget - len(enc))
+        n += 1
+    return n
+
+
 import re
 _TOKEN = re.compile(r"\{[0-9A-F]{2}:[0-9A-F]{2}\}|<[0-9A-F]{2}>|\$\d|#!?\d+|\*\.?\d+|[+\-%&]\d+|\.\d+")
 _JPTEXT = re.compile(r"[぀-ヿ一-鿿＀-￯…「-』・]")
@@ -233,6 +267,7 @@ def main():
         patch_monster_ptr(data)
     patch_name_grid(data)
     print("griglia nomi: latina")
+    print("messaggi di fine battaglia tradotti:", patch_battle_messages(data))
     open(out, "wb").write(data)
     print("scritta", out)
 
