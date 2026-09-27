@@ -4,48 +4,47 @@ project(JustBreedRecomp C CXX)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# nesrecomp/ e' un submodule git (vedi .gitmodules): setup.bat / setup.sh lo scaricano.
-set(NESRECOMP_ROOT ${CMAKE_SOURCE_DIR}/nesrecomp)
+# nesrecomp (ramo cycle-app): submodule in ./nesrecomp, oppure -DNESRECOMP_ROOT=<percorso>
+if(NOT NESRECOMP_ROOT)
+    if(EXISTS ${CMAKE_SOURCE_DIR}/nesrecomp/runner/cyc/project.cmake)
+        set(NESRECOMP_ROOT ${CMAKE_SOURCE_DIR}/nesrecomp)
+    else()
+        message(FATAL_ERROR "nesrecomp non trovato: git submodule update --init, oppure -DNESRECOMP_ROOT=<percorso>")
+    endif()
+endif()
+message(STATUS "nesrecomp: ${NESRECOMP_ROOT}")
 
-# Mod (cheat) attivabili dal launcher: pacchetti in mods/packages, plugin in cheats.c
-set(NESRECOMP_ENABLE_MODS ON CACHE BOOL "" FORCE)
-# Menu di gioco (recomp-ui runtime UI): Esc apre, mette in pausa; vedi nesrecomp/runner/include/runtime_ui_host.h
-set(NESRECOMP_ENABLE_RUNTIME_UI ON CACHE BOOL "" FORCE)
+# recomp-ui (launcher e menu di gioco): submodule ./recomp-ui, oppure -DRECOMP_UI_ROOT=<percorso>
+if(NOT RECOMP_UI_ROOT)
+    if(EXISTS ${CMAKE_SOURCE_DIR}/recomp-ui/recomp_ui.cmake)
+        set(RECOMP_UI_ROOT ${CMAKE_SOURCE_DIR}/recomp-ui)
+    else()
+        message(FATAL_ERROR "recomp-ui non trovato: git submodule update --init, oppure -DRECOMP_UI_ROOT=<percorso>")
+    endif()
+endif()
+message(STATUS "recomp-ui: ${RECOMP_UI_ROOT}")
 
-# Fornisce NESRECOMP_RUNNER_SOURCES, NESRECOMP_RUNNER_INCLUDE_DIRS, NESRECOMP_RUNNER_ROOT
-include(${NESRECOMP_ROOT}/runner/runner.cmake)
+# Backend a cicli di nesrecomp: la ROM (la build italiana, generata da tools/build_it.py) viene ricompilata in C
+# ciclo per ciclo; il codice non ancora visto gira sull'interprete. cycle_seeds.txt elenca gli indirizzi da compilare.
+include(${NESRECOMP_ROOT}/runner/cyc/project.cmake)
+include(${NESRECOMP_ROOT}/runner/cyc/app/app.cmake)
 
-list(APPEND CMAKE_PREFIX_PATH "${NESRECOMP_ROOT}/runner/external/SDL2/cmake")
-find_package(SDL2 REQUIRED)
+set(JB_ROM "${CMAKE_SOURCE_DIR}/build_rom/jb_it_preview.nes" CACHE FILEPATH
+    "ROM di Just Breed gia' tradotta (tools/build_it.py baserom_jp.nes text/it_wrapped.tsv <qui>)")
+nesrecomp_add_cycle_game(JustBreedRecomp
+    ROM ${JB_ROM}
+    SEED_FILE ${CMAKE_SOURCE_DIR}/cycle_seeds.txt
+    HEADLESS)                       # niente cyc_sdl.c: l'host interattivo e' cyc_app.c
+nesrecomp_cyc_app(JustBreedRecomp)
+target_sources(JustBreedRecomp PRIVATE game.c cheats.c)
+target_include_directories(JustBreedRecomp PRIVATE ${CMAKE_SOURCE_DIR})
 
-add_executable(JustBreedRecomp
-    ${NESRECOMP_RUNNER_SOURCES}
-    extras.c
-    cheats.c
-)
-# Backend MMC5 di nesrecomp: interprete + blocchi tradotti + funzioni decompilate.
-# Si rigenera dalla ROM con:  python nesrecomp/tools/mmc5/mmc5_regen.py --rom baserom_jp.nes   (-> generated/mmc5)
-nesrecomp_mmc5_tier(JustBreedRecomp ${CMAKE_SOURCE_DIR}/generated/mmc5)
-
-target_include_directories(JustBreedRecomp PRIVATE
-    ${NESRECOMP_RUNNER_INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}
-    ${SDL2_INCLUDE_DIRS}
-)
-
-target_link_libraries(JustBreedRecomp PRIVATE ${SDL2_LIBRARIES})
-
-# ---- Launcher grafico pre-avvio (recomp-ui / Dear ImGui, submodule) ----
-# Definisce RECOMP_LAUNCHER, che attiva il blocco launcher in main() di nesrecomp.
-include(${CMAKE_SOURCE_DIR}/recomp-ui/recomp_ui.cmake)
+set(RECOMP_UI_ENABLE_MODS ON CACHE BOOL "" FORCE)
+include(${RECOMP_UI_ROOT}/recomp_ui.cmake)
 recomp_target_launcher_ui(JustBreedRecomp CONSOLE nes LANGUAGE it)
 recomp_target_runtime_ui_sdlrenderer2(JustBreedRecomp)
 
-# Gioco a un solo giocatore: nasconde la scheda Player 2 nel launcher.
-target_compile_definitions(JustBreedRecomp PRIVATE NESRECOMP_GAME_PLAYERS=1
-    NESRECOMP_GAME_ID="just-breed" NESRECOMP_GAME_ROM_CRC32="a77ee1ce")
-
-# Pacchetti mod accanto all'eseguibile (mods/packages/<id>/<versione>/manifest.toml)
+# Pacchetti mod (cheat) accanto all'eseguibile: mods/packages/<id>/<versione>/manifest.toml
 add_custom_command(TARGET JustBreedRecomp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_SOURCE_DIR}/mods/packages"
@@ -53,15 +52,4 @@ add_custom_command(TARGET JustBreedRecomp POST_BUILD
 
 if(WIN32)
     target_link_libraries(JustBreedRecomp PRIVATE ws2_32)
-    add_custom_command(TARGET JustBreedRecomp POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${NESRECOMP_ROOT}/runner/external/SDL2/lib/x64/SDL2.dll"
-            "$<TARGET_FILE_DIR:JustBreedRecomp>")
 endif()
-
-if(MSVC)
-    target_compile_options(JustBreedRecomp PRIVATE /W3 /WX- /wd4102)
-endif()
-
-# Opzionale: debug server TCP, shadow stack, ring diagnostici
-#   cmake ... -DNESRECOMP_ENABLE_TRACE=ON

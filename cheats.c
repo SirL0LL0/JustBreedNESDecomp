@@ -1,14 +1,18 @@
 /*
- * cheats.c - cheat di Just Breed come "mod" del launcher (nesrecomp mod runtime).
+ * cheats.c - cheat di Just Breed come "mod" del launcher (nesrecomp mod runtime, backend a cicli).
  *
  * Ogni cheat e' una feature del pacchetto mods/packages/justbreed.cheats (manifest.toml) collegata a un plugin
- * registrato qui. Attivandola dal launcher, il plugin imposta un flag; ogni frame (game_on_frame) i cheat attivi
- * riscrivono i loro byte nella RAM di lavoro ($6000-$7FFF, indirizzi come nel file .cht). Il cheat 17 e' un codice
- * Game Genie: patch di un byte di ROM, applicata in lettura dal mapper solo se il byte originale coincide.
+ * registrato qui. Attivandola dal launcher, il plugin imposta un flag; prima di ogni frame (game.c -> cheats_on_frame)
+ * i byte indicati vengono riscritti nella RAM di lavoro del cartuccio ($6000-$7FFF, indirizzi come nel file .cht),
+ * con cyc_bus_write (il mapper la instrada come farebbe con una scrittura della CPU: vedi cyc_ext.h).
+ *
+ * Il cheat Game Genie del runner precedente (DPCM pop-reducer, STA $4011 -> LDA $4011) non e' stato portato: il
+ * backend a cicli non applica patch di ROM in lettura (una patch attiva costringerebbe la macchina sull'interprete,
+ * vedi Castlevania3Recomp). Se vuoi quella correzione va applicata alla ROM in fase di build (tools/build_it.py).
  */
 #include "cheats.h"
 #include "mod_runtime.h"
-#include "mapper.h"
+#include "cyc_ext.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -45,42 +49,6 @@ static const Cheat CHEATS[] = {
 #define N_CHEATS ((int)(sizeof CHEATS / sizeof CHEATS[0]))
 
 static uint8_t s_on[N_CHEATS];
-static int s_gg_on, s_gg_applied, s_gg_cmp;
-static uint16_t s_gg_addr;
-static uint8_t s_gg_val;
-
-/* ---- Game Genie (NES) ---- */
-static int gg_decode(const char *code, uint16_t *addr, uint8_t *val, int *cmp) {
-    static const char L[] = "APZLGITYEOXUKSVN";
-    int n[8], len = (int)strlen(code);
-    if (len != 6 && len != 8) return 0;
-    for (int i = 0; i < len; i++) {
-        const char *p = strchr(L, code[i]);
-        if (!p || !*p) return 0;
-        n[i] = (int)(p - L);
-    }
-    *addr = (uint16_t)(0x8000 + (((n[3] & 7) << 12) | ((n[5] & 7) << 8) | ((n[4] & 8) << 8) |
-                                 ((n[2] & 7) << 4) | ((n[1] & 8) << 4) | (n[4] & 7) | (n[3] & 8)));
-    if (len == 8) {
-        *val = (uint8_t)(((n[1] & 7) << 4) | ((n[0] & 8) << 4) | (n[0] & 7) | (n[7] & 8));
-        *cmp = ((n[7] & 7) << 4) | ((n[6] & 8) << 4) | (n[6] & 7) | (n[5] & 8);
-    } else {
-        *val = (uint8_t)(((n[1] & 7) << 4) | ((n[0] & 8) << 4) | (n[0] & 7) | (n[5] & 8));
-        *cmp = -1;
-    }
-    return 1;
-}
-
-static void gg_enable(void) {
-    uint16_t a; uint8_t v; int c;
-    /* DPCM pop-reducer: STA $4011 -> LDA $4011 (banco 61). Il mapper non e' ancora inizializzato quando i
-     * plugin vengono attivati (prima di runner_run): la patch viene applicata al primo frame. */
-    if (gg_decode("SZVIZESE", &a, &v, &c)) {
-        s_gg_addr = a; s_gg_val = v; s_gg_cmp = c;
-        s_gg_on = 1;
-        s_gg_applied = 0;
-    }
-}
 
 /* ---- registrazione plugin: una funzione per cheat (i callback non hanno contesto) ---- */
 #define EN(n) static void en_##n(void) { s_on[n] = 1; }
@@ -89,11 +57,7 @@ static void (*const ENABLERS[N_CHEATS])(void) = {
     en_0, en_1, en_2, en_3, en_4, en_5, en_6, en_7, en_8, en_9, en_10, en_11, en_12, en_13, en_14, en_15, en_16,
 };
 
-static void reset_all(void) {
-    memset(s_on, 0, sizeof s_on);
-    s_gg_on = s_gg_applied = 0;
-    mapper_gg_clear();
-}
+static void reset_all(void) { memset(s_on, 0, sizeof s_on); }
 
 /* Identita' della ROM per i target dei pacchetti: CRC32 del banco fisso 62 (mai modificato dalla traduzione),
  * cosi' il giapponese, le ROM derivate (italiano) e la versione inglese di Stealth usano gli stessi pacchetti. */
@@ -113,44 +77,27 @@ static int rom_identity(const char *path, char out[9]) {
     return 1;
 }
 
+static int s_wired;
 NES_MOD_CONSTRUCTOR(register_justbreed_cheats) {
     nes_mod_set_rom_identity(rom_identity);
     nes_mod_register_reset_callback(reset_all);
     for (int i = 0; i < N_CHEATS; i++)
         nes_mod_register_activation_plugin(CHEATS[i].plugin_id, ENABLERS[i]);
-    nes_mod_register_activation_plugin("justbreed.dpcm_popreduce", gg_enable);
+    s_wired = 1;
 }
 
+void cheats_prepare(void) { (void)s_wired; }
+
 void cheats_on_frame(void) {
-    static int s_log = -1, s_frames;
-    if (s_log < 0) s_log = getenv("JB_CHEAT_LOG") != NULL;
-    if (s_gg_on && !s_gg_applied) s_gg_applied = mapper_gg_add(s_gg_addr, s_gg_val, s_gg_cmp);
     for (int i = 0; i < N_CHEATS; i++) {
         if (!s_on[i]) continue;
-        for (int k = 0; k < CHEATS[i].n; k++) {
-            mapper_write_ext(CHEATS[i].w[k].addr, CHEATS[i].w[k].val);
-            if (s_log && s_frames == 5) {           /* verifica: rilegge il byte dal bus della CPU */
-                uint8_t v = 0xEE;
-                int ok = mapper_read_ext(CHEATS[i].w[k].addr, &v);
-                printf("[cheat] %s $%04X = %02X (letto=%d, atteso %02X)\n", CHEATS[i].plugin_id,
-                       CHEATS[i].w[k].addr, v, ok, CHEATS[i].w[k].val);
-            }
-        }
+        for (int k = 0; k < CHEATS[i].n; k++)
+            cyc_bus_write(CHEATS[i].w[k].addr, CHEATS[i].w[k].val);
     }
-    if (s_log && s_frames == 5) {
-        printf("[cheat] attivi: %d\n", cheats_active_count());
-        if (getenv("JB_CHEAT_GGTEST")) {      /* solo diagnostica: rimappa $C000 sul banco 61 e legge $D062 */
-            uint8_t v = 0;
-            mapper_write_ext(0x5116, 0x80 | 61);
-            mapper_read_ext(0xD062, &v);
-            printf("[cheat] $D062 (banco 61) = %02X (originale 8D, con Game Genie AD)\n", v);
-        }
-    }
-    s_frames++;
 }
 
 int cheats_active_count(void) {
-    int n = s_gg_on;
+    int n = 0;
     for (int i = 0; i < N_CHEATS; i++) n += s_on[i];
     return n;
 }
