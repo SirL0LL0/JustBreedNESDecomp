@@ -5,42 +5,30 @@
 - Header: 4E 45 53 1A 20 20 52 08 (iNES 2.0, mapper 5)
 - Vettori: NMI=$E143, RESET=$E000, IRQ=$E2C4
 
-## Architettura scoperta (banco $1F)
+## Architettura (banco $1F, layout 8K-slot MMC5)
+- MMC5 PRG mode 3, slot da 8K: $5114->$8000, $5115->$A000, $5116->$C000, $5117->$E000
+- Valori: $FC/$FD = banco $1E (1a/2a meta), $FE/$FF = banco $1F (1a/2a meta)
+- Trampolini: JSR $EB9C (window $8000 = A, shadow RAM $BC), JSR $EB96 ($A000, RAM $BD)
+- sub_EB80/$EB8D: save/restore contesto finestre
+- Main loop: $C000 (banco $1F prima meta), raggiunto con JMP da RESET ($E0BC)
+- IRQ ($E2C4): sistema split-screen multi-scanline, tabelle dispatch a $E228/$E25D
+- NMI: contatore frame $52 usato INC/DEC come semaforo; CLI interno; driver audio a $ED1F+
+- Driver save/load WRAM: $EBA5/$EBE8
 
-### RESET ($E000)
-- Init standard NES + MMC5: PRG mode 3, CHR mode 3, EXATTR ON ($5104=$01)
-- Mirroring verticale, WRAM protect unlock, bank $C000=$FE, $E000=$FF
-- EXATTR = attributi estesi per-tile MMC5, usato da pochissimi giochi
+## Stato decompilazione
+- RESET disassemblato e verificato ($E000-$E0BC)
+- NMI completo ($E143-$E204)
+- IRQ completo ($E2C4-$E33C)
+- Scheletro automatico: 13.108 byte di codice individuati (banco $1E: 6167, $1F: 6306)
+- Banchi $00-$1D: dati (testo/mappe/tabelle) salvo piccole routine contestuali
 
-### NMI ($E143-$E202) â€” frame heartbeat
-- INC $52: frame counter
-- CHR banking dinamico: flag $E5 -> JSR $A757/$AFCD (banco $1E) calcolano
-  i banchi CHR e li caricano da RAM $83-$8A nei registri $5120-$5127
-  ogni frame -> tile animati (acqua, fuoco, nidi mostri)
-- HUD update condizionale: flag $53 -> JSR $E25D
-- CLI dentro NMI: interrupt riattivati nel vblank (timing tecnica)
-- OAM DMA: JSR $E908
-- Joypad: JSR $E205
-- Main logic hook: JSR $A22E (banco $1E, mappato a $8000)
-- Attesa IRQ scanline MMC5: BIT $5204 / BVC loop
-- Split screen verticale: flag $62 -> JSR $E7A0 (registro $5200-$5203)
-- Battery save: JSR $EBE8 se flag $69 e non $0402
-- RE-BANKING: LDA #$FE / STA $5116 -> banco $C000 diventa $1E,
-  poi JSR $D1BE e dispatcher JSR $C1C5 con X=$10
-- Music tick: JSR $EACE (driver APU + 2 canali extra MMC5)
+## Strumenti
+- tools/auto_disasm.py v3: discesa ricorsiva MMC5-aware, punto fisso, 2 layout ($1F fisso)
+- tools/trace_banks.py: static scan dei punti di bank-switch
+- tools/verify_skeleton.py: ri-assembla lo scheletro e verifica byte-perfect
 
-### Pattern chiave
-- Il banco $1E e' il "game logic bank": mappato a $C000 dal NMI
-- Flag RAM: $52 frame, $53 HUD, $62 split, $63 ?, $69 save, $E5 CHR,
-  $83-$8A CHR bank numbers, $BC/$BD puntatori (NPC/oggetti?)
-- Stack helpers: $EB9C/$EB96 (push/pop frame bank?)
-
-### Curiosita'
-- Firma "JUSTBREED" ASCII + metadati a fine banco $1F (offset $3FF0)
-- Nel banco $1E (extraction by mistake): dispatcher a jump table a $C153,
-  loop su 6 unita' (Team Spirits: 6 comandanti x 6 soldati = 36 unita')
-
-## Prossimi estratti
-- $E203-$E2C3 (utility NMI area)
-- IRQ $E2C4-$E3xx (scanline split HUD)
-- Banco $1E: main loop, dispatcher $C1C5, jump table $C153
+## Prossimi passi
+- [ ] verify_skeleton: portare i 32 banchi a PERFECT
+- [ ] Annotare: nomi reali alle routine (main loop $C000, dispatcher, CHR-compute $A757, audio $ED1F)
+- [ ] Identificare banche dati: charset testo (kana), tabelle mappe, stats nemici
+- [ ] Build byte-perfect con ca65/ld65 (config gia' pronto)
