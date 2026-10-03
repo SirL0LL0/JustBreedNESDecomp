@@ -1,1 +1,9173 @@
-; =============================================================; PRG bank $1E — auto-disassembled skeleton (v3); CPU mapping: $8000-$9FFF / $A000-$BFFF (via $5114/$5115); code bytes: 6167 / 16384; NOTE: auto-generated. Refine labels & data tables by hand.; =============================================================.segment "CODE30"L_8000:    RTS    .byte $60, $60, $60, $60, $60, $60, $60, $60, $60L_800A:    INC $05FFL_800D:    LDA $05FFL_8010:    CMP #$01L_8012:    BNE L_8017L_8014:    JMP L_A0FFL_8017:    CMP #$03L_8019:    BNE L_801EL_801B:    JMP L_A126L_801E:    CMP #$05L_8020:    BNE L_8025L_8022:    JMP L_A09EL_8025:    CMP #$07L_8027:    BNE L_802CL_8029:    JMP L_A142L_802C:    CMP #$09L_802E:    BNE L_8033L_8030:    JMP L_A176L_8033:    CMP #$20L_8035:    BNE L_8052L_8037:    LDA #$00L_8039:    STA $05FFL_803C:    INC $59L_803E:    LDA $59L_8040:    CMP #$0FL_8042:    BNE L_8048L_8044:    LDA #$00L_8046:    STA $59L_8048:    CMP #$0EL_804A:    BNE L_8052L_804C:    LDA $5AL_804E:    EOR #$08L_8050:    STA $5AL_8052:    LDA $05FFL_8055:    AND #$01L_8057:    BNE L_806BL_8059:    INC $5CL_805B:    LDA $5CL_805D:    CMP #$F0L_805F:    BNE L_806BL_8061:    LDA #$00L_8063:    STA $5CL_8065:    LDA $00L_8067:    EOR #$02L_8069:    STA $00L_806B:    JSR sub_E908L_806E:    RTSL_806F:    LDX $59L_8071:    LDA $A080,XL_8074:    ORA $5AL_8076:    STA $03F4L_8079:    LDA $A08F,XL_807C:    STA $03F3L_807F:    RTS    .byte $20, $20, $20, $21, $21, $21, $21, $22, $22, $22, $22, $23, $23, $23, $20, $40    .byte $80, $C0, $00, $40, $80, $C0, $00, $40, $80, $C0, $00, $40, $80, $00L_809E:    LDA $03C0L_80A1:    BNE L_80A6L_80A3:    JMP L_A06BL_80A6:    CMP #$01L_80A8:    BEQ L_80ADL_80AA:    JMP L_A0EEL_80AD:    LDA $0700L_80B0:    STA $03C1L_80B3:    LDA $03DEL_80B6:    CLCL_80B7:    RORL_80B8:    RORL_80B9:    RORL_80BA:    ORA #$3CL_80BC:    STA $03C3L_80BF:    ORA #$01L_80C1:    STA $03C4L_80C4:    LDX #$00L_80C6:    LDA $0701,XL_80C9:    BEQ L_80E2L_80CB:    STA $0300,XL_80CE:    STA $0320,XL_80D1:    LDA $03C3L_80D4:    STA $0340,XL_80D7:    LDA $03C4L_80DA:    STA $0360,XL_80DD:    INXL_80DE:    CPX #$20L_80E0:    BNE L_80C6L_80E2:    STX $03C2L_80E5:    STX $11L_80E7:    LDA #$00L_80E9:    STA $14L_80EB:    JMP L_A06BL_80EE:    LDA #$00L_80F0:    STA $03C1L_80F3:    STA $14L_80F5:    LDA #$20L_80F7:    STA $03C2L_80FA:    STA $11L_80FC:    JMP L_A06BL_80FF:    JSR sub_A06FL_8102:    LDA $2002L_8105:    LDX #$20L_8107:    LDA $03F4L_810A:    STA $2006L_810D:    AND #$07L_810F:    ORA #$5CL_8111:    STA $10L_8113:    LDA $03F3L_8116:    STA $0FL_8118:    STA $2006L_811B:    LDA #$20L_811D:    STA $2007L_8120:    DEXL_8121:    BNE L_811DL_8123:    JMP L_A06BL_8126:    LDA $2002L_8129:    LDX #$20L_812B:    LDA $03F4L_812E:    STA $2006L_8131:    AND #$07L_8133:    ORA #$5CL_8135:    STA $16L_8137:    LDA $03F3L_813A:    CLCL_813B:    ADC #$20L_813D:    STA $15L_813F:    JMP L_A118L_8142:    LDA $03C0L_8145:    BEQ L_8173L_8147:    JSR sub_A06FL_814A:    LDA $2002L_814D:    LDY $03C2L_8150:    LDA $03F4L_8153:    STA $2006L_8156:    AND #$07L_8158:    ORA #$5CL_815A:    STA $10L_815C:    LDA $03F3L_815F:    ORA $03C1L_8162:    STA $0FL_8164:    STA $2006L_8167:    LDX #$00L_8169:    LDA $0300,XL_816C:    STA $2007L_816F:    INXL_8170:    DEYL_8171:    BNE L_8169L_8173:    JMP L_A06BL_8176:    LDA $03C0L_8179:    BEQ L_8173L_817B:    LDA $2002L_817E:    LDY $03C2L_8181:    LDA $03F4L_8184:    STA $2006L_8187:    AND #$07L_8189:    ORA #$5CL_818B:    STA $16L_818D:    LDA $03F3L_8190:    CLCL_8191:    ADC #$20L_8193:    ORA $03C1L_8196:    STA $15L_8198:    STA $2006L_819B:    LDX #$00L_819D:    LDA $0320,XL_81A0:    STA $2007L_81A3:    INXL_81A4:    DEYL_81A5:    BNE L_819DL_81A7:    LDA #$00L_81A9:    STA $03C0L_81AC:    LDA #$01L_81AE:    STA $05FBL_81B1:    JMP L_A06B    .byte $A9, $0A, $85, $56, $85, $57, $A5, $0B, $D0, $FC, $A5, $0B, $F0, $FC, $C9, $80    .byte $D0, $03, $4C, $E2, $A1, $C9, $40, $D0, $03, $4C, $00, $A2, $C9, $20, $D0, $03    .byte $4C, $0E, $A2, $C9, $10, $D0, $DF, $A9, $01, $85, $55, $4C, $BA, $A1, $A9, $05    .byte $8D, $00, $07, $A2, $00, $BD, $1F, $A2, $9D, $01, $07, $F0, $04, $E8, $4C, $E9    .byte $A1, $AD, $FF, $05, $D0, $FB, $20, $39, $E4, $4C, $BA, $A1, $20, $22, $E4, $AD    .byte $00, $06, $85, $56, $AD, $01, $06, $85, $57, $60, $AD, $FF, $05, $D0, $FB, $E6    .byte $57, $A6, $56, $A4, $57, $20, $3F, $E4, $4C, $BA, $A1, $41, $42, $43, $44, $45    .byte $46, $47, $48, $49, $4A, $4B, $4C, $4D, $4E, $00L_822E:    JSR sub_A26CL_8231:    LDA $03C5L_8234:    BNE L_8249L_8236:    LDA $0BL_8238:    BEQ L_825CL_823A:    DEC $03C7L_823D:    BEQ L_8240L_823F:    RTSL_8240:    STA $0CL_8242:    LDA $03C6L_8245:    STA $03C7L_8248:    RTSL_8249:    LDA $0AL_824B:    STA $0CL_824D:    LDA $0BL_824F:    AND #$0FL_8251:    BEQ L_8260L_8253:    LDX $03C5L_8256:    BEQ L_825BL_8258:    DEC $03C5L_825B:    RTSL_825C:    LDA #$00L_825E:    STA $0CL_8260:    LDA #$1EL_8262:    STA $03C5L_8265:    LDA $03C6L_8268:    STA $03C7L_826B:    RTSL_826C:    LDA $0BL_826E:    PHAL_826F:    JSR sub_A27AL_8272:    PLAL_8273:    EOR #$FFL_8275:    AND $0AL_8277:    STA $0AL_8279:    RTSL_827A:    JSR sub_A289L_827D:    STA $0DL_827F:    JSR sub_A289L_8282:    CMP $0DL_8284:    BNE L_827AL_8286:    STA $0BL_8288:    RTSL_8289:    LDA #$01L_828B:    STA $4016L_828E:    LDA #$00L_8290:    STA $4016L_8293:    LDX #$08L_8295:    ASL $0AL_8297:    LDA $4016L_829A:    PHAL_829B:    LSRL_829C:    AND #$01L_829E:    ORA $0AL_82A0:    STA $0AL_82A2:    PLAL_82A3:    AND #$01L_82A5:    ORA $0AL_82A7:    STA $0AL_82A9:    DEXL_82AA:    BNE L_8295L_82AC:    RTS    .byte $8C, $D2, $03, $AD, $CC, $03, $8D, $C8, $03, $AD, $CD, $03, $8D, $C9, $03, $AD    .byte $CE, $03, $CD, $DB, $03, $B0, $03, $4C, $21, $A4, $4C, $B6, $A4, $20, $6B, $E4    .byte $AD, $C8, $03, $4A, $18, $65, $56, $8D, $D7, $03, $AD, $C9, $03, $4A, $18, $65    .byte $57, $8D, $D8, $03, $AD, $CE, $03, $4A, $8D, $D4, $03, $AD, $C8, $03, $8D, $D9    .byte $03, $60, $AD, $D3, $03, $F0, $0C, $AE, $D7, $03, $AC, $D8, $03, $AD, $D5, $03    .byte $20, $27, $D3, $A9, $02, $8D, $DA, $03, $AD, $C9, $03, $0A, $0A, $85, $04, $AD    .byte $D9, $03, $4A, $4A, $4A, $18, $65, $04, $AA, $BD, $D0, $62, $85, $04, $BD, $38    .byte $63, $85, $06, $8A, $18, $69, $04, $AA, $BD, $D0, $62, $85, $05, $BD, $38, $63    .byte $85, $07, $AD, $D9, $03, $29, $07, $AA, $AC, $D6, $03, $B1, $02, $F0, $22, $AC    .byte $D5, $03, $99, $00, $03, $BD, $AD, $A3, $25, $04, $F0, $02, $A9, $02, $18, $69    .byte $3C, $85, $0E, $BD, $AD, $A3, $25, $06, $F0, $02, $A9, $01, $05, $0E, $99, $40    .byte $03, $AD, $D6, $03, $18, $69, $1C, $A8, $B1, $02, $F0, $22, $AC, $D5, $03, $99    .byte $20, $03, $BD, $AD, $A3, $25, $05, $F0, $02, $A9, $02, $18, $69, $3C, $85, $0E    .byte $BD, $AD, $A3, $25, $07, $F0, $02, $A9, $01, $05, $0E, $99, $60, $03, $98, $38    .byte $E9, $1B, $A8, $EE, $D5, $03, $EE, $D6, $03, $EE, $D9, $03, $CE, $DA, $03, $F0    .byte $03, $4C, $05, $A3, $EE, $D7, $03, $CE, $D4, $03, $F0, $03, $4C, $EF, $A2, $60    .byte $80, $40, $20, $10, $08, $04, $02, $01, $20, $E8, $E4, $AD, $CE, $03, $38, $ED    .byte $D0, $03, $B0, $0C, $AD, $CE, $03, $8D, $F5, $03, $A9, $00, $8D, $F8, $03, $60    .byte $8D, $F8, $03, $AD, $D0, $03, $8D, $F5, $03, $60, $48, $98, $48, $20, $CA, $A2    .byte $A9, $00, $8D, $D5, $03, $8D, $D6, $03, $20, $EF, $A2, $68, $A8, $68, $AA, $20    .byte $0A, $A4, $E8, $E8, $E8, $20, $0A, $A4, $A2, $00, $BD, $00, $03, $99, $00, $07    .byte $BD, $40, $03, $99, $80, $07, $E8, $C8, $E0, $40, $D0, $EE, $60, $20, $E8, $E4    .byte $A5, $02, $9D, $F3, $03, $95, $0F, $A5, $03, $9D, $F4, $03, $A5, $05, $95, $10    .byte $EE, $C9, $03, $60, $20, $B5, $A3, $20, $95, $A4, $AD, $D2, $03, $D0, $20, $A9    .byte $04, $85, $1C, $20, $84, $A4, $CE, $DC, $03, $F0, $13, $AD, $DD, $03, $F0, $F3    .byte $AD, $DC, $03, $C9, $01, $D0, $EC, $A9, $02, $85, $1C, $20, $84, $A4, $60, $A0    .byte $02, $AD, $CF, $03, $29, $FC, $18, $6D, $C9, $03, $AE, $DD, $03, $D0, $05, $A0    .byte $04, $38, $E9, $04, $8D, $C9, $03, $84, $1C, $20, $84, $A4, $CE, $DC, $03, $F0    .byte $15, $A9, $04, $85, $1C, $AD, $C9, $03, $38, $E9, $08, $8D, $C9, $03, $20, $84    .byte $A4, $CE, $DC, $03, $D0, $EF, $60, $A9, $00, $A8, $20, $D7, $A3, $A9, $06, $A0    .byte $40, $20, $D7, $A3, $20, $8C, $E2, $60, $A9, $01, $8D, $D3, $03, $A9, $00, $8D    .byte $DD, $03, $AD, $CF, $03, $48, $4A, $4A, $8D, $DC, $03, $68, $29, $03, $F0, $08    .byte $EE, $DC, $03, $A9, $01, $8D, $DD, $03, $60, $20, $B5, $A3, $20, $44, $A5, $AD    .byte $D2, $03, $D0, $3C, $A9, $00, $8D, $D3, $03, $A9, $03, $85, $1C, $20, $84, $A4    .byte $20, $31, $A5, $F0, $2A, $A2, $00, $BD, $60, $07, $9D, $00, $07, $BD, $E0, $07    .byte $9D, $80, $07, $E8, $E0, $20, $D0, $EF, $CE, $C9, $03, $A2, $00, $20, $0A, $A4    .byte $A9, $03, $A0, $20, $20, $D7, $A3, $20, $8C, $E2, $20, $31, $A5, $D0, $CE, $60    .byte $A9, $01, $8D, $D3, $03, $AD, $CF, $03, $48, $18, $6D, $C9, $03, $38, $E9, $02    .byte $8D, $C9, $03, $A9, $02, $85, $1C, $68, $4A, $8D, $DC, $03, $A9, $00, $A8, $20    .byte $D7, $A3, $20, $8C, $E2, $AD, $C9, $03, $38, $E9, $04, $8D, $C9, $03, $CE, $DC    .byte $03, $D0, $E9, $60, $AE, $DC, $03, $CA, $8E, $DC, $03, $F0, $09, $E0, $01, $D0    .byte $05, $AD, $DD, $03, $85, $1C, $60, $A9, $03, $8D, $DD, $03, $AD, $CF, $03, $85    .byte $02, $A9, $03, $85, $04, $20L_8553:    ROL $A5EB,X    .byte $02, $8D, $DC, $03, $A5, $06, $F0, $06, $8D, $DD, $03, $EE, $DC, $03, $60, $C9    .byte $E2, $D0, $0D, $AD, $CA, $03, $8D, $C8, $03, $EE, $C9, $03, $EE, $C9, $03, $60    .byte $8D, $00, $03, $8D, $20, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3C, $8D    .byte $40, $03, $09, $01, $8D, $60, $03, $20, $13, $A6, $A9, $01, $20, $00, $A6, $20    .byte $A0, $E2, $EE, $C8, $03, $60, $8D, $00, $03, $8D, $20, $03, $09, $01, $8D, $01    .byte $03, $8D, $21, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3E, $8D, $40, $03    .byte $8D, $41, $03, $09, $01, $8D, $60, $03, $8D, $61, $03, $20, $13, $A6, $AD, $D0    .byte $03, $C9, $01, $D0, $06, $20, $ED, $A5, $4C, $D6, $A5, $A9, $02, $20, $00, $A6    .byte $20, $A0, $E2, $EE, $C8, $03, $EE, $C8, $03, $60, $8D, $00, $03, $20, $13, $A6    .byte $20, $A8, $E2, $EE, $C8, $03, $60, $A9, $01, $8D, $F5, $03, $8D, $F8, $03, $8D    .byte $FB, $03, $8D, $FE, $03, $85, $11, $85, $14, $60, $8D, $F5, $03, $8D, $FB, $03    .byte $85, $11, $A9, $00, $8D, $F8, $03, $8D, $FE, $03, $85, $14, $60, $8A, $48, $98    .byte $48, $20, $E8, $E4, $A5, $03, $8D, $F4, $03, $48, $29, $23, $18, $69, $3C, $85    .byte $10, $85, $13, $68, $49, $04, $8D, $F7, $03, $A5, $02, $8D, $F3, $03, $85, $0F    .byte $29, $E0, $8D, $F6, $03, $85, $12, $EE, $C9, $03, $20, $E8, $E4, $A5, $03, $8D    .byte $FA, $03, $48, $29, $23, $18, $69, $3C, $85, $16, $85, $19, $68, $49, $04, $8D    .byte $FD, $03, $A5, $02, $8D, $F9, $03, $85, $15, $29, $E0, $8D, $FC, $03, $85, $18    .byte $CE, $C9, $03, $68, $A8, $68, $AA, $60, $A2, $00, $20, $13, $A6, $A0, $00, $BD    .byte $00, $07, $D0, $03, $4C, $2E, $A7, $C9, $E1, $D0, $15, $E8, $BD, $00, $07, $8D    .byte $C8, $03, $8D, $CA, $03, $E8, $BD, $00, $07, $8D, $C9, $03, $E8, $4C, $70, $A6    .byte $C9, $E2, $D0, $13, $20, $2E, $A7, $AD, $CA, $03, $8D, $C8, $03, $EE, $C9, $03    .byte $EE, $C9, $03, $E8, $4C, $70, $A6, $C9, $E3, $D0, $06, $EE, $C9, $03, $4C, $9A    .byte $A6, $C9, $01, $D0, $07, $8D, $DF, $03, $E8, $4C, $75, $A6, $C9, $9F, $D0, $0B    .byte $E8, $BD, $00, $07, $8D, $DE, $03, $E8, $4C, $75, $A6, $48, $AD, $DF, $03, $D0    .byte $20, $68, $99, $00, $03, $99, $20, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09    .byte $3C, $99, $40, $03, $09, $01, $99, $60, $03, $C8, $EE, $C8, $03, $E8, $4C, $75    .byte $A6, $68, $99, $00, $03, $99, $20, $03, $09, $01, $99, $01, $03, $99, $21, $03    .byte $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3E, $99, $40, $03, $99, $41, $03, $09    .byte $01, $99, $60, $03, $99, $61, $03, $C8, $C8, $EE, $C8, $03, $EE, $C8, $03, $E8    .byte $A9, $00, $8D, $DF, $03, $4C, $75, $A6, $98, $20, $00, $A6, $88, $CC, $D0, $03    .byte $90, $1B, $C8, $98, $38, $ED, $D0, $03, $8D, $F8, $03, $8D, $FE, $03, $85, $14    .byte $98, $38, $ED, $F8, $03, $8D, $F5, $03, $8D, $FB, $03, $85, $11, $20, $A0, $E2    .byte $60L_8757:    LDA #$00L_8759:    STA $2003L_875C:    LDA #$02L_875E:    STA $4014L_8761:    RTSL_8762:    JSR sub_E44CL_8765:    JMP L_A757    .byte $A5, $01, $29, $EF, $85, $01, $8D, $01, $20, $A2, $A8, $A0, $07, $20, $C4, $A7    .byte $A2, $A8, $A0, $1A, $20, $C4, $A7, $A2, $A8, $A0, $2D, $20, $C4, $A7, $A2, $A8    .byte $A0, $40, $20, $C4, $A7, $A2, $A8, $A0, $53, $20, $C4, $A7, $A2, $A8, $A0, $66    .byte $20, $C4, $A7, $A2, $A8, $A0, $79, $20, $C4, $A7, $A2, $A8, $A0, $8C, $20, $C4    .byte $A7, $A2, $A8, $A0, $9F, $20, $C4, $A7, $A2, $A8, $A0, $B2, $20, $C4, $A7, $A2    .byte $0E, $A0, $02, $20, $5C, $EB, $20, $51, $A9, $4C, $D3, $A8, $86, $03, $84, $02    .byte $A0, $00, $B1, $02, $99, $00, $07, $F0, $04, $C8, $4C, $CA, $A7, $20, $34, $C1    .byte $A5, $E0, $48, $29, $7F, $85, $E0, $20, $34, $C1, $A9, $00, $85, $E5, $20, $6E    .byte $A6, $68, $85, $E0, $60, $A8, $20, $34, $C1, $A5, $E0, $48, $29, $7F, $85, $E0    .byte $20, $34, $C1, $A9, $00, $85, $E5, $98, $20, $65, $A5, $68, $85, $E0, $60, $E1    .byte $01, $02, $4D, $55, $53, $49, $43, $20, $20, $20, $4E, $4F, $2E, $30, $31, $20    .byte $20, $00, $E1, $01, $04, $F5, $B0, $C4, $30, $20, $CE, $B3, $B9, $B2, $CA, $20    .byte $30, $30, $20, $20, $00, $E1, $01, $06, $F5, $B0, $C4, $31, $20, $CE, $B3, $B9    .byte $B2, $CA, $20, $30, $30, $20, $20, $00, $E1, $01, $08, $F5, $B0, $C4, $32, $20    .byte $CE, $B3, $B9, $B2, $CA, $20, $30, $30, $20, $20, $00, $E1, $01, $0AL_8856:    SBC $B0,XL_8858:    CPY $33L_885A:    JSR sub_B3CEL_885D:    LDA $CAB2,YL_8860:    JSR sub_3030L_8863:    JSR sub_0020L_8866:    SBC ($01,X)    .byte $0C, $F5, $B0, $C4, $34, $20, $C9, $B2, $ED, $20, $20, $20, $30, $30, $20, $20    .byte $00, $E1, $01, $0E, $F5, $B0, $C4, $35, $20, $BB, $DDL_8883:    LDX $B8,YL_8885:    DEXL_8886:    JSR sub_3030L_8889:    JSR sub_0020L_888C:    SBC ($01,X)L_888E:    BPL L_8885L_8890:    BCS L_8856L_8892:    ROL $20,X    .byte $F3, $D9, $C0, $4D, $20, $20, $30, $30, $20, $20, $00, $E1, $01, $12, $20, $20    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $00, $E1, $01    .byte $14, $53, $4F, $55, $4E, $44, $20, $20, $4E, $4F, $2E, $30, $30, $31, $20, $20    .byte $00, $E1, $10, $14, $4F, $4E, $20, $00, $E1, $10, $14, $4F, $46, $46, $00, $A9    .byte $FD, $20, $96, $EB, $AD, $FE, $92, $8D, $F1, $03, $AD, $FF, $92, $8D, $F2, $03    .byte $A9, $01, $8D, $EC, $03, $8D, $ED, $03, $A5, $0C, $D0, $26, $AD, $03, $04, $D0    .byte $10, $AD, $F0, $03, $F0, $F2, $20, $74, $AC, $A9, $00, $8D, $F0, $03, $4C, $EC    .byte $A8, $AD, $F0, $03, $D0, $E2, $20, $74, $AC, $AD, $03, $04, $8D, $F0, $03, $4C    .byte $EC, $A8, $20, $1C, $A9, $4C, $EC, $A8, $A2, $00, $4A, $B0, $05, $E8, $E8, $4C    .byte $1E, $A9, $BD, $35, $A9, $8D, $EE, $03, $BD, $36, $A9, $8D, $EF, $03, $6C, $EE    .byte $03, $E2, $AB, $23, $AC, $88, $A9, $B0, $A9, $0A, $AA, $D8, $A9, $30, $AB, $70    .byte $AA, $CE, $C8, $03, $A9, $20, $20, $ED, $A7, $CE, $C8, $03, $60, $A9, $5C, $20    .byte $ED, $A7, $60, $85, $02, $A9, $0A, $85, $04, $20, $3E, $EB, $A5, $06, $48, $A5    .byte $02, $09, $30, $20, $ED, $A7, $68, $09, $30, $20, $ED, $A7, $60, $85, $02, $A9    .byte $64, $85, $04, $20, $3E, $EB, $A5, $06, $48, $A5, $02, $09, $30, $20, $ED, $A7    .byte $68, $4C, $57, $A9, $20, $45, $A9, $AD, $C9, $03, $C9, $10, $D0, $08, $A9, $14    .byte $8D, $C9, $03, $4C, $AC, $A9, $C9, $14, $D0, $08, $A9, $02, $8D, $C9, $03, $4C    .byte $AC, $A9, $EE, $C9, $03, $EE, $C9, $03, $20, $51, $A9, $60, $20, $45, $A9, $AD    .byte $C9, $03, $C9, $02, $D0, $08, $A9, $14, $8D, $C9, $03, $4C, $D4, $A9, $C9, $14    .byte $D0, $08, $A9, $10, $8D, $C9, $03, $4C, $D4, $A9, $CE, $C9, $03, $CE, $C9, $03    .byte $20, $51, $A9, $60, $AD, $C9, $03, $C9, $14, $F0, $14, $AD, $02, $04, $F0, $05    .byte $A9, $00, $4C, $EF, $A9, $20, $37, $AA, $AD, $EC, $03, $20, $A5, $EB, $60, $AD    .byte $03, $04, $F0, $05, $A9, $00, $4C, $00, $AA, $AD, $ED, $03, $8D, $F0, $03, $20    .byte $18, $EC, $20, $74, $AC, $60, $AD, $C9, $03, $C9, $14, $F0, $16, $AD, $02, $04    .byte $F0, $05, $A9, $00, $4C, $23, $AA, $A9, $01, $8D, $90, $06, $AD, $EC, $03, $20    .byte $A5, $EB, $60, $AD, $03, $04, $F0, $05, $A9, $00, $4C, $34, $AA, $AD, $ED, $03    .byte $4C, $00, $AA, $AD, $C8, $03, $48, $AD, $C9, $03, $48, $A9, $00, $8D, $90, $06    .byte $AD, $EC, $03, $20, $9B, $EF, $A9, $04, $8D, $C9, $03, $A2, $00, $A9, $0C, $8D    .byte $C8, $03, $BD, $E0, $03, $20, $57, $A9, $EE, $C9, $03, $EE, $C9, $03, $E8, $E0    .byte $07, $D0, $EA, $68, $8D, $C9, $03, $68, $8D, $C8, $03, $60, $AD, $C9, $03, $C9    .byte $02, $D0, $19, $AD, $EC, $03, $CD, $F1, $03, $90, $08, $A9, $01, $8D, $EC, $03    .byte $4C, $B6, $AA, $EE, $EC, $03, $AD, $EC, $03, $4C, $B6, $AA, $C9, $14, $D0, $2E    .byte $AD, $ED, $03, $CD, $F2, $03, $90, $08, $A9, $01, $8D, $ED, $03, $4C, $AA, $AA    .byte $EE, $ED, $03, $AD, $ED, $03, $A2, $0B, $8E, $C8, $03, $20, $71, $A9, $EE, $C8    .byte $03, $60, $A2, $0C, $8E, $C8, $03, $20, $57, $A9, $EE, $C8, $03, $60, $A2, $0C    .byte $8E, $C8, $03, $38, $E9, $04, $4A, $AA, $C9, $05, $B0, $46, $BD, $E0, $03, $C9    .byte $0F, $F0, $4C, $FE, $E0, $03, $BD, $E0, $03, $C9, $0F, $F0, $0A, $20, $5F, $AC    .byte $20, $57, $A9, $EE, $C8, $03, $60, $A9, $2D, $20, $ED, $A7, $A9, $2D, $20, $ED    .byte $A7, $EE, $C8, $03, $E0, $02, $90, $0D, $AD, $F7, $05, $3D, $29, $AB, $8D, $F7    .byte $05, $8D, $15, $40, $60, $AD, $F8, $05L_8B0C:    AND $AB29,XL_8B0F:    STA $05F8L_8B12:    STA $5015L_8B15:    RTS    .byte $BD, $E0, $03, $C9, $01, $F0, $06, $FE, $E0, $03, $4C, $EB, $AA, $A9, $0F, $8D    .byte $C8, $03, $60, $FE, $FD, $FE, $FD, $F7, $FB, $EF, $AD, $C9, $03, $C9, $02, $D0    .byte $19, $AD, $EC, $03, $C9, $01, $D0, $09, $AD, $F1, $03, $8D, $EC, $03, $4C, $B6    .byte $AA, $CE, $EC, $03, $AD, $EC, $03, $4C, $B6, $AA, $C9, $14, $D0, $19, $AD, $ED    .byte $03, $C9, $01, $D0, $09, $AD, $F2, $03, $8D, $ED, $03, $4C, $6A, $AB, $CE, $ED    .byte $03, $AD, $ED, $03, $4C, $AA, $AA, $A2, $0C, $8E, $C8, $03, $38, $E9, $04, $4A    .byte $AA, $C9, $05, $B0, $47, $BD, $E0, $03, $F0, $55, $DE, $E0, $03, $20, $5F, $AC    .byte $BD, $E0, $03, $48, $20, $57, $A9, $EE, $C8, $03, $68, $C9, $0E, $F0, $01, $60    .byte $E0, $02, $90, $16, $AD, $F7, $05, $1D, $DB, $AB, $8D, $F7, $05, $8D, $15, $40    .byte $E0, $06, $F0, $05, $A9, $FF, $9D, $8B, $05, $60, $AD, $F8, $05, $1D, $DB, $AB    .byte $8D, $F8, $05, $8D, $15, $50, $A9, $FF, $9D, $8B, $05, $60, $BD, $E0, $03, $F0    .byte $0E, $DE, $E0, $03, $A9, $00, $20, $57, $A9, $EE, $C8, $03, $4C, $96, $AB, $A9    .byte $0F, $8D, $C8, $03, $60, $01, $02, $01, $02, $08, $04, $10, $AD, $C9, $03, $C9    .byte $02, $D0, $18, $AD, $EC, $03, $AA, $18, $69, $0A, $8D, $EC, $03, $CD, $F1, $03    .byte $F0, $27, $90, $25, $8A, $8D, $EC, $03, $4C, $1F, $AC, $C9, $14, $D0, $1D, $AD    .byte $ED, $03, $AA, $18, $69, $0A, $8D, $ED, $03, $B0, $07, $CD, $F2, $03, $F0, $06    .byte $90, $04, $8A, $8D, $ED, $03, $4C, $AA, $AA, $4C, $B6, $AA, $60, $AD, $C9, $03    .byte $C9, $02, $D0, $18, $AD, $EC, $03, $AA, $38, $E9, $0A, $8D, $EC, $03, $F0, $05    .byte $30, $03, $4C, $5B, $AC, $8A, $8D, $EC, $03, $4C, $5B, $AC, $C9, $14, $D0, $18    .byte $AD, $ED, $03, $AA, $38, $E9, $0A, $8D, $ED, $03, $F0, $02, $B0, $04, $8A, $8D    .byte $ED, $03, $4C, $AA, $AA, $4C, $B6, $AA, $60L_8C5F:    CPX #$05L_8C61:    BCS L_8C73L_8C63:    PHAL_8C64:    LDA $03E7,XL_8C67:    SECL_8C68:    SBC $03E0,XL_8C6B:    BCS L_8C6FL_8C6D:    LDA #$00L_8C6F:    STA $040E,XL_8C72:    PLAL_8C73:    RTS    .byte $AD, $C8, $03, $48, $AD, $C9, $03, $48, $AD, $03, $04, $F0, $07, $A2, $A8, $A0    .byte $C5, $4C, $8C, $AC, $A2, $A8, $A0, $CC, $20, $C4, $A7, $68, $8D, $C9, $03, $68    .byte $8D, $C8, $03, $60, $0A, $02, $04, $03, $00, $07, $07, $07, $06, $00, $09, $07    .byte $07, $04, $00, $06, $06, $06, $06, $06, $08, $08, $05, $04, $08, $0A, $0A, $06    .byte $09, $08, $09, $09, $06, $07, $09, $05, $05, $07, $07, $09, $07, $07, $08, $09    .byte $00, $07, $07, $04, $03, $05, $08, $08, $03, $03, $00, $09, $04, $02, $02, $00    .byte $06, $06, $06, $08, $00, $06, $06, $03, $03, $07, $07, $07, $0A, $08, $08, $02    .byte $07, $06, $06, $08, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $05, $05    .byte $08, $05, $00, $00, $00, $00, $00, $00, $08, $08, $00, $00, $05, $08, $08, $06    .byte $05, $07, $00, $00, $00, $00, $00, $08, $08, $08, $08, $08, $05, $05, $05, $05    .byte $00, $07, $07, $07, $07, $00, $00, $00, $00, $00, $00, $03, $03, $03, $03, $03    .byte $00, $00, $00, $00, $00, $05, $05, $04, $04, $05, $07, $07, $04, $00, $00, $09    .byte $00, $00, $00, $00, $03, $03, $03, $03, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00L_8D87:    BRKL_8D88:    BRKL_8D89:    BRKL_8D8A:    BRKL_8D8B:    BRKL_8D8C:    BRKL_8D8D:    BRKL_8D8E:    BRKL_8D8F:    BRKL_8D90:    BRKL_8D91:    BRKL_8D92:    BRKL_8D93:    BRKL_8D94:    BRKL_8D95:    BRKL_8D96:    BRKL_8D97:    BRKL_8D98:    BRKL_8D99:    BRKL_8D9A:    BRKL_8D9B:    BRKL_8D9C:    BRKL_8D9D:    BRKL_8D9E:    BRKL_8D9F:    BRKL_8DA0:    BRKL_8DA1:    BRKL_8DA2:    BRKL_8DA3:    BRKL_8DA4:    BRKL_8DA5:    BRKL_8DA6:    BRKL_8DA7:    BRKL_8DA8:    BRKL_8DA9:    BRKL_8DAA:    BRKL_8DAB:    BRKL_8DAC:    BRKL_8DAD:    BRKL_8DAE:    BRKL_8DAF:    BRKL_8DB0:    BRKL_8DB1:    BRKL_8DB2:    BRKL_8DB3:    BRKL_8DB4:    BRKL_8DB5:    BRKL_8DB6:    BRKL_8DB7:    BRKL_8DB8:    BRKL_8DB9:    BRKL_8DBA:    BRKL_8DBB:    BRKL_8DBC:    BRKL_8DBD:    BRKL_8DBE:    BRKL_8DBF:    BRKL_8DC0:    BRKL_8DC1:    BRKL_8DC2:    BRKL_8DC3:    BRKL_8DC4:    BRKL_8DC5:    BRKL_8DC6:    BRKL_8DC7:    BRKL_8DC8:    BRKL_8DC9:    BRKL_8DCA:    BRKL_8DCB:    BRKL_8DCC:    BRKL_8DCD:    BRKL_8DCE:    BRKL_8DCF:    BRKL_8DD0:    BRKL_8DD1:    BRKL_8DD2:    BRKL_8DD3:    BRKL_8DD4:    BRKL_8DD5:    BRKL_8DD6:    BRKL_8DD7:    BRKL_8DD8:    JSR sub_E2B4L_8DDB:    LDX #$00L_8DDD:    LDA #$0EL_8DDF:    STA $03E0,XL_8DE2:    JSR sub_AC5FL_8DE5:    INXL_8DE6:    CPX #$05L_8DE8:    BNE L_8DDFL_8DEA:    LDA $0422L_8DED:    STA $5000L_8DF0:    LDA $0423L_8DF3:    STA $5004L_8DF6:    LDA $0424L_8DF9:    STA $4000L_8DFC:    LDA $0425L_8DFF:    STA $4004L_8E02:    LDA #$30L_8E04:    STA $400CL_8E07:    RTS    .byte $A0, $00, $A2, $20, $A9, $3C, $91, $0F, $09, $01, $91, $15, $C8, $CA, $D0, $F4    .byte $60, $A0, $00, $A6, $11, $B9, $40, $03, $91, $0F, $B9, $60, $03, $91, $15, $C8    .byte $CA, $D0, $F2, $A5, $14, $F0, $16, $85, $1B, $98, $AA, $A0, $00, $BD, $40, $03    .byte $91, $12, $BD, $60, $03, $91, $18, $E8, $C8, $C6, $1B, $D0, $F0, $60, $A2, $00    .byte $A0, $00, $A5, $11, $F0, $0D, $85, $1B, $BD, $40, $03, $91, $0F, $E8, $C8, $C6    .byte $1B, $D0, $F5, $A5, $14, $F0, $0F, $85, $1B, $A0, $00, $BD, $40, $03, $91, $12    .byte $E8, $C8, $C6, $1B, $D0, $F5, $60, $A0, $00, $A6, $17, $B9, $60, $03, $91, $15    .byte $C8, $CA, $D0, $F7, $A5, $1A, $F0, $11, $85, $1B, $98, $AA, $A0, $00, $BD, $60    .byte $03, $91, $18, $E8, $C8, $C6, $1B, $D0, $F5, $60, $A0, $00, $A2, $00, $A5, $11    .byte $F0, $13, $BD, $40, $03, $91, $0F, $98, $18, $69, $20, $A8, $D0, $02, $E6, $10    .byte $E8, $C6, $11, $D0, $ED, $A5, $14, $F0, $17, $85, $1B, $A0, $00, $BD, $40, $03    .byte $91, $12, $98, $18, $69, $20, $A8, $D0, $02, $E6, $13, $E8, $C6, $1B, $D0, $ED    .byte $60, $A0, $00, $A2, $20, $BD, $40, $03, $91, $15, $98, $18, $69, $20, $A8, $D0    .byte $02, $E6, $16, $E8, $C6, $17, $D0, $ED, $A5, $1A, $F0, $17, $85, $1B, $A0, $00    .byte $BD, $40, $03, $91, $18, $98, $18, $69, $20, $A8, $D0, $02, $E6, $19, $E8, $C6    .byte $1B, $D0, $ED, $60, $A0, $00, $A2, $00, $BD, $40, $03, $91, $0F, $BD, $60, $03    .byte $91, $15, $98, $18, $69, $20, $A8, $D0, $04, $E6, $10, $E6, $16, $E8, $C6, $11    .byte $D0, $E6, $A5, $14, $F0, $1E, $85, $1B, $A0, $00, $BD, $40, $03, $91, $12, $BD    .byte $60, $03, $91, $18, $98, $18, $69, $20, $A8, $D0, $04, $E6, $13, $E6, $19, $E8    .byte $C6, $1B, $D0, $E6, $60, $A2, $00, $AC, $D0, $03, $AD, $02, $20, $AD, $F4, $03    .byte $8D, $06, $20, $AD, $F3, $03, $8D, $06, $20, $BD, $00, $03, $F0, $16, $8D, $07    .byte $20, $E8, $88, $D0, $F4, $AD, $F7, $03, $8D, $06, $20, $AD, $F6, $03, $8D, $06    .byte $20, $4C, $51, $AF, $A2, $20, $AC, $D0, $03, $AD, $02, $20, $AD, $FA, $03, $8D    .byte $06, $20, $AD, $F9, $03, $8D, $06, $20, $BD, $00, $03, $F0, $19, $8D, $07, $20    .byte $E8, $88, $D0, $F4, $AD, $02, $20, $AD, $FD, $03, $8D, $06, $20, $AD, $FC, $03    .byte $8D, $06, $20, $4C, $80, $AF, $60L_8F9F:    LDA $2002L_8FA2:    LDA #$3FL_8FA4:    STA $2006L_8FA7:    LDA #$00L_8FA9:    STA $2006L_8FAC:    LDX #$00L_8FAE:    LDA $0380,XL_8FB1:    STA $2007L_8FB4:    INXL_8FB5:    CPX #$20L_8FB7:    BNE L_8FAEL_8FB9:    LDA $2002L_8FBC:    LDA #$3FL_8FBE:    STA $2006L_8FC1:    LDA #$00L_8FC3:    STA $2006L_8FC6:    STA $2006L_8FC9:    STA $2006L_8FCC:    RTSL_8FCD:    LDA $E6L_8FCF:    BEQ L_8FD9L_8FD1:    JSR sub_AF9FL_8FD4:    LDA #$00L_8FD6:    STA $E6L_8FD8:    RTSL_8FD9:    LDA $2002L_8FDC:    LDA #$3FL_8FDE:    STA $2006L_8FE1:    LDA #$10L_8FE3:    STA $2006L_8FE6:    LDX #$00L_8FE8:    LDA $0390,XL_8FEB:    STA $2007L_8FEE:    INXL_8FEF:    CPX #$10L_8FF1:    BNE L_8FE8L_8FF3:    JMP L_AFB9    .byte $AD, $02, $20, $A9, $3F, $8D, $06, $20, $A9, $00, $8D, $06, $20, $A2, $00, $BD    .byte $80, $03, $8D, $07, $20, $E8, $E0, $10, $D0, $F5L_9010:    JMP L_AFB9L_9013:    LDX #$00L_9015:    LDA #$0FL_9017:    STA $0380,XL_901A:    STA $03A0,XL_901D:    INXL_901E:    CPX #$20L_9020:    BNE L_9015L_9022:    JMP L_AF9F    .byte $8D, $FB, $05, $A5, $00, $29, $FB, $85, $00, $60, $20, $5C, $B0, $20, $63, $B0    .byte $A9, $01, $4C, $25, $B0, $20, $48, $B0, $20, $5C, $B0, $20, $63, $B0, $A9, $06    .byte $4C, $25, $B0, $A5, $00, $09, $04, $85, $00, $8D, $00, $20, $60, $A5, $00, $29    .byte $FB, $85, $00, $8D, $00, $20, $60, $A2, $00, $A0, $00, $4C, $67, $B0, $A2, $06    .byte $A0, $20, $AD, $02, $20, $BD, $F4, $03, $8D, $06, $20, $BD, $F3, $03, $8D, $06    .byte $20, $BD, $F5, $03, $8E, $01, $04, $AA, $B9, $00, $03, $8D, $07, $20, $C8, $CA    .byte $D0, $F6, $AE, $01, $04, $E8, $E8, $E8, $AD, $02, $20, $BD, $F4, $03, $8D, $06    .byte $20, $BD, $F3, $03, $8D, $06, $20, $BD, $F5, $03, $F0, $0B, $AA, $B9, $00, $03    .byte $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $AD, $02, $20, $AD, $F4, $03, $8D, $06    .byte $20, $AD, $F3, $03, $8D, $06, $20, $AD, $00, $03, $8D, $07, $20, $A9, $07, $8D    .byte $FB, $05, $60, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3D, $A0, $00, $91, $0F    .byte $60, $20, $07, $B1, $A9, $02, $4C, $F1, $B0, $A5, $00, $09, $04, $8D, $00, $20    .byte $20, $07, $B1, $A5, $00, $29, $FB, $8D, $00, $20, $A9, $04, $8D, $FB, $05, $AD    .byte $02, $20, $A5, $5B, $8D, $05, $20, $A5, $5C, $8D, $05, $20, $A5, $00, $8D, $00    .byte $20, $60, $AD, $02, $20, $AD, $F4, $03, $8D, $06, $20, $A5, $0F, $8D, $06, $20    .byte $A0, $00, $A6, $11, $F0, $0A, $B9, $00, $03, $8D, $07, $20, $C8, $CA, $D0, $F6    .byte $A6, $14, $F0, $18, $AD, $02, $20, $AD, $F7, $03, $8D, $06, $20, $A5, $12, $8D    .byte $06, $20, $B9, $00, $03, $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $A5, $1C, $48    .byte $A2, $00, $A0, $00, $20, $76, $B1, $C6, $1C, $F0, $1D, $A2, $20, $A0, $03, $20    .byte $76, $B1, $C6, $1C, $F0, $12, $A2, $40, $A0, $06, $20, $76, $B1, $C6, $1C, $F0    .byte $07, $A2, $60, $A0, $09, $20, $76, $B1, $68, $85, $1C, $A9, $08, $8D, $FB, $05    .byte $60, $AD, $02, $20, $B9, $F4, $03, $8D, $06, $20, $B9, $F3, $03, $8D, $06, $20    .byte $AD, $F5, $03, $85, $1F, $BD, $00, $07, $8D, $07, $20, $E8, $C6, $1F, $D0, $F5    .byte $AD, $F8, $03, $F0, $1D, $85, $1F, $B9, $F4, $03, $49, $04, $8D, $06, $20, $B9    .byte $F3, $03, $29, $E0, $8D, $06, $20, $BD, $00, $07, $8D, $07, $20, $E8, $C6, $1F    .byte $D0, $F5, $60, $A0, $00, $AE, $F5, $03, $B9, $80, $07, $91, $0F, $A5, $1C, $C9    .byte $01, $F0, $1B, $B9, $A0, $07, $91, $12, $A5, $1C, $C9, $02, $F0, $10, $B9, $C0    .byte $07, $91, $15, $A5, $1C, $C9, $03, $F0, $05, $B9, $E0, $07, $91, $18, $C8, $CA    .byte $D0, $D6, $AD, $F8, $03, $F0, $4A, $85, $1F, $98, $AA, $A0, $00, $A5, $0F, $29    .byte $E0, $85, $0F, $A5, $12, $29, $E0, $85, $12, $A5, $15, $29, $E0, $85, $15, $A5    .byte $18, $29, $E0, $85, $18, $BD, $80, $07, $91, $0F, $A5, $1C, $C9, $01, $F0, $1B    .byte $BD, $A0, $07, $91, $12, $A5, $1C, $C9, $02, $F0, $10, $BD, $C0, $07, $91, $15    .byte $A5, $1C, $C9, $03, $F0, $05, $BD, $E0, $07, $91, $18, $C8, $E8, $C6, $1F, $D0    .byte $D4, $60, $A2, $00, $AD, $02, $20, $BD, $6E, $06, $8D, $06, $20, $BD, $5E, $06    .byte $8D, $06, $20, $BD, $1E, $06, $8D, $07, $20, $BD, $2E, $06, $8D, $07, $20, $AD    .byte $02, $20, $BD, $6E, $06, $8D, $06, $20, $BD, $5E, $06, $09, $20, $8D, $06, $20    .byte $BD, $3E, $06, $8D, $07, $20, $BD, $4E, $06, $8D, $07, $20, $E8, $EC, $76, $06    .byte $D0, $C2, $A9, $09, $8D, $FB, $05, $60, $A2, $00, $BD, $56, $06, $85, $1D, $BD    .byte $66, $06, $85, $1E, $A0, $00, $BD, $16, $06, $91, $1D, $C8, $BD, $26, $06, $91    .byte $1D, $A0, $20, $BD, $36, $06, $91, $1D, $C8, $BD, $46, $06, $91, $1D, $E8, $EC    .byte $76, $06, $D0, $D6, $60, $A2, $00, $AD, $02, $20, $BD, $20, $07, $8D, $06, $20    .byte $BD, $00, $07, $8D, $06, $20, $BD, $1E, $06, $8D, $07, $20, $AD, $02, $20, $BD    .byte $28, $07, $8D, $06, $20, $BD, $08, $07, $8D, $06, $20, $BD, $2E, $06, $8D, $07    .byte $20, $AD, $02, $20, $BD, $30, $07, $8D, $06, $20, $BD, $10, $07, $8D, $06, $20    .byte $BD, $3E, $06, $8D, $07, $20, $AD, $02, $20, $BD, $38, $07, $8D, $06, $20, $BD    .byte $18, $07, $8D, $06, $20, $BD, $4E, $06, $8D, $07, $20, $E8, $EC, $76, $06, $D0    .byte $A6, $A9, $0A, $8D, $FB, $05, $60, $A2, $00, $A0, $00, $BD, $40, $07, $85, $1D    .byte $BD, $60, $07, $85, $1E, $BD, $16, $06, $91, $1D, $BD, $48, $07, $85, $1D, $BD    .byte $68, $07, $85, $1E, $BD, $26, $06, $91, $1D, $BD, $50, $07, $85, $1D, $BD, $70    .byte $07, $85, $1E, $BD, $36, $06, $91, $1D, $BD, $58, $07, $85, $1D, $BD, $78, $07    .byte $85, $1E, $BD, $46, $06, $91, $1D, $E8, $EC, $76, $06, $D0, $BE, $60, $A2, $00    .byte $A0, $00, $4C, $5E, $B3, $A2, $06, $A0, $20, $AD, $02, $20, $BD, $81, $07, $8D    .byte $06, $20, $BD, $80, $07, $8D, $06, $20, $BD, $82, $07, $8E, $01, $04, $AA, $B9    .byte $00, $07, $8D, $07, $20, $C8, $CA, $D0, $F6, $AE, $01, $04, $E8, $E8, $E8, $AD    .byte $02, $20, $BD, $81, $07, $8D, $06, $20, $BD, $80, $07, $8D, $06, $20, $BD, $82    .byte $07, $F0, $0B, $AA, $B9, $00, $07, $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00L_93CE:    BRKL_93CF:    BRKL_93D0:    BRKL_93D1:    BRKL_93D2:    BRKL_93D3:    BRKL_93D4:    BRKL_93D5:    BRKL_93D6:    BRKL_93D7:    BRKL_93D8:    BRKL_93D9:    BRKL_93DA:    BRKL_93DB:    BRKL_93DC:    BRKL_93DD:    BRKL_93DE:    BRKL_93DF:    BRKL_93E0:    BRKL_93E1:    BRKL_93E2:    BRKL_93E3:    BRKL_93E4:    BRKL_93E5:    BRKL_93E6:    BRKL_93E7:    BRKL_93E8:    BRKL_93E9:    BRKL_93EA:    BRKL_93EB:    BRKL_93EC:    BRKL_93ED:    BRKL_93EE:    BRKL_93EF:    BRKL_93F0:    BRKL_93F1:    BRKL_93F2:    BRKL_93F3:    BRKL_93F4:    BRKL_93F5:    BRKL_93F6:    BRKL_93F7:    BRKL_93F8:    BRKL_93F9:    BRKL_93FA:    BRKL_93FB:    BRKL_93FC:    BRKL_93FD:    BRKL_93FE:    BRKL_93FF:    BRKL_9400:    BRKL_9401:    BRKL_9402:    BRKL_9403:    BRKL_9404:    BRKL_9405:    BRKL_9406:    BRKL_9407:    BRKL_9408:    BRKL_9409:    BRKL_940A:    BRKL_940B:    BRKL_940C:    BRKL_940D:    BRKL_940E:    BRKL_940F:    BRKL_9410:    BRKL_9411:    BRKL_9412:    BRKL_9413:    BRKL_9414:    BRKL_9415:    BRKL_9416:    BRKL_9417:    BRKL_9418:    BRKL_9419:    BRKL_941A:    BRKL_941B:    BRKL_941C:    BRKL_941D:    BRKL_941E:    BRKL_941F:    BRKL_9420:    BRKL_9421:    BRKL_9422:    BRKL_9423:    BRKL_9424:    BRKL_9425:    BRKL_9426:    BRKL_9427:    BRKL_9428:    BRKL_9429:    BRKL_942A:    BRKL_942B:    BRKL_942C:    BRKL_942D:    BRKL_942E:    BRKL_942F:    BRKL_9430:    BRKL_9431:    BRKL_9432:    BRKL_9433:    BRKL_9434:    BRKL_9435:    BRKL_9436:    BRKL_9437:    BRKL_9438:    BRKL_9439:    BRKL_943A:    BRKL_943B:    BRKL_943C:    BRKL_943D:    BRKL_943E:    BRKL_943F:    BRKL_9440:    BRKL_9441:    BRKL_9442:    BRKL_9443:    BRKL_9444:    BRKL_9445:    BRKL_9446:    BRKL_9447:    BRKL_9448:    BRKL_9449:    BRKL_944A:    BRKL_944B:    BRKL_944C:    BRKL_944D:    BRKL_944E:    BRKL_944F:    BRKL_9450:    BRKL_9451:    BRKL_9452:    BRKL_9453:    BRKL_9454:    BRKL_9455:    BRKL_9456:    BRKL_9457:    BRKL_9458:    BRKL_9459:    BRKL_945A:    BRKL_945B:    BRKL_945C:    BRKL_945D:    BRKL_945E:    BRKL_945F:    BRKL_9460:    BRKL_9461:    BRKL_9462:    BRKL_9463:    BRKL_9464:    BRKL_9465:    BRKL_9466:    BRKL_9467:    BRKL_9468:    BRKL_9469:    BRKL_946A:    BRKL_946B:    BRKL_946C:    BRKL_946D:    BRKL_946E:    BRKL_946F:    BRKL_9470:    BRKL_9471:    BRKL_9472:    BRKL_9473:    BRKL_9474:    BRKL_9475:    BRKL_9476:    BRKL_9477:    BRKL_9478:    BRKL_9479:    BRKL_947A:    BRKL_947B:    BRKL_947C:    BRKL_947D:    BRKL_947E:    BRKL_947F:    BRKL_9480:    BRKL_9481:    BRKL_9482:    BRKL_9483:    BRKL_9484:    BRKL_9485:    BRKL_9486:    BRKL_9487:    BRKL_9488:    BRKL_9489:    BRKL_948A:    BRKL_948B:    BRKL_948C:    BRKL_948D:    BRKL_948E:    BRKL_948F:    BRKL_9490:    BRKL_9491:    BRKL_9492:    BRKL_9493:    BRKL_9494:    BRKL_9495:    BRKL_9496:    BRKL_9497:    BRKL_9498:    BRKL_9499:    BRKL_949A:    BRKL_949B:    BRKL_949C:    BRKL_949D:    BRKL_949E:    BRKL_949F:    BRKL_94A0:    BRKL_94A1:    BRKL_94A2:    BRKL_94A3:    BRKL_94A4:    BRKL_94A5:    BRKL_94A6:    BRKL_94A7:    BRKL_94A8:    BRKL_94A9:    BRKL_94AA:    BRKL_94AB:    BRKL_94AC:    BRKL_94AD:    BRKL_94AE:    BRKL_94AF:    BRKL_94B0:    BRKL_94B1:    BRKL_94B2:    BRKL_94B3:    BRKL_94B4:    BRKL_94B5:    BRKL_94B6:    BRKL_94B7:    BRKL_94B8:    BRKL_94B9:    BRKL_94BA:    BRKL_94BB:    BRKL_94BC:    BRKL_94BD:    BRKL_94BE:    BRKL_94BF:    BRKL_94C0:    BRKL_94C1:    BRKL_94C2:    BRKL_94C3:    BRKL_94C4:    BRKL_94C5:    BRKL_94C6:    BRKL_94C7:    BRKL_94C8:    BRKL_94C9:    BRKL_94CA:    BRKL_94CB:    BRKL_94CC:    BRKL_94CD:    BRKL_94CE:    BRKL_94CF:    BRKL_94D0:    BRKL_94D1:    BRKL_94D2:    BRKL_94D3:    BRKL_94D4:    BRKL_94D5:    BRKL_94D6:    BRKL_94D7:    BRKL_94D8:    BRKL_94D9:    BRKL_94DA:    BRKL_94DB:    BRKL_94DC:    BRKL_94DD:    BRKL_94DE:    BRKL_94DF:    BRKL_94E0:    BRKL_94E1:    BRKL_94E2:    BRKL_94E3:    BRKL_94E4:    BRKL_94E5:    BRKL_94E6:    BRKL_94E7:    BRKL_94E8:    BRKL_94E9:    BRKL_94EA:    BRKL_94EB:    BRKL_94EC:    BRKL_94ED:    BRKL_94EE:    BRKL_94EF:    BRKL_94F0:    BRKL_94F1:    BRKL_94F2:    BRKL_94F3:    BRKL_94F4:    BRKL_94F5:    BRKL_94F6:    BRKL_94F7:    BRKL_94F8:    BRKL_94F9:    BRKL_94FA:    BRKL_94FB:    BRKL_94FC:    BRKL_94FD:    BRKL_94FE:    BRKL_94FF:    BRKL_9500:    BRKL_9501:    BRKL_9502:    BRKL_9503:    BRKL_9504:    BRKL_9505:    BRKL_9506:    BRKL_9507:    BRKL_9508:    BRKL_9509:    BRKL_950A:    BRKL_950B:    BRKL_950C:    BRKL_950D:    BRKL_950E:    BRKL_950F:    BRKL_9510:    BRKL_9511:    BRKL_9512:    BRKL_9513:    BRKL_9514:    BRKL_9515:    BRKL_9516:    BRKL_9517:    BRKL_9518:    BRKL_9519:    BRKL_951A:    BRKL_951B:    BRKL_951C:    BRKL_951D:    BRKL_951E:    BRKL_951F:    BRKL_9520:    BRKL_9521:    BRKL_9522:    BRKL_9523:    BRKL_9524:    BRKL_9525:    BRKL_9526:    BRKL_9527:    BRKL_9528:    BRKL_9529:    BRKL_952A:    BRKL_952B:    BRKL_952C:    BRKL_952D:    BRKL_952E:    BRKL_952F:    BRKL_9530:    BRKL_9531:    BRKL_9532:    BRKL_9533:    BRKL_9534:    BRKL_9535:    BRKL_9536:    BRKL_9537:    BRKL_9538:    BRKL_9539:    BRKL_953A:    BRKL_953B:    BRKL_953C:    BRKL_953D:    BRKL_953E:    BRKL_953F:    BRKL_9540:    BRKL_9541:    BRKL_9542:    BRKL_9543:    BRKL_9544:    BRKL_9545:    BRKL_9546:    BRKL_9547:    BRKL_9548:    BRKL_9549:    BRKL_954A:    BRKL_954B:    BRKL_954C:    BRKL_954D:    BRKL_954E:    BRKL_954F:    BRKL_9550:    BRKL_9551:    BRKL_9552:    BRKL_9553:    BRKL_9554:    BRKL_9555:    BRKL_9556:    BRKL_9557:    BRKL_9558:    BRKL_9559:    BRKL_955A:    BRKL_955B:    BRKL_955C:    BRKL_955D:    BRKL_955E:    BRKL_955F:    BRKL_9560:    BRKL_9561:    BRKL_9562:    BRKL_9563:    BRKL_9564:    BRKL_9565:    BRKL_9566:    BRKL_9567:    BRKL_9568:    BRKL_9569:    BRKL_956A:    BRKL_956B:    BRKL_956C:    BRKL_956D:    BRKL_956E:    BRKL_956F:    BRKL_9570:    BRKL_9571:    BRKL_9572:    BRKL_9573:    BRKL_9574:    BRKL_9575:    BRKL_9576:    BRKL_9577:    BRKL_9578:    BRKL_9579:    BRKL_957A:    BRKL_957B:    BRKL_957C:    BRKL_957D:    BRKL_957E:    BRKL_957F:    BRKL_9580:    BRKL_9581:    BRKL_9582:    BRKL_9583:    BRKL_9584:    BRKL_9585:    BRKL_9586:    BRKL_9587:    BRKL_9588:    BRKL_9589:    BRKL_958A:    BRKL_958B:    BRKL_958C:    BRKL_958D:    BRKL_958E:    BRKL_958F:    BRKL_9590:    BRKL_9591:    BRKL_9592:    BRKL_9593:    BRKL_9594:    BRKL_9595:    BRKL_9596:    BRKL_9597:    BRKL_9598:    BRKL_9599:    BRKL_959A:    BRKL_959B:    BRKL_959C:    BRKL_959D:    BRKL_959E:    BRKL_959F:    BRKL_95A0:    BRKL_95A1:    BRKL_95A2:    BRKL_95A3:    BRKL_95A4:    BRKL_95A5:    BRKL_95A6:    BRKL_95A7:    BRKL_95A8:    BRKL_95A9:    BRKL_95AA:    BRKL_95AB:    BRKL_95AC:    BRKL_95AD:    BRKL_95AE:    BRKL_95AF:    BRKL_95B0:    BRKL_95B1:    BRKL_95B2:    BRKL_95B3:    BRKL_95B4:    BRKL_95B5:    BRKL_95B6:    BRKL_95B7:    BRKL_95B8:    BRKL_95B9:    BRKL_95BA:    BRKL_95BB:    BRKL_95BC:    BRKL_95BD:    BRKL_95BE:    BRKL_95BF:    BRKL_95C0:    BRKL_95C1:    BRKL_95C2:    BRKL_95C3:    BRKL_95C4:    BRKL_95C5:    BRKL_95C6:    BRKL_95C7:    BRKL_95C8:    BRKL_95C9:    BRKL_95CA:    BRKL_95CB:    BRKL_95CC:    BRKL_95CD:    BRKL_95CE:    BRKL_95CF:    BRKL_95D0:    BRKL_95D1:    BRKL_95D2:    BRKL_95D3:    BRKL_95D4:    BRKL_95D5:    BRKL_95D6:    BRKL_95D7:    BRKL_95D8:    BRKL_95D9:    BRKL_95DA:    BRKL_95DB:    BRKL_95DC:    BRKL_95DD:    BRKL_95DE:    BRKL_95DF:    BRKL_95E0:    BRKL_95E1:    BRKL_95E2:    BRKL_95E3:    BRKL_95E4:    BRKL_95E5:    BRKL_95E6:    BRKL_95E7:    BRKL_95E8:    BRKL_95E9:    BRKL_95EA:    BRKL_95EB:    BRKL_95EC:    BRKL_95ED:    BRKL_95EE:    BRKL_95EF:    BRKL_95F0:    BRKL_95F1:    BRKL_95F2:    BRKL_95F3:    BRKL_95F4:    BRKL_95F5:    BRKL_95F6:    BRKL_95F7:    BRKL_95F8:    BRKL_95F9:    BRKL_95FA:    BRKL_95FB:    BRKL_95FC:    BRKL_95FD:    BRKL_95FE:    BRKL_95FF:    BRKL_9600:    BRKL_9601:    BRKL_9602:    BRKL_9603:    BRKL_9604:    BRKL_9605:    BRKL_9606:    BRKL_9607:    BRKL_9608:    BRKL_9609:    BRKL_960A:    BRKL_960B:    BRKL_960C:    BRKL_960D:    BRKL_960E:    BRKL_960F:    BRKL_9610:    BRKL_9611:    BRKL_9612:    BRKL_9613:    BRKL_9614:    BRKL_9615:    BRKL_9616:    BRKL_9617:    BRKL_9618:    BRKL_9619:    BRKL_961A:    BRKL_961B:    BRKL_961C:    BRKL_961D:    BRKL_961E:    BRKL_961F:    BRKL_9620:    BRKL_9621:    BRKL_9622:    BRKL_9623:    BRKL_9624:    BRKL_9625:    BRKL_9626:    BRKL_9627:    BRKL_9628:    BRKL_9629:    BRKL_962A:    BRKL_962B:    BRKL_962C:    BRKL_962D:    BRKL_962E:    BRKL_962F:    BRKL_9630:    BRKL_9631:    BRKL_9632:    BRKL_9633:    BRKL_9634:    BRKL_9635:    BRKL_9636:    BRKL_9637:    BRKL_9638:    BRKL_9639:    BRKL_963A:    BRKL_963B:    BRKL_963C:    BRKL_963D:    BRKL_963E:    BRKL_963F:    BRKL_9640:    BRKL_9641:    BRKL_9642:    BRKL_9643:    BRKL_9644:    BRKL_9645:    BRKL_9646:    BRKL_9647:    BRKL_9648:    BRKL_9649:    BRKL_964A:    BRKL_964B:    BRKL_964C:    BRKL_964D:    BRKL_964E:    BRKL_964F:    BRKL_9650:    BRKL_9651:    BRKL_9652:    BRKL_9653:    BRKL_9654:    BRKL_9655:    BRKL_9656:    BRKL_9657:    BRKL_9658:    BRKL_9659:    BRKL_965A:    BRKL_965B:    BRKL_965C:    BRKL_965D:    BRKL_965E:    BRKL_965F:    BRKL_9660:    BRKL_9661:    BRKL_9662:    BRKL_9663:    BRKL_9664:    BRKL_9665:    BRKL_9666:    BRKL_9667:    BRKL_9668:    BRKL_9669:    BRKL_966A:    BRKL_966B:    BRKL_966C:    BRKL_966D:    BRKL_966E:    BRKL_966F:    BRKL_9670:    BRKL_9671:    BRKL_9672:    BRKL_9673:    BRKL_9674:    BRKL_9675:    BRKL_9676:    BRKL_9677:    BRKL_9678:    BRKL_9679:    BRKL_967A:    BRKL_967B:    BRKL_967C:    BRKL_967D:    BRKL_967E:    BRKL_967F:    BRKL_9680:    BRKL_9681:    BRKL_9682:    BRKL_9683:    BRKL_9684:    BRKL_9685:    BRKL_9686:    BRKL_9687:    BRKL_9688:    BRKL_9689:    BRKL_968A:    BRKL_968B:    BRKL_968C:    BRKL_968D:    BRKL_968E:    BRKL_968F:    BRKL_9690:    BRKL_9691:    BRKL_9692:    BRKL_9693:    BRKL_9694:    BRKL_9695:    BRKL_9696:    BRKL_9697:    BRKL_9698:    BRKL_9699:    BRKL_969A:    BRKL_969B:    BRKL_969C:    BRKL_969D:    BRKL_969E:    BRKL_969F:    BRKL_96A0:    BRKL_96A1:    BRKL_96A2:    BRKL_96A3:    BRKL_96A4:    BRKL_96A5:    BRKL_96A6:    BRKL_96A7:    BRKL_96A8:    BRKL_96A9:    BRKL_96AA:    BRKL_96AB:    BRKL_96AC:    BRKL_96AD:    BRKL_96AE:    BRKL_96AF:    BRKL_96B0:    BRKL_96B1:    BRKL_96B2:    BRKL_96B3:    BRKL_96B4:    BRKL_96B5:    BRKL_96B6:    BRKL_96B7:    BRKL_96B8:    BRKL_96B9:    BRKL_96BA:    BRKL_96BB:    BRKL_96BC:    BRKL_96BD:    BRKL_96BE:    BRKL_96BF:    BRKL_96C0:    BRKL_96C1:    BRKL_96C2:    BRKL_96C3:    BRKL_96C4:    BRKL_96C5:    BRKL_96C6:    BRKL_96C7:    BRKL_96C8:    BRKL_96C9:    BRKL_96CA:    BRKL_96CB:    BRKL_96CC:    BRKL_96CD:    BRKL_96CE:    BRKL_96CF:    BRKL_96D0:    BRKL_96D1:    BRKL_96D2:    BRKL_96D3:    BRKL_96D4:    BRKL_96D5:    BRKL_96D6:    BRKL_96D7:    BRKL_96D8:    BRKL_96D9:    BRKL_96DA:    BRKL_96DB:    BRKL_96DC:    BRKL_96DD:    BRKL_96DE:    BRKL_96DF:    BRKL_96E0:    BRKL_96E1:    BRKL_96E2:    BRKL_96E3:    BRKL_96E4:    BRKL_96E5:    BRKL_96E6:    BRKL_96E7:    BRKL_96E8:    BRKL_96E9:    BRKL_96EA:    BRKL_96EB:    BRKL_96EC:    BRKL_96ED:    BRKL_96EE:    BRKL_96EF:    BRKL_96F0:    BRKL_96F1:    BRKL_96F2:    BRKL_96F3:    BRKL_96F4:    BRKL_96F5:    BRKL_96F6:    BRKL_96F7:    BRKL_96F8:    BRKL_96F9:    BRKL_96FA:    BRKL_96FB:    BRKL_96FC:    BRKL_96FD:    BRKL_96FE:    BRKL_96FF:    BRKL_9700:    BRKL_9701:    BRKL_9702:    BRKL_9703:    BRKL_9704:    BRKL_9705:    BRKL_9706:    BRKL_9707:    BRKL_9708:    BRKL_9709:    BRKL_970A:    BRKL_970B:    BRKL_970C:    BRKL_970D:    BRKL_970E:    BRKL_970F:    BRKL_9710:    BRKL_9711:    BRKL_9712:    BRKL_9713:    BRKL_9714:    BRKL_9715:    BRKL_9716:    BRKL_9717:    BRKL_9718:    BRKL_9719:    BRKL_971A:    BRKL_971B:    BRKL_971C:    BRKL_971D:    BRKL_971E:    BRKL_971F:    BRKL_9720:    BRKL_9721:    BRKL_9722:    BRKL_9723:    BRKL_9724:    BRKL_9725:    BRKL_9726:    BRKL_9727:    BRKL_9728:    BRKL_9729:    BRKL_972A:    BRKL_972B:    BRKL_972C:    BRKL_972D:    BRKL_972E:    BRKL_972F:    BRKL_9730:    BRKL_9731:    BRKL_9732:    BRKL_9733:    BRKL_9734:    BRKL_9735:    BRKL_9736:    BRKL_9737:    BRKL_9738:    BRKL_9739:    BRKL_973A:    BRKL_973B:    BRKL_973C:    BRKL_973D:    BRKL_973E:    BRKL_973F:    BRKL_9740:    BRKL_9741:    BRKL_9742:    BRKL_9743:    BRKL_9744:    BRKL_9745:    BRKL_9746:    BRKL_9747:    BRKL_9748:    BRKL_9749:    BRKL_974A:    BRKL_974B:    BRKL_974C:    BRKL_974D:    BRKL_974E:    BRKL_974F:    BRKL_9750:    BRKL_9751:    BRKL_9752:    BRKL_9753:    BRKL_9754:    BRKL_9755:    BRKL_9756:    BRKL_9757:    BRKL_9758:    BRKL_9759:    BRKL_975A:    BRKL_975B:    BRKL_975C:    BRKL_975D:    BRKL_975E:    BRKL_975F:    BRKL_9760:    BRKL_9761:    BRKL_9762:    BRKL_9763:    BRKL_9764:    BRKL_9765:    BRKL_9766:    BRKL_9767:    BRKL_9768:    BRKL_9769:    BRKL_976A:    BRKL_976B:    BRKL_976C:    BRKL_976D:    BRKL_976E:    BRKL_976F:    BRKL_9770:    BRKL_9771:    BRKL_9772:    BRKL_9773:    BRKL_9774:    BRKL_9775:    BRKL_9776:    BRKL_9777:    BRKL_9778:    BRKL_9779:    BRKL_977A:    BRKL_977B:    BRKL_977C:    BRKL_977D:    BRKL_977E:    BRKL_977F:    BRKL_9780:    BRKL_9781:    BRKL_9782:    BRKL_9783:    BRKL_9784:    BRKL_9785:    BRKL_9786:    BRKL_9787:    BRKL_9788:    BRKL_9789:    BRKL_978A:    BRKL_978B:    BRKL_978C:    BRKL_978D:    BRKL_978E:    BRKL_978F:    BRKL_9790:    BRKL_9791:    BRKL_9792:    BRKL_9793:    BRKL_9794:    BRKL_9795:    BRKL_9796:    BRKL_9797:    BRKL_9798:    BRKL_9799:    BRKL_979A:    BRKL_979B:    BRKL_979C:    BRKL_979D:    BRKL_979E:    BRKL_979F:    BRKL_97A0:    BRKL_97A1:    BRKL_97A2:    BRKL_97A3:    BRKL_97A4:    BRKL_97A5:    BRKL_97A6:    BRKL_97A7:    BRKL_97A8:    BRKL_97A9:    BRKL_97AA:    BRKL_97AB:    BRKL_97AC:    BRKL_97AD:    BRKL_97AE:    BRKL_97AF:    BRKL_97B0:    BRKL_97B1:    BRKL_97B2:    BRKL_97B3:    BRKL_97B4:    BRKL_97B5:    BRKL_97B6:    BRKL_97B7:    BRKL_97B8:    BRKL_97B9:    BRKL_97BA:    BRKL_97BB:    BRKL_97BC:    BRKL_97BD:    BRKL_97BE:    BRKL_97BF:    BRKL_97C0:    BRKL_97C1:    BRKL_97C2:    BRKL_97C3:    BRKL_97C4:    BRKL_97C5:    BRKL_97C6:    BRKL_97C7:    BRKL_97C8:    BRKL_97C9:    BRKL_97CA:    BRKL_97CB:    BRKL_97CC:    BRKL_97CD:    BRKL_97CE:    BRKL_97CF:    BRKL_97D0:    BRKL_97D1:    BRKL_97D2:    BRKL_97D3:    BRKL_97D4:    BRKL_97D5:    BRKL_97D6:    BRKL_97D7:    BRKL_97D8:    BRKL_97D9:    BRKL_97DA:    BRKL_97DB:    BRKL_97DC:    BRKL_97DD:    BRKL_97DE:    BRKL_97DF:    BRKL_97E0:    BRKL_97E1:    BRKL_97E2:    BRKL_97E3:    BRKL_97E4:    BRKL_97E5:    BRKL_97E6:    BRKL_97E7:    BRKL_97E8:    BRKL_97E9:    BRKL_97EA:    BRKL_97EB:    BRKL_97EC:    BRKL_97ED:    BRKL_97EE:    BRKL_97EF:    BRKL_97F0:    BRKL_97F1:    BRKL_97F2:    BRKL_97F3:    BRKL_97F4:    BRKL_97F5:    BRKL_97F6:    BRKL_97F7:    BRKL_97F8:    BRKL_97F9:    BRKL_97FA:    BRKL_97FB:    BRKL_97FC:    BRKL_97FD:    BRKL_97FE:    BRKL_97FF:    BRKL_9800:    BRKL_9801:    BRKL_9802:    BRKL_9803:    BRKL_9804:    BRKL_9805:    BRKL_9806:    BRKL_9807:    BRKL_9808:    BRKL_9809:    BRKL_980A:    BRKL_980B:    BRKL_980C:    BRKL_980D:    BRKL_980E:    BRKL_980F:    BRKL_9810:    BRKL_9811:    BRKL_9812:    BRKL_9813:    BRKL_9814:    BRKL_9815:    BRKL_9816:    BRKL_9817:    BRKL_9818:    BRKL_9819:    BRKL_981A:    BRKL_981B:    BRKL_981C:    BRKL_981D:    BRKL_981E:    BRKL_981F:    BRKL_9820:    BRKL_9821:    BRKL_9822:    BRKL_9823:    BRKL_9824:    BRKL_9825:    BRKL_9826:    BRKL_9827:    BRKL_9828:    BRKL_9829:    BRKL_982A:    BRKL_982B:    BRKL_982C:    BRKL_982D:    BRKL_982E:    BRKL_982F:    BRKL_9830:    BRKL_9831:    BRKL_9832:    BRKL_9833:    BRKL_9834:    BRKL_9835:    BRKL_9836:    BRKL_9837:    BRKL_9838:    BRKL_9839:    BRKL_983A:    BRKL_983B:    BRKL_983C:    BRKL_983D:    BRKL_983E:    BRKL_983F:    BRKL_9840:    BRKL_9841:    BRKL_9842:    BRKL_9843:    BRKL_9844:    BRKL_9845:    BRKL_9846:    BRKL_9847:    BRKL_9848:    BRKL_9849:    BRKL_984A:    BRKL_984B:    BRKL_984C:    BRKL_984D:    BRKL_984E:    BRKL_984F:    BRKL_9850:    BRKL_9851:    BRKL_9852:    BRKL_9853:    BRKL_9854:    BRKL_9855:    BRKL_9856:    BRKL_9857:    BRKL_9858:    BRKL_9859:    BRKL_985A:    BRKL_985B:    BRKL_985C:    BRKL_985D:    BRKL_985E:    BRKL_985F:    BRKL_9860:    BRKL_9861:    BRKL_9862:    BRKL_9863:    BRKL_9864:    BRKL_9865:    BRKL_9866:    BRKL_9867:    BRKL_9868:    BRKL_9869:    BRKL_986A:    BRKL_986B:    BRKL_986C:    BRKL_986D:    BRKL_986E:    BRKL_986F:    BRKL_9870:    BRKL_9871:    BRKL_9872:    BRKL_9873:    BRKL_9874:    BRKL_9875:    BRKL_9876:    BRKL_9877:    BRKL_9878:    BRKL_9879:    BRKL_987A:    BRKL_987B:    BRKL_987C:    BRKL_987D:    BRKL_987E:    BRKL_987F:    BRKL_9880:    BRKL_9881:    BRKL_9882:    BRKL_9883:    BRKL_9884:    BRKL_9885:    BRKL_9886:    BRKL_9887:    BRKL_9888:    BRKL_9889:    BRKL_988A:    BRKL_988B:    BRKL_988C:    BRKL_988D:    BRKL_988E:    BRKL_988F:    BRKL_9890:    BRKL_9891:    BRKL_9892:    BRKL_9893:    BRKL_9894:    BRKL_9895:    BRKL_9896:    BRKL_9897:    BRKL_9898:    BRKL_9899:    BRKL_989A:    BRKL_989B:    BRKL_989C:    BRKL_989D:    BRKL_989E:    BRKL_989F:    BRKL_98A0:    BRKL_98A1:    BRKL_98A2:    BRKL_98A3:    BRKL_98A4:    BRKL_98A5:    BRKL_98A6:    BRKL_98A7:    BRKL_98A8:    BRKL_98A9:    BRKL_98AA:    BRKL_98AB:    BRKL_98AC:    BRKL_98AD:    BRKL_98AE:    BRKL_98AF:    BRKL_98B0:    BRKL_98B1:    BRKL_98B2:    BRKL_98B3:    BRKL_98B4:    BRKL_98B5:    BRKL_98B6:    BRKL_98B7:    BRKL_98B8:    BRKL_98B9:    BRKL_98BA:    BRKL_98BB:    BRKL_98BC:    BRKL_98BD:    BRKL_98BE:    BRKL_98BF:    BRKL_98C0:    BRKL_98C1:    BRKL_98C2:    BRKL_98C3:    BRKL_98C4:    BRKL_98C5:    BRKL_98C6:    BRKL_98C7:    BRKL_98C8:    BRKL_98C9:    BRKL_98CA:    BRKL_98CB:    BRKL_98CC:    BRKL_98CD:    BRKL_98CE:    BRKL_98CF:    BRKL_98D0:    BRKL_98D1:    BRKL_98D2:    BRKL_98D3:    BRKL_98D4:    BRKL_98D5:    BRKL_98D6:    BRKL_98D7:    BRKL_98D8:    BRKL_98D9:    BRKL_98DA:    BRKL_98DB:    BRKL_98DC:    BRKL_98DD:    BRKL_98DE:    BRKL_98DF:    BRKL_98E0:    BRKL_98E1:    BRKL_98E2:    BRKL_98E3:    BRKL_98E4:    BRKL_98E5:    BRKL_98E6:    BRKL_98E7:    BRKL_98E8:    BRKL_98E9:    BRKL_98EA:    BRKL_98EB:    BRKL_98EC:    BRKL_98ED:    BRKL_98EE:    BRKL_98EF:    BRKL_98F0:    BRKL_98F1:    BRKL_98F2:    BRKL_98F3:    BRKL_98F4:    BRKL_98F5:    BRKL_98F6:    BRKL_98F7:    BRKL_98F8:    BRKL_98F9:    BRKL_98FA:    BRKL_98FB:    BRKL_98FC:    BRKL_98FD:    BRKL_98FE:    BRKL_98FF:    BRKL_9900:    BRKL_9901:    BRKL_9902:    BRKL_9903:    BRKL_9904:    BRKL_9905:    BRKL_9906:    BRKL_9907:    BRKL_9908:    BRKL_9909:    BRKL_990A:    BRKL_990B:    BRKL_990C:    BRKL_990D:    BRKL_990E:    BRKL_990F:    BRKL_9910:    BRKL_9911:    BRKL_9912:    BRKL_9913:    BRKL_9914:    BRKL_9915:    BRKL_9916:    BRKL_9917:    BRKL_9918:    BRKL_9919:    BRKL_991A:    BRKL_991B:    BRKL_991C:    BRKL_991D:    BRKL_991E:    BRKL_991F:    BRKL_9920:    BRKL_9921:    BRKL_9922:    BRKL_9923:    BRKL_9924:    BRKL_9925:    BRKL_9926:    BRKL_9927:    BRKL_9928:    BRKL_9929:    BRKL_992A:    BRKL_992B:    BRKL_992C:    BRKL_992D:    BRKL_992E:    BRKL_992F:    BRKL_9930:    BRKL_9931:    BRKL_9932:    BRKL_9933:    BRKL_9934:    BRKL_9935:    BRKL_9936:    BRKL_9937:    BRKL_9938:    BRKL_9939:    BRKL_993A:    BRKL_993B:    BRKL_993C:    BRKL_993D:    BRKL_993E:    BRKL_993F:    BRKL_9940:    BRKL_9941:    BRKL_9942:    BRKL_9943:    BRKL_9944:    BRKL_9945:    BRKL_9946:    BRKL_9947:    BRKL_9948:    BRKL_9949:    BRKL_994A:    BRKL_994B:    BRKL_994C:    BRKL_994D:    BRKL_994E:    BRKL_994F:    BRKL_9950:    BRKL_9951:    BRKL_9952:    BRKL_9953:    BRKL_9954:    BRKL_9955:    BRKL_9956:    BRKL_9957:    BRKL_9958:    BRKL_9959:    BRKL_995A:    BRKL_995B:    BRKL_995C:    BRKL_995D:    BRKL_995E:    BRKL_995F:    BRKL_9960:    BRKL_9961:    BRKL_9962:    BRKL_9963:    BRKL_9964:    BRKL_9965:    BRKL_9966:    BRKL_9967:    BRKL_9968:    BRKL_9969:    BRKL_996A:    BRKL_996B:    BRKL_996C:    BRKL_996D:    BRKL_996E:    BRKL_996F:    BRKL_9970:    BRKL_9971:    BRKL_9972:    BRKL_9973:    BRKL_9974:    BRKL_9975:    BRKL_9976:    BRKL_9977:    BRKL_9978:    BRKL_9979:    BRKL_997A:    BRKL_997B:    BRKL_997C:    BRKL_997D:    BRKL_997E:    BRKL_997F:    BRKL_9980:    BRKL_9981:    BRKL_9982:    BRKL_9983:    BRKL_9984:    BRKL_9985:    BRKL_9986:    BRKL_9987:    BRKL_9988:    BRKL_9989:    BRKL_998A:    BRKL_998B:    BRKL_998C:    BRKL_998D:    BRKL_998E:    BRKL_998F:    BRKL_9990:    BRKL_9991:    BRKL_9992:    BRKL_9993:    BRKL_9994:    BRKL_9995:    BRKL_9996:    BRKL_9997:    BRKL_9998:    BRKL_9999:    BRKL_999A:    BRKL_999B:    BRKL_999C:    BRKL_999D:    BRKL_999E:    BRKL_999F:    BRKL_99A0:    BRKL_99A1:    BRKL_99A2:    BRKL_99A3:    BRKL_99A4:    BRKL_99A5:    BRKL_99A6:    BRKL_99A7:    BRKL_99A8:    BRKL_99A9:    BRKL_99AA:    BRKL_99AB:    BRKL_99AC:    BRKL_99AD:    BRKL_99AE:    BRKL_99AF:    BRKL_99B0:    BRKL_99B1:    BRKL_99B2:    BRKL_99B3:    BRKL_99B4:    BRKL_99B5:    BRKL_99B6:    BRKL_99B7:    BRKL_99B8:    BRKL_99B9:    BRKL_99BA:    BRKL_99BB:    BRKL_99BC:    BRKL_99BD:    BRKL_99BE:    BRKL_99BF:    BRKL_99C0:    BRKL_99C1:    BRKL_99C2:    BRKL_99C3:    BRKL_99C4:    BRKL_99C5:    BRKL_99C6:    BRKL_99C7:    BRKL_99C8:    BRKL_99C9:    BRKL_99CA:    BRKL_99CB:    BRKL_99CC:    BRKL_99CD:    BRKL_99CE:    BRKL_99CF:    BRKL_99D0:    BRKL_99D1:    BRKL_99D2:    BRKL_99D3:    BRKL_99D4:    BRKL_99D5:    BRKL_99D6:    BRKL_99D7:    BRKL_99D8:    BRKL_99D9:    BRKL_99DA:    BRKL_99DB:    BRKL_99DC:    BRKL_99DD:    BRKL_99DE:    BRKL_99DF:    BRKL_99E0:    BRKL_99E1:    BRKL_99E2:    BRKL_99E3:    BRKL_99E4:    BRKL_99E5:    BRKL_99E6:    BRKL_99E7:    BRKL_99E8:    BRKL_99E9:    BRKL_99EA:    BRKL_99EB:    BRKL_99EC:    BRKL_99ED:    BRKL_99EE:    BRKL_99EF:    BRKL_99F0:    BRKL_99F1:    BRKL_99F2:    BRKL_99F3:    BRKL_99F4:    BRKL_99F5:    BRKL_99F6:    BRKL_99F7:    BRKL_99F8:    BRKL_99F9:    BRKL_99FA:    BRKL_99FB:    BRKL_99FC:    BRKL_99FD:    BRKL_99FE:    BRKL_99FF:    BRKL_9A00:    BRKL_9A01:    BRKL_9A02:    BRKL_9A03:    BRKL_9A04:    BRKL_9A05:    BRKL_9A06:    BRKL_9A07:    BRKL_9A08:    BRKL_9A09:    BRKL_9A0A:    BRKL_9A0B:    BRKL_9A0C:    BRKL_9A0D:    BRKL_9A0E:    BRKL_9A0F:    BRKL_9A10:    BRKL_9A11:    BRKL_9A12:    BRKL_9A13:    BRKL_9A14:    BRKL_9A15:    BRKL_9A16:    BRKL_9A17:    BRKL_9A18:    BRKL_9A19:    BRKL_9A1A:    BRKL_9A1B:    BRKL_9A1C:    BRKL_9A1D:    BRKL_9A1E:    BRKL_9A1F:    BRKL_9A20:    BRKL_9A21:    BRKL_9A22:    BRKL_9A23:    BRKL_9A24:    BRKL_9A25:    BRKL_9A26:    BRKL_9A27:    BRKL_9A28:    BRKL_9A29:    BRKL_9A2A:    BRKL_9A2B:    BRKL_9A2C:    BRKL_9A2D:    BRKL_9A2E:    BRKL_9A2F:    BRKL_9A30:    BRKL_9A31:    BRKL_9A32:    BRKL_9A33:    BRKL_9A34:    BRKL_9A35:    BRKL_9A36:    BRKL_9A37:    BRKL_9A38:    BRKL_9A39:    BRKL_9A3A:    BRKL_9A3B:    BRKL_9A3C:    BRKL_9A3D:    BRKL_9A3E:    BRKL_9A3F:    BRKL_9A40:    BRKL_9A41:    BRKL_9A42:    BRKL_9A43:    BRKL_9A44:    BRKL_9A45:    BRKL_9A46:    BRKL_9A47:    BRKL_9A48:    BRKL_9A49:    BRKL_9A4A:    BRKL_9A4B:    BRKL_9A4C:    BRKL_9A4D:    BRKL_9A4E:    BRKL_9A4F:    BRKL_9A50:    BRKL_9A51:    BRKL_9A52:    BRKL_9A53:    BRKL_9A54:    BRKL_9A55:    BRKL_9A56:    BRKL_9A57:    BRKL_9A58:    BRKL_9A59:    BRKL_9A5A:    BRKL_9A5B:    BRKL_9A5C:    BRKL_9A5D:    BRKL_9A5E:    BRKL_9A5F:    BRKL_9A60:    BRKL_9A61:    BRKL_9A62:    BRKL_9A63:    BRKL_9A64:    BRKL_9A65:    BRKL_9A66:    BRKL_9A67:    BRKL_9A68:    BRKL_9A69:    BRKL_9A6A:    BRKL_9A6B:    BRKL_9A6C:    BRKL_9A6D:    BRKL_9A6E:    BRKL_9A6F:    BRKL_9A70:    BRKL_9A71:    BRKL_9A72:    BRKL_9A73:    BRKL_9A74:    BRKL_9A75:    BRKL_9A76:    BRKL_9A77:    BRKL_9A78:    BRKL_9A79:    BRKL_9A7A:    BRKL_9A7B:    BRKL_9A7C:    BRKL_9A7D:    BRKL_9A7E:    BRKL_9A7F:    BRKL_9A80:    BRKL_9A81:    BRKL_9A82:    BRKL_9A83:    BRKL_9A84:    BRKL_9A85:    BRKL_9A86:    BRKL_9A87:    BRKL_9A88:    BRKL_9A89:    BRKL_9A8A:    BRKL_9A8B:    BRKL_9A8C:    BRKL_9A8D:    BRKL_9A8E:    BRKL_9A8F:    BRKL_9A90:    BRKL_9A91:    BRKL_9A92:    BRKL_9A93:    BRKL_9A94:    BRKL_9A95:    BRKL_9A96:    BRKL_9A97:    BRKL_9A98:    BRKL_9A99:    BRKL_9A9A:    BRKL_9A9B:    BRKL_9A9C:    BRKL_9A9D:    BRKL_9A9E:    BRKL_9A9F:    BRKL_9AA0:    BRKL_9AA1:    BRKL_9AA2:    BRKL_9AA3:    BRKL_9AA4:    BRKL_9AA5:    BRKL_9AA6:    BRKL_9AA7:    BRKL_9AA8:    BRKL_9AA9:    BRKL_9AAA:    BRKL_9AAB:    BRKL_9AAC:    BRKL_9AAD:    BRKL_9AAE:    BRKL_9AAF:    BRKL_9AB0:    BRKL_9AB1:    BRKL_9AB2:    BRKL_9AB3:    BRKL_9AB4:    BRKL_9AB5:    BRKL_9AB6:    BRKL_9AB7:    BRKL_9AB8:    BRKL_9AB9:    BRKL_9ABA:    BRKL_9ABB:    BRKL_9ABC:    BRKL_9ABD:    BRKL_9ABE:    BRKL_9ABF:    BRKL_9AC0:    BRKL_9AC1:    BRKL_9AC2:    BRKL_9AC3:    BRKL_9AC4:    BRKL_9AC5:    BRKL_9AC6:    BRKL_9AC7:    BRKL_9AC8:    BRKL_9AC9:    BRKL_9ACA:    BRKL_9ACB:    BRKL_9ACC:    BRKL_9ACD:    BRKL_9ACE:    BRKL_9ACF:    BRKL_9AD0:    BRKL_9AD1:    BRKL_9AD2:    BRKL_9AD3:    BRKL_9AD4:    BRKL_9AD5:    BRKL_9AD6:    BRKL_9AD7:    BRKL_9AD8:    BRKL_9AD9:    BRKL_9ADA:    BRKL_9ADB:    BRKL_9ADC:    BRKL_9ADD:    BRKL_9ADE:    BRKL_9ADF:    BRKL_9AE0:    BRKL_9AE1:    BRKL_9AE2:    BRKL_9AE3:    BRKL_9AE4:    BRKL_9AE5:    BRKL_9AE6:    BRKL_9AE7:    BRKL_9AE8:    BRKL_9AE9:    BRKL_9AEA:    BRKL_9AEB:    BRKL_9AEC:    BRKL_9AED:    BRKL_9AEE:    BRKL_9AEF:    BRKL_9AF0:    BRKL_9AF1:    BRKL_9AF2:    BRKL_9AF3:    BRKL_9AF4:    BRKL_9AF5:    BRKL_9AF6:    BRKL_9AF7:    BRKL_9AF8:    BRKL_9AF9:    BRKL_9AFA:    BRKL_9AFB:    BRKL_9AFC:    BRKL_9AFD:    BRKL_9AFE:    BRKL_9AFF:    BRKL_9B00:    BRKL_9B01:    BRKL_9B02:    BRKL_9B03:    BRKL_9B04:    BRKL_9B05:    BRKL_9B06:    BRKL_9B07:    BRKL_9B08:    BRKL_9B09:    BRKL_9B0A:    BRKL_9B0B:    BRKL_9B0C:    BRKL_9B0D:    BRKL_9B0E:    BRKL_9B0F:    BRKL_9B10:    BRKL_9B11:    BRKL_9B12:    BRKL_9B13:    BRKL_9B14:    BRKL_9B15:    BRKL_9B16:    BRKL_9B17:    BRKL_9B18:    BRKL_9B19:    BRKL_9B1A:    BRKL_9B1B:    BRKL_9B1C:    BRKL_9B1D:    BRKL_9B1E:    BRKL_9B1F:    BRKL_9B20:    BRKL_9B21:    BRKL_9B22:    BRKL_9B23:    BRKL_9B24:    BRKL_9B25:    BRKL_9B26:    BRKL_9B27:    BRKL_9B28:    BRKL_9B29:    BRKL_9B2A:    BRKL_9B2B:    BRKL_9B2C:    BRKL_9B2D:    BRKL_9B2E:    BRKL_9B2F:    BRKL_9B30:    BRKL_9B31:    BRKL_9B32:    BRKL_9B33:    BRKL_9B34:    BRKL_9B35:    BRKL_9B36:    BRKL_9B37:    BRKL_9B38:    BRKL_9B39:    BRKL_9B3A:    BRKL_9B3B:    BRKL_9B3C:    BRKL_9B3D:    BRKL_9B3E:    BRKL_9B3F:    BRKL_9B40:    BRKL_9B41:    BRKL_9B42:    BRKL_9B43:    BRKL_9B44:    BRKL_9B45:    BRKL_9B46:    BRKL_9B47:    BRKL_9B48:    BRKL_9B49:    BRKL_9B4A:    BRKL_9B4B:    BRKL_9B4C:    BRKL_9B4D:    BRKL_9B4E:    BRKL_9B4F:    BRKL_9B50:    BRKL_9B51:    BRKL_9B52:    BRKL_9B53:    BRKL_9B54:    BRKL_9B55:    BRKL_9B56:    BRKL_9B57:    BRKL_9B58:    BRKL_9B59:    BRKL_9B5A:    BRKL_9B5B:    BRKL_9B5C:    BRKL_9B5D:    BRKL_9B5E:    BRKL_9B5F:    BRKL_9B60:    BRKL_9B61:    BRKL_9B62:    BRKL_9B63:    BRKL_9B64:    BRKL_9B65:    BRKL_9B66:    BRKL_9B67:    BRKL_9B68:    BRKL_9B69:    BRKL_9B6A:    BRKL_9B6B:    BRKL_9B6C:    BRKL_9B6D:    BRKL_9B6E:    BRKL_9B6F:    BRKL_9B70:    BRKL_9B71:    BRKL_9B72:    BRKL_9B73:    BRKL_9B74:    BRKL_9B75:    BRKL_9B76:    BRKL_9B77:    BRKL_9B78:    BRKL_9B79:    BRKL_9B7A:    BRKL_9B7B:    BRKL_9B7C:    BRKL_9B7D:    BRKL_9B7E:    BRKL_9B7F:    BRKL_9B80:    BRKL_9B81:    BRKL_9B82:    BRKL_9B83:    BRKL_9B84:    BRKL_9B85:    BRKL_9B86:    BRKL_9B87:    BRKL_9B88:    BRKL_9B89:    BRKL_9B8A:    BRKL_9B8B:    BRKL_9B8C:    BRKL_9B8D:    BRKL_9B8E:    BRKL_9B8F:    BRKL_9B90:    BRKL_9B91:    BRKL_9B92:    BRKL_9B93:    BRKL_9B94:    BRKL_9B95:    BRKL_9B96:    BRKL_9B97:    BRKL_9B98:    BRKL_9B99:    BRKL_9B9A:    BRKL_9B9B:    BRKL_9B9C:    BRKL_9B9D:    BRKL_9B9E:    BRKL_9B9F:    BRKL_9BA0:    BRKL_9BA1:    BRKL_9BA2:    BRKL_9BA3:    BRKL_9BA4:    BRKL_9BA5:    BRKL_9BA6:    BRKL_9BA7:    BRKL_9BA8:    BRKL_9BA9:    BRKL_9BAA:    BRKL_9BAB:    BRKL_9BAC:    BRKL_9BAD:    BRKL_9BAE:    BRKL_9BAF:    BRKL_9BB0:    BRKL_9BB1:    BRKL_9BB2:    BRKL_9BB3:    BRKL_9BB4:    BRKL_9BB5:    BRKL_9BB6:    BRKL_9BB7:    BRKL_9BB8:    BRKL_9BB9:    BRKL_9BBA:    BRKL_9BBB:    BRKL_9BBC:    BRKL_9BBD:    BRKL_9BBE:    BRKL_9BBF:    BRKL_9BC0:    BRKL_9BC1:    BRKL_9BC2:    BRKL_9BC3:    BRKL_9BC4:    BRKL_9BC5:    BRKL_9BC6:    BRKL_9BC7:    BRKL_9BC8:    BRKL_9BC9:    BRKL_9BCA:    BRKL_9BCB:    BRKL_9BCC:    BRKL_9BCD:    BRKL_9BCE:    BRKL_9BCF:    BRKL_9BD0:    BRKL_9BD1:    BRKL_9BD2:    BRKL_9BD3:    BRKL_9BD4:    BRKL_9BD5:    BRKL_9BD6:    BRKL_9BD7:    BRKL_9BD8:    BRKL_9BD9:    BRKL_9BDA:    BRKL_9BDB:    BRKL_9BDC:    BRKL_9BDD:    BRKL_9BDE:    BRKL_9BDF:    BRKL_9BE0:    BRKL_9BE1:    BRKL_9BE2:    BRKL_9BE3:    BRKL_9BE4:    BRKL_9BE5:    BRKL_9BE6:    BRKL_9BE7:    BRKL_9BE8:    BRKL_9BE9:    BRKL_9BEA:    BRKL_9BEB:    BRKL_9BEC:    BRKL_9BED:    BRKL_9BEE:    BRKL_9BEF:    BRKL_9BF0:    BRKL_9BF1:    BRKL_9BF2:    BRKL_9BF3:    BRKL_9BF4:    BRKL_9BF5:    BRKL_9BF6:    BRKL_9BF7:    BRKL_9BF8:    BRKL_9BF9:    BRKL_9BFA:    BRKL_9BFB:    BRKL_9BFC:    BRKL_9BFD:    BRKL_9BFE:    BRKL_9BFF:    BRKL_9C00:    BRKL_9C01:    BRKL_9C02:    BRKL_9C03:    BRKL_9C04:    BRKL_9C05:    BRKL_9C06:    BRKL_9C07:    BRKL_9C08:    BRKL_9C09:    BRKL_9C0A:    BRKL_9C0B:    BRKL_9C0C:    BRKL_9C0D:    BRKL_9C0E:    BRKL_9C0F:    BRKL_9C10:    BRKL_9C11:    BRKL_9C12:    BRKL_9C13:    BRKL_9C14:    BRKL_9C15:    BRKL_9C16:    BRKL_9C17:    BRKL_9C18:    BRKL_9C19:    BRKL_9C1A:    BRKL_9C1B:    BRKL_9C1C:    BRKL_9C1D:    BRKL_9C1E:    BRKL_9C1F:    BRKL_9C20:    BRKL_9C21:    BRKL_9C22:    BRKL_9C23:    BRKL_9C24:    BRKL_9C25:    BRKL_9C26:    BRKL_9C27:    BRKL_9C28:    BRKL_9C29:    BRKL_9C2A:    BRKL_9C2B:    BRKL_9C2C:    BRKL_9C2D:    BRKL_9C2E:    BRKL_9C2F:    BRKL_9C30:    BRKL_9C31:    BRKL_9C32:    BRKL_9C33:    BRKL_9C34:    BRKL_9C35:    BRKL_9C36:    BRKL_9C37:    BRKL_9C38:    BRKL_9C39:    BRKL_9C3A:    BRKL_9C3B:    BRKL_9C3C:    BRKL_9C3D:    BRKL_9C3E:    BRKL_9C3F:    BRKL_9C40:    BRKL_9C41:    BRKL_9C42:    BRKL_9C43:    BRKL_9C44:    BRKL_9C45:    BRKL_9C46:    BRKL_9C47:    BRKL_9C48:    BRKL_9C49:    BRKL_9C4A:    BRKL_9C4B:    BRKL_9C4C:    BRKL_9C4D:    BRKL_9C4E:    BRKL_9C4F:    BRKL_9C50:    BRKL_9C51:    BRKL_9C52:    BRKL_9C53:    BRKL_9C54:    BRKL_9C55:    BRKL_9C56:    BRKL_9C57:    BRKL_9C58:    BRKL_9C59:    BRKL_9C5A:    BRKL_9C5B:    BRKL_9C5C:    BRKL_9C5D:    BRKL_9C5E:    BRKL_9C5F:    BRKL_9C60:    BRKL_9C61:    BRKL_9C62:    BRKL_9C63:    BRKL_9C64:    BRKL_9C65:    BRKL_9C66:    BRKL_9C67:    BRKL_9C68:    BRKL_9C69:    BRKL_9C6A:    BRKL_9C6B:    BRKL_9C6C:    BRKL_9C6D:    BRKL_9C6E:    BRKL_9C6F:    BRKL_9C70:    BRKL_9C71:    BRKL_9C72:    BRKL_9C73:    BRKL_9C74:    BRKL_9C75:    BRKL_9C76:    BRKL_9C77:    BRKL_9C78:    BRKL_9C79:    BRKL_9C7A:    BRKL_9C7B:    BRKL_9C7C:    BRKL_9C7D:    BRKL_9C7E:    BRKL_9C7F:    BRKL_9C80:    BRKL_9C81:    BRKL_9C82:    BRKL_9C83:    BRKL_9C84:    BRKL_9C85:    BRKL_9C86:    BRKL_9C87:    BRKL_9C88:    BRKL_9C89:    BRKL_9C8A:    BRKL_9C8B:    BRKL_9C8C:    BRKL_9C8D:    BRKL_9C8E:    BRKL_9C8F:    BRKL_9C90:    BRKL_9C91:    BRKL_9C92:    BRKL_9C93:    BRKL_9C94:    BRKL_9C95:    BRKL_9C96:    BRKL_9C97:    BRKL_9C98:    BRKL_9C99:    BRKL_9C9A:    BRKL_9C9B:    BRKL_9C9C:    BRKL_9C9D:    BRKL_9C9E:    BRKL_9C9F:    BRKL_9CA0:    BRKL_9CA1:    BRKL_9CA2:    BRKL_9CA3:    BRKL_9CA4:    BRKL_9CA5:    BRKL_9CA6:    BRKL_9CA7:    BRKL_9CA8:    BRKL_9CA9:    BRKL_9CAA:    BRKL_9CAB:    BRKL_9CAC:    BRKL_9CAD:    BRKL_9CAE:    BRKL_9CAF:    BRKL_9CB0:    BRKL_9CB1:    BRKL_9CB2:    BRKL_9CB3:    BRKL_9CB4:    BRKL_9CB5:    BRKL_9CB6:    BRKL_9CB7:    BRKL_9CB8:    BRKL_9CB9:    BRKL_9CBA:    BRKL_9CBB:    BRKL_9CBC:    BRKL_9CBD:    BRKL_9CBE:    BRKL_9CBF:    BRKL_9CC0:    BRKL_9CC1:    BRKL_9CC2:    BRKL_9CC3:    BRKL_9CC4:    BRKL_9CC5:    BRKL_9CC6:    BRKL_9CC7:    BRKL_9CC8:    BRKL_9CC9:    BRKL_9CCA:    BRKL_9CCB:    BRKL_9CCC:    BRKL_9CCD:    BRKL_9CCE:    BRKL_9CCF:    BRKL_9CD0:    BRKL_9CD1:    BRKL_9CD2:    BRKL_9CD3:    BRKL_9CD4:    BRKL_9CD5:    BRKL_9CD6:    BRKL_9CD7:    BRKL_9CD8:    BRKL_9CD9:    BRKL_9CDA:    BRKL_9CDB:    BRKL_9CDC:    BRKL_9CDD:    BRKL_9CDE:    BRKL_9CDF:    BRKL_9CE0:    BRKL_9CE1:    BRKL_9CE2:    BRKL_9CE3:    BRKL_9CE4:    BRKL_9CE5:    BRKL_9CE6:    BRKL_9CE7:    BRKL_9CE8:    BRKL_9CE9:    BRKL_9CEA:    BRKL_9CEB:    BRKL_9CEC:    BRKL_9CED:    BRKL_9CEE:    BRKL_9CEF:    BRKL_9CF0:    BRKL_9CF1:    BRKL_9CF2:    BRKL_9CF3:    BRKL_9CF4:    BRKL_9CF5:    BRKL_9CF6:    BRKL_9CF7:    BRKL_9CF8:    BRKL_9CF9:    BRKL_9CFA:    BRKL_9CFB:    BRKL_9CFC:    BRKL_9CFD:    BRKL_9CFE:    BRKL_9CFF:    BRKL_9D00:    BRKL_9D01:    BRKL_9D02:    BRKL_9D03:    BRKL_9D04:    BRKL_9D05:    BRKL_9D06:    BRKL_9D07:    BRKL_9D08:    BRKL_9D09:    BRKL_9D0A:    BRKL_9D0B:    BRKL_9D0C:    BRKL_9D0D:    BRKL_9D0E:    BRKL_9D0F:    BRKL_9D10:    BRKL_9D11:    BRKL_9D12:    BRKL_9D13:    BRKL_9D14:    BRKL_9D15:    BRKL_9D16:    BRKL_9D17:    BRKL_9D18:    BRKL_9D19:    BRKL_9D1A:    BRKL_9D1B:    BRKL_9D1C:    BRKL_9D1D:    BRKL_9D1E:    BRKL_9D1F:    BRKL_9D20:    BRKL_9D21:    BRKL_9D22:    BRKL_9D23:    BRKL_9D24:    BRKL_9D25:    BRKL_9D26:    BRKL_9D27:    BRKL_9D28:    BRKL_9D29:    BRKL_9D2A:    BRKL_9D2B:    BRKL_9D2C:    BRKL_9D2D:    BRKL_9D2E:    BRKL_9D2F:    BRKL_9D30:    BRKL_9D31:    BRKL_9D32:    BRKL_9D33:    BRKL_9D34:    BRKL_9D35:    BRKL_9D36:    BRKL_9D37:    BRKL_9D38:    BRKL_9D39:    BRKL_9D3A:    BRKL_9D3B:    BRKL_9D3C:    BRKL_9D3D:    BRKL_9D3E:    BRKL_9D3F:    BRKL_9D40:    BRKL_9D41:    BRKL_9D42:    BRKL_9D43:    BRKL_9D44:    BRKL_9D45:    BRKL_9D46:    BRKL_9D47:    BRKL_9D48:    BRKL_9D49:    BRKL_9D4A:    BRKL_9D4B:    BRKL_9D4C:    BRKL_9D4D:    BRKL_9D4E:    BRKL_9D4F:    BRKL_9D50:    BRKL_9D51:    BRKL_9D52:    BRKL_9D53:    BRKL_9D54:    BRKL_9D55:    BRKL_9D56:    BRKL_9D57:    BRKL_9D58:    BRKL_9D59:    BRKL_9D5A:    BRKL_9D5B:    BRKL_9D5C:    BRKL_9D5D:    BRKL_9D5E:    BRKL_9D5F:    BRKL_9D60:    BRKL_9D61:    BRKL_9D62:    BRKL_9D63:    BRKL_9D64:    BRKL_9D65:    BRKL_9D66:    BRKL_9D67:    BRKL_9D68:    BRKL_9D69:    BRKL_9D6A:    BRKL_9D6B:    BRKL_9D6C:    BRKL_9D6D:    BRKL_9D6E:    BRKL_9D6F:    BRKL_9D70:    BRKL_9D71:    BRKL_9D72:    BRKL_9D73:    BRKL_9D74:    BRKL_9D75:    BRKL_9D76:    BRKL_9D77:    BRKL_9D78:    BRKL_9D79:    BRKL_9D7A:    BRKL_9D7B:    BRKL_9D7C:    BRKL_9D7D:    BRKL_9D7E:    BRKL_9D7F:    BRKL_9D80:    BRKL_9D81:    BRKL_9D82:    BRKL_9D83:    BRKL_9D84:    BRKL_9D85:    BRKL_9D86:    BRKL_9D87:    BRKL_9D88:    BRKL_9D89:    BRKL_9D8A:    BRKL_9D8B:    BRKL_9D8C:    BRKL_9D8D:    BRKL_9D8E:    BRKL_9D8F:    BRKL_9D90:    BRKL_9D91:    BRKL_9D92:    BRKL_9D93:    BRKL_9D94:    BRKL_9D95:    BRKL_9D96:    BRKL_9D97:    BRKL_9D98:    BRKL_9D99:    BRKL_9D9A:    BRKL_9D9B:    BRKL_9D9C:    BRKL_9D9D:    BRKL_9D9E:    BRKL_9D9F:    BRKL_9DA0:    BRKL_9DA1:    BRKL_9DA2:    BRKL_9DA3:    BRKL_9DA4:    BRKL_9DA5:    BRKL_9DA6:    BRKL_9DA7:    BRKL_9DA8:    BRKL_9DA9:    BRKL_9DAA:    BRKL_9DAB:    BRKL_9DAC:    BRKL_9DAD:    BRKL_9DAE:    BRKL_9DAF:    BRKL_9DB0:    BRKL_9DB1:    BRKL_9DB2:    BRKL_9DB3:    BRKL_9DB4:    BRKL_9DB5:    BRKL_9DB6:    BRKL_9DB7:    BRKL_9DB8:    BRKL_9DB9:    BRKL_9DBA:    BRKL_9DBB:    BRKL_9DBC:    BRKL_9DBD:    BRKL_9DBE:    BRKL_9DBF:    BRKL_9DC0:    BRKL_9DC1:    BRKL_9DC2:    BRKL_9DC3:    BRKL_9DC4:    BRKL_9DC5:    BRKL_9DC6:    BRKL_9DC7:    BRKL_9DC8:    BRKL_9DC9:    BRKL_9DCA:    BRKL_9DCB:    BRKL_9DCC:    BRKL_9DCD:    BRKL_9DCE:    BRKL_9DCF:    BRKL_9DD0:    BRKL_9DD1:    BRKL_9DD2:    BRKL_9DD3:    BRKL_9DD4:    BRKL_9DD5:    BRKL_9DD6:    BRKL_9DD7:    BRKL_9DD8:    BRKL_9DD9:    BRKL_9DDA:    BRKL_9DDB:    BRKL_9DDC:    BRKL_9DDD:    BRKL_9DDE:    BRKL_9DDF:    BRKL_9DE0:    BRKL_9DE1:    BRKL_9DE2:    BRKL_9DE3:    BRKL_9DE4:    BRKL_9DE5:    BRKL_9DE6:    BRKL_9DE7:    BRKL_9DE8:    BRKL_9DE9:    BRKL_9DEA:    BRKL_9DEB:    BRKL_9DEC:    BRKL_9DED:    BRKL_9DEE:    BRKL_9DEF:    BRKL_9DF0:    BRKL_9DF1:    BRKL_9DF2:    BRKL_9DF3:    BRKL_9DF4:    BRKL_9DF5:    BRKL_9DF6:    BRKL_9DF7:    BRKL_9DF8:    BRKL_9DF9:    BRKL_9DFA:    BRKL_9DFB:    BRKL_9DFC:    BRKL_9DFD:    BRKL_9DFE:    BRKL_9DFF:    BRKL_9E00:    BRKL_9E01:    BRKL_9E02:    BRK    .byte $12, $00, $37, $00, $4D, $00, $7B, $00, $91, $00, $A0, $00, $B4, $00, $C8, $00    .byte $DB, $01, $1D, $01, $37, $01, $60, $01, $6C, $01, $78, $01, $95, $01, $A4, $01    .byte $B7, $01, $D0, $01, $E9, $02, $03, $02, $1D, $02, $42, $02, $67, $02, $B3, $02    .byte $F8, $03, $0E, $03, $8E, $03, $B2, $03, $CB, $03, $E7, $04, $13, $04, $3D, $04    .byte $6A, $04, $79, $04, $9B, $04, $B1, $04, $E7, $05, $1C, $05, $4D, $05, $98, $05    .byte $D5, $05, $EE, $06, $29, $06, $64, $06, $85, $06, $A6, $06, $C7, $06, $E8, $07    .byte $23, $07, $49, $07, $8F, $07, $D6, $07, $FD, $08, $1C, $08, $49, $08, $7F, $08    .byte $D9, $09, $0C, $09, $72, $09, $DF, $09, $F5, $0A, $0B, $0A, $21, $0A, $43, $0A    .byte $57, $0A, $6B, $0B, $6D, $0C, $C8, $10, $57, $10, $B8, $13, $64, $15, $E4, $19    .byte $73, $1A, $33, $1A, $8B, $1B, $7D, $1B, $94, $1B, $F2, $80, $00, $80, $10, $80    .byte $5A, $81, $5F, $81, $69, $81, $8E, $81, $CF, $82, $0C, $82, $46, $82, $99, $82    .byte $B2, $82, $CC, $83, $3F, $83, $A8, $83, $B2, $83, $D8, $84, $20, $84, $69, $84    .byte $A5, $84, $FD, $85, $1A, $85, $57, $85, $74, $85, $D0, $86, $24, $86, $68, $86    .byte $A9, $86, $DD, $87, $10, $87, $32, $87, $3C, $87, $94, $87, $9E, $87, $BE, $87    .byte $D9, $88, $02, $88, $15, $88, $28, $88, $40, $88, $54, $88, $65, $88, $8B, $88    .byte $9C, $89, $AC, $8A, $14, $8A, $7A, $8B, $12, $8C, $1C, $8D, $33, $8E, $42, $8E    .byte $5E, $8E, $7F, $8E, $A6, $8F, $0C, $8F, $29, $8F, $77, $8F, $98, $8F, $DD, $8F    .byte $F8, $90, $5A, $90, $74, $90, $8F, $91, $24, $92, $2E, $92, $5D, $92, $7A, $92    .byte $D2, $93, $11, $93, $34, $93, $5A, $93, $C3, $94, $31, $94, $74, $94, $BF, $94    .byte $FE, $95, $32, $95, $6C, $95, $9E, $95, $E0, $96, $26, $96, $5A, $96, $A1, $96    .byte $C1, $96, $E3, $97, $00, $97, $27, $97, $CC, $97, $F2, $98, $62, $99, $72, $99    .byte $87, $99, $A8, $99, $BA, $99, $CC, $99, $DD, $99, $EF, $C0, $00, $C0, $3F, $C1    .byte $3E, $C2, $8D, $C2, $A4, $C2, $E3, $C4, $32, $C5, $6C, $C5, $AA, $C5, $F6, $C6    .byte $9C, $C6, $AE, $C6, $EE, $C7, $08, $C7, $B6, $C7, $D7, $C7, $F9, $C8, $47, $C9    .byte $50, $CA, $11, $CA, $8C, $CA, $A3, $CA, $BE, $CA, $D5, $CA, $F8, $CB, $0E, $CB    .byte $1F, $CB, $75, $CB, $C5, $CB, $E6, $CC, $18, $CE, $6E, $CE, $A1, $CE, $B5, $CE    .byte $DC, $CF, $02, $CF, $72, $D0, $82, $D0, $A4, $D0, $FC, $D1, $1E, $D1, $40, $D1    .byte $6D, $D1, $8E, $D1, $B4, $D1, $D6, $D4, $F6, $D5, $31, $D5, $6F, $D5, $A5, $D5    .byte $C7, $D5, $E9, $D6, $0B, $D6, $2D, $D6, $6A, $D6, $B8, $D6, $FB, $D7, $1C, $D7    .byte $81, $D7, $D7, $D8, $8B, $DB, $20, $DB, $60, $DB, $BE, $DB, $E0, $DC, $C8, $DD    .byte $23, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00L_A000:    LDA $0402L_A003:    ORA $0403L_A006:    BEQ L_A045L_A008:    JSR sub_C046L_A00B:    JSR sub_CCABL_A00E:    JSR sub_C48EL_A011:    LDA $0567L_A014:    BEQ L_A037L_A016:    DEC $056AL_A019:    BNE L_A037L_A01B:    LDA $0569L_A01E:    LDY $0568L_A021:    CPY #$06L_A023:    BCS L_A026L_A025:    ASLL_A026:    STA $056AL_A029:    DEC $0568L_A02C:    BNE L_A037L_A02E:    LDA #$00L_A030:    STA $0567L_A033:    JSR sub_C093L_A036:    RTSL_A037:    LDA $04CBL_A03A:    ORA $04CCL_A03D:    ORA $04CDL_A040:    BNE L_A045L_A042:    STA $0403L_A045:    RTSL_A046:    LDX #$00L_A048:    LDA $0403L_A04B:    BNE L_A055L_A04D:    CPX #$09L_A04F:    BEQ L_A055L_A051:    CPX #$06L_A053:    BCS L_A07EL_A055:    TXAL_A056:    ASLL_A057:    TAYL_A058:    LDA $0021,YL_A05B:    ORA $0022,YL_A05E:    BEQ L_A07EL_A060:    STX $48L_A062:    STY $49L_A064:    LDA $0404,XL_A067:    BNE L_A07BL_A069:    STA $04B0L_A06C:    JSR sub_C46FL_A06F:    STA $45L_A071:    BEQ L_A084L_A073:    JSR sub_C0FFL_A076:    LDA $04B0L_A079:    BEQ L_A06CL_A07B:    DEC $0404,XL_A07E:    INXL_A07F:    CPX #$0AL_A081:    BCC L_A048L_A083:    RTSL_A084:    TXAL_A085:    ASLL_A086:    TAYL_A087:    LDA #$00L_A089:    STA $0021,YL_A08C:    STA $0022,YL_A08F:    CPX #$06L_A091:    BCS L_A0B3L_A093:    LDA #$00L_A095:    STA $0402L_A098:    TAXL_A099:    LDA #$00L_A09B:    JSR sub_CDE9L_A09E:    INXL_A09F:    CPX #$06L_A0A1:    BNE L_A099L_A0A3:    LDX #$00L_A0A5:    LDA #$00L_A0A7:    STA $21,XL_A0A9:    INXL_A0AA:    CPX #$0CL_A0AC:    BNE L_A0A7L_A0AE:    STA $33L_A0B0:    STA $34L_A0B2:    RTSL_A0B3:    CPX #$09L_A0B5:    BEQ L_A07EL_A0B7:    STA $04C5,XL_A0BA:    TXAL_A0BB:    SECL_A0BC:    SBC #$06L_A0BE:    TAYL_A0BF:    LDA $C0FC,YL_A0C2:    STA $4015L_A0C5:    LDA #$0FL_A0C7:    STA $4015L_A0CA:    JSR sub_C193L_A0CD:    LDA $0402L_A0D0:    BEQ L_A07EL_A0D2:    LDA $C0F9,YL_A0D5:    TAYL_A0D6:    LDA #$01L_A0D8:    STA $04C5,YL_A0DB:    LDA #$FFL_A0DD:    STA $058B,YL_A0E0:    TYAL_A0E1:    TAXL_A0E2:    LDA $0579,XL_A0E5:    CMP #$0DL_A0E7:    BNE L_A0EEL_A0E9:    LDA #$00L_A0EB:    JMP L_C0F1L_A0EE:    LDA $0418,YL_A0F1:    JSR sub_CDE9L_A0F4:    LDX $48L_A0F6:    JMP L_C07E    .byte $02, $03, $04, $0E, $0D, $07L_A0FF:    CMP #$C0L_A101:    BCS L_A106L_A103:    JMP L_C4ACL_A106:    CMP #$C8L_A108:    BCS L_A110L_A10A:    AND #$07L_A10C:    STA $042A,XL_A10F:    RTSL_A110:    CMP #$D0L_A112:    BCS L_A11DL_A114:    AND #$07L_A116:    CLCL_A117:    ADC #$01L_A119:    STA $0434,XL_A11C:    RTSL_A11D:    CMP #$E0L_A11F:    BCS L_A13EL_A121:    AND #$0FL_A123:    CPX #$04L_A125:    BCS L_A132L_A127:    STA $03E7,XL_A12A:    SECL_A12B:    SBC $03E0,XL_A12E:    BCS L_A132L_A130:    LDA #$00L_A132:    STA $040E,XL_A135:    STA $0418,XL_A138:    LDA #$00L_A13A:    STA $04BB,XL_A13D:    RTSL_A13E:    PHAL_A13F:    AND #$1FL_A141:    ASLL_A142:    TAYL_A143:    LDA $C153,YL_A146:    STA $0577L_A149:    LDA $C154,YL_A14C:    STA $0578L_A14F:    PLAL_A150:    JMP ($0577)    .byte $C3, $C1, $C7, $C1, $C8, $C2, $D4, $C2, $EE, $C2, $F7, $C2, $2A, $C3, $2E, $C3    .byte $68, $C3, $6C, $C3, $EC, $C3, $07, $C4, $AD, $C3, $B8, $C3, $D8, $C3, $DC, $C3    .byte $88, $C3, $18L_A176:    CPY $CBL_A178:    CMP ($45,X)L_A17A:    CPY $BB    .byte $C2, $7E, $C3, $8A, $C2, $7E, $C3, $7E, $C3, $7E, $C3, $09, $C3, $7E, $C3, $12    .byte $C3, $1E, $C3, $7E, $C3, $7F, $C3L_A193:    TXAL_A194:    PHAL_A195:    TYAL_A196:    PHAL_A197:    LDA $BDL_A199:    PHAL_A19A:    LDA #$FCL_A19C:    STA $5115L_A19F:    LDA $0402L_A1A2:    JSR sub_EF9BL_A1A5:    PLAL_A1A6:    STA $5115L_A1A9:    LDX #$00L_A1AB:    LDA $03E7,XL_A1AE:    SECL_A1AF:    SBC $03E0,XL_A1B2:    BCS L_A1B6L_A1B4:    LDA #$00L_A1B6:    STA $040E,XL_A1B9:    INXL_A1BA:    CPX #$05L_A1BC:    BNE L_A1ABL_A1BE:    PLAL_A1BF:    TAYL_A1C0:    PLAL_A1C1:    TAXL_A1C2:    RTS    .byte $FE, $2A, $04, $60, $DE, $2A, $04, $60, $20, $59, $C4, $8D, $06, $52, $A0, $00    .byte $E0, $05, $F0, $39, $E0, $04, $F0, $07, $E0, $08, $F0, $03, $4C, $27, $C2, $A9    .byte $04, $8D, $05, $52, $AD, $05, $52, $18, $69, $00, $85, $4A, $AD, $06, $52, $69    .byte $DB, $85, $4B, $A0, $00, $B1, $4A, $9D, $A6, $05, $C8, $B1, $4A, $9D, $AF, $05    .byte $C8, $B1, $4A, $9D, $B8, $05, $C8, $B1, $4A, $9D, $C1, $05, $60, $A9, $05, $8D    .byte $05, $52, $AD, $05, $52, $18, $69, $00, $85, $4A, $AD, $06, $52, $69, $DC, $85    .byte $4B, $4C, $5B, $C2, $A9, $10, $8D, $05, $52, $AD, $05, $52, $18, $69, $00, $85    .byte $4A, $AD, $06, $52, $69, $D7, $85, $4B, $B1, $4A, $09, $30, $9D, $22, $04, $C8    .byte $B1, $4A, $9D, $A6, $05, $C8, $B1, $4A, $9D, $AF, $05, $C8, $B1, $4A, $9D, $B8    .byte $05, $C8, $B1, $4A, $9D, $C1, $05, $C8, $B1, $4A, $9D, $70, $04, $C8, $B1, $4A    .byte $18, $69, $80, $9D, $90, $04, $A9, $80, $9DL_A26C:    PLA    .byte $04, $38, $F1, $4A, $9D, $98, $04, $C8, $B1, $4A, $9D, $78, $04L_A27A:    INYL_A27B:    LDA ($4A),YL_A27D:    STA $0480,XL_A280:    STA $0488,XL_A283:    INYL_A284:    LDA ($4A),YL_A286:    STA $04A0,XL_A289:    RTS    .byte $A4, $49, $20, $59, $C4, $30, $24, $8D, $06, $52, $A9, $08, $8D, $05, $52, $AD    .byte $05, $52, $18, $69, $50, $99, $35, $00, $AD, $06, $52, $69, $DC, $99, $36, $00    .byte $A9, $01, $9D, $BB, $04, $A9, $00, $9D, $B1, $04, $60, $A9, $00, $9D, $BB, $04    .byte $60, $20, $59, $C4, $9D, $48, $04, $20, $59, $C4, $9D, $50, $04, $60, $A9, $00    .byte $9D, $F7, $04, $9D, $29, $05, $9D, $01, $05, $60, $20, $59, $C4, $9D, $29, $05    .byte $20, $59, $C4, $9D, $01, $05, $29, $80, $09, $01, $9D, $F7, $04, $20, $59, $C4    .byte $9D, $09, $05, $60, $A9, $00, $9D, $F7, $04, $9D, $29, $05, $60, $20, $59, $C4    .byte $9D, $09, $05, $20, $59, $C4, $9D, $31, $05, $A9, $03, $9D, $F7, $04, $60, $A9    .byte $00, $9D, $F7, $04, $9D, $29, $05, $60, $20, $59, $C4, $9D, $09, $05, $A9, $85    .byte $9D, $F7, $04, $60, $20, $59, $C4, $9D, $09, $05, $A9, $05, $9D, $F7, $04, $60    .byte $A9, $89, $D0, $02, $A9, $09, $9D, $F7, $04, $20, $59, $C4, $85, $4E, $9D, $09    .byte $05, $20, $59, $C4, $9D, $79, $05, $20, $79, $C8, $20, $E4, $C6, $20, $59, $C4    .byte $9D, $11, $05, $20, $59, $C4, $9D, $41, $05, $9D, $49, $05, $20, $59, $C4, $9D    .byte $04, $04, $9D, $3E, $04, $20, $9E, $C5, $A9, $01, $8D, $B0, $04, $60, $A9, $07    .byte $D0, $02, $A9, $87, $9D, $F7, $04, $20, $59, $C4, $9D, $19, $05, $20, $59, $C4    .byte $9D, $09, $05, $60, $60, $A9, $01, $8D, $B0, $04, $9D, $04, $04, $60, $A6, $49    .byte $A1, $21, $18, $75, $21, $08, $85, $46, $F6, $21, $F0, $0E, $A1, $21, $28, $75    .byte $22, $95, $22, $A5, $46, $95, $21, $A6, $48, $60, $F6, $22, $A1, $21, $D6, $22    .byte $4C, $98, $C3, $FE, $E3, $04, $DE, $CF, $04, $F0, $1C, $4C, $88, $C3, $8A, $18    .byte $69, $0A, $A8, $B9, $E3, $04, $18, $69, $01, $99, $E3, $04, $B9, $CF, $04, $38    .byte $E9, $01, $99, $CF, $04, $D0, $B7, $20, $80, $C4, $20, $80, $C4, $60, $8A, $4C    .byte $E0, $C3, $8A, $18, $69, $0A, $A8, $20, $59, $C4, $D9, $E3, $04, $F0, $E8, $4C    .byte $88, $C3, $A9, $00, $9D, $E3, $04, $A6, $49, $A1, $21, $F6, $21, $F0, $06, $A6    .byte $48, $9D, $CF, $04, $60, $F6, $22, $A6, $48, $9D, $CF, $04, $60, $8A, $18, $69    .byte $0A, $A8, $A9, $00, $99, $E3, $04, $20, $59, $C4, $99, $CF, $04, $60, $A6, $49    .byte $B5, $21, $9D, $6B, $05, $B5, $22, $9D, $6C, $05, $A1, $21, $18, $6D, $8E, $06    .byte $08, $85, $46, $F6, $21, $F0, $0F, $A1, $21, $28, $6D, $8F, $06, $95, $22, $A5    .byte $46, $95, $21, $A6, $48, $60, $F6, $22, $4C, $31, $C4, $A4, $49, $B9, $6B, $05    .byte $18, $69, $02, $99, $21, $00, $B9, $6C, $05, $69, $00, $99, $22, $00, $60L_A459:    LDX $49L_A45B:    LDA ($21,X)L_A45D:    PHPL_A45E:    INC $21,XL_A460:    BNE L_A464L_A462:    INC $22,XL_A464:    LDX $48L_A466:    PLPL_A467:    RTSL_A468:    LDX $49L_A46A:    LDA ($21,X)L_A46C:    LDX $48L_A46E:    RTSL_A46F:    LDX $49L_A471:    LDA ($21,X)L_A473:    PHPL_A474:    BEQ L_A47CL_A476:    INC $21,XL_A478:    BNE L_A47CL_A47A:    INC $22,XL_A47C:    LDX $48L_A47E:    PLPL_A47F:    RTS    .byte $A6, $49, $F6, $21, $F0, $03, $A6, $48, $60, $F6, $22, $A6, $48, $60L_A48E:    DEC $05DCL_A491:    DEC $05DDL_A494:    DEC $05DEL_A497:    DEC $05DFL_A49A:    DEC $05E0L_A49D:    LDA $0403L_A4A0:    BEQ L_A4ABL_A4A2:    DEC $05E2L_A4A5:    DEC $05E3L_A4A8:    DEC $05E4L_A4AB:    RTSL_A4AC:    CPX #$04L_A4AE:    BEQ L_A4BBL_A4B0:    CPX #$08L_A4B2:    BEQ L_A4BBL_A4B4:    CPX #$09L_A4B6:    BNE L_A4BEL_A4B8:    JMP L_D013L_A4BB:    JMP L_C63EL_A4BE:    AND #$0FL_A4C0:    SECL_A4C1:    SBC #$01L_A4C3:    CMP #$0DL_A4C5:    BNE L_A4D5L_A4C7:    LDA $0579,XL_A4CA:    STA $0582,XL_A4CD:    LDA #$0DL_A4CF:    STA $0579,XL_A4D2:    JMP L_C4FCL_A4D5:    STA $0579,XL_A4D8:    JSR sub_C764L_A4DB:    LDY $042A,XL_A4DE:    STY $4EL_A4E0:    PHAL_A4E1:    JSR sub_C785L_A4E4:    LDA $0470,XL_A4E7:    AND #$03L_A4E9:    CMP #$03L_A4EB:    BNE L_A4F5L_A4ED:    STA $0470,XL_A4F0:    LDA #$80L_A4F2:    STA $0468,XL_A4F5:    PLAL_A4F6:    JSR sub_C879L_A4F9:    JSR sub_C6E4L_A4FC:    LDA $04A0,XL_A4FF:    STA $04A8,XL_A502:    LDA $059D,XL_A505:    BEQ L_A50AL_A507:    DEC $059D,XL_A50A:    LDA #$01L_A50C:    STA $04B0L_A50F:    LDA $45L_A511:    LSRL_A512:    LSRL_A513:    LSRL_A514:    LSRL_A515:    TAYL_A516:    LDA $0551,YL_A519:    CPX #$06L_A51B:    BCC L_A520L_A51D:    LDA $055C,YL_A520:    STA $0404,XL_A523:    CPY #$0BL_A525:    BNE L_A52DL_A527:    JSR sub_C459L_A52A:    STA $0404,XL_A52D:    JSR sub_C468L_A530:    CMP #$F8L_A532:    BNE L_A53CL_A534:    LDA #$02L_A536:    STA $059D,XL_A539:    JSR sub_C459L_A53C:    LDA $0579,XL_A53F:    CMP #$0DL_A541:    BNE L_A544L_A543:    RTSL_A544:    LDA $0404,XL_A547:    STA $043E,XL_A54A:    LDA $0434,XL_A54D:    CMP #$08L_A54F:    BEQ L_A59EL_A551:    CPX #$05L_A553:    BNE L_A564L_A555:    LDA $059D,XL_A558:    CMP #$02L_A55A:    BNE L_A564L_A55C:    LDA #$00L_A55E:    STA $059D,XL_A561:    JMP L_C5FFL_A564:    LDA $0404,XL_A567:    BEQ L_A576L_A569:    CMP #$08L_A56B:    BCS L_A58CL_A56D:    CMP #$03L_A56F:    BCS L_A57BL_A571:    LDA #$01L_A573:    JMP L_C59BL_A576:    LDA #$20L_A578:    JMP L_C58FL_A57B:    SECL_A57C:    SBC #$03L_A57E:    ASLL_A57F:    ASLL_A580:    ASLL_A581:    CLCL_A582:    ADC $0434,XL_A585:    TAYL_A586:    LDA $C851,YL_A589:    JMP L_C59BL_A58C:    LSRL_A58D:    LSRL_A58E:    LSRL_A58F:    STA $5206L_A592:    LDA $0434,XL_A595:    STA $5205L_A598:    LDA $5205L_A59B:    STA $043E,XL_A59E:    LDA $0579,XL_A5A1:    CMP #$0CL_A5A3:    BEQ L_A5BBL_A5A5:    LDA $04F7,XL_A5A8:    AND #$0FL_A5AA:    BEQ L_A5BBL_A5AC:    CMP #$01L_A5AE:    BEQ L_A605L_A5B0:    CMP #$03L_A5B2:    BEQ L_A60BL_A5B4:    CMP #$05L_A5B6:    BNE L_A5BBL_A5B8:    JSR sub_C7C9L_A5BB:    CPX #$05L_A5BD:    BEQ L_A5FFL_A5BF:    LDA $059D,XL_A5C2:    CMP #$01L_A5C4:    BNE L_A5CAL_A5C6:    DEC $059D,XL_A5C9:    RTSL_A5CA:    LDA #$00L_A5CC:    STA $05E5,XL_A5CF:    LDA $05A6,XL_A5D2:    STA $4CL_A5D4:    BNE L_A5E3L_A5D6:    LDA $040E,XL_A5D9:    JSR sub_CDE9L_A5DC:    JSR sub_CDA5L_A5DF:    INC $05EE,XL_A5E2:    RTSL_A5E3:    CMP #$01L_A5E5:    BNE L_A5F4L_A5E7:    LDA $040E,XL_A5EA:    LSRL_A5EB:    JSR sub_CDE9L_A5EE:    LDY $040E,XL_A5F1:    JMP L_C611L_A5F4:    LDA #$01L_A5F6:    JSR sub_CDE9L_A5F9:    LDY $040E,XL_A5FC:    JMP L_C611L_A5FF:    LDA #$01L_A601:    JSR sub_CDE9L_A604:    RTSL_A605:    JSR sub_C79BL_A608:    JMP L_C5BBL_A60B:    JSR sub_C7D6L_A60E:    JMP L_C5BBL_A611:    DEYL_A612:    STY $5206L_A615:    LDA #$3CL_A617:    STA $5205L_A61A:    DEC $4CL_A61C:    ASL $4CL_A61E:    LDA $5205L_A621:    CLCL_A622:    ADC $4CL_A624:    STA $4AL_A626:    LDA $5206L_A629:    ADC #$D3L_A62B:    STA $4BL_A62D:    LDY #$00L_A62F:    LDA ($4A),YL_A631:    STA $05CA,XL_A634:    INYL_A635:    LDA ($4A),YL_A637:    STA $05DC,XL_A63A:    STA $05D3,XL_A63D:    RTSL_A63E:    PHAL_A63F:    AND #$0FL_A641:    SECL_A642:    SBC #$01L_A644:    STA $0579,XL_A647:    CMP #$0DL_A649:    BNE L_A64FL_A64B:    PLAL_A64C:    JMP L_C4FCL_A64F:    PLAL_A650:    LDY $04C5,XL_A653:    BEQ L_A6A9L_A655:    LDY $0579,XL_A658:    CPY #$0CL_A65A:    BNE L_A669L_A65C:    LDA #$07L_A65E:    STA $4015L_A661:    LDA #$0FL_A663:    STA $4015L_A666:    JMP L_C4FCL_A669:    JSR sub_C6ACL_A66C:    LDY #$00L_A66E:    LDA ($4A),YL_A670:    STA $400EL_A673:    INYL_A674:    LDA ($4A),YL_A676:    STA $0434,XL_A679:    INYL_A67A:    LDA $04BB,XL_A67D:    BEQ L_A690L_A67F:    TXAL_A680:    ASLL_A681:    CLCL_A682:    ADC #$35L_A684:    STA $06F9L_A687:    LDA $04B1,XL_A68A:    JSR sub_06F7L_A68D:    JMP L_C692L_A690:    LDA ($4A),YL_A692:    CPX #$04L_A694:    BNE L_A6A1L_A696:    STA $03EBL_A699:    SECL_A69A:    SBC $03E4L_A69D:    BCS L_A6A1L_A69F:    LDA #$00L_A6A1:    STA $040E,XL_A6A4:    LDA #$FFL_A6A6:    STA $400FL_A6A9:    JMP L_C4FCL_A6AC:    LDA $0579,XL_A6AF:    STA $5206L_A6B2:    LDA #$03L_A6B4:    STA $5205L_A6B7:    LDA $5205L_A6BA:    STA $4DL_A6BC:    LDA $042A,XL_A6BF:    STA $5206L_A6C2:    LDA #$24L_A6C4:    STA $5205L_A6C7:    LDA $5205L_A6CA:    CLCL_A6CB:    ADC #$50L_A6CD:    STA $4AL_A6CF:    LDA $5206L_A6D2:    ADC #$DEL_A6D4:    STA $4BL_A6D6:    LDA $4DL_A6D8:    CLCL_A6D9:    ADC $4AL_A6DB:    STA $4AL_A6DD:    LDA $4BL_A6DF:    ADC #$00L_A6E1:    STA $4BL_A6E3:    RTSL_A6E4:    LDA #$FFL_A6E6:    LDY $04C5,XL_A6E9:    BEQ L_A70BL_A6EB:    LDA $4AL_A6ED:    STA $0594,XL_A6F0:    CPX #$00L_A6F2:    BEQ L_A70FL_A6F4:    CPX #$01L_A6F6:    BEQ L_A720L_A6F8:    CPX #$02L_A6FA:    BEQ L_A731L_A6FC:    CPX #$03L_A6FE:    BEQ L_A742L_A700:    CPX #$05L_A702:    BEQ L_A753L_A704:    CPX #$06L_A706:    BEQ L_A731L_A708:    JMP L_C742L_A70B:    STA $058B,XL_A70E:    RTSL_A70F:    STA $5002L_A712:    LDA $4BL_A714:    CMP $058B,XL_A717:    BNE L_A71AL_A719:    RTSL_A71A:    STA $5003L_A71D:    JMP L_C70BL_A720:    STA $5006L_A723:    LDA $4BL_A725:    CMP $058B,XL_A728:    BNE L_A72BL_A72A:    RTSL_A72B:    STA $5007L_A72E:    JMP L_C70BL_A731:    STA $4002L_A734:    LDA $4BL_A736:    CMP $058B,XL_A739:    BNE L_A73CL_A73B:    RTSL_A73C:    STA $4003L_A73F:    JMP L_C70BL_A742:    STA $4006L_A745:    LDA $4BL_A747:    CMP $058B,XL_A74A:    BNE L_A74DL_A74C:    RTSL_A74D:    STA $4007L_A750:    JMP L_C70BL_A753:    STA $400AL_A756:    LDA $4BL_A758:    CMP $058B,XL_A75B:    BNE L_A75EL_A75D:    RTSL_A75E:    STA $400BL_A761:    JMP L_C70BL_A764:    LDY $04BB,XL_A767:    BEQ L_A784L_A769:    PHAL_A76A:    TXAL_A76B:    ASLL_A76C:    CLCL_A76D:    ADC #$35L_A76F:    STA $06F9L_A772:    LDA $04B1,XL_A775:    JSR sub_06F7L_A778:    SECL_A779:    SBC $03E0,XL_A77C:    BCS L_A780L_A77E:    LDA #$00L_A780:    STA $040E,XL_A783:    PLAL_A784:    RTSL_A785:    LDA $04F7,XL_A788:    AND #$0FL_A78A:    CMP #$01L_A78C:    BNE L_A79AL_A78E:    LDA $0501,XL_A791:    STA $0460,XL_A794:    LDA $0529,XL_A797:    STA $0458,XL_A79A:    RTSL_A79B:    LDA #$00L_A79D:    STA $0458,XL_A7A0:    STA $0460,XL_A7A3:    LDA $0509,XL_A7A6:    STA $0511,XL_A7A9:    JSR sub_C459L_A7AC:    BEQ L_A7BAL_A7AE:    STA $0519,XL_A7B1:    LDA #$01L_A7B3:    STA $0541,XL_A7B6:    STA $0549,XL_A7B9:    RTSL_A7BA:    JSR sub_C459L_A7BD:    STA $0541,XL_A7C0:    STA $0549,XL_A7C3:    LDA #$01L_A7C5:    STA $0519,XL_A7C8:    RTSL_A7C9:    LDA $0404,XL_A7CC:    SECL_A7CD:    SBC $0509,XL_A7D0:    STA $0511,XL_A7D3:    JMP L_C7A9L_A7D6:    LDA #$01L_A7D8:    STA $0541,XL_A7DB:    STA $0549,XL_A7DE:    LDA $0531,XL_A7E1:    STA $0539,XL_A7E4:    LDA $0509,XL_A7E7:    CMP #$FFL_A7E9:    BNE L_A7EEL_A7EB:    LDA $0404,XL_A7EE:    STA $0511,XL_A7F1:    JSR sub_C459L_A7F4:    STA $4DL_A7F6:    AND #$3FL_A7F8:    BNE L_A811L_A7FA:    JSR sub_C459L_A7FD:    STA $0541,XL_A800:    STA $0549,XL_A803:    BIT $4DL_A805:    BPL L_A80CL_A807:    LDA #$FFL_A809:    JMP L_C825L_A80C:    LDA #$01L_A80E:    JMP L_C817L_A811:    BIT $4DL_A813:    BVS L_A82EL_A815:    BMI L_A820L_A817:    STA $0519,XL_A81A:    LDA #$00L_A81C:    STA $0521,XL_A81F:    RTSL_A820:    EOR #$FFL_A822:    CLCL_A823:    ADC #$01L_A825:    STA $0519,XL_A828:    LDA #$FFL_A82A:    STA $0521,XL_A82D:    RTSL_A82E:    BMI L_A83AL_A830:    STA $0521,XL_A833:    JSR sub_C459L_A836:    STA $0519,XL_A839:    RTSL_A83A:    EOR #$FFL_A83C:    STA $4DL_A83E:    JSR sub_C459L_A841:    EOR #$FFL_A843:    CLCL_A844:    ADC #$01L_A846:    STA $0519,XL_A849:    LDA #$00L_A84B:    ADC $4DL_A84D:    STA $0521,XL_A850:    RTS    .byte $00, $01, $01, $01, $01, $01, $02, $02, $00, $01, $01, $01, $02, $02, $03, $03    .byte $00, $01, $01, $01, $02, $03, $03, $04, $00, $01, $01, $02, $03, $03, $04, $05    .byte $00, $01, $01, $02, $03, $04, $05, $06L_A879:    CMP #$0CL_A87B:    BNE L_A886L_A87D:    LDA #$01L_A87F:    STA $4AL_A881:    LDA #$00L_A883:    STA $4BL_A885:    RTSL_A886:    TAYL_A887:    LDA $0448,XL_A88A:    CLCL_A88B:    ADC $0458,XL_A88E:    STA $4AL_A890:    LDA $0450,XL_A893:    ADC $0460,XL_A896:    STA $4BL_A898:    LDA $0468,XL_A89B:    SECL_A89C:    SBC #$80L_A89E:    BMI L_A8ACL_A8A0:    CLCL_A8A1:    ADC $4AL_A8A3:    STA $4AL_A8A5:    LDA #$00L_A8A7:    ADC $4BL_A8A9:    JMP L_C8B5L_A8AC:    CLCL_A8AD:    ADC $4AL_A8AF:    STA $4AL_A8B1:    LDA $4BL_A8B3:    SBC #$00L_A8B5:    STA $4BL_A8B7:    BMI L_A8C8L_A8B9:    LDA $4AL_A8BB:    ASLL_A8BC:    ROL $4BL_A8BE:    ASLL_A8BF:    ROL $4BL_A8C1:    LSRL_A8C2:    LSRL_A8C3:    STA $4AL_A8C5:    JMP L_C8E5L_A8C8:    LDA $4AL_A8CA:    ASLL_A8CB:    ROL $4BL_A8CD:    ASLL_A8CE:    ROL $4BL_A8D0:    LDA $4AL_A8D2:    AND #$3FL_A8D4:    BEQ L_A8DAL_A8D6:    INC $4BL_A8D8:    ORA #$C0L_A8DA:    STA $4AL_A8DC:    BPL L_A8E5L_A8DE:    CLCL_A8DF:    ADC #$40L_A8E1:    STA $4AL_A8E3:    DEC $4BL_A8E5:    TYAL_A8E6:    CLCL_A8E7:    ADC $4BL_A8E9:    BPL L_A8FAL_A8EB:    DEC $4EL_A8ED:    CLCL_A8EE:    ADC #$0CL_A8F0:    BPL L_A90CL_A8F2:    DEC $4EL_A8F4:    CLCL_A8F5:    ADC #$0CL_A8F7:    JMP L_C90CL_A8FA:    CMP #$0CL_A8FC:    BCC L_A90CL_A8FE:    INC $4EL_A900:    SECL_A901:    SBC #$0CL_A903:    CMP #$0CL_A905:    BCC L_A90CL_A907:    INC $4EL_A909:    SECL_A90A:    SBC #$0CL_A90C:    STA $5206L_A90F:    STA $4FL_A911:    LDA #$40L_A913:    STA $5205L_A916:    LDA $4AL_A918:    BMI L_A92AL_A91A:    CLCL_A91B:    ADC $5205L_A91E:    STA $4AL_A920:    LDA $5206L_A923:    ADC #$00L_A925:    STA $4BL_A927:    JMP L_C937L_A92A:    CLCL_A92B:    ADC $5205L_A92E:    STA $4AL_A930:    LDA $5206L_A933:    SBC #$00L_A935:    STA $4BL_A937:    LDA $4AL_A939:    CLCL_A93A:    ADC #$ABL_A93C:    STA $4AL_A93E:    LDA $4BL_A940:    ADC #$C9L_A942:    STA $4BL_A944:    LDY #$00L_A946:    LDA ($4A),YL_A948:    STA $4AL_A94A:    LDY $4FL_A94C:    LDA $C99F,YL_A94F:    STA $4BL_A951:    LDA $C993,YL_A954:    BEQ L_A95CL_A956:    LDA $4AL_A958:    BPL L_A95CL_A95A:    DEC $4BL_A95C:    LDA $4BL_A95E:    LDY $4EL_A960:    BEQ L_A989L_A962:    BMI L_A98AL_A964:    CPY #$05L_A966:    BCS L_A973L_A968:    LSRL_A969:    ROR $4AL_A96B:    DEYL_A96C:    BNE L_A968L_A96E:    STA $4BL_A970:    JMP L_C989L_A973:    STY $50L_A975:    LDA #$08L_A977:    SECL_A978:    SBC $50L_A97A:    TAYL_A97B:    LDA $4AL_A97D:    ASLL_A97E:    ROL $4BL_A980:    DEYL_A981:    BNE L_A97DL_A983:    LDA $4BL_A985:    STY $4BL_A987:    STA $4AL_A989:    RTSL_A98A:    ASL $4AL_A98C:    ROL $4BL_A98E:    LDA #$00L_A990:    STA $4EL_A992:    RTS    .byte $00, $01, $00, $00, $00, $01, $00, $00, $01, $00, $00, $00, $06, $06, $05, $05    .byte $05, $05, $04, $04, $04, $03, $03, $03, $AE, $AC, $AB, $A9, $A7, $A6, $A4, $A3    .byte $A1, $A0, $9E, $9C, $9B, $99, $98, $96, $95, $93, $92, $90, $8F, $8D, $8B, $8A    .byte $88, $87, $85, $84, $82, $81, $7F, $7E, $7C, $7B, $79, $78, $76, $75, $73, $72    .byte $70, $6F, $6E, $6C, $6B, $69, $68, $66, $65, $63, $62, $60, $5F, $5D, $5C, $5B    .byte $59, $58, $56, $55, $53, $52, $51, $4F, $4E, $4C, $4B, $49, $48, $46, $45, $43    .byte $42, $40, $3F, $3D, $3C, $3A, $39, $38, $36, $35, $33, $32, $30, $2F, $2D, $2C    .byte $2B, $29, $28, $26, $25, $23, $22, $21, $1F, $1E, $1C, $1B, $1A, $18, $17, $15    .byte $14, $13, $11, $10, $0E, $0D, $0C, $0A, $09, $07, $06, $05, $03, $02, $01, $FF    .byte $FE, $FD, $FB, $FA, $F9, $F7, $F6, $F4, $F3, $F2, $F0, $EF, $EE, $EC, $EB, $E9    .byte $E8, $E7, $E5, $E4, $E2, $E1, $E0, $DE, $DD, $DB, $DA, $D9, $D7, $D6, $D5, $D3    .byte $D2, $D1, $CF, $CE, $CD, $CB, $CA, $C8, $C7, $C6, $C4, $C3, $C2, $C1, $BF, $BE    .byte $BD, $BB, $BA, $B9, $B7, $B6, $B5, $B3, $B2, $B1, $B0, $AE, $AD, $AC, $AA, $A9    .byte $A8, $A7, $A5, $A4, $A3, $A1, $A0, $9F, $9E, $9C, $9B, $9A, $98, $97, $96, $94    .byte $93, $92, $90, $8F, $8E, $8C, $8B, $8A, $89, $87, $86, $85, $83, $82, $81, $80    .byte $7E, $7D, $7C, $7A, $79, $78, $77, $75, $74, $73, $72, $70, $6F, $6E, $6D, $6B    .byte $6A, $69, $68, $66, $65, $64, $63, $61, $60, $5F, $5E, $5D, $5B, $5A, $59, $58    .byte $57, $55, $54, $53, $52, $50, $4F, $4E, $4D, $4C, $4A, $49, $48, $47, $45, $44    .byte $43, $42, $40, $3F, $3E, $3D, $3B, $3A, $39, $38, $37, $35, $34, $33, $32, $31    .byte $2F, $2E, $2D, $2C, $2B, $29, $28, $27, $26, $25, $23, $22, $21, $20, $1F, $1D    .byte $1C, $1B, $1A, $19, $18, $16, $15, $14, $13, $12, $11, $10, $0E, $0D, $0C, $0B    .byte $0A, $09, $08, $06, $05, $04, $03, $02, $01, $00, $FE, $FD, $FC, $FB, $FA, $F8    .byte $F7, $F6, $F5, $F4, $F3, $F1, $F0, $EF, $EE, $ED, $EC, $EB, $E9, $E8, $E7, $E6    .byte $E5, $E4, $E3, $E1, $E0, $DF, $DE, $DD, $DC, $DB, $D9, $D8, $D7, $D6, $D5, $D4    .byte $D3, $D2, $D1, $D0, $CE, $CD, $CC, $CB, $CA, $C9, $C8, $C7, $C6, $C5, $C4, $C2    .byte $C1, $C0, $BF, $BE, $BD, $BC, $BB, $BA, $B9, $B8, $B7, $B5, $B4, $B3, $B2, $B1    .byte $B0, $AF, $AE, $AD, $AB, $AA, $A9, $A8, $A7, $A6, $A5, $A4, $A3, $A2, $A1, $A0    .byte $9E, $9D, $9C, $9B, $9A, $99, $98, $97, $96, $95, $94, $93, $92, $91, $90, $8F    .byte $8D, $8C, $8B, $8A, $89, $88, $87, $86, $85, $84, $83, $82, $81, $80, $7F, $7E    .byte $7D, $7C, $7B, $7A, $79, $78, $77, $76, $75, $74, $73, $72, $71, $70, $6F, $6E    .byte $6D, $6B, $6A, $69, $68, $67, $66, $65, $64, $63, $62, $61, $60, $5F, $5E, $5D    .byte $5C, $5B, $5A, $59, $58, $57, $56, $55, $54, $53, $52, $51, $50, $4F, $4E, $4D    .byte $4C, $4B, $4A, $49, $48, $47, $46, $45, $44, $43, $42, $41, $40, $3F, $3E, $3D    .byte $3C, $3C, $3B, $3A, $39, $38, $37, $36, $35, $34, $33, $32, $31, $30, $2F, $2E    .byte $2D, $2C, $2B, $2A, $29, $28, $27, $26, $25, $24, $23, $22, $21, $20, $1F, $1E    .byte $1D, $1C, $1B, $1A, $1A, $19, $18, $17, $16, $15, $14, $13, $12, $11, $10, $0F    .byte $0E, $0D, $0C, $0B, $0B, $0A, $09, $08, $07, $06, $05, $04, $03, $02, $01, $01    .byte $00, $FF, $FE, $FD, $FC, $FB, $FA, $F9, $F8, $F7, $F7, $F6, $F5, $F4, $F3, $F2    .byte $F1, $F0, $EF, $EE, $ED, $EC, $EB, $EA, $EA, $E9, $E8, $E7, $E6, $E5, $E4, $E3    .byte $E2, $E1, $E0, $E0, $DF, $DE, $DD, $DC, $DB, $DA, $D9, $D8, $D8, $D7, $D6, $D5    .byte $D4, $D3, $D2, $D1, $D0, $D0, $CF, $CE, $CD, $CC, $CB, $CA, $CA, $C9, $C8, $C7    .byte $C6, $C5, $C4, $C4, $C3, $C2, $C1, $C0, $BF, $BE, $BE, $BD, $BC, $BB, $BA, $B9    .byte $B8, $B7, $B7, $B6, $B5, $B4, $B3, $B2, $B1, $B0, $B0, $AF, $AE, $AD, $AC, $AB    .byte $AA, $AA, $A9, $A8, $A7, $A6, $A5, $A4, $A4, $A3, $A2, $A1, $A0, $9F, $9F, $9E    .byte $9D, $9C, $9B, $9A, $9A, $99, $98, $97, $96, $96, $95, $94, $93, $92, $91, $91    .byte $90, $8F, $8E, $8D, $8D, $8C, $8B, $8A, $89, $89, $88, $87, $86, $85, $84, $84    .byte $83, $82, $81, $80, $7F, $7F, $7E, $7D, $7C, $7B, $7B, $7A, $79, $78, $77, $77    .byte $76, $75, $74, $73, $73, $72, $71, $70, $6F, $6F, $6E, $6D, $6C, $6B, $6B, $6A    .byte $69, $68, $67, $67, $66, $65, $64, $64, $63, $62, $61, $60, $60, $5F, $5E, $5D    .byte $5D, $5C, $5B, $5A, $5A, $59, $58, $57L_ACAB:    LDX #$00L_ACAD:    TXAL_ACAE:    ASLL_ACAF:    TAYL_ACB0:    LDA $0021,YL_ACB3:    ORA $0022,YL_ACB6:    BEQ L_ACD8L_ACB8:    JSR sub_CCF4L_ACBB:    LDA $04F7,XL_ACBE:    AND #$0FL_ACC0:    BEQ L_ACD2L_ACC2:    LSRL_ACC3:    BEQ L_ACE8L_ACC5:    TAYL_ACC6:    DEYL_ACC7:    BEQ L_ACEBL_ACC9:    DEYL_ACCA:    BEQ L_ACEEL_ACCC:    DEYL_ACCD:    BEQ L_ACF1L_ACCF:    JSR sub_CFC2L_ACD2:    JSR sub_CE45L_ACD5:    DEC $043E,XL_ACD8:    INXL_ACD9:    LDA $0403L_ACDC:    BNE L_ACE3L_ACDE:    CPX #$06L_ACE0:    BNE L_ACADL_ACE2:    RTSL_ACE3:    CPX #$09L_ACE5:    BNE L_ACADL_ACE7:    RTSL_ACE8:    JMP L_CEBCL_ACEB:    JMP L_CF34L_ACEE:    JMP L_CF16L_ACF1:    JMP L_CF6FL_ACF4:    CPX #$05L_ACF6:    BEQ L_AD0EL_ACF8:    LDA $043E,XL_ACFB:    BNE L_AD00L_ACFD:    JMP L_CD86L_AD00:    LDA $05E5,XL_AD03:    BEQ L_AD19L_AD05:    CMP #$01L_AD07:    BEQ L_AD3DL_AD09:    CMP #$02L_AD0B:    BEQ L_AD67L_AD0D:    RTSL_AD0E:    LDA $043E,XL_AD11:    BNE L_AD18L_AD13:    LDA #$00L_AD15:    JSR sub_CDE9L_AD18:    RTSL_AD19:    LDA $05DC,XL_AD1C:    BNE L_AD3CL_AD1E:    LDA $0418,XL_AD21:    CLCL_AD22:    ADC $05CA,XL_AD25:    CMP $040E,XL_AD28:    BCC L_AD33L_AD2A:    LDA $040E,XL_AD2D:    JSR sub_CDE9L_AD30:    JMP L_CDA5L_AD33:    JSR sub_CDE9L_AD36:    LDA $05D3,XL_AD39:    STA $05DC,XL_AD3C:    RTSL_AD3D:    LDA $05EE,XL_AD40:    BNE L_AD48L_AD42:    LDA #$80L_AD44:    STA $05E5,XL_AD47:    RTSL_AD48:    LDA $05DC,XL_AD4B:    BNE L_AD63L_AD4D:    LDA $05D3,XL_AD50:    STA $05DC,XL_AD53:    LDA $0418,XL_AD56:    SECL_AD57:    SBC $05CA,XL_AD5A:    BEQ L_AD5EL_AD5C:    BPL L_AD60L_AD5E:    LDA #$01L_AD60:    JSR sub_CDE9L_AD63:    DEC $05EE,XL_AD66:    RTSL_AD67:    LDA $05DC,XL_AD6A:    BNE L_AD85L_AD6C:    LDA $05D3,XL_AD6F:    STA $05DC,XL_AD72:    LDA $0418,XL_AD75:    SECL_AD76:    SBC $05CA,XL_AD79:    BEQ L_AD7DL_AD7B:    BPL L_AD82L_AD7D:    LDA #$00L_AD7F:    INC $05E5,XL_AD82:    JSR sub_CDE9L_AD85:    RTSL_AD86:    LDA $059D,XL_AD89:    CMP #$02L_AD8B:    BEQ L_ADA4L_AD8D:    LDY $0418,XL_AD90:    LDA $05B8,XL_AD93:    BNE L_AD9AL_AD95:    LDA #$00L_AD97:    JMP L_CDE9L_AD9A:    STA $4CL_AD9C:    JSR sub_C611L_AD9F:    LDA #$02L_ADA1:    STA $05E5,XL_ADA4:    RTSL_ADA5:    LDA #$01L_ADA7:    STA $05E5,XL_ADAA:    LDY $05C1,XL_ADAD:    BEQ L_ADBEL_ADAF:    LDY $040E,XL_ADB2:    INYL_ADB3:    TYAL_ADB4:    LDY $05C1,XL_ADB7:    LSRL_ADB8:    DEYL_ADB9:    BNE L_ADB7L_ADBB:    JMP L_CDCAL_ADBE:    LDY $040E,XL_ADC1:    INYL_ADC2:    TYAL_ADC3:    LSRL_ADC4:    STA $51L_ADC6:    LSRL_ADC7:    CLCL_ADC8:    ADC $51L_ADCA:    TAYL_ADCB:    LDA $05AF,XL_ADCE:    BEQ L_ADD8L_ADD0:    STA $05EE,XL_ADD3:    STA $4CL_ADD5:    JMP L_C611L_ADD8:    STY $51L_ADDA:    LDA $0418,XL_ADDD:    SECL_ADDE:    SBC $51L_ADE0:    JSR sub_CDE9L_ADE3:    LDA #$80L_ADE5:    STA $05E5,XL_ADE8:    RTSL_ADE9:    CPX #$05L_ADEB:    BEQ L_AE23L_ADED:    CPX #$06L_ADEF:    BCS L_ADFEL_ADF1:    LDY $0567L_ADF4:    BEQ L_ADFEL_ADF6:    CMP $0568L_ADF9:    BCC L_ADFEL_ADFB:    LDA $0568L_ADFE:    STA $0418,XL_AE01:    LDY $04C5,XL_AE04:    BEQ L_AE3CL_AE06:    CPX #$04L_AE08:    BEQ L_AE37L_AE0A:    CPX #$08L_AE0C:    BEQ L_AE37L_AE0E:    LDY $CE3D,XL_AE11:    LDA $0418,XL_AE14:    ORA $0422,XL_AE17:    CPX #$02L_AE19:    BCC L_AE1FL_AE1B:    STA $4000,YL_AE1E:    RTSL_AE1F:    STA $5000,YL_AE22:    RTSL_AE23:    LDY $0567L_AE26:    BEQ L_AE31L_AE28:    LDY $0568L_AE2B:    CPY #$0AL_AE2D:    BCS L_AE31L_AE2F:    LDA #$00L_AE31:    ORA #$80L_AE33:    STA $4008L_AE36:    RTSL_AE37:    ORA #$30L_AE39:    STA $400CL_AE3C:    RTS    .byte $00, $04, $00, $04, $00, $00, $00, $04L_AE45:    CPX #$04L_AE47:    BEQ L_AEBBL_AE49:    CPX #$08L_AE4B:    BEQ L_AEBBL_AE4D:    LDA $0470,XL_AE50:    AND #$03L_AE52:    BEQ L_AEBBL_AE54:    LDA $04A8,XL_AE57:    BEQ L_AE5FL_AE59:    DEC $04A8,XL_AE5C:    JMP L_CEBBL_AE5F:    LDA $0488,XL_AE62:    BNE L_AEB8L_AE64:    LDA $0480,XL_AE67:    STA $0488,XL_AE6A:    LDA $0470,XL_AE6D:    BMI L_AE89L_AE6F:    LDA $0468,XL_AE72:    CLCL_AE73:    ADC $0478,XL_AE76:    CMP $0490,XL_AE79:    BCC L_AEA0L_AE7B:    LDA $0470,XL_AE7E:    EOR #$80L_AE80:    STA $0470,XL_AE83:    LDA $0490,XL_AE86:    JMP L_CEA0L_AE89:    LDA $0468,XL_AE8C:    SECL_AE8D:    SBC $0478,XL_AE90:    CMP $0498,XL_AE93:    BCS L_AEA0L_AE95:    LDA $0470,XL_AE98:    EOR #$80L_AE9A:    STA $0470,XL_AE9D:    LDA $0498,XL_AEA0:    STA $0468,XL_AEA3:    LDA $0579,XL_AEA6:    CMP #$0DL_AEA8:    BNE L_AEADL_AEAA:    LDA $0582,XL_AEAD:    LDY $042A,XL_AEB0:    STY $4EL_AEB2:    JSR sub_C879L_AEB5:    JSR sub_C6E4L_AEB8:    DEC $0488,XL_AEBB:    RTSL_AEBC:    LDA $0511,XL_AEBF:    BMI L_AF0DL_AEC1:    BNE L_AED4L_AEC3:    DEC $0511,XL_AEC6:    LDA $0579,XL_AEC9:    LDY $042A,XL_AECC:    STY $4EL_AECE:    JSR sub_C879L_AED1:    JMP L_CF0AL_AED4:    DEC $0511,XL_AED7:    LDA $0549,XL_AEDA:    BNE L_AF10L_AEDC:    LDA $0541,XL_AEDF:    STA $0549,XL_AEE2:    LDA $04F7,XL_AEE5:    BMI L_AEFAL_AEE7:    LDA $0594,XL_AEEA:    CLCL_AEEB:    ADC $0519,XL_AEEE:    STA $4AL_AEF0:    LDA $058B,XL_AEF3:    ADC #$00L_AEF5:    STA $4BL_AEF7:    JMP L_CF0AL_AEFA:    LDA $0594,XL_AEFD:    SECL_AEFE:    SBC $0519,XL_AF01:    STA $4AL_AF03:    LDA $058B,XL_AF06:    SBC #$00L_AF08:    STA $4BL_AF0A:    JSR sub_C6E4L_AF0D:    JMP L_CCD2L_AF10:    DEC $0549,XL_AF13:    JMP L_CCD2L_AF16:    LDA $0511,XL_AF19:    BNE L_AF2EL_AF1B:    LDA $0549,XL_AF1E:    BNE L_AF10L_AF20:    LDA $0541,XL_AF23:    STA $0549,XL_AF26:    LDA $04F7,XL_AF29:    BPL L_AEE7L_AF2B:    JMP L_CEFAL_AF2E:    DEC $0511,XL_AF31:    JMP L_CCD2L_AF34:    LDA $0539,XL_AF37:    BNE L_AF69L_AF39:    LDA $0511,XL_AF3C:    BEQ L_AF6CL_AF3E:    DEC $0511,XL_AF41:    LDA $0549,XL_AF44:    BNE L_AF63L_AF46:    LDA $0541,XL_AF49:    STA $0549,XL_AF4C:    LDA $0594,XL_AF4F:    CLCL_AF50:    ADC $0519,XL_AF53:    STA $4AL_AF55:    LDA $058B,XL_AF58:    ADC $0521,XL_AF5B:    STA $4BL_AF5D:    JSR sub_C6E4L_AF60:    JMP L_CCD2L_AF63:    DEC $0549,XL_AF66:    JMP L_CCD2L_AF69:    DEC $0539,XL_AF6C:    JMP L_CCD2L_AF6F:    LDA $0509,XL_AF72:    BEQ L_AFB6L_AF74:    LDA $04F7,XL_AF77:    BPL L_AF8BL_AF79:    LDA $0458,XL_AF7C:    CLCL_AF7D:    ADC $0519,XL_AF80:    STA $0458,XL_AF83:    LDA $0460,XL_AF86:    ADC #$00L_AF88:    JMP L_CF9AL_AF8B:    LDA $0458,XL_AF8E:    SECL_AF8F:    SBC $0519,XL_AF92:    STA $0458,XL_AF95:    LDA $0460,XL_AF98:    SBC #$00L_AF9A:    STA $0460,XL_AF9D:    DEC $0509,XL_AFA0:    LDA $0470,XL_AFA3:    BNE L_AFB3L_AFA5:    LDA $0579,XL_AFA8:    LDY $042A,XL_AFAB:    STY $4EL_AFAD:    JSR sub_C879L_AFB0:    JSR sub_C6E4L_AFB3:    JMP L_CCD2L_AFB6:    STA $04F7,XL_AFB9:    STA $0458,XL_AFBC:    STA $0460,XL_AFBF:    JMP L_CCD2L_AFC2:    LDA $0511,XL_AFC5:    BEQ L_B00FL_AFC7:    LDA $0549,XL_AFCA:    BNE L_B00BL_AFCC:    LDA $0541,XL_AFCF:    STA $0549,XL_AFD2:    LDA $04F7,XL_AFD5:    BMI L_AFDDL_AFD7:    INC $0579,XL_AFDA:    JMP L_CFE0L_AFDD:    DEC $0579,XL_AFE0:    LDA $0579,XL_AFE3:    BPL L_AFF0L_AFE5:    LDA #$0BL_AFE7:    STA $0579,XL_AFEA:    DEC $0509,XL_AFED:    JMP L_CFFCL_AFF0:    CMP #$0CL_AFF2:    BCC L_AFFCL_AFF4:    LDA #$00L_AFF6:    STA $0579,XL_AFF9:    INC $0509,XL_AFFC:    LDY $0509,XL_AFFF:    STY $4EL_B001:    JSR sub_C879L_B004:    JSR sub_C6E4L_B007:    DEC $0511,XL_B00A:    RTSL_B00B:    DEC $0549,XL_B00E:    RTSL_B00F:    STA $04F7,XL_B012:    RTSL_B013:    LDA #$01L_B015:    STA $04B0L_B018:    LDA $45L_B01A:    LSRL_B01B:    LSRL_B01C:    LSRL_B01D:    LSRL_B01E:    TAYL_B01F:    LDA $0551,YL_B022:    STA $0404,XL_B025:    CPY #$0BL_B027:    BNE L_B02FL_B029:    JSR sub_C459L_B02C:    STA $0404,XL_B02F:    LDA $45L_B031:    AND #$0FL_B033:    CMP #$0EL_B035:    BEQ L_B06BL_B037:    CMP #$0DL_B039:    BEQ L_B06BL_B03B:    SECL_B03C:    SBC #$01L_B03E:    ASLL_B03F:    ASLL_B040:    TAYL_B041:    LDA $0567L_B044:    BNE L_B06BL_B046:    LDA $D06E,YL_B049:    STA $4013L_B04C:    LDA $D06C,YL_B04F:    STA $4012L_B052:    LDA $D06D,YL_B055:    STA $4010L_B058:    LDA $05F7L_B05B:    AND #$EFL_B05D:    STA $4015L_B060:    LDA #$00L_B062:    STA $4011L_B065:    LDA $05F7L_B068:    STA $4015L_B06B:    RTS    .byte $C0, $0F, $20, $00, $C0, $0F, $10, $00, $C8, $0F, $30, $00, $C8, $0F, $20, $00    .byte $D4, $0F, $30, $00, $E0, $0F, $30, $00, $E0, $0F, $20, $00, $D4, $0F, $20, $00    .byte $C0, $0E, $20, $00, $C8, $0E, $30, $00, $D4, $0E, $30, $00, $E0, $0E, $20, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $01, $C8, $04, $72, $06, $BE, $0C, $5B, $0E, $D9    .byte $12, $63, $15, $E4, $18, $3B, $1A, $D3, $1D, $C9, $40, $00, $41, $3F, $42, $A4    .byte $44, $D3, $46, $75, $48, $88, $49, $A8, $4A, $02, $4B, $A9, $4C, $C7, $54, $24    .byte $5A, $96, $5B, $0A, $5B, $5A, $5B, $C2, $5C, $19, $80, $00, $84, $73, $8B, $38    .byte $92, $6F, $C0, $00, $D1, $25, $D3, $81, $D4, $B5, $D5, $18, $D5, $48, $D5, $E3    .byte $D6, $FE, $D8, $19, $D9, $34, $D9, $84, $DA, $30, $DA, $DF, $DB, $04, $DC, $06    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $2E, $F2, $01, $01, $01, $02, $01, $03, $01, $04, $01, $05, $01, $06    .byte $01, $07, $01, $08, $01, $09, $01, $0A, $01, $0B, $01, $0C, $01, $0D, $01, $0E    .byte $01, $0F, $01, $10, $01, $11, $01, $12, $01, $13, $01, $14, $01, $15, $01, $16    .byte $01, $17, $01, $18, $01, $19, $01, $1A, $01, $1B, $01, $1C, $01, $1D, $01, $1E    .byte $02, $01, $01, $01, $01, $02, $01, $02, $01, $03, $01, $03, $01, $04, $01, $04    .byte $01, $05, $01, $05, $01, $06, $01, $06, $01, $07, $01, $07, $01, $08, $01, $08    .byte $01, $09, $01, $09, $01, $0A, $01, $0A, $01, $0B, $01, $0B, $01, $0C, $01, $0C    .byte $01, $0D, $01, $0D, $01, $0E, $01, $0E, $01, $0F, $01, $0F, $03, $01, $01, $01    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03, $01, $03, $01, $04    .byte $01, $04, $01, $04, $01, $05, $01, $05, $01, $05, $01, $06, $01, $06, $01, $06    .byte $01, $07, $01, $07, $01, $07, $01, $08, $01, $08, $01, $08, $01, $09, $01, $09    .byte $01, $09, $01, $0A, $01, $0A, $01, $0A, $04, $01, $02, $01, $01, $01, $01, $01    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03, $01, $03, $01, $03    .byte $01, $04L_B3CE:    ORA ($04,X)L_B3D0:    ORA ($04,X)L_B3D2:    ORA ($04,X)L_B3D4:    ORA ($05,X)L_B3D6:    ORA ($05,X)L_B3D8:    ORA ($05,X)L_B3DA:    ORA ($05,X)L_B3DC:    ORA ($06,X)L_B3DE:    ORA ($06,X)L_B3E0:    ORA ($06,X)L_B3E2:    ORA ($06,X)L_B3E4:    ORA ($07,X)L_B3E6:    ORA ($07,X)L_B3E8:    ORA ($07,X)L_B3EA:    ORA ($07,X)L_B3EC:    ORA ($08,X)L_B3EE:    ORA ($08,X)L_B3F0:    ORA $01    .byte $02, $01, $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $04, $01, $04    .byte $01, $04, $01, $04, $01, $04, $01, $05, $01, $05, $01, $05, $01, $05, $01, $05    .byte $01, $06, $01, $06, $01, $06, $01, $06, $01, $06, $06, $01, $03, $01, $02, $01    .byte $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $04    .byte $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $05, $01, $05, $01, $05    .byte $01, $05, $01, $05, $01, $05, $07, $01, $03, $01, $02, $01, $01, $01, $01, $01    .byte $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03    .byte $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $05    .byte $01, $05, $08, $01, $04, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03    .byte $01, $03, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $09, $01    .byte $04, $01, $03, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03    .byte $01, $03, $01, $03, $01, $04, $01, $04, $01, $04, $0A, $01, $05, $01, $03, $01    .byte $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02L_B53A:    ORA ($02,X)L_B53C:    ORA ($02,X)L_B53E:    ORA ($02,X)L_B540:    ORA ($02,X)L_B542:    ORA ($02,X)L_B544:    ORA ($03,X)L_B546:    ORA ($03,X)L_B548:    ORA ($03,X)L_B54A:    ORA ($03,X)L_B54C:    ORA ($03,X)L_B54E:    ORA ($03,X)L_B550:    ORA ($03,X)L_B552:    ORA ($03,X)L_B554:    ORA ($03,X)L_B556:    ORA ($03,X)    .byte $0B, $01, $05, $01, $03, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01    .byte $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03    .byte $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $0C, $01, $06, $01    .byte $04, $01, $03, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01    .byte $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03    .byte $01, $03, $01, $03, $01, $03, $01, $03, $0D, $01, $06, $01, $04, $01, $03, $01    .byte $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03    .byte $01, $03, $01, $03, $0E, $01, $07, $01, $04, $01, $03, $01, $02, $01, $02, $01    .byte $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03    .byte $0F, $01, $07, $01, $05, $01, $03, $01, $03, $01, $02, $01, $02, $01, $01, $01    .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $06, $02, $00, $06, $06    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $02, $02, $09, $02, $03, $06, $03    .byte $01, $15, $00, $00, $00, $00, $00, $00, $40, $01, $02, $09, $02, $00, $1D, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $01, $00, $06, $06    .byte $01, $02, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $02, $03, $06, $06    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $01, $00, $06, $01, $03, $06, $06    .byte $01, $02, $00, $00, $00, $00, $00, $00, $40, $00, $01, $03, $01, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $00, $02, $01, $03, $07, $07    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $01, $00, $03, $07, $07    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $17, $03, $00, $1D, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $17, $01, $03, $06, $06    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $00, $1D, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $14, $01, $03, $06, $04    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $00, $06, $06    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $03, $06, $04    .byte $01, $26, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $03, $09, $06    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $03, $0C, $0C    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $02, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $01, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $00, $03, $01    .byte $01, $23, $00, $00, $00, $00, $00, $00, $00, $07, $02, $06, $02, $03, $08, $08    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $00, $00, $02, $09, $03, $03, $07, $03    .byte $01, $16, $00, $00, $00, $00, $00, $00, $00, $02, $02, $06, $02, $03, $08, $08    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $00, $07, $02, $2D, $02, $03, $08, $08    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $80, $00, $02, $1E, $01, $03, $0F, $0F    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $02, $03, $1C, $0E    .byte $01, $12, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $02, $03, $0A, $05    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $02, $03, $0A, $05    .byte $01, $14, $00, $00, $00, $00, $00, $00, $00, $00, $01, $14, $02, $00, $09, $06    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $00, $01, $14, $02, $03, $0A, $06    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $11, $01, $14, $02, $03, $0A, $06    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $13, $01, $14, $02, $03, $06, $04    .byte $01, $26, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $19, $03, $03, $09, $04    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $00, $02, $09, $01, $00, $04, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $02, $06, $02, $03, $0B, $0B    .byte $01, $14, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $19, $03, $03, $0B, $05    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $05, $03, $03, $09, $04    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $00, $01, $07, $01, $00, $04, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05    .byte $01, $16, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $01, $05, $03, $03, $05, $02    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $03, $03, $0A, $05    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $03, $03, $0A, $05    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $14, $02, $06, $03, $03, $0A, $05    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $0B, $02, $09, $03, $00, $05, $02    .byte $01, $0A, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $00, $05, $02    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $01, $02, $23, $03, $03, $0A, $05    .byte $01, $14, $00, $00, $00, $00, $00, $00, $00, $00, $02, $06, $03, $03, $06, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $06, $03, $03, $06, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $06, $03, $00, $06, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $03, $03, $04, $04    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05    .byte $01, $19, $00, $00, $00, $00, $00, $00, $40, $0D, $01, $04, $03, $03, $08, $05    .byte $01, $19, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $06, $03, $03, $06, $03    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $06, $03, $03, $07, $05    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $03, $05, $03, $00, $13, $27    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $06, $03, $03, $11, $11    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $06, $03, $03, $12, $07    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $07, $02, $06, $02, $03, $04, $04    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $04, $01, $06, $02, $00, $06, $06    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $01, $02, $09, $02, $01, $31, $31    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $01, $0A, $02    .byte $00, $01, $5A, $02, $1E, $01, $5A, $02, $0F, $01, $5A, $02, $00, $00, $0A, $03    .byte $01, $00, $0A, $03, $02, $00, $0A, $03, $03, $00, $0A, $03, $04, $00, $0A, $03    .byte $00, $01, $5A, $00, $00, $01, $5A, $01, $00, $01, $5A, $02, $00, $01, $5A, $03    .byte $00, $00, $0A, $03, $00, $01, $1E, $00, $00, $01, $1E, $01, $00, $01, $1E, $02    .byte $00, $01, $1E, $03, $00, $00, $00, $00, $00, $03, $5A, $00, $00, $03, $5A, $01    .byte $00, $03, $5A, $02, $00, $03, $5A, $03, $00, $00, $00, $00, $00, $03, $1E, $00    .byte $00, $03, $1E, $01, $00, $03, $1E, $02, $00, $03, $1E, $03, $00, $00, $00, $00    .byte $00, $0A, $5A, $00, $00, $0A, $5A, $01, $00, $0A, $5A, $02, $00, $0A, $5A, $03    .byte $00, $00, $00, $00, $00, $0A, $1E, $00, $00, $0A, $1E, $01, $00, $0A, $1E, $02    .byte $00, $0A, $1E, $03, $00, $00, $00, $00, $0F, $01, $5A, $00, $0F, $01, $5A, $01    .byte $0F, $01, $5A, $02, $0F, $01, $5A, $03, $00, $00, $00, $00, $0F, $01, $1E, $00    .byte $0F, $01, $1E, $01, $0F, $01, $1E, $02, $0F, $01, $1E, $03, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $03, $09, $09, $01, $5A, $03, $0C, $0C    .byte $01, $00, $00, $1E, $06, $01, $00, $03, $06, $04, $01, $55, $03, $09, $06, $01    .byte $26, $03, $03, $01, $01, $23, $03, $19, $19, $01, $00, $03, $04, $04, $01, $00    .byte $03, $06, $06, $01, $00, $03, $11, $11, $01, $00, $03, $06, $03, $01, $15, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $04, $05, $05, $06, $06, $06, $07, $07    .byte $08, $07, $07, $06, $06, $05, $05, $04, $00, $00, $00, $00, $00, $00, $00, $00    .byte $08, $06, $05, $04, $00, $00, $00, $00, $08, $06, $00, $00, $00, $00, $00, $00    .byte $08, $06, $05, $04, $03, $02, $02, $01, $00, $00, $00, $00, $00, $00, $00, $00    .byte $07, $08, $09, $0A, $0B, $0C, $0D, $0E, $00, $00, $00, $00, $00, $00, $00, $00    .byte $06, $07, $08, $09, $0A, $0B, $0C, $0D, $00, $00, $00, $00, $00, $00, $00, $00    .byte $0E, $0D, $0C, $0B, $0A, $09, $08, $07, $00, $00, $00, $00, $00, $00, $00, $00    .byte $0D, $0C, $0B, $0A, $09, $08, $07, $06, $00, $00, $00, $00, $00, $00, $00, $00    .byte $0F, $0E, $0D, $0B, $0A, $09, $08, $09, $0A, $0B, $0D, $0E, $0F, $0F, $0F, $00    .byte $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $0F, $00, $00, $00, $00, $00, $00, $00    .byte $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $0F, $0F, $0F, $00, $00, $00, $00, $00    .byte $0B, $08, $00, $00, $00, $00, $00, $00, $0B, $08, $05, $03, $00, $00, $00, $00    .byte $0B, $08, $00, $00, $00, $00, $00, $00, $0C, $09, $00, $00, $00, $00, $00, $00    .byte $0D, $07, $06, $05, $04, $03, $02, $01, $00, $00, $00, $00, $00, $00, $00, $00    .byte $0D, $07, $05, $00, $00, $00, $00, $00, $0D, $07, $05, $03, $01, $00, $00, $00    .byte $0F, $0E, $0D, $0C, $0B, $0A, $09, $08, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $04, $01, $0D, $01, $06, $08, $08, $07    .byte $0F, $03, $01, $08, $07, $04, $0D, $04, $05, $0D, $06, $02, $0D, $07, $07, $0F    .byte $07, $04, $0C, $04, $02, $0D, $04, $05, $08, $04, $01, $08, $04, $02, $08, $01    .byte $06, $08, $08, $07, $0F, $03, $01, $08, $07, $04, $0A, $04, $05, $08, $06, $02    .byte $08, $07, $07, $0F, $08, $06, $05, $04, $02, $0C, $04, $07, $0C, $04, $01, $08    .byte $08, $07, $0D, $08, $07, $0A, $08, $07, $07, $08, $07, $05, $08, $07, $02, $07    .byte $07, $0A, $06, $07, $0D, $05, $07, $0F, $08, $04, $05, $09, $07, $05, $0A, $07    .byte $05, $0B, $07, $05, $00, $07, $05, $03, $07, $05, $06, $07, $05, $09, $07, $05    .byte $0C, $07, $05, $0F, $07, $05, $00, $07, $0F, $03, $07, $0F, $06, $07, $0F, $09    .byte $07, $0F, $0C, $07, $0F, $0F, $07, $0F, $0F, $07, $0E, $0F, $07, $0D, $0F, $07    .byte $0C, $0F, $07, $0B, $0F, $07, $0A, $06, $08, $0F, $05, $08, $0F, $05, $08, $0F    .byte $03, $08, $0F, $02, $08, $0F, $01, $08, $0F, $01, $08, $01, $0C, $08, $0F, $0B    .byte $08, $0F, $0A, $08, $0F, $09, $08, $0F, $08, $08, $0F, $07, $08, $0F, $06, $08    .byte $0F, $05, $08, $0F, $04, $08, $0F, $03, $08, $0F, $02, $08, $0F, $01, $08, $0F    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00    .byte $00, $00, $00, $00, $00, $00, $00, $00
+; =============================================================
+; PRG bank $1E — auto-disassembled skeleton (v3)
+; CPU mapping: $8000-$9FFF / $A000-$BFFF (via $5114/$5115)
+; code bytes: 6167 / 16384
+; NOTE: auto-generated. Refine labels & data tables by hand.
+; =============================================================
+.segment "CODE30"
+
+L_8000:
+    RTS
+    .byte $60, $60, $60, $60, $60, $60, $60, $60, $60
+
+L_800A:
+    INC $05FF
+L_800D:
+    LDA $05FF
+L_8010:
+    CMP #$01
+L_8012:
+    BNE L_8017
+L_8014:
+    JMP L_A0FF
+L_8017:
+    CMP #$03
+L_8019:
+    BNE L_801E
+L_801B:
+    JMP L_A126
+L_801E:
+    CMP #$05
+L_8020:
+    BNE L_8025
+L_8022:
+    JMP L_A09E
+L_8025:
+    CMP #$07
+L_8027:
+    BNE L_802C
+L_8029:
+    JMP L_A142
+L_802C:
+    CMP #$09
+L_802E:
+    BNE L_8033
+L_8030:
+    JMP L_A176
+L_8033:
+    CMP #$20
+L_8035:
+    BNE L_8052
+L_8037:
+    LDA #$00
+L_8039:
+    STA $05FF
+L_803C:
+    INC $59
+L_803E:
+    LDA $59
+L_8040:
+    CMP #$0F
+L_8042:
+    BNE L_8048
+L_8044:
+    LDA #$00
+L_8046:
+    STA $59
+L_8048:
+    CMP #$0E
+L_804A:
+    BNE L_8052
+L_804C:
+    LDA $5A
+L_804E:
+    EOR #$08
+L_8050:
+    STA $5A
+L_8052:
+    LDA $05FF
+L_8055:
+    AND #$01
+L_8057:
+    BNE L_806B
+L_8059:
+    INC $5C
+L_805B:
+    LDA $5C
+L_805D:
+    CMP #$F0
+L_805F:
+    BNE L_806B
+L_8061:
+    LDA #$00
+L_8063:
+    STA $5C
+L_8065:
+    LDA $00
+L_8067:
+    EOR #$02
+L_8069:
+    STA $00
+L_806B:
+    JSR sub_E908
+L_806E:
+    RTS
+L_806F:
+    LDX $59
+L_8071:
+    LDA $A080,X
+L_8074:
+    ORA $5A
+L_8076:
+    STA $03F4
+L_8079:
+    LDA $A08F,X
+L_807C:
+    STA $03F3
+L_807F:
+    RTS
+    .byte $20, $20, $20, $21, $21, $21, $21, $22, $22, $22, $22, $23, $23, $23, $20, $40
+    .byte $80, $C0, $00, $40, $80, $C0, $00, $40, $80, $C0, $00, $40, $80, $00
+
+L_809E:
+    LDA $03C0
+L_80A1:
+    BNE L_80A6
+L_80A3:
+    JMP L_A06B
+L_80A6:
+    CMP #$01
+L_80A8:
+    BEQ L_80AD
+L_80AA:
+    JMP L_A0EE
+L_80AD:
+    LDA $0700
+L_80B0:
+    STA $03C1
+L_80B3:
+    LDA $03DE
+L_80B6:
+    CLC
+L_80B7:
+    ROR
+L_80B8:
+    ROR
+L_80B9:
+    ROR
+L_80BA:
+    ORA #$3C
+L_80BC:
+    STA $03C3
+L_80BF:
+    ORA #$01
+L_80C1:
+    STA $03C4
+L_80C4:
+    LDX #$00
+L_80C6:
+    LDA $0701,X
+L_80C9:
+    BEQ L_80E2
+L_80CB:
+    STA $0300,X
+L_80CE:
+    STA $0320,X
+L_80D1:
+    LDA $03C3
+L_80D4:
+    STA $0340,X
+L_80D7:
+    LDA $03C4
+L_80DA:
+    STA $0360,X
+L_80DD:
+    INX
+L_80DE:
+    CPX #$20
+L_80E0:
+    BNE L_80C6
+L_80E2:
+    STX $03C2
+L_80E5:
+    STX $11
+L_80E7:
+    LDA #$00
+L_80E9:
+    STA $14
+L_80EB:
+    JMP L_A06B
+L_80EE:
+    LDA #$00
+L_80F0:
+    STA $03C1
+L_80F3:
+    STA $14
+L_80F5:
+    LDA #$20
+L_80F7:
+    STA $03C2
+L_80FA:
+    STA $11
+L_80FC:
+    JMP L_A06B
+L_80FF:
+    JSR sub_A06F
+L_8102:
+    LDA $2002
+L_8105:
+    LDX #$20
+L_8107:
+    LDA $03F4
+L_810A:
+    STA $2006
+L_810D:
+    AND #$07
+L_810F:
+    ORA #$5C
+L_8111:
+    STA $10
+L_8113:
+    LDA $03F3
+L_8116:
+    STA $0F
+L_8118:
+    STA $2006
+L_811B:
+    LDA #$20
+L_811D:
+    STA $2007
+L_8120:
+    DEX
+L_8121:
+    BNE L_811D
+L_8123:
+    JMP L_A06B
+L_8126:
+    LDA $2002
+L_8129:
+    LDX #$20
+L_812B:
+    LDA $03F4
+L_812E:
+    STA $2006
+L_8131:
+    AND #$07
+L_8133:
+    ORA #$5C
+L_8135:
+    STA $16
+L_8137:
+    LDA $03F3
+L_813A:
+    CLC
+L_813B:
+    ADC #$20
+L_813D:
+    STA $15
+L_813F:
+    JMP L_A118
+L_8142:
+    LDA $03C0
+L_8145:
+    BEQ L_8173
+L_8147:
+    JSR sub_A06F
+L_814A:
+    LDA $2002
+L_814D:
+    LDY $03C2
+L_8150:
+    LDA $03F4
+L_8153:
+    STA $2006
+L_8156:
+    AND #$07
+L_8158:
+    ORA #$5C
+L_815A:
+    STA $10
+L_815C:
+    LDA $03F3
+L_815F:
+    ORA $03C1
+L_8162:
+    STA $0F
+L_8164:
+    STA $2006
+L_8167:
+    LDX #$00
+L_8169:
+    LDA $0300,X
+L_816C:
+    STA $2007
+L_816F:
+    INX
+L_8170:
+    DEY
+L_8171:
+    BNE L_8169
+L_8173:
+    JMP L_A06B
+L_8176:
+    LDA $03C0
+L_8179:
+    BEQ L_8173
+L_817B:
+    LDA $2002
+L_817E:
+    LDY $03C2
+L_8181:
+    LDA $03F4
+L_8184:
+    STA $2006
+L_8187:
+    AND #$07
+L_8189:
+    ORA #$5C
+L_818B:
+    STA $16
+L_818D:
+    LDA $03F3
+L_8190:
+    CLC
+L_8191:
+    ADC #$20
+L_8193:
+    ORA $03C1
+L_8196:
+    STA $15
+L_8198:
+    STA $2006
+L_819B:
+    LDX #$00
+L_819D:
+    LDA $0320,X
+L_81A0:
+    STA $2007
+L_81A3:
+    INX
+L_81A4:
+    DEY
+L_81A5:
+    BNE L_819D
+L_81A7:
+    LDA #$00
+L_81A9:
+    STA $03C0
+L_81AC:
+    LDA #$01
+L_81AE:
+    STA $05FB
+L_81B1:
+    JMP L_A06B
+    .byte $A9, $0A, $85, $56, $85, $57, $A5, $0B, $D0, $FC, $A5, $0B, $F0, $FC, $C9, $80
+    .byte $D0, $03, $4C, $E2, $A1, $C9, $40, $D0, $03, $4C, $00, $A2, $C9, $20, $D0, $03
+    .byte $4C, $0E, $A2, $C9, $10, $D0, $DF, $A9, $01, $85, $55, $4C, $BA, $A1, $A9, $05
+    .byte $8D, $00, $07, $A2, $00, $BD, $1F, $A2, $9D, $01, $07, $F0, $04, $E8, $4C, $E9
+    .byte $A1, $AD, $FF, $05, $D0, $FB, $20, $39, $E4, $4C, $BA, $A1, $20, $22, $E4, $AD
+    .byte $00, $06, $85, $56, $AD, $01, $06, $85, $57, $60, $AD, $FF, $05, $D0, $FB, $E6
+    .byte $57, $A6, $56, $A4, $57, $20, $3F, $E4, $4C, $BA, $A1, $41, $42, $43, $44, $45
+    .byte $46, $47, $48, $49, $4A, $4B, $4C, $4D, $4E, $00
+
+L_822E:
+    JSR sub_A26C
+L_8231:
+    LDA $03C5
+L_8234:
+    BNE L_8249
+L_8236:
+    LDA $0B
+L_8238:
+    BEQ L_825C
+L_823A:
+    DEC $03C7
+L_823D:
+    BEQ L_8240
+L_823F:
+    RTS
+L_8240:
+    STA $0C
+L_8242:
+    LDA $03C6
+L_8245:
+    STA $03C7
+L_8248:
+    RTS
+L_8249:
+    LDA $0A
+L_824B:
+    STA $0C
+L_824D:
+    LDA $0B
+L_824F:
+    AND #$0F
+L_8251:
+    BEQ L_8260
+L_8253:
+    LDX $03C5
+L_8256:
+    BEQ L_825B
+L_8258:
+    DEC $03C5
+L_825B:
+    RTS
+L_825C:
+    LDA #$00
+L_825E:
+    STA $0C
+L_8260:
+    LDA #$1E
+L_8262:
+    STA $03C5
+L_8265:
+    LDA $03C6
+L_8268:
+    STA $03C7
+L_826B:
+    RTS
+L_826C:
+    LDA $0B
+L_826E:
+    PHA
+L_826F:
+    JSR sub_A27A
+L_8272:
+    PLA
+L_8273:
+    EOR #$FF
+L_8275:
+    AND $0A
+L_8277:
+    STA $0A
+L_8279:
+    RTS
+L_827A:
+    JSR sub_A289
+L_827D:
+    STA $0D
+L_827F:
+    JSR sub_A289
+L_8282:
+    CMP $0D
+L_8284:
+    BNE L_827A
+L_8286:
+    STA $0B
+L_8288:
+    RTS
+L_8289:
+    LDA #$01
+L_828B:
+    STA $4016
+L_828E:
+    LDA #$00
+L_8290:
+    STA $4016
+L_8293:
+    LDX #$08
+L_8295:
+    ASL $0A
+L_8297:
+    LDA $4016
+L_829A:
+    PHA
+L_829B:
+    LSR
+L_829C:
+    AND #$01
+L_829E:
+    ORA $0A
+L_82A0:
+    STA $0A
+L_82A2:
+    PLA
+L_82A3:
+    AND #$01
+L_82A5:
+    ORA $0A
+L_82A7:
+    STA $0A
+L_82A9:
+    DEX
+L_82AA:
+    BNE L_8295
+L_82AC:
+    RTS
+    .byte $8C, $D2, $03, $AD, $CC, $03, $8D, $C8, $03, $AD, $CD, $03, $8D, $C9, $03, $AD
+    .byte $CE, $03, $CD, $DB, $03, $B0, $03, $4C, $21, $A4, $4C, $B6, $A4, $20, $6B, $E4
+    .byte $AD, $C8, $03, $4A, $18, $65, $56, $8D, $D7, $03, $AD, $C9, $03, $4A, $18, $65
+    .byte $57, $8D, $D8, $03, $AD, $CE, $03, $4A, $8D, $D4, $03, $AD, $C8, $03, $8D, $D9
+    .byte $03, $60, $AD, $D3, $03, $F0, $0C, $AE, $D7, $03, $AC, $D8, $03, $AD, $D5, $03
+    .byte $20, $27, $D3, $A9, $02, $8D, $DA, $03, $AD, $C9, $03, $0A, $0A, $85, $04, $AD
+    .byte $D9, $03, $4A, $4A, $4A, $18, $65, $04, $AA, $BD, $D0, $62, $85, $04, $BD, $38
+    .byte $63, $85, $06, $8A, $18, $69, $04, $AA, $BD, $D0, $62, $85, $05, $BD, $38, $63
+    .byte $85, $07, $AD, $D9, $03, $29, $07, $AA, $AC, $D6, $03, $B1, $02, $F0, $22, $AC
+    .byte $D5, $03, $99, $00, $03, $BD, $AD, $A3, $25, $04, $F0, $02, $A9, $02, $18, $69
+    .byte $3C, $85, $0E, $BD, $AD, $A3, $25, $06, $F0, $02, $A9, $01, $05, $0E, $99, $40
+    .byte $03, $AD, $D6, $03, $18, $69, $1C, $A8, $B1, $02, $F0, $22, $AC, $D5, $03, $99
+    .byte $20, $03, $BD, $AD, $A3, $25, $05, $F0, $02, $A9, $02, $18, $69, $3C, $85, $0E
+    .byte $BD, $AD, $A3, $25, $07, $F0, $02, $A9, $01, $05, $0E, $99, $60, $03, $98, $38
+    .byte $E9, $1B, $A8, $EE, $D5, $03, $EE, $D6, $03, $EE, $D9, $03, $CE, $DA, $03, $F0
+    .byte $03, $4C, $05, $A3, $EE, $D7, $03, $CE, $D4, $03, $F0, $03, $4C, $EF, $A2, $60
+    .byte $80, $40, $20, $10, $08, $04, $02, $01, $20, $E8, $E4, $AD, $CE, $03, $38, $ED
+    .byte $D0, $03, $B0, $0C, $AD, $CE, $03, $8D, $F5, $03, $A9, $00, $8D, $F8, $03, $60
+    .byte $8D, $F8, $03, $AD, $D0, $03, $8D, $F5, $03, $60, $48, $98, $48, $20, $CA, $A2
+    .byte $A9, $00, $8D, $D5, $03, $8D, $D6, $03, $20, $EF, $A2, $68, $A8, $68, $AA, $20
+    .byte $0A, $A4, $E8, $E8, $E8, $20, $0A, $A4, $A2, $00, $BD, $00, $03, $99, $00, $07
+    .byte $BD, $40, $03, $99, $80, $07, $E8, $C8, $E0, $40, $D0, $EE, $60, $20, $E8, $E4
+    .byte $A5, $02, $9D, $F3, $03, $95, $0F, $A5, $03, $9D, $F4, $03, $A5, $05, $95, $10
+    .byte $EE, $C9, $03, $60, $20, $B5, $A3, $20, $95, $A4, $AD, $D2, $03, $D0, $20, $A9
+    .byte $04, $85, $1C, $20, $84, $A4, $CE, $DC, $03, $F0, $13, $AD, $DD, $03, $F0, $F3
+    .byte $AD, $DC, $03, $C9, $01, $D0, $EC, $A9, $02, $85, $1C, $20, $84, $A4, $60, $A0
+    .byte $02, $AD, $CF, $03, $29, $FC, $18, $6D, $C9, $03, $AE, $DD, $03, $D0, $05, $A0
+    .byte $04, $38, $E9, $04, $8D, $C9, $03, $84, $1C, $20, $84, $A4, $CE, $DC, $03, $F0
+    .byte $15, $A9, $04, $85, $1C, $AD, $C9, $03, $38, $E9, $08, $8D, $C9, $03, $20, $84
+    .byte $A4, $CE, $DC, $03, $D0, $EF, $60, $A9, $00, $A8, $20, $D7, $A3, $A9, $06, $A0
+    .byte $40, $20, $D7, $A3, $20, $8C, $E2, $60, $A9, $01, $8D, $D3, $03, $A9, $00, $8D
+    .byte $DD, $03, $AD, $CF, $03, $48, $4A, $4A, $8D, $DC, $03, $68, $29, $03, $F0, $08
+    .byte $EE, $DC, $03, $A9, $01, $8D, $DD, $03, $60, $20, $B5, $A3, $20, $44, $A5, $AD
+    .byte $D2, $03, $D0, $3C, $A9, $00, $8D, $D3, $03, $A9, $03, $85, $1C, $20, $84, $A4
+    .byte $20, $31, $A5, $F0, $2A, $A2, $00, $BD, $60, $07, $9D, $00, $07, $BD, $E0, $07
+    .byte $9D, $80, $07, $E8, $E0, $20, $D0, $EF, $CE, $C9, $03, $A2, $00, $20, $0A, $A4
+    .byte $A9, $03, $A0, $20, $20, $D7, $A3, $20, $8C, $E2, $20, $31, $A5, $D0, $CE, $60
+    .byte $A9, $01, $8D, $D3, $03, $AD, $CF, $03, $48, $18, $6D, $C9, $03, $38, $E9, $02
+    .byte $8D, $C9, $03, $A9, $02, $85, $1C, $68, $4A, $8D, $DC, $03, $A9, $00, $A8, $20
+    .byte $D7, $A3, $20, $8C, $E2, $AD, $C9, $03, $38, $E9, $04, $8D, $C9, $03, $CE, $DC
+    .byte $03, $D0, $E9, $60, $AE, $DC, $03, $CA, $8E, $DC, $03, $F0, $09, $E0, $01, $D0
+    .byte $05, $AD, $DD, $03, $85, $1C, $60, $A9, $03, $8D, $DD, $03, $AD, $CF, $03, $85
+    .byte $02, $A9, $03, $85, $04, $20
+
+L_8553:
+    ROL $A5EB,X
+    .byte $02, $8D, $DC, $03, $A5, $06, $F0, $06, $8D, $DD, $03, $EE, $DC, $03, $60, $C9
+    .byte $E2, $D0, $0D, $AD, $CA, $03, $8D, $C8, $03, $EE, $C9, $03, $EE, $C9, $03, $60
+    .byte $8D, $00, $03, $8D, $20, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3C, $8D
+    .byte $40, $03, $09, $01, $8D, $60, $03, $20, $13, $A6, $A9, $01, $20, $00, $A6, $20
+    .byte $A0, $E2, $EE, $C8, $03, $60, $8D, $00, $03, $8D, $20, $03, $09, $01, $8D, $01
+    .byte $03, $8D, $21, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3E, $8D, $40, $03
+    .byte $8D, $41, $03, $09, $01, $8D, $60, $03, $8D, $61, $03, $20, $13, $A6, $AD, $D0
+    .byte $03, $C9, $01, $D0, $06, $20, $ED, $A5, $4C, $D6, $A5, $A9, $02, $20, $00, $A6
+    .byte $20, $A0, $E2, $EE, $C8, $03, $EE, $C8, $03, $60, $8D, $00, $03, $20, $13, $A6
+    .byte $20, $A8, $E2, $EE, $C8, $03, $60, $A9, $01, $8D, $F5, $03, $8D, $F8, $03, $8D
+    .byte $FB, $03, $8D, $FE, $03, $85, $11, $85, $14, $60, $8D, $F5, $03, $8D, $FB, $03
+    .byte $85, $11, $A9, $00, $8D, $F8, $03, $8D, $FE, $03, $85, $14, $60, $8A, $48, $98
+    .byte $48, $20, $E8, $E4, $A5, $03, $8D, $F4, $03, $48, $29, $23, $18, $69, $3C, $85
+    .byte $10, $85, $13, $68, $49, $04, $8D, $F7, $03, $A5, $02, $8D, $F3, $03, $85, $0F
+    .byte $29, $E0, $8D, $F6, $03, $85, $12, $EE, $C9, $03, $20, $E8, $E4, $A5, $03, $8D
+    .byte $FA, $03, $48, $29, $23, $18, $69, $3C, $85, $16, $85, $19, $68, $49, $04, $8D
+    .byte $FD, $03, $A5, $02, $8D, $F9, $03, $85, $15, $29, $E0, $8D, $FC, $03, $85, $18
+    .byte $CE, $C9, $03, $68, $A8, $68, $AA, $60, $A2, $00, $20, $13, $A6, $A0, $00, $BD
+    .byte $00, $07, $D0, $03, $4C, $2E, $A7, $C9, $E1, $D0, $15, $E8, $BD, $00, $07, $8D
+    .byte $C8, $03, $8D, $CA, $03, $E8, $BD, $00, $07, $8D, $C9, $03, $E8, $4C, $70, $A6
+    .byte $C9, $E2, $D0, $13, $20, $2E, $A7, $AD, $CA, $03, $8D, $C8, $03, $EE, $C9, $03
+    .byte $EE, $C9, $03, $E8, $4C, $70, $A6, $C9, $E3, $D0, $06, $EE, $C9, $03, $4C, $9A
+    .byte $A6, $C9, $01, $D0, $07, $8D, $DF, $03, $E8, $4C, $75, $A6, $C9, $9F, $D0, $0B
+    .byte $E8, $BD, $00, $07, $8D, $DE, $03, $E8, $4C, $75, $A6, $48, $AD, $DF, $03, $D0
+    .byte $20, $68, $99, $00, $03, $99, $20, $03, $AD, $DE, $03, $18, $6A, $6A, $6A, $09
+    .byte $3C, $99, $40, $03, $09, $01, $99, $60, $03, $C8, $EE, $C8, $03, $E8, $4C, $75
+    .byte $A6, $68, $99, $00, $03, $99, $20, $03, $09, $01, $99, $01, $03, $99, $21, $03
+    .byte $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3E, $99, $40, $03, $99, $41, $03, $09
+    .byte $01, $99, $60, $03, $99, $61, $03, $C8, $C8, $EE, $C8, $03, $EE, $C8, $03, $E8
+    .byte $A9, $00, $8D, $DF, $03, $4C, $75, $A6, $98, $20, $00, $A6, $88, $CC, $D0, $03
+    .byte $90, $1B, $C8, $98, $38, $ED, $D0, $03, $8D, $F8, $03, $8D, $FE, $03, $85, $14
+    .byte $98, $38, $ED, $F8, $03, $8D, $F5, $03, $8D, $FB, $03, $85, $11, $20, $A0, $E2
+    .byte $60
+
+L_8757:
+    LDA #$00
+L_8759:
+    STA $2003
+L_875C:
+    LDA #$02
+L_875E:
+    STA $4014
+L_8761:
+    RTS
+L_8762:
+    JSR sub_E44C
+L_8765:
+    JMP L_A757
+    .byte $A5, $01, $29, $EF, $85, $01, $8D, $01, $20, $A2, $A8, $A0, $07, $20, $C4, $A7
+    .byte $A2, $A8, $A0, $1A, $20, $C4, $A7, $A2, $A8, $A0, $2D, $20, $C4, $A7, $A2, $A8
+    .byte $A0, $40, $20, $C4, $A7, $A2, $A8, $A0, $53, $20, $C4, $A7, $A2, $A8, $A0, $66
+    .byte $20, $C4, $A7, $A2, $A8, $A0, $79, $20, $C4, $A7, $A2, $A8, $A0, $8C, $20, $C4
+    .byte $A7, $A2, $A8, $A0, $9F, $20, $C4, $A7, $A2, $A8, $A0, $B2, $20, $C4, $A7, $A2
+    .byte $0E, $A0, $02, $20, $5C, $EB, $20, $51, $A9, $4C, $D3, $A8, $86, $03, $84, $02
+    .byte $A0, $00, $B1, $02, $99, $00, $07, $F0, $04, $C8, $4C, $CA, $A7, $20, $34, $C1
+    .byte $A5, $E0, $48, $29, $7F, $85, $E0, $20, $34, $C1, $A9, $00, $85, $E5, $20, $6E
+    .byte $A6, $68, $85, $E0, $60, $A8, $20, $34, $C1, $A5, $E0, $48, $29, $7F, $85, $E0
+    .byte $20, $34, $C1, $A9, $00, $85, $E5, $98, $20, $65, $A5, $68, $85, $E0, $60, $E1
+    .byte $01, $02, $4D, $55, $53, $49, $43, $20, $20, $20, $4E, $4F, $2E, $30, $31, $20
+    .byte $20, $00, $E1, $01, $04, $F5, $B0, $C4, $30, $20, $CE, $B3, $B9, $B2, $CA, $20
+    .byte $30, $30, $20, $20, $00, $E1, $01, $06, $F5, $B0, $C4, $31, $20, $CE, $B3, $B9
+    .byte $B2, $CA, $20, $30, $30, $20, $20, $00, $E1, $01, $08, $F5, $B0, $C4, $32, $20
+    .byte $CE, $B3, $B9, $B2, $CA, $20, $30, $30, $20, $20, $00, $E1, $01, $0A
+
+L_8856:
+    SBC $B0,X
+L_8858:
+    CPY $33
+L_885A:
+    JSR sub_B3CE
+L_885D:
+    LDA $CAB2,Y
+L_8860:
+    JSR sub_3030
+L_8863:
+    JSR sub_0020
+L_8866:
+    SBC ($01,X)
+    .byte $0C, $F5, $B0, $C4, $34, $20, $C9, $B2, $ED, $20, $20, $20, $30, $30, $20, $20
+    .byte $00, $E1, $01, $0E, $F5, $B0, $C4, $35, $20, $BB, $DD
+
+L_8883:
+    LDX $B8,Y
+L_8885:
+    DEX
+L_8886:
+    JSR sub_3030
+L_8889:
+    JSR sub_0020
+L_888C:
+    SBC ($01,X)
+L_888E:
+    BPL L_8885
+L_8890:
+    BCS L_8856
+L_8892:
+    ROL $20,X
+    .byte $F3, $D9, $C0, $4D, $20, $20, $30, $30, $20, $20, $00, $E1, $01, $12, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $00, $E1, $01
+    .byte $14, $53, $4F, $55, $4E, $44, $20, $20, $4E, $4F, $2E, $30, $30, $31, $20, $20
+    .byte $00, $E1, $10, $14, $4F, $4E, $20, $00, $E1, $10, $14, $4F, $46, $46, $00, $A9
+    .byte $FD, $20, $96, $EB, $AD, $FE, $92, $8D, $F1, $03, $AD, $FF, $92, $8D, $F2, $03
+    .byte $A9, $01, $8D, $EC, $03, $8D, $ED, $03, $A5, $0C, $D0, $26, $AD, $03, $04, $D0
+    .byte $10, $AD, $F0, $03, $F0, $F2, $20, $74, $AC, $A9, $00, $8D, $F0, $03, $4C, $EC
+    .byte $A8, $AD, $F0, $03, $D0, $E2, $20, $74, $AC, $AD, $03, $04, $8D, $F0, $03, $4C
+    .byte $EC, $A8, $20, $1C, $A9, $4C, $EC, $A8, $A2, $00, $4A, $B0, $05, $E8, $E8, $4C
+    .byte $1E, $A9, $BD, $35, $A9, $8D, $EE, $03, $BD, $36, $A9, $8D, $EF, $03, $6C, $EE
+    .byte $03, $E2, $AB, $23, $AC, $88, $A9, $B0, $A9, $0A, $AA, $D8, $A9, $30, $AB, $70
+    .byte $AA, $CE, $C8, $03, $A9, $20, $20, $ED, $A7, $CE, $C8, $03, $60, $A9, $5C, $20
+    .byte $ED, $A7, $60, $85, $02, $A9, $0A, $85, $04, $20, $3E, $EB, $A5, $06, $48, $A5
+    .byte $02, $09, $30, $20, $ED, $A7, $68, $09, $30, $20, $ED, $A7, $60, $85, $02, $A9
+    .byte $64, $85, $04, $20, $3E, $EB, $A5, $06, $48, $A5, $02, $09, $30, $20, $ED, $A7
+    .byte $68, $4C, $57, $A9, $20, $45, $A9, $AD, $C9, $03, $C9, $10, $D0, $08, $A9, $14
+    .byte $8D, $C9, $03, $4C, $AC, $A9, $C9, $14, $D0, $08, $A9, $02, $8D, $C9, $03, $4C
+    .byte $AC, $A9, $EE, $C9, $03, $EE, $C9, $03, $20, $51, $A9, $60, $20, $45, $A9, $AD
+    .byte $C9, $03, $C9, $02, $D0, $08, $A9, $14, $8D, $C9, $03, $4C, $D4, $A9, $C9, $14
+    .byte $D0, $08, $A9, $10, $8D, $C9, $03, $4C, $D4, $A9, $CE, $C9, $03, $CE, $C9, $03
+    .byte $20, $51, $A9, $60, $AD, $C9, $03, $C9, $14, $F0, $14, $AD, $02, $04, $F0, $05
+    .byte $A9, $00, $4C, $EF, $A9, $20, $37, $AA, $AD, $EC, $03, $20, $A5, $EB, $60, $AD
+    .byte $03, $04, $F0, $05, $A9, $00, $4C, $00, $AA, $AD, $ED, $03, $8D, $F0, $03, $20
+    .byte $18, $EC, $20, $74, $AC, $60, $AD, $C9, $03, $C9, $14, $F0, $16, $AD, $02, $04
+    .byte $F0, $05, $A9, $00, $4C, $23, $AA, $A9, $01, $8D, $90, $06, $AD, $EC, $03, $20
+    .byte $A5, $EB, $60, $AD, $03, $04, $F0, $05, $A9, $00, $4C, $34, $AA, $AD, $ED, $03
+    .byte $4C, $00, $AA, $AD, $C8, $03, $48, $AD, $C9, $03, $48, $A9, $00, $8D, $90, $06
+    .byte $AD, $EC, $03, $20, $9B, $EF, $A9, $04, $8D, $C9, $03, $A2, $00, $A9, $0C, $8D
+    .byte $C8, $03, $BD, $E0, $03, $20, $57, $A9, $EE, $C9, $03, $EE, $C9, $03, $E8, $E0
+    .byte $07, $D0, $EA, $68, $8D, $C9, $03, $68, $8D, $C8, $03, $60, $AD, $C9, $03, $C9
+    .byte $02, $D0, $19, $AD, $EC, $03, $CD, $F1, $03, $90, $08, $A9, $01, $8D, $EC, $03
+    .byte $4C, $B6, $AA, $EE, $EC, $03, $AD, $EC, $03, $4C, $B6, $AA, $C9, $14, $D0, $2E
+    .byte $AD, $ED, $03, $CD, $F2, $03, $90, $08, $A9, $01, $8D, $ED, $03, $4C, $AA, $AA
+    .byte $EE, $ED, $03, $AD, $ED, $03, $A2, $0B, $8E, $C8, $03, $20, $71, $A9, $EE, $C8
+    .byte $03, $60, $A2, $0C, $8E, $C8, $03, $20, $57, $A9, $EE, $C8, $03, $60, $A2, $0C
+    .byte $8E, $C8, $03, $38, $E9, $04, $4A, $AA, $C9, $05, $B0, $46, $BD, $E0, $03, $C9
+    .byte $0F, $F0, $4C, $FE, $E0, $03, $BD, $E0, $03, $C9, $0F, $F0, $0A, $20, $5F, $AC
+    .byte $20, $57, $A9, $EE, $C8, $03, $60, $A9, $2D, $20, $ED, $A7, $A9, $2D, $20, $ED
+    .byte $A7, $EE, $C8, $03, $E0, $02, $90, $0D, $AD, $F7, $05, $3D, $29, $AB, $8D, $F7
+    .byte $05, $8D, $15, $40, $60, $AD, $F8, $05
+
+L_8B0C:
+    AND $AB29,X
+L_8B0F:
+    STA $05F8
+L_8B12:
+    STA $5015
+L_8B15:
+    RTS
+    .byte $BD, $E0, $03, $C9, $01, $F0, $06, $FE, $E0, $03, $4C, $EB, $AA, $A9, $0F, $8D
+    .byte $C8, $03, $60, $FE, $FD, $FE, $FD, $F7, $FB, $EF, $AD, $C9, $03, $C9, $02, $D0
+    .byte $19, $AD, $EC, $03, $C9, $01, $D0, $09, $AD, $F1, $03, $8D, $EC, $03, $4C, $B6
+    .byte $AA, $CE, $EC, $03, $AD, $EC, $03, $4C, $B6, $AA, $C9, $14, $D0, $19, $AD, $ED
+    .byte $03, $C9, $01, $D0, $09, $AD, $F2, $03, $8D, $ED, $03, $4C, $6A, $AB, $CE, $ED
+    .byte $03, $AD, $ED, $03, $4C, $AA, $AA, $A2, $0C, $8E, $C8, $03, $38, $E9, $04, $4A
+    .byte $AA, $C9, $05, $B0, $47, $BD, $E0, $03, $F0, $55, $DE, $E0, $03, $20, $5F, $AC
+    .byte $BD, $E0, $03, $48, $20, $57, $A9, $EE, $C8, $03, $68, $C9, $0E, $F0, $01, $60
+    .byte $E0, $02, $90, $16, $AD, $F7, $05, $1D, $DB, $AB, $8D, $F7, $05, $8D, $15, $40
+    .byte $E0, $06, $F0, $05, $A9, $FF, $9D, $8B, $05, $60, $AD, $F8, $05, $1D, $DB, $AB
+    .byte $8D, $F8, $05, $8D, $15, $50, $A9, $FF, $9D, $8B, $05, $60, $BD, $E0, $03, $F0
+    .byte $0E, $DE, $E0, $03, $A9, $00, $20, $57, $A9, $EE, $C8, $03, $4C, $96, $AB, $A9
+    .byte $0F, $8D, $C8, $03, $60, $01, $02, $01, $02, $08, $04, $10, $AD, $C9, $03, $C9
+    .byte $02, $D0, $18, $AD, $EC, $03, $AA, $18, $69, $0A, $8D, $EC, $03, $CD, $F1, $03
+    .byte $F0, $27, $90, $25, $8A, $8D, $EC, $03, $4C, $1F, $AC, $C9, $14, $D0, $1D, $AD
+    .byte $ED, $03, $AA, $18, $69, $0A, $8D, $ED, $03, $B0, $07, $CD, $F2, $03, $F0, $06
+    .byte $90, $04, $8A, $8D, $ED, $03, $4C, $AA, $AA, $4C, $B6, $AA, $60, $AD, $C9, $03
+    .byte $C9, $02, $D0, $18, $AD, $EC, $03, $AA, $38, $E9, $0A, $8D, $EC, $03, $F0, $05
+    .byte $30, $03, $4C, $5B, $AC, $8A, $8D, $EC, $03, $4C, $5B, $AC, $C9, $14, $D0, $18
+    .byte $AD, $ED, $03, $AA, $38, $E9, $0A, $8D, $ED, $03, $F0, $02, $B0, $04, $8A, $8D
+    .byte $ED, $03, $4C, $AA, $AA, $4C, $B6, $AA, $60
+
+L_8C5F:
+    CPX #$05
+L_8C61:
+    BCS L_8C73
+L_8C63:
+    PHA
+L_8C64:
+    LDA $03E7,X
+L_8C67:
+    SEC
+L_8C68:
+    SBC $03E0,X
+L_8C6B:
+    BCS L_8C6F
+L_8C6D:
+    LDA #$00
+L_8C6F:
+    STA $040E,X
+L_8C72:
+    PLA
+L_8C73:
+    RTS
+    .byte $AD, $C8, $03, $48, $AD, $C9, $03, $48, $AD, $03, $04, $F0, $07, $A2, $A8, $A0
+    .byte $C5, $4C, $8C, $AC, $A2, $A8, $A0, $CC, $20, $C4, $A7, $68, $8D, $C9, $03, $68
+    .byte $8D, $C8, $03, $60, $0A, $02, $04, $03, $00, $07, $07, $07, $06, $00, $09, $07
+    .byte $07, $04, $00, $06, $06, $06, $06, $06, $08, $08, $05, $04, $08, $0A, $0A, $06
+    .byte $09, $08, $09, $09, $06, $07, $09, $05, $05, $07, $07, $09, $07, $07, $08, $09
+    .byte $00, $07, $07, $04, $03, $05, $08, $08, $03, $03, $00, $09, $04, $02, $02, $00
+    .byte $06, $06, $06, $08, $00, $06, $06, $03, $03, $07, $07, $07, $0A, $08, $08, $02
+    .byte $07, $06, $06, $08, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $05, $05
+    .byte $08, $05, $00, $00, $00, $00, $00, $00, $08, $08, $00, $00, $05, $08, $08, $06
+    .byte $05, $07, $00, $00, $00, $00, $00, $08, $08, $08, $08, $08, $05, $05, $05, $05
+    .byte $00, $07, $07, $07, $07, $00, $00, $00, $00, $00, $00, $03, $03, $03, $03, $03
+    .byte $00, $00, $00, $00, $00, $05, $05, $04, $04, $05, $07, $07, $04, $00, $00, $09
+    .byte $00, $00, $00, $00, $03, $03, $03, $03, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00
+
+L_8D87:
+    BRK
+L_8D88:
+    BRK
+L_8D89:
+    BRK
+L_8D8A:
+    BRK
+L_8D8B:
+    BRK
+L_8D8C:
+    BRK
+L_8D8D:
+    BRK
+L_8D8E:
+    BRK
+L_8D8F:
+    BRK
+L_8D90:
+    BRK
+L_8D91:
+    BRK
+L_8D92:
+    BRK
+L_8D93:
+    BRK
+L_8D94:
+    BRK
+L_8D95:
+    BRK
+L_8D96:
+    BRK
+L_8D97:
+    BRK
+L_8D98:
+    BRK
+L_8D99:
+    BRK
+L_8D9A:
+    BRK
+L_8D9B:
+    BRK
+L_8D9C:
+    BRK
+L_8D9D:
+    BRK
+L_8D9E:
+    BRK
+L_8D9F:
+    BRK
+L_8DA0:
+    BRK
+L_8DA1:
+    BRK
+L_8DA2:
+    BRK
+L_8DA3:
+    BRK
+L_8DA4:
+    BRK
+L_8DA5:
+    BRK
+L_8DA6:
+    BRK
+L_8DA7:
+    BRK
+L_8DA8:
+    BRK
+L_8DA9:
+    BRK
+L_8DAA:
+    BRK
+L_8DAB:
+    BRK
+L_8DAC:
+    BRK
+L_8DAD:
+    BRK
+L_8DAE:
+    BRK
+L_8DAF:
+    BRK
+L_8DB0:
+    BRK
+L_8DB1:
+    BRK
+L_8DB2:
+    BRK
+L_8DB3:
+    BRK
+L_8DB4:
+    BRK
+L_8DB5:
+    BRK
+L_8DB6:
+    BRK
+L_8DB7:
+    BRK
+L_8DB8:
+    BRK
+L_8DB9:
+    BRK
+L_8DBA:
+    BRK
+L_8DBB:
+    BRK
+L_8DBC:
+    BRK
+L_8DBD:
+    BRK
+L_8DBE:
+    BRK
+L_8DBF:
+    BRK
+L_8DC0:
+    BRK
+L_8DC1:
+    BRK
+L_8DC2:
+    BRK
+L_8DC3:
+    BRK
+L_8DC4:
+    BRK
+L_8DC5:
+    BRK
+L_8DC6:
+    BRK
+L_8DC7:
+    BRK
+L_8DC8:
+    BRK
+L_8DC9:
+    BRK
+L_8DCA:
+    BRK
+L_8DCB:
+    BRK
+L_8DCC:
+    BRK
+L_8DCD:
+    BRK
+L_8DCE:
+    BRK
+L_8DCF:
+    BRK
+L_8DD0:
+    BRK
+L_8DD1:
+    BRK
+L_8DD2:
+    BRK
+L_8DD3:
+    BRK
+L_8DD4:
+    BRK
+L_8DD5:
+    BRK
+L_8DD6:
+    BRK
+L_8DD7:
+    BRK
+L_8DD8:
+    JSR sub_E2B4
+L_8DDB:
+    LDX #$00
+L_8DDD:
+    LDA #$0E
+L_8DDF:
+    STA $03E0,X
+L_8DE2:
+    JSR sub_AC5F
+L_8DE5:
+    INX
+L_8DE6:
+    CPX #$05
+L_8DE8:
+    BNE L_8DDF
+L_8DEA:
+    LDA $0422
+L_8DED:
+    STA $5000
+L_8DF0:
+    LDA $0423
+L_8DF3:
+    STA $5004
+L_8DF6:
+    LDA $0424
+L_8DF9:
+    STA $4000
+L_8DFC:
+    LDA $0425
+L_8DFF:
+    STA $4004
+L_8E02:
+    LDA #$30
+L_8E04:
+    STA $400C
+L_8E07:
+    RTS
+    .byte $A0, $00, $A2, $20, $A9, $3C, $91, $0F, $09, $01, $91, $15, $C8, $CA, $D0, $F4
+    .byte $60, $A0, $00, $A6, $11, $B9, $40, $03, $91, $0F, $B9, $60, $03, $91, $15, $C8
+    .byte $CA, $D0, $F2, $A5, $14, $F0, $16, $85, $1B, $98, $AA, $A0, $00, $BD, $40, $03
+    .byte $91, $12, $BD, $60, $03, $91, $18, $E8, $C8, $C6, $1B, $D0, $F0, $60, $A2, $00
+    .byte $A0, $00, $A5, $11, $F0, $0D, $85, $1B, $BD, $40, $03, $91, $0F, $E8, $C8, $C6
+    .byte $1B, $D0, $F5, $A5, $14, $F0, $0F, $85, $1B, $A0, $00, $BD, $40, $03, $91, $12
+    .byte $E8, $C8, $C6, $1B, $D0, $F5, $60, $A0, $00, $A6, $17, $B9, $60, $03, $91, $15
+    .byte $C8, $CA, $D0, $F7, $A5, $1A, $F0, $11, $85, $1B, $98, $AA, $A0, $00, $BD, $60
+    .byte $03, $91, $18, $E8, $C8, $C6, $1B, $D0, $F5, $60, $A0, $00, $A2, $00, $A5, $11
+    .byte $F0, $13, $BD, $40, $03, $91, $0F, $98, $18, $69, $20, $A8, $D0, $02, $E6, $10
+    .byte $E8, $C6, $11, $D0, $ED, $A5, $14, $F0, $17, $85, $1B, $A0, $00, $BD, $40, $03
+    .byte $91, $12, $98, $18, $69, $20, $A8, $D0, $02, $E6, $13, $E8, $C6, $1B, $D0, $ED
+    .byte $60, $A0, $00, $A2, $20, $BD, $40, $03, $91, $15, $98, $18, $69, $20, $A8, $D0
+    .byte $02, $E6, $16, $E8, $C6, $17, $D0, $ED, $A5, $1A, $F0, $17, $85, $1B, $A0, $00
+    .byte $BD, $40, $03, $91, $18, $98, $18, $69, $20, $A8, $D0, $02, $E6, $19, $E8, $C6
+    .byte $1B, $D0, $ED, $60, $A0, $00, $A2, $00, $BD, $40, $03, $91, $0F, $BD, $60, $03
+    .byte $91, $15, $98, $18, $69, $20, $A8, $D0, $04, $E6, $10, $E6, $16, $E8, $C6, $11
+    .byte $D0, $E6, $A5, $14, $F0, $1E, $85, $1B, $A0, $00, $BD, $40, $03, $91, $12, $BD
+    .byte $60, $03, $91, $18, $98, $18, $69, $20, $A8, $D0, $04, $E6, $13, $E6, $19, $E8
+    .byte $C6, $1B, $D0, $E6, $60, $A2, $00, $AC, $D0, $03, $AD, $02, $20, $AD, $F4, $03
+    .byte $8D, $06, $20, $AD, $F3, $03, $8D, $06, $20, $BD, $00, $03, $F0, $16, $8D, $07
+    .byte $20, $E8, $88, $D0, $F4, $AD, $F7, $03, $8D, $06, $20, $AD, $F6, $03, $8D, $06
+    .byte $20, $4C, $51, $AF, $A2, $20, $AC, $D0, $03, $AD, $02, $20, $AD, $FA, $03, $8D
+    .byte $06, $20, $AD, $F9, $03, $8D, $06, $20, $BD, $00, $03, $F0, $19, $8D, $07, $20
+    .byte $E8, $88, $D0, $F4, $AD, $02, $20, $AD, $FD, $03, $8D, $06, $20, $AD, $FC, $03
+    .byte $8D, $06, $20, $4C, $80, $AF, $60
+
+L_8F9F:
+    LDA $2002
+L_8FA2:
+    LDA #$3F
+L_8FA4:
+    STA $2006
+L_8FA7:
+    LDA #$00
+L_8FA9:
+    STA $2006
+L_8FAC:
+    LDX #$00
+L_8FAE:
+    LDA $0380,X
+L_8FB1:
+    STA $2007
+L_8FB4:
+    INX
+L_8FB5:
+    CPX #$20
+L_8FB7:
+    BNE L_8FAE
+L_8FB9:
+    LDA $2002
+L_8FBC:
+    LDA #$3F
+L_8FBE:
+    STA $2006
+L_8FC1:
+    LDA #$00
+L_8FC3:
+    STA $2006
+L_8FC6:
+    STA $2006
+L_8FC9:
+    STA $2006
+L_8FCC:
+    RTS
+L_8FCD:
+    LDA $E6
+L_8FCF:
+    BEQ L_8FD9
+L_8FD1:
+    JSR sub_AF9F
+L_8FD4:
+    LDA #$00
+L_8FD6:
+    STA $E6
+L_8FD8:
+    RTS
+L_8FD9:
+    LDA $2002
+L_8FDC:
+    LDA #$3F
+L_8FDE:
+    STA $2006
+L_8FE1:
+    LDA #$10
+L_8FE3:
+    STA $2006
+L_8FE6:
+    LDX #$00
+L_8FE8:
+    LDA $0390,X
+L_8FEB:
+    STA $2007
+L_8FEE:
+    INX
+L_8FEF:
+    CPX #$10
+L_8FF1:
+    BNE L_8FE8
+L_8FF3:
+    JMP L_AFB9
+    .byte $AD, $02, $20, $A9, $3F, $8D, $06, $20, $A9, $00, $8D, $06, $20, $A2, $00, $BD
+    .byte $80, $03, $8D, $07, $20, $E8, $E0, $10, $D0, $F5
+
+L_9010:
+    JMP L_AFB9
+L_9013:
+    LDX #$00
+L_9015:
+    LDA #$0F
+L_9017:
+    STA $0380,X
+L_901A:
+    STA $03A0,X
+L_901D:
+    INX
+L_901E:
+    CPX #$20
+L_9020:
+    BNE L_9015
+L_9022:
+    JMP L_AF9F
+    .byte $8D, $FB, $05, $A5, $00, $29, $FB, $85, $00, $60, $20, $5C, $B0, $20, $63, $B0
+    .byte $A9, $01, $4C, $25, $B0, $20, $48, $B0, $20, $5C, $B0, $20, $63, $B0, $A9, $06
+    .byte $4C, $25, $B0, $A5, $00, $09, $04, $85, $00, $8D, $00, $20, $60, $A5, $00, $29
+    .byte $FB, $85, $00, $8D, $00, $20, $60, $A2, $00, $A0, $00, $4C, $67, $B0, $A2, $06
+    .byte $A0, $20, $AD, $02, $20, $BD, $F4, $03, $8D, $06, $20, $BD, $F3, $03, $8D, $06
+    .byte $20, $BD, $F5, $03, $8E, $01, $04, $AA, $B9, $00, $03, $8D, $07, $20, $C8, $CA
+    .byte $D0, $F6, $AE, $01, $04, $E8, $E8, $E8, $AD, $02, $20, $BD, $F4, $03, $8D, $06
+    .byte $20, $BD, $F3, $03, $8D, $06, $20, $BD, $F5, $03, $F0, $0B, $AA, $B9, $00, $03
+    .byte $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $AD, $02, $20, $AD, $F4, $03, $8D, $06
+    .byte $20, $AD, $F3, $03, $8D, $06, $20, $AD, $00, $03, $8D, $07, $20, $A9, $07, $8D
+    .byte $FB, $05, $60, $AD, $DE, $03, $18, $6A, $6A, $6A, $09, $3D, $A0, $00, $91, $0F
+    .byte $60, $20, $07, $B1, $A9, $02, $4C, $F1, $B0, $A5, $00, $09, $04, $8D, $00, $20
+    .byte $20, $07, $B1, $A5, $00, $29, $FB, $8D, $00, $20, $A9, $04, $8D, $FB, $05, $AD
+    .byte $02, $20, $A5, $5B, $8D, $05, $20, $A5, $5C, $8D, $05, $20, $A5, $00, $8D, $00
+    .byte $20, $60, $AD, $02, $20, $AD, $F4, $03, $8D, $06, $20, $A5, $0F, $8D, $06, $20
+    .byte $A0, $00, $A6, $11, $F0, $0A, $B9, $00, $03, $8D, $07, $20, $C8, $CA, $D0, $F6
+    .byte $A6, $14, $F0, $18, $AD, $02, $20, $AD, $F7, $03, $8D, $06, $20, $A5, $12, $8D
+    .byte $06, $20, $B9, $00, $03, $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $A5, $1C, $48
+    .byte $A2, $00, $A0, $00, $20, $76, $B1, $C6, $1C, $F0, $1D, $A2, $20, $A0, $03, $20
+    .byte $76, $B1, $C6, $1C, $F0, $12, $A2, $40, $A0, $06, $20, $76, $B1, $C6, $1C, $F0
+    .byte $07, $A2, $60, $A0, $09, $20, $76, $B1, $68, $85, $1C, $A9, $08, $8D, $FB, $05
+    .byte $60, $AD, $02, $20, $B9, $F4, $03, $8D, $06, $20, $B9, $F3, $03, $8D, $06, $20
+    .byte $AD, $F5, $03, $85, $1F, $BD, $00, $07, $8D, $07, $20, $E8, $C6, $1F, $D0, $F5
+    .byte $AD, $F8, $03, $F0, $1D, $85, $1F, $B9, $F4, $03, $49, $04, $8D, $06, $20, $B9
+    .byte $F3, $03, $29, $E0, $8D, $06, $20, $BD, $00, $07, $8D, $07, $20, $E8, $C6, $1F
+    .byte $D0, $F5, $60, $A0, $00, $AE, $F5, $03, $B9, $80, $07, $91, $0F, $A5, $1C, $C9
+    .byte $01, $F0, $1B, $B9, $A0, $07, $91, $12, $A5, $1C, $C9, $02, $F0, $10, $B9, $C0
+    .byte $07, $91, $15, $A5, $1C, $C9, $03, $F0, $05, $B9, $E0, $07, $91, $18, $C8, $CA
+    .byte $D0, $D6, $AD, $F8, $03, $F0, $4A, $85, $1F, $98, $AA, $A0, $00, $A5, $0F, $29
+    .byte $E0, $85, $0F, $A5, $12, $29, $E0, $85, $12, $A5, $15, $29, $E0, $85, $15, $A5
+    .byte $18, $29, $E0, $85, $18, $BD, $80, $07, $91, $0F, $A5, $1C, $C9, $01, $F0, $1B
+    .byte $BD, $A0, $07, $91, $12, $A5, $1C, $C9, $02, $F0, $10, $BD, $C0, $07, $91, $15
+    .byte $A5, $1C, $C9, $03, $F0, $05, $BD, $E0, $07, $91, $18, $C8, $E8, $C6, $1F, $D0
+    .byte $D4, $60, $A2, $00, $AD, $02, $20, $BD, $6E, $06, $8D, $06, $20, $BD, $5E, $06
+    .byte $8D, $06, $20, $BD, $1E, $06, $8D, $07, $20, $BD, $2E, $06, $8D, $07, $20, $AD
+    .byte $02, $20, $BD, $6E, $06, $8D, $06, $20, $BD, $5E, $06, $09, $20, $8D, $06, $20
+    .byte $BD, $3E, $06, $8D, $07, $20, $BD, $4E, $06, $8D, $07, $20, $E8, $EC, $76, $06
+    .byte $D0, $C2, $A9, $09, $8D, $FB, $05, $60, $A2, $00, $BD, $56, $06, $85, $1D, $BD
+    .byte $66, $06, $85, $1E, $A0, $00, $BD, $16, $06, $91, $1D, $C8, $BD, $26, $06, $91
+    .byte $1D, $A0, $20, $BD, $36, $06, $91, $1D, $C8, $BD, $46, $06, $91, $1D, $E8, $EC
+    .byte $76, $06, $D0, $D6, $60, $A2, $00, $AD, $02, $20, $BD, $20, $07, $8D, $06, $20
+    .byte $BD, $00, $07, $8D, $06, $20, $BD, $1E, $06, $8D, $07, $20, $AD, $02, $20, $BD
+    .byte $28, $07, $8D, $06, $20, $BD, $08, $07, $8D, $06, $20, $BD, $2E, $06, $8D, $07
+    .byte $20, $AD, $02, $20, $BD, $30, $07, $8D, $06, $20, $BD, $10, $07, $8D, $06, $20
+    .byte $BD, $3E, $06, $8D, $07, $20, $AD, $02, $20, $BD, $38, $07, $8D, $06, $20, $BD
+    .byte $18, $07, $8D, $06, $20, $BD, $4E, $06, $8D, $07, $20, $E8, $EC, $76, $06, $D0
+    .byte $A6, $A9, $0A, $8D, $FB, $05, $60, $A2, $00, $A0, $00, $BD, $40, $07, $85, $1D
+    .byte $BD, $60, $07, $85, $1E, $BD, $16, $06, $91, $1D, $BD, $48, $07, $85, $1D, $BD
+    .byte $68, $07, $85, $1E, $BD, $26, $06, $91, $1D, $BD, $50, $07, $85, $1D, $BD, $70
+    .byte $07, $85, $1E, $BD, $36, $06, $91, $1D, $BD, $58, $07, $85, $1D, $BD, $78, $07
+    .byte $85, $1E, $BD, $46, $06, $91, $1D, $E8, $EC, $76, $06, $D0, $BE, $60, $A2, $00
+    .byte $A0, $00, $4C, $5E, $B3, $A2, $06, $A0, $20, $AD, $02, $20, $BD, $81, $07, $8D
+    .byte $06, $20, $BD, $80, $07, $8D, $06, $20, $BD, $82, $07, $8E, $01, $04, $AA, $B9
+    .byte $00, $07, $8D, $07, $20, $C8, $CA, $D0, $F6, $AE, $01, $04, $E8, $E8, $E8, $AD
+    .byte $02, $20, $BD, $81, $07, $8D, $06, $20, $BD, $80, $07, $8D, $06, $20, $BD, $82
+    .byte $07, $F0, $0B, $AA, $B9, $00, $07, $8D, $07, $20, $C8, $CA, $D0, $F6, $60, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+L_93CE:
+    BRK
+L_93CF:
+    BRK
+L_93D0:
+    BRK
+L_93D1:
+    BRK
+L_93D2:
+    BRK
+L_93D3:
+    BRK
+L_93D4:
+    BRK
+L_93D5:
+    BRK
+L_93D6:
+    BRK
+L_93D7:
+    BRK
+L_93D8:
+    BRK
+L_93D9:
+    BRK
+L_93DA:
+    BRK
+L_93DB:
+    BRK
+L_93DC:
+    BRK
+L_93DD:
+    BRK
+L_93DE:
+    BRK
+L_93DF:
+    BRK
+L_93E0:
+    BRK
+L_93E1:
+    BRK
+L_93E2:
+    BRK
+L_93E3:
+    BRK
+L_93E4:
+    BRK
+L_93E5:
+    BRK
+L_93E6:
+    BRK
+L_93E7:
+    BRK
+L_93E8:
+    BRK
+L_93E9:
+    BRK
+L_93EA:
+    BRK
+L_93EB:
+    BRK
+L_93EC:
+    BRK
+L_93ED:
+    BRK
+L_93EE:
+    BRK
+L_93EF:
+    BRK
+L_93F0:
+    BRK
+L_93F1:
+    BRK
+L_93F2:
+    BRK
+L_93F3:
+    BRK
+L_93F4:
+    BRK
+L_93F5:
+    BRK
+L_93F6:
+    BRK
+L_93F7:
+    BRK
+L_93F8:
+    BRK
+L_93F9:
+    BRK
+L_93FA:
+    BRK
+L_93FB:
+    BRK
+L_93FC:
+    BRK
+L_93FD:
+    BRK
+L_93FE:
+    BRK
+L_93FF:
+    BRK
+L_9400:
+    BRK
+L_9401:
+    BRK
+L_9402:
+    BRK
+L_9403:
+    BRK
+L_9404:
+    BRK
+L_9405:
+    BRK
+L_9406:
+    BRK
+L_9407:
+    BRK
+L_9408:
+    BRK
+L_9409:
+    BRK
+L_940A:
+    BRK
+L_940B:
+    BRK
+L_940C:
+    BRK
+L_940D:
+    BRK
+L_940E:
+    BRK
+L_940F:
+    BRK
+L_9410:
+    BRK
+L_9411:
+    BRK
+L_9412:
+    BRK
+L_9413:
+    BRK
+L_9414:
+    BRK
+L_9415:
+    BRK
+L_9416:
+    BRK
+L_9417:
+    BRK
+L_9418:
+    BRK
+L_9419:
+    BRK
+L_941A:
+    BRK
+L_941B:
+    BRK
+L_941C:
+    BRK
+L_941D:
+    BRK
+L_941E:
+    BRK
+L_941F:
+    BRK
+L_9420:
+    BRK
+L_9421:
+    BRK
+L_9422:
+    BRK
+L_9423:
+    BRK
+L_9424:
+    BRK
+L_9425:
+    BRK
+L_9426:
+    BRK
+L_9427:
+    BRK
+L_9428:
+    BRK
+L_9429:
+    BRK
+L_942A:
+    BRK
+L_942B:
+    BRK
+L_942C:
+    BRK
+L_942D:
+    BRK
+L_942E:
+    BRK
+L_942F:
+    BRK
+L_9430:
+    BRK
+L_9431:
+    BRK
+L_9432:
+    BRK
+L_9433:
+    BRK
+L_9434:
+    BRK
+L_9435:
+    BRK
+L_9436:
+    BRK
+L_9437:
+    BRK
+L_9438:
+    BRK
+L_9439:
+    BRK
+L_943A:
+    BRK
+L_943B:
+    BRK
+L_943C:
+    BRK
+L_943D:
+    BRK
+L_943E:
+    BRK
+L_943F:
+    BRK
+L_9440:
+    BRK
+L_9441:
+    BRK
+L_9442:
+    BRK
+L_9443:
+    BRK
+L_9444:
+    BRK
+L_9445:
+    BRK
+L_9446:
+    BRK
+L_9447:
+    BRK
+L_9448:
+    BRK
+L_9449:
+    BRK
+L_944A:
+    BRK
+L_944B:
+    BRK
+L_944C:
+    BRK
+L_944D:
+    BRK
+L_944E:
+    BRK
+L_944F:
+    BRK
+L_9450:
+    BRK
+L_9451:
+    BRK
+L_9452:
+    BRK
+L_9453:
+    BRK
+L_9454:
+    BRK
+L_9455:
+    BRK
+L_9456:
+    BRK
+L_9457:
+    BRK
+L_9458:
+    BRK
+L_9459:
+    BRK
+L_945A:
+    BRK
+L_945B:
+    BRK
+L_945C:
+    BRK
+L_945D:
+    BRK
+L_945E:
+    BRK
+L_945F:
+    BRK
+L_9460:
+    BRK
+L_9461:
+    BRK
+L_9462:
+    BRK
+L_9463:
+    BRK
+L_9464:
+    BRK
+L_9465:
+    BRK
+L_9466:
+    BRK
+L_9467:
+    BRK
+L_9468:
+    BRK
+L_9469:
+    BRK
+L_946A:
+    BRK
+L_946B:
+    BRK
+L_946C:
+    BRK
+L_946D:
+    BRK
+L_946E:
+    BRK
+L_946F:
+    BRK
+L_9470:
+    BRK
+L_9471:
+    BRK
+L_9472:
+    BRK
+L_9473:
+    BRK
+L_9474:
+    BRK
+L_9475:
+    BRK
+L_9476:
+    BRK
+L_9477:
+    BRK
+L_9478:
+    BRK
+L_9479:
+    BRK
+L_947A:
+    BRK
+L_947B:
+    BRK
+L_947C:
+    BRK
+L_947D:
+    BRK
+L_947E:
+    BRK
+L_947F:
+    BRK
+L_9480:
+    BRK
+L_9481:
+    BRK
+L_9482:
+    BRK
+L_9483:
+    BRK
+L_9484:
+    BRK
+L_9485:
+    BRK
+L_9486:
+    BRK
+L_9487:
+    BRK
+L_9488:
+    BRK
+L_9489:
+    BRK
+L_948A:
+    BRK
+L_948B:
+    BRK
+L_948C:
+    BRK
+L_948D:
+    BRK
+L_948E:
+    BRK
+L_948F:
+    BRK
+L_9490:
+    BRK
+L_9491:
+    BRK
+L_9492:
+    BRK
+L_9493:
+    BRK
+L_9494:
+    BRK
+L_9495:
+    BRK
+L_9496:
+    BRK
+L_9497:
+    BRK
+L_9498:
+    BRK
+L_9499:
+    BRK
+L_949A:
+    BRK
+L_949B:
+    BRK
+L_949C:
+    BRK
+L_949D:
+    BRK
+L_949E:
+    BRK
+L_949F:
+    BRK
+L_94A0:
+    BRK
+L_94A1:
+    BRK
+L_94A2:
+    BRK
+L_94A3:
+    BRK
+L_94A4:
+    BRK
+L_94A5:
+    BRK
+L_94A6:
+    BRK
+L_94A7:
+    BRK
+L_94A8:
+    BRK
+L_94A9:
+    BRK
+L_94AA:
+    BRK
+L_94AB:
+    BRK
+L_94AC:
+    BRK
+L_94AD:
+    BRK
+L_94AE:
+    BRK
+L_94AF:
+    BRK
+L_94B0:
+    BRK
+L_94B1:
+    BRK
+L_94B2:
+    BRK
+L_94B3:
+    BRK
+L_94B4:
+    BRK
+L_94B5:
+    BRK
+L_94B6:
+    BRK
+L_94B7:
+    BRK
+L_94B8:
+    BRK
+L_94B9:
+    BRK
+L_94BA:
+    BRK
+L_94BB:
+    BRK
+L_94BC:
+    BRK
+L_94BD:
+    BRK
+L_94BE:
+    BRK
+L_94BF:
+    BRK
+L_94C0:
+    BRK
+L_94C1:
+    BRK
+L_94C2:
+    BRK
+L_94C3:
+    BRK
+L_94C4:
+    BRK
+L_94C5:
+    BRK
+L_94C6:
+    BRK
+L_94C7:
+    BRK
+L_94C8:
+    BRK
+L_94C9:
+    BRK
+L_94CA:
+    BRK
+L_94CB:
+    BRK
+L_94CC:
+    BRK
+L_94CD:
+    BRK
+L_94CE:
+    BRK
+L_94CF:
+    BRK
+L_94D0:
+    BRK
+L_94D1:
+    BRK
+L_94D2:
+    BRK
+L_94D3:
+    BRK
+L_94D4:
+    BRK
+L_94D5:
+    BRK
+L_94D6:
+    BRK
+L_94D7:
+    BRK
+L_94D8:
+    BRK
+L_94D9:
+    BRK
+L_94DA:
+    BRK
+L_94DB:
+    BRK
+L_94DC:
+    BRK
+L_94DD:
+    BRK
+L_94DE:
+    BRK
+L_94DF:
+    BRK
+L_94E0:
+    BRK
+L_94E1:
+    BRK
+L_94E2:
+    BRK
+L_94E3:
+    BRK
+L_94E4:
+    BRK
+L_94E5:
+    BRK
+L_94E6:
+    BRK
+L_94E7:
+    BRK
+L_94E8:
+    BRK
+L_94E9:
+    BRK
+L_94EA:
+    BRK
+L_94EB:
+    BRK
+L_94EC:
+    BRK
+L_94ED:
+    BRK
+L_94EE:
+    BRK
+L_94EF:
+    BRK
+L_94F0:
+    BRK
+L_94F1:
+    BRK
+L_94F2:
+    BRK
+L_94F3:
+    BRK
+L_94F4:
+    BRK
+L_94F5:
+    BRK
+L_94F6:
+    BRK
+L_94F7:
+    BRK
+L_94F8:
+    BRK
+L_94F9:
+    BRK
+L_94FA:
+    BRK
+L_94FB:
+    BRK
+L_94FC:
+    BRK
+L_94FD:
+    BRK
+L_94FE:
+    BRK
+L_94FF:
+    BRK
+L_9500:
+    BRK
+L_9501:
+    BRK
+L_9502:
+    BRK
+L_9503:
+    BRK
+L_9504:
+    BRK
+L_9505:
+    BRK
+L_9506:
+    BRK
+L_9507:
+    BRK
+L_9508:
+    BRK
+L_9509:
+    BRK
+L_950A:
+    BRK
+L_950B:
+    BRK
+L_950C:
+    BRK
+L_950D:
+    BRK
+L_950E:
+    BRK
+L_950F:
+    BRK
+L_9510:
+    BRK
+L_9511:
+    BRK
+L_9512:
+    BRK
+L_9513:
+    BRK
+L_9514:
+    BRK
+L_9515:
+    BRK
+L_9516:
+    BRK
+L_9517:
+    BRK
+L_9518:
+    BRK
+L_9519:
+    BRK
+L_951A:
+    BRK
+L_951B:
+    BRK
+L_951C:
+    BRK
+L_951D:
+    BRK
+L_951E:
+    BRK
+L_951F:
+    BRK
+L_9520:
+    BRK
+L_9521:
+    BRK
+L_9522:
+    BRK
+L_9523:
+    BRK
+L_9524:
+    BRK
+L_9525:
+    BRK
+L_9526:
+    BRK
+L_9527:
+    BRK
+L_9528:
+    BRK
+L_9529:
+    BRK
+L_952A:
+    BRK
+L_952B:
+    BRK
+L_952C:
+    BRK
+L_952D:
+    BRK
+L_952E:
+    BRK
+L_952F:
+    BRK
+L_9530:
+    BRK
+L_9531:
+    BRK
+L_9532:
+    BRK
+L_9533:
+    BRK
+L_9534:
+    BRK
+L_9535:
+    BRK
+L_9536:
+    BRK
+L_9537:
+    BRK
+L_9538:
+    BRK
+L_9539:
+    BRK
+L_953A:
+    BRK
+L_953B:
+    BRK
+L_953C:
+    BRK
+L_953D:
+    BRK
+L_953E:
+    BRK
+L_953F:
+    BRK
+L_9540:
+    BRK
+L_9541:
+    BRK
+L_9542:
+    BRK
+L_9543:
+    BRK
+L_9544:
+    BRK
+L_9545:
+    BRK
+L_9546:
+    BRK
+L_9547:
+    BRK
+L_9548:
+    BRK
+L_9549:
+    BRK
+L_954A:
+    BRK
+L_954B:
+    BRK
+L_954C:
+    BRK
+L_954D:
+    BRK
+L_954E:
+    BRK
+L_954F:
+    BRK
+L_9550:
+    BRK
+L_9551:
+    BRK
+L_9552:
+    BRK
+L_9553:
+    BRK
+L_9554:
+    BRK
+L_9555:
+    BRK
+L_9556:
+    BRK
+L_9557:
+    BRK
+L_9558:
+    BRK
+L_9559:
+    BRK
+L_955A:
+    BRK
+L_955B:
+    BRK
+L_955C:
+    BRK
+L_955D:
+    BRK
+L_955E:
+    BRK
+L_955F:
+    BRK
+L_9560:
+    BRK
+L_9561:
+    BRK
+L_9562:
+    BRK
+L_9563:
+    BRK
+L_9564:
+    BRK
+L_9565:
+    BRK
+L_9566:
+    BRK
+L_9567:
+    BRK
+L_9568:
+    BRK
+L_9569:
+    BRK
+L_956A:
+    BRK
+L_956B:
+    BRK
+L_956C:
+    BRK
+L_956D:
+    BRK
+L_956E:
+    BRK
+L_956F:
+    BRK
+L_9570:
+    BRK
+L_9571:
+    BRK
+L_9572:
+    BRK
+L_9573:
+    BRK
+L_9574:
+    BRK
+L_9575:
+    BRK
+L_9576:
+    BRK
+L_9577:
+    BRK
+L_9578:
+    BRK
+L_9579:
+    BRK
+L_957A:
+    BRK
+L_957B:
+    BRK
+L_957C:
+    BRK
+L_957D:
+    BRK
+L_957E:
+    BRK
+L_957F:
+    BRK
+L_9580:
+    BRK
+L_9581:
+    BRK
+L_9582:
+    BRK
+L_9583:
+    BRK
+L_9584:
+    BRK
+L_9585:
+    BRK
+L_9586:
+    BRK
+L_9587:
+    BRK
+L_9588:
+    BRK
+L_9589:
+    BRK
+L_958A:
+    BRK
+L_958B:
+    BRK
+L_958C:
+    BRK
+L_958D:
+    BRK
+L_958E:
+    BRK
+L_958F:
+    BRK
+L_9590:
+    BRK
+L_9591:
+    BRK
+L_9592:
+    BRK
+L_9593:
+    BRK
+L_9594:
+    BRK
+L_9595:
+    BRK
+L_9596:
+    BRK
+L_9597:
+    BRK
+L_9598:
+    BRK
+L_9599:
+    BRK
+L_959A:
+    BRK
+L_959B:
+    BRK
+L_959C:
+    BRK
+L_959D:
+    BRK
+L_959E:
+    BRK
+L_959F:
+    BRK
+L_95A0:
+    BRK
+L_95A1:
+    BRK
+L_95A2:
+    BRK
+L_95A3:
+    BRK
+L_95A4:
+    BRK
+L_95A5:
+    BRK
+L_95A6:
+    BRK
+L_95A7:
+    BRK
+L_95A8:
+    BRK
+L_95A9:
+    BRK
+L_95AA:
+    BRK
+L_95AB:
+    BRK
+L_95AC:
+    BRK
+L_95AD:
+    BRK
+L_95AE:
+    BRK
+L_95AF:
+    BRK
+L_95B0:
+    BRK
+L_95B1:
+    BRK
+L_95B2:
+    BRK
+L_95B3:
+    BRK
+L_95B4:
+    BRK
+L_95B5:
+    BRK
+L_95B6:
+    BRK
+L_95B7:
+    BRK
+L_95B8:
+    BRK
+L_95B9:
+    BRK
+L_95BA:
+    BRK
+L_95BB:
+    BRK
+L_95BC:
+    BRK
+L_95BD:
+    BRK
+L_95BE:
+    BRK
+L_95BF:
+    BRK
+L_95C0:
+    BRK
+L_95C1:
+    BRK
+L_95C2:
+    BRK
+L_95C3:
+    BRK
+L_95C4:
+    BRK
+L_95C5:
+    BRK
+L_95C6:
+    BRK
+L_95C7:
+    BRK
+L_95C8:
+    BRK
+L_95C9:
+    BRK
+L_95CA:
+    BRK
+L_95CB:
+    BRK
+L_95CC:
+    BRK
+L_95CD:
+    BRK
+L_95CE:
+    BRK
+L_95CF:
+    BRK
+L_95D0:
+    BRK
+L_95D1:
+    BRK
+L_95D2:
+    BRK
+L_95D3:
+    BRK
+L_95D4:
+    BRK
+L_95D5:
+    BRK
+L_95D6:
+    BRK
+L_95D7:
+    BRK
+L_95D8:
+    BRK
+L_95D9:
+    BRK
+L_95DA:
+    BRK
+L_95DB:
+    BRK
+L_95DC:
+    BRK
+L_95DD:
+    BRK
+L_95DE:
+    BRK
+L_95DF:
+    BRK
+L_95E0:
+    BRK
+L_95E1:
+    BRK
+L_95E2:
+    BRK
+L_95E3:
+    BRK
+L_95E4:
+    BRK
+L_95E5:
+    BRK
+L_95E6:
+    BRK
+L_95E7:
+    BRK
+L_95E8:
+    BRK
+L_95E9:
+    BRK
+L_95EA:
+    BRK
+L_95EB:
+    BRK
+L_95EC:
+    BRK
+L_95ED:
+    BRK
+L_95EE:
+    BRK
+L_95EF:
+    BRK
+L_95F0:
+    BRK
+L_95F1:
+    BRK
+L_95F2:
+    BRK
+L_95F3:
+    BRK
+L_95F4:
+    BRK
+L_95F5:
+    BRK
+L_95F6:
+    BRK
+L_95F7:
+    BRK
+L_95F8:
+    BRK
+L_95F9:
+    BRK
+L_95FA:
+    BRK
+L_95FB:
+    BRK
+L_95FC:
+    BRK
+L_95FD:
+    BRK
+L_95FE:
+    BRK
+L_95FF:
+    BRK
+L_9600:
+    BRK
+L_9601:
+    BRK
+L_9602:
+    BRK
+L_9603:
+    BRK
+L_9604:
+    BRK
+L_9605:
+    BRK
+L_9606:
+    BRK
+L_9607:
+    BRK
+L_9608:
+    BRK
+L_9609:
+    BRK
+L_960A:
+    BRK
+L_960B:
+    BRK
+L_960C:
+    BRK
+L_960D:
+    BRK
+L_960E:
+    BRK
+L_960F:
+    BRK
+L_9610:
+    BRK
+L_9611:
+    BRK
+L_9612:
+    BRK
+L_9613:
+    BRK
+L_9614:
+    BRK
+L_9615:
+    BRK
+L_9616:
+    BRK
+L_9617:
+    BRK
+L_9618:
+    BRK
+L_9619:
+    BRK
+L_961A:
+    BRK
+L_961B:
+    BRK
+L_961C:
+    BRK
+L_961D:
+    BRK
+L_961E:
+    BRK
+L_961F:
+    BRK
+L_9620:
+    BRK
+L_9621:
+    BRK
+L_9622:
+    BRK
+L_9623:
+    BRK
+L_9624:
+    BRK
+L_9625:
+    BRK
+L_9626:
+    BRK
+L_9627:
+    BRK
+L_9628:
+    BRK
+L_9629:
+    BRK
+L_962A:
+    BRK
+L_962B:
+    BRK
+L_962C:
+    BRK
+L_962D:
+    BRK
+L_962E:
+    BRK
+L_962F:
+    BRK
+L_9630:
+    BRK
+L_9631:
+    BRK
+L_9632:
+    BRK
+L_9633:
+    BRK
+L_9634:
+    BRK
+L_9635:
+    BRK
+L_9636:
+    BRK
+L_9637:
+    BRK
+L_9638:
+    BRK
+L_9639:
+    BRK
+L_963A:
+    BRK
+L_963B:
+    BRK
+L_963C:
+    BRK
+L_963D:
+    BRK
+L_963E:
+    BRK
+L_963F:
+    BRK
+L_9640:
+    BRK
+L_9641:
+    BRK
+L_9642:
+    BRK
+L_9643:
+    BRK
+L_9644:
+    BRK
+L_9645:
+    BRK
+L_9646:
+    BRK
+L_9647:
+    BRK
+L_9648:
+    BRK
+L_9649:
+    BRK
+L_964A:
+    BRK
+L_964B:
+    BRK
+L_964C:
+    BRK
+L_964D:
+    BRK
+L_964E:
+    BRK
+L_964F:
+    BRK
+L_9650:
+    BRK
+L_9651:
+    BRK
+L_9652:
+    BRK
+L_9653:
+    BRK
+L_9654:
+    BRK
+L_9655:
+    BRK
+L_9656:
+    BRK
+L_9657:
+    BRK
+L_9658:
+    BRK
+L_9659:
+    BRK
+L_965A:
+    BRK
+L_965B:
+    BRK
+L_965C:
+    BRK
+L_965D:
+    BRK
+L_965E:
+    BRK
+L_965F:
+    BRK
+L_9660:
+    BRK
+L_9661:
+    BRK
+L_9662:
+    BRK
+L_9663:
+    BRK
+L_9664:
+    BRK
+L_9665:
+    BRK
+L_9666:
+    BRK
+L_9667:
+    BRK
+L_9668:
+    BRK
+L_9669:
+    BRK
+L_966A:
+    BRK
+L_966B:
+    BRK
+L_966C:
+    BRK
+L_966D:
+    BRK
+L_966E:
+    BRK
+L_966F:
+    BRK
+L_9670:
+    BRK
+L_9671:
+    BRK
+L_9672:
+    BRK
+L_9673:
+    BRK
+L_9674:
+    BRK
+L_9675:
+    BRK
+L_9676:
+    BRK
+L_9677:
+    BRK
+L_9678:
+    BRK
+L_9679:
+    BRK
+L_967A:
+    BRK
+L_967B:
+    BRK
+L_967C:
+    BRK
+L_967D:
+    BRK
+L_967E:
+    BRK
+L_967F:
+    BRK
+L_9680:
+    BRK
+L_9681:
+    BRK
+L_9682:
+    BRK
+L_9683:
+    BRK
+L_9684:
+    BRK
+L_9685:
+    BRK
+L_9686:
+    BRK
+L_9687:
+    BRK
+L_9688:
+    BRK
+L_9689:
+    BRK
+L_968A:
+    BRK
+L_968B:
+    BRK
+L_968C:
+    BRK
+L_968D:
+    BRK
+L_968E:
+    BRK
+L_968F:
+    BRK
+L_9690:
+    BRK
+L_9691:
+    BRK
+L_9692:
+    BRK
+L_9693:
+    BRK
+L_9694:
+    BRK
+L_9695:
+    BRK
+L_9696:
+    BRK
+L_9697:
+    BRK
+L_9698:
+    BRK
+L_9699:
+    BRK
+L_969A:
+    BRK
+L_969B:
+    BRK
+L_969C:
+    BRK
+L_969D:
+    BRK
+L_969E:
+    BRK
+L_969F:
+    BRK
+L_96A0:
+    BRK
+L_96A1:
+    BRK
+L_96A2:
+    BRK
+L_96A3:
+    BRK
+L_96A4:
+    BRK
+L_96A5:
+    BRK
+L_96A6:
+    BRK
+L_96A7:
+    BRK
+L_96A8:
+    BRK
+L_96A9:
+    BRK
+L_96AA:
+    BRK
+L_96AB:
+    BRK
+L_96AC:
+    BRK
+L_96AD:
+    BRK
+L_96AE:
+    BRK
+L_96AF:
+    BRK
+L_96B0:
+    BRK
+L_96B1:
+    BRK
+L_96B2:
+    BRK
+L_96B3:
+    BRK
+L_96B4:
+    BRK
+L_96B5:
+    BRK
+L_96B6:
+    BRK
+L_96B7:
+    BRK
+L_96B8:
+    BRK
+L_96B9:
+    BRK
+L_96BA:
+    BRK
+L_96BB:
+    BRK
+L_96BC:
+    BRK
+L_96BD:
+    BRK
+L_96BE:
+    BRK
+L_96BF:
+    BRK
+L_96C0:
+    BRK
+L_96C1:
+    BRK
+L_96C2:
+    BRK
+L_96C3:
+    BRK
+L_96C4:
+    BRK
+L_96C5:
+    BRK
+L_96C6:
+    BRK
+L_96C7:
+    BRK
+L_96C8:
+    BRK
+L_96C9:
+    BRK
+L_96CA:
+    BRK
+L_96CB:
+    BRK
+L_96CC:
+    BRK
+L_96CD:
+    BRK
+L_96CE:
+    BRK
+L_96CF:
+    BRK
+L_96D0:
+    BRK
+L_96D1:
+    BRK
+L_96D2:
+    BRK
+L_96D3:
+    BRK
+L_96D4:
+    BRK
+L_96D5:
+    BRK
+L_96D6:
+    BRK
+L_96D7:
+    BRK
+L_96D8:
+    BRK
+L_96D9:
+    BRK
+L_96DA:
+    BRK
+L_96DB:
+    BRK
+L_96DC:
+    BRK
+L_96DD:
+    BRK
+L_96DE:
+    BRK
+L_96DF:
+    BRK
+L_96E0:
+    BRK
+L_96E1:
+    BRK
+L_96E2:
+    BRK
+L_96E3:
+    BRK
+L_96E4:
+    BRK
+L_96E5:
+    BRK
+L_96E6:
+    BRK
+L_96E7:
+    BRK
+L_96E8:
+    BRK
+L_96E9:
+    BRK
+L_96EA:
+    BRK
+L_96EB:
+    BRK
+L_96EC:
+    BRK
+L_96ED:
+    BRK
+L_96EE:
+    BRK
+L_96EF:
+    BRK
+L_96F0:
+    BRK
+L_96F1:
+    BRK
+L_96F2:
+    BRK
+L_96F3:
+    BRK
+L_96F4:
+    BRK
+L_96F5:
+    BRK
+L_96F6:
+    BRK
+L_96F7:
+    BRK
+L_96F8:
+    BRK
+L_96F9:
+    BRK
+L_96FA:
+    BRK
+L_96FB:
+    BRK
+L_96FC:
+    BRK
+L_96FD:
+    BRK
+L_96FE:
+    BRK
+L_96FF:
+    BRK
+L_9700:
+    BRK
+L_9701:
+    BRK
+L_9702:
+    BRK
+L_9703:
+    BRK
+L_9704:
+    BRK
+L_9705:
+    BRK
+L_9706:
+    BRK
+L_9707:
+    BRK
+L_9708:
+    BRK
+L_9709:
+    BRK
+L_970A:
+    BRK
+L_970B:
+    BRK
+L_970C:
+    BRK
+L_970D:
+    BRK
+L_970E:
+    BRK
+L_970F:
+    BRK
+L_9710:
+    BRK
+L_9711:
+    BRK
+L_9712:
+    BRK
+L_9713:
+    BRK
+L_9714:
+    BRK
+L_9715:
+    BRK
+L_9716:
+    BRK
+L_9717:
+    BRK
+L_9718:
+    BRK
+L_9719:
+    BRK
+L_971A:
+    BRK
+L_971B:
+    BRK
+L_971C:
+    BRK
+L_971D:
+    BRK
+L_971E:
+    BRK
+L_971F:
+    BRK
+L_9720:
+    BRK
+L_9721:
+    BRK
+L_9722:
+    BRK
+L_9723:
+    BRK
+L_9724:
+    BRK
+L_9725:
+    BRK
+L_9726:
+    BRK
+L_9727:
+    BRK
+L_9728:
+    BRK
+L_9729:
+    BRK
+L_972A:
+    BRK
+L_972B:
+    BRK
+L_972C:
+    BRK
+L_972D:
+    BRK
+L_972E:
+    BRK
+L_972F:
+    BRK
+L_9730:
+    BRK
+L_9731:
+    BRK
+L_9732:
+    BRK
+L_9733:
+    BRK
+L_9734:
+    BRK
+L_9735:
+    BRK
+L_9736:
+    BRK
+L_9737:
+    BRK
+L_9738:
+    BRK
+L_9739:
+    BRK
+L_973A:
+    BRK
+L_973B:
+    BRK
+L_973C:
+    BRK
+L_973D:
+    BRK
+L_973E:
+    BRK
+L_973F:
+    BRK
+L_9740:
+    BRK
+L_9741:
+    BRK
+L_9742:
+    BRK
+L_9743:
+    BRK
+L_9744:
+    BRK
+L_9745:
+    BRK
+L_9746:
+    BRK
+L_9747:
+    BRK
+L_9748:
+    BRK
+L_9749:
+    BRK
+L_974A:
+    BRK
+L_974B:
+    BRK
+L_974C:
+    BRK
+L_974D:
+    BRK
+L_974E:
+    BRK
+L_974F:
+    BRK
+L_9750:
+    BRK
+L_9751:
+    BRK
+L_9752:
+    BRK
+L_9753:
+    BRK
+L_9754:
+    BRK
+L_9755:
+    BRK
+L_9756:
+    BRK
+L_9757:
+    BRK
+L_9758:
+    BRK
+L_9759:
+    BRK
+L_975A:
+    BRK
+L_975B:
+    BRK
+L_975C:
+    BRK
+L_975D:
+    BRK
+L_975E:
+    BRK
+L_975F:
+    BRK
+L_9760:
+    BRK
+L_9761:
+    BRK
+L_9762:
+    BRK
+L_9763:
+    BRK
+L_9764:
+    BRK
+L_9765:
+    BRK
+L_9766:
+    BRK
+L_9767:
+    BRK
+L_9768:
+    BRK
+L_9769:
+    BRK
+L_976A:
+    BRK
+L_976B:
+    BRK
+L_976C:
+    BRK
+L_976D:
+    BRK
+L_976E:
+    BRK
+L_976F:
+    BRK
+L_9770:
+    BRK
+L_9771:
+    BRK
+L_9772:
+    BRK
+L_9773:
+    BRK
+L_9774:
+    BRK
+L_9775:
+    BRK
+L_9776:
+    BRK
+L_9777:
+    BRK
+L_9778:
+    BRK
+L_9779:
+    BRK
+L_977A:
+    BRK
+L_977B:
+    BRK
+L_977C:
+    BRK
+L_977D:
+    BRK
+L_977E:
+    BRK
+L_977F:
+    BRK
+L_9780:
+    BRK
+L_9781:
+    BRK
+L_9782:
+    BRK
+L_9783:
+    BRK
+L_9784:
+    BRK
+L_9785:
+    BRK
+L_9786:
+    BRK
+L_9787:
+    BRK
+L_9788:
+    BRK
+L_9789:
+    BRK
+L_978A:
+    BRK
+L_978B:
+    BRK
+L_978C:
+    BRK
+L_978D:
+    BRK
+L_978E:
+    BRK
+L_978F:
+    BRK
+L_9790:
+    BRK
+L_9791:
+    BRK
+L_9792:
+    BRK
+L_9793:
+    BRK
+L_9794:
+    BRK
+L_9795:
+    BRK
+L_9796:
+    BRK
+L_9797:
+    BRK
+L_9798:
+    BRK
+L_9799:
+    BRK
+L_979A:
+    BRK
+L_979B:
+    BRK
+L_979C:
+    BRK
+L_979D:
+    BRK
+L_979E:
+    BRK
+L_979F:
+    BRK
+L_97A0:
+    BRK
+L_97A1:
+    BRK
+L_97A2:
+    BRK
+L_97A3:
+    BRK
+L_97A4:
+    BRK
+L_97A5:
+    BRK
+L_97A6:
+    BRK
+L_97A7:
+    BRK
+L_97A8:
+    BRK
+L_97A9:
+    BRK
+L_97AA:
+    BRK
+L_97AB:
+    BRK
+L_97AC:
+    BRK
+L_97AD:
+    BRK
+L_97AE:
+    BRK
+L_97AF:
+    BRK
+L_97B0:
+    BRK
+L_97B1:
+    BRK
+L_97B2:
+    BRK
+L_97B3:
+    BRK
+L_97B4:
+    BRK
+L_97B5:
+    BRK
+L_97B6:
+    BRK
+L_97B7:
+    BRK
+L_97B8:
+    BRK
+L_97B9:
+    BRK
+L_97BA:
+    BRK
+L_97BB:
+    BRK
+L_97BC:
+    BRK
+L_97BD:
+    BRK
+L_97BE:
+    BRK
+L_97BF:
+    BRK
+L_97C0:
+    BRK
+L_97C1:
+    BRK
+L_97C2:
+    BRK
+L_97C3:
+    BRK
+L_97C4:
+    BRK
+L_97C5:
+    BRK
+L_97C6:
+    BRK
+L_97C7:
+    BRK
+L_97C8:
+    BRK
+L_97C9:
+    BRK
+L_97CA:
+    BRK
+L_97CB:
+    BRK
+L_97CC:
+    BRK
+L_97CD:
+    BRK
+L_97CE:
+    BRK
+L_97CF:
+    BRK
+L_97D0:
+    BRK
+L_97D1:
+    BRK
+L_97D2:
+    BRK
+L_97D3:
+    BRK
+L_97D4:
+    BRK
+L_97D5:
+    BRK
+L_97D6:
+    BRK
+L_97D7:
+    BRK
+L_97D8:
+    BRK
+L_97D9:
+    BRK
+L_97DA:
+    BRK
+L_97DB:
+    BRK
+L_97DC:
+    BRK
+L_97DD:
+    BRK
+L_97DE:
+    BRK
+L_97DF:
+    BRK
+L_97E0:
+    BRK
+L_97E1:
+    BRK
+L_97E2:
+    BRK
+L_97E3:
+    BRK
+L_97E4:
+    BRK
+L_97E5:
+    BRK
+L_97E6:
+    BRK
+L_97E7:
+    BRK
+L_97E8:
+    BRK
+L_97E9:
+    BRK
+L_97EA:
+    BRK
+L_97EB:
+    BRK
+L_97EC:
+    BRK
+L_97ED:
+    BRK
+L_97EE:
+    BRK
+L_97EF:
+    BRK
+L_97F0:
+    BRK
+L_97F1:
+    BRK
+L_97F2:
+    BRK
+L_97F3:
+    BRK
+L_97F4:
+    BRK
+L_97F5:
+    BRK
+L_97F6:
+    BRK
+L_97F7:
+    BRK
+L_97F8:
+    BRK
+L_97F9:
+    BRK
+L_97FA:
+    BRK
+L_97FB:
+    BRK
+L_97FC:
+    BRK
+L_97FD:
+    BRK
+L_97FE:
+    BRK
+L_97FF:
+    BRK
+L_9800:
+    BRK
+L_9801:
+    BRK
+L_9802:
+    BRK
+L_9803:
+    BRK
+L_9804:
+    BRK
+L_9805:
+    BRK
+L_9806:
+    BRK
+L_9807:
+    BRK
+L_9808:
+    BRK
+L_9809:
+    BRK
+L_980A:
+    BRK
+L_980B:
+    BRK
+L_980C:
+    BRK
+L_980D:
+    BRK
+L_980E:
+    BRK
+L_980F:
+    BRK
+L_9810:
+    BRK
+L_9811:
+    BRK
+L_9812:
+    BRK
+L_9813:
+    BRK
+L_9814:
+    BRK
+L_9815:
+    BRK
+L_9816:
+    BRK
+L_9817:
+    BRK
+L_9818:
+    BRK
+L_9819:
+    BRK
+L_981A:
+    BRK
+L_981B:
+    BRK
+L_981C:
+    BRK
+L_981D:
+    BRK
+L_981E:
+    BRK
+L_981F:
+    BRK
+L_9820:
+    BRK
+L_9821:
+    BRK
+L_9822:
+    BRK
+L_9823:
+    BRK
+L_9824:
+    BRK
+L_9825:
+    BRK
+L_9826:
+    BRK
+L_9827:
+    BRK
+L_9828:
+    BRK
+L_9829:
+    BRK
+L_982A:
+    BRK
+L_982B:
+    BRK
+L_982C:
+    BRK
+L_982D:
+    BRK
+L_982E:
+    BRK
+L_982F:
+    BRK
+L_9830:
+    BRK
+L_9831:
+    BRK
+L_9832:
+    BRK
+L_9833:
+    BRK
+L_9834:
+    BRK
+L_9835:
+    BRK
+L_9836:
+    BRK
+L_9837:
+    BRK
+L_9838:
+    BRK
+L_9839:
+    BRK
+L_983A:
+    BRK
+L_983B:
+    BRK
+L_983C:
+    BRK
+L_983D:
+    BRK
+L_983E:
+    BRK
+L_983F:
+    BRK
+L_9840:
+    BRK
+L_9841:
+    BRK
+L_9842:
+    BRK
+L_9843:
+    BRK
+L_9844:
+    BRK
+L_9845:
+    BRK
+L_9846:
+    BRK
+L_9847:
+    BRK
+L_9848:
+    BRK
+L_9849:
+    BRK
+L_984A:
+    BRK
+L_984B:
+    BRK
+L_984C:
+    BRK
+L_984D:
+    BRK
+L_984E:
+    BRK
+L_984F:
+    BRK
+L_9850:
+    BRK
+L_9851:
+    BRK
+L_9852:
+    BRK
+L_9853:
+    BRK
+L_9854:
+    BRK
+L_9855:
+    BRK
+L_9856:
+    BRK
+L_9857:
+    BRK
+L_9858:
+    BRK
+L_9859:
+    BRK
+L_985A:
+    BRK
+L_985B:
+    BRK
+L_985C:
+    BRK
+L_985D:
+    BRK
+L_985E:
+    BRK
+L_985F:
+    BRK
+L_9860:
+    BRK
+L_9861:
+    BRK
+L_9862:
+    BRK
+L_9863:
+    BRK
+L_9864:
+    BRK
+L_9865:
+    BRK
+L_9866:
+    BRK
+L_9867:
+    BRK
+L_9868:
+    BRK
+L_9869:
+    BRK
+L_986A:
+    BRK
+L_986B:
+    BRK
+L_986C:
+    BRK
+L_986D:
+    BRK
+L_986E:
+    BRK
+L_986F:
+    BRK
+L_9870:
+    BRK
+L_9871:
+    BRK
+L_9872:
+    BRK
+L_9873:
+    BRK
+L_9874:
+    BRK
+L_9875:
+    BRK
+L_9876:
+    BRK
+L_9877:
+    BRK
+L_9878:
+    BRK
+L_9879:
+    BRK
+L_987A:
+    BRK
+L_987B:
+    BRK
+L_987C:
+    BRK
+L_987D:
+    BRK
+L_987E:
+    BRK
+L_987F:
+    BRK
+L_9880:
+    BRK
+L_9881:
+    BRK
+L_9882:
+    BRK
+L_9883:
+    BRK
+L_9884:
+    BRK
+L_9885:
+    BRK
+L_9886:
+    BRK
+L_9887:
+    BRK
+L_9888:
+    BRK
+L_9889:
+    BRK
+L_988A:
+    BRK
+L_988B:
+    BRK
+L_988C:
+    BRK
+L_988D:
+    BRK
+L_988E:
+    BRK
+L_988F:
+    BRK
+L_9890:
+    BRK
+L_9891:
+    BRK
+L_9892:
+    BRK
+L_9893:
+    BRK
+L_9894:
+    BRK
+L_9895:
+    BRK
+L_9896:
+    BRK
+L_9897:
+    BRK
+L_9898:
+    BRK
+L_9899:
+    BRK
+L_989A:
+    BRK
+L_989B:
+    BRK
+L_989C:
+    BRK
+L_989D:
+    BRK
+L_989E:
+    BRK
+L_989F:
+    BRK
+L_98A0:
+    BRK
+L_98A1:
+    BRK
+L_98A2:
+    BRK
+L_98A3:
+    BRK
+L_98A4:
+    BRK
+L_98A5:
+    BRK
+L_98A6:
+    BRK
+L_98A7:
+    BRK
+L_98A8:
+    BRK
+L_98A9:
+    BRK
+L_98AA:
+    BRK
+L_98AB:
+    BRK
+L_98AC:
+    BRK
+L_98AD:
+    BRK
+L_98AE:
+    BRK
+L_98AF:
+    BRK
+L_98B0:
+    BRK
+L_98B1:
+    BRK
+L_98B2:
+    BRK
+L_98B3:
+    BRK
+L_98B4:
+    BRK
+L_98B5:
+    BRK
+L_98B6:
+    BRK
+L_98B7:
+    BRK
+L_98B8:
+    BRK
+L_98B9:
+    BRK
+L_98BA:
+    BRK
+L_98BB:
+    BRK
+L_98BC:
+    BRK
+L_98BD:
+    BRK
+L_98BE:
+    BRK
+L_98BF:
+    BRK
+L_98C0:
+    BRK
+L_98C1:
+    BRK
+L_98C2:
+    BRK
+L_98C3:
+    BRK
+L_98C4:
+    BRK
+L_98C5:
+    BRK
+L_98C6:
+    BRK
+L_98C7:
+    BRK
+L_98C8:
+    BRK
+L_98C9:
+    BRK
+L_98CA:
+    BRK
+L_98CB:
+    BRK
+L_98CC:
+    BRK
+L_98CD:
+    BRK
+L_98CE:
+    BRK
+L_98CF:
+    BRK
+L_98D0:
+    BRK
+L_98D1:
+    BRK
+L_98D2:
+    BRK
+L_98D3:
+    BRK
+L_98D4:
+    BRK
+L_98D5:
+    BRK
+L_98D6:
+    BRK
+L_98D7:
+    BRK
+L_98D8:
+    BRK
+L_98D9:
+    BRK
+L_98DA:
+    BRK
+L_98DB:
+    BRK
+L_98DC:
+    BRK
+L_98DD:
+    BRK
+L_98DE:
+    BRK
+L_98DF:
+    BRK
+L_98E0:
+    BRK
+L_98E1:
+    BRK
+L_98E2:
+    BRK
+L_98E3:
+    BRK
+L_98E4:
+    BRK
+L_98E5:
+    BRK
+L_98E6:
+    BRK
+L_98E7:
+    BRK
+L_98E8:
+    BRK
+L_98E9:
+    BRK
+L_98EA:
+    BRK
+L_98EB:
+    BRK
+L_98EC:
+    BRK
+L_98ED:
+    BRK
+L_98EE:
+    BRK
+L_98EF:
+    BRK
+L_98F0:
+    BRK
+L_98F1:
+    BRK
+L_98F2:
+    BRK
+L_98F3:
+    BRK
+L_98F4:
+    BRK
+L_98F5:
+    BRK
+L_98F6:
+    BRK
+L_98F7:
+    BRK
+L_98F8:
+    BRK
+L_98F9:
+    BRK
+L_98FA:
+    BRK
+L_98FB:
+    BRK
+L_98FC:
+    BRK
+L_98FD:
+    BRK
+L_98FE:
+    BRK
+L_98FF:
+    BRK
+L_9900:
+    BRK
+L_9901:
+    BRK
+L_9902:
+    BRK
+L_9903:
+    BRK
+L_9904:
+    BRK
+L_9905:
+    BRK
+L_9906:
+    BRK
+L_9907:
+    BRK
+L_9908:
+    BRK
+L_9909:
+    BRK
+L_990A:
+    BRK
+L_990B:
+    BRK
+L_990C:
+    BRK
+L_990D:
+    BRK
+L_990E:
+    BRK
+L_990F:
+    BRK
+L_9910:
+    BRK
+L_9911:
+    BRK
+L_9912:
+    BRK
+L_9913:
+    BRK
+L_9914:
+    BRK
+L_9915:
+    BRK
+L_9916:
+    BRK
+L_9917:
+    BRK
+L_9918:
+    BRK
+L_9919:
+    BRK
+L_991A:
+    BRK
+L_991B:
+    BRK
+L_991C:
+    BRK
+L_991D:
+    BRK
+L_991E:
+    BRK
+L_991F:
+    BRK
+L_9920:
+    BRK
+L_9921:
+    BRK
+L_9922:
+    BRK
+L_9923:
+    BRK
+L_9924:
+    BRK
+L_9925:
+    BRK
+L_9926:
+    BRK
+L_9927:
+    BRK
+L_9928:
+    BRK
+L_9929:
+    BRK
+L_992A:
+    BRK
+L_992B:
+    BRK
+L_992C:
+    BRK
+L_992D:
+    BRK
+L_992E:
+    BRK
+L_992F:
+    BRK
+L_9930:
+    BRK
+L_9931:
+    BRK
+L_9932:
+    BRK
+L_9933:
+    BRK
+L_9934:
+    BRK
+L_9935:
+    BRK
+L_9936:
+    BRK
+L_9937:
+    BRK
+L_9938:
+    BRK
+L_9939:
+    BRK
+L_993A:
+    BRK
+L_993B:
+    BRK
+L_993C:
+    BRK
+L_993D:
+    BRK
+L_993E:
+    BRK
+L_993F:
+    BRK
+L_9940:
+    BRK
+L_9941:
+    BRK
+L_9942:
+    BRK
+L_9943:
+    BRK
+L_9944:
+    BRK
+L_9945:
+    BRK
+L_9946:
+    BRK
+L_9947:
+    BRK
+L_9948:
+    BRK
+L_9949:
+    BRK
+L_994A:
+    BRK
+L_994B:
+    BRK
+L_994C:
+    BRK
+L_994D:
+    BRK
+L_994E:
+    BRK
+L_994F:
+    BRK
+L_9950:
+    BRK
+L_9951:
+    BRK
+L_9952:
+    BRK
+L_9953:
+    BRK
+L_9954:
+    BRK
+L_9955:
+    BRK
+L_9956:
+    BRK
+L_9957:
+    BRK
+L_9958:
+    BRK
+L_9959:
+    BRK
+L_995A:
+    BRK
+L_995B:
+    BRK
+L_995C:
+    BRK
+L_995D:
+    BRK
+L_995E:
+    BRK
+L_995F:
+    BRK
+L_9960:
+    BRK
+L_9961:
+    BRK
+L_9962:
+    BRK
+L_9963:
+    BRK
+L_9964:
+    BRK
+L_9965:
+    BRK
+L_9966:
+    BRK
+L_9967:
+    BRK
+L_9968:
+    BRK
+L_9969:
+    BRK
+L_996A:
+    BRK
+L_996B:
+    BRK
+L_996C:
+    BRK
+L_996D:
+    BRK
+L_996E:
+    BRK
+L_996F:
+    BRK
+L_9970:
+    BRK
+L_9971:
+    BRK
+L_9972:
+    BRK
+L_9973:
+    BRK
+L_9974:
+    BRK
+L_9975:
+    BRK
+L_9976:
+    BRK
+L_9977:
+    BRK
+L_9978:
+    BRK
+L_9979:
+    BRK
+L_997A:
+    BRK
+L_997B:
+    BRK
+L_997C:
+    BRK
+L_997D:
+    BRK
+L_997E:
+    BRK
+L_997F:
+    BRK
+L_9980:
+    BRK
+L_9981:
+    BRK
+L_9982:
+    BRK
+L_9983:
+    BRK
+L_9984:
+    BRK
+L_9985:
+    BRK
+L_9986:
+    BRK
+L_9987:
+    BRK
+L_9988:
+    BRK
+L_9989:
+    BRK
+L_998A:
+    BRK
+L_998B:
+    BRK
+L_998C:
+    BRK
+L_998D:
+    BRK
+L_998E:
+    BRK
+L_998F:
+    BRK
+L_9990:
+    BRK
+L_9991:
+    BRK
+L_9992:
+    BRK
+L_9993:
+    BRK
+L_9994:
+    BRK
+L_9995:
+    BRK
+L_9996:
+    BRK
+L_9997:
+    BRK
+L_9998:
+    BRK
+L_9999:
+    BRK
+L_999A:
+    BRK
+L_999B:
+    BRK
+L_999C:
+    BRK
+L_999D:
+    BRK
+L_999E:
+    BRK
+L_999F:
+    BRK
+L_99A0:
+    BRK
+L_99A1:
+    BRK
+L_99A2:
+    BRK
+L_99A3:
+    BRK
+L_99A4:
+    BRK
+L_99A5:
+    BRK
+L_99A6:
+    BRK
+L_99A7:
+    BRK
+L_99A8:
+    BRK
+L_99A9:
+    BRK
+L_99AA:
+    BRK
+L_99AB:
+    BRK
+L_99AC:
+    BRK
+L_99AD:
+    BRK
+L_99AE:
+    BRK
+L_99AF:
+    BRK
+L_99B0:
+    BRK
+L_99B1:
+    BRK
+L_99B2:
+    BRK
+L_99B3:
+    BRK
+L_99B4:
+    BRK
+L_99B5:
+    BRK
+L_99B6:
+    BRK
+L_99B7:
+    BRK
+L_99B8:
+    BRK
+L_99B9:
+    BRK
+L_99BA:
+    BRK
+L_99BB:
+    BRK
+L_99BC:
+    BRK
+L_99BD:
+    BRK
+L_99BE:
+    BRK
+L_99BF:
+    BRK
+L_99C0:
+    BRK
+L_99C1:
+    BRK
+L_99C2:
+    BRK
+L_99C3:
+    BRK
+L_99C4:
+    BRK
+L_99C5:
+    BRK
+L_99C6:
+    BRK
+L_99C7:
+    BRK
+L_99C8:
+    BRK
+L_99C9:
+    BRK
+L_99CA:
+    BRK
+L_99CB:
+    BRK
+L_99CC:
+    BRK
+L_99CD:
+    BRK
+L_99CE:
+    BRK
+L_99CF:
+    BRK
+L_99D0:
+    BRK
+L_99D1:
+    BRK
+L_99D2:
+    BRK
+L_99D3:
+    BRK
+L_99D4:
+    BRK
+L_99D5:
+    BRK
+L_99D6:
+    BRK
+L_99D7:
+    BRK
+L_99D8:
+    BRK
+L_99D9:
+    BRK
+L_99DA:
+    BRK
+L_99DB:
+    BRK
+L_99DC:
+    BRK
+L_99DD:
+    BRK
+L_99DE:
+    BRK
+L_99DF:
+    BRK
+L_99E0:
+    BRK
+L_99E1:
+    BRK
+L_99E2:
+    BRK
+L_99E3:
+    BRK
+L_99E4:
+    BRK
+L_99E5:
+    BRK
+L_99E6:
+    BRK
+L_99E7:
+    BRK
+L_99E8:
+    BRK
+L_99E9:
+    BRK
+L_99EA:
+    BRK
+L_99EB:
+    BRK
+L_99EC:
+    BRK
+L_99ED:
+    BRK
+L_99EE:
+    BRK
+L_99EF:
+    BRK
+L_99F0:
+    BRK
+L_99F1:
+    BRK
+L_99F2:
+    BRK
+L_99F3:
+    BRK
+L_99F4:
+    BRK
+L_99F5:
+    BRK
+L_99F6:
+    BRK
+L_99F7:
+    BRK
+L_99F8:
+    BRK
+L_99F9:
+    BRK
+L_99FA:
+    BRK
+L_99FB:
+    BRK
+L_99FC:
+    BRK
+L_99FD:
+    BRK
+L_99FE:
+    BRK
+L_99FF:
+    BRK
+L_9A00:
+    BRK
+L_9A01:
+    BRK
+L_9A02:
+    BRK
+L_9A03:
+    BRK
+L_9A04:
+    BRK
+L_9A05:
+    BRK
+L_9A06:
+    BRK
+L_9A07:
+    BRK
+L_9A08:
+    BRK
+L_9A09:
+    BRK
+L_9A0A:
+    BRK
+L_9A0B:
+    BRK
+L_9A0C:
+    BRK
+L_9A0D:
+    BRK
+L_9A0E:
+    BRK
+L_9A0F:
+    BRK
+L_9A10:
+    BRK
+L_9A11:
+    BRK
+L_9A12:
+    BRK
+L_9A13:
+    BRK
+L_9A14:
+    BRK
+L_9A15:
+    BRK
+L_9A16:
+    BRK
+L_9A17:
+    BRK
+L_9A18:
+    BRK
+L_9A19:
+    BRK
+L_9A1A:
+    BRK
+L_9A1B:
+    BRK
+L_9A1C:
+    BRK
+L_9A1D:
+    BRK
+L_9A1E:
+    BRK
+L_9A1F:
+    BRK
+L_9A20:
+    BRK
+L_9A21:
+    BRK
+L_9A22:
+    BRK
+L_9A23:
+    BRK
+L_9A24:
+    BRK
+L_9A25:
+    BRK
+L_9A26:
+    BRK
+L_9A27:
+    BRK
+L_9A28:
+    BRK
+L_9A29:
+    BRK
+L_9A2A:
+    BRK
+L_9A2B:
+    BRK
+L_9A2C:
+    BRK
+L_9A2D:
+    BRK
+L_9A2E:
+    BRK
+L_9A2F:
+    BRK
+L_9A30:
+    BRK
+L_9A31:
+    BRK
+L_9A32:
+    BRK
+L_9A33:
+    BRK
+L_9A34:
+    BRK
+L_9A35:
+    BRK
+L_9A36:
+    BRK
+L_9A37:
+    BRK
+L_9A38:
+    BRK
+L_9A39:
+    BRK
+L_9A3A:
+    BRK
+L_9A3B:
+    BRK
+L_9A3C:
+    BRK
+L_9A3D:
+    BRK
+L_9A3E:
+    BRK
+L_9A3F:
+    BRK
+L_9A40:
+    BRK
+L_9A41:
+    BRK
+L_9A42:
+    BRK
+L_9A43:
+    BRK
+L_9A44:
+    BRK
+L_9A45:
+    BRK
+L_9A46:
+    BRK
+L_9A47:
+    BRK
+L_9A48:
+    BRK
+L_9A49:
+    BRK
+L_9A4A:
+    BRK
+L_9A4B:
+    BRK
+L_9A4C:
+    BRK
+L_9A4D:
+    BRK
+L_9A4E:
+    BRK
+L_9A4F:
+    BRK
+L_9A50:
+    BRK
+L_9A51:
+    BRK
+L_9A52:
+    BRK
+L_9A53:
+    BRK
+L_9A54:
+    BRK
+L_9A55:
+    BRK
+L_9A56:
+    BRK
+L_9A57:
+    BRK
+L_9A58:
+    BRK
+L_9A59:
+    BRK
+L_9A5A:
+    BRK
+L_9A5B:
+    BRK
+L_9A5C:
+    BRK
+L_9A5D:
+    BRK
+L_9A5E:
+    BRK
+L_9A5F:
+    BRK
+L_9A60:
+    BRK
+L_9A61:
+    BRK
+L_9A62:
+    BRK
+L_9A63:
+    BRK
+L_9A64:
+    BRK
+L_9A65:
+    BRK
+L_9A66:
+    BRK
+L_9A67:
+    BRK
+L_9A68:
+    BRK
+L_9A69:
+    BRK
+L_9A6A:
+    BRK
+L_9A6B:
+    BRK
+L_9A6C:
+    BRK
+L_9A6D:
+    BRK
+L_9A6E:
+    BRK
+L_9A6F:
+    BRK
+L_9A70:
+    BRK
+L_9A71:
+    BRK
+L_9A72:
+    BRK
+L_9A73:
+    BRK
+L_9A74:
+    BRK
+L_9A75:
+    BRK
+L_9A76:
+    BRK
+L_9A77:
+    BRK
+L_9A78:
+    BRK
+L_9A79:
+    BRK
+L_9A7A:
+    BRK
+L_9A7B:
+    BRK
+L_9A7C:
+    BRK
+L_9A7D:
+    BRK
+L_9A7E:
+    BRK
+L_9A7F:
+    BRK
+L_9A80:
+    BRK
+L_9A81:
+    BRK
+L_9A82:
+    BRK
+L_9A83:
+    BRK
+L_9A84:
+    BRK
+L_9A85:
+    BRK
+L_9A86:
+    BRK
+L_9A87:
+    BRK
+L_9A88:
+    BRK
+L_9A89:
+    BRK
+L_9A8A:
+    BRK
+L_9A8B:
+    BRK
+L_9A8C:
+    BRK
+L_9A8D:
+    BRK
+L_9A8E:
+    BRK
+L_9A8F:
+    BRK
+L_9A90:
+    BRK
+L_9A91:
+    BRK
+L_9A92:
+    BRK
+L_9A93:
+    BRK
+L_9A94:
+    BRK
+L_9A95:
+    BRK
+L_9A96:
+    BRK
+L_9A97:
+    BRK
+L_9A98:
+    BRK
+L_9A99:
+    BRK
+L_9A9A:
+    BRK
+L_9A9B:
+    BRK
+L_9A9C:
+    BRK
+L_9A9D:
+    BRK
+L_9A9E:
+    BRK
+L_9A9F:
+    BRK
+L_9AA0:
+    BRK
+L_9AA1:
+    BRK
+L_9AA2:
+    BRK
+L_9AA3:
+    BRK
+L_9AA4:
+    BRK
+L_9AA5:
+    BRK
+L_9AA6:
+    BRK
+L_9AA7:
+    BRK
+L_9AA8:
+    BRK
+L_9AA9:
+    BRK
+L_9AAA:
+    BRK
+L_9AAB:
+    BRK
+L_9AAC:
+    BRK
+L_9AAD:
+    BRK
+L_9AAE:
+    BRK
+L_9AAF:
+    BRK
+L_9AB0:
+    BRK
+L_9AB1:
+    BRK
+L_9AB2:
+    BRK
+L_9AB3:
+    BRK
+L_9AB4:
+    BRK
+L_9AB5:
+    BRK
+L_9AB6:
+    BRK
+L_9AB7:
+    BRK
+L_9AB8:
+    BRK
+L_9AB9:
+    BRK
+L_9ABA:
+    BRK
+L_9ABB:
+    BRK
+L_9ABC:
+    BRK
+L_9ABD:
+    BRK
+L_9ABE:
+    BRK
+L_9ABF:
+    BRK
+L_9AC0:
+    BRK
+L_9AC1:
+    BRK
+L_9AC2:
+    BRK
+L_9AC3:
+    BRK
+L_9AC4:
+    BRK
+L_9AC5:
+    BRK
+L_9AC6:
+    BRK
+L_9AC7:
+    BRK
+L_9AC8:
+    BRK
+L_9AC9:
+    BRK
+L_9ACA:
+    BRK
+L_9ACB:
+    BRK
+L_9ACC:
+    BRK
+L_9ACD:
+    BRK
+L_9ACE:
+    BRK
+L_9ACF:
+    BRK
+L_9AD0:
+    BRK
+L_9AD1:
+    BRK
+L_9AD2:
+    BRK
+L_9AD3:
+    BRK
+L_9AD4:
+    BRK
+L_9AD5:
+    BRK
+L_9AD6:
+    BRK
+L_9AD7:
+    BRK
+L_9AD8:
+    BRK
+L_9AD9:
+    BRK
+L_9ADA:
+    BRK
+L_9ADB:
+    BRK
+L_9ADC:
+    BRK
+L_9ADD:
+    BRK
+L_9ADE:
+    BRK
+L_9ADF:
+    BRK
+L_9AE0:
+    BRK
+L_9AE1:
+    BRK
+L_9AE2:
+    BRK
+L_9AE3:
+    BRK
+L_9AE4:
+    BRK
+L_9AE5:
+    BRK
+L_9AE6:
+    BRK
+L_9AE7:
+    BRK
+L_9AE8:
+    BRK
+L_9AE9:
+    BRK
+L_9AEA:
+    BRK
+L_9AEB:
+    BRK
+L_9AEC:
+    BRK
+L_9AED:
+    BRK
+L_9AEE:
+    BRK
+L_9AEF:
+    BRK
+L_9AF0:
+    BRK
+L_9AF1:
+    BRK
+L_9AF2:
+    BRK
+L_9AF3:
+    BRK
+L_9AF4:
+    BRK
+L_9AF5:
+    BRK
+L_9AF6:
+    BRK
+L_9AF7:
+    BRK
+L_9AF8:
+    BRK
+L_9AF9:
+    BRK
+L_9AFA:
+    BRK
+L_9AFB:
+    BRK
+L_9AFC:
+    BRK
+L_9AFD:
+    BRK
+L_9AFE:
+    BRK
+L_9AFF:
+    BRK
+L_9B00:
+    BRK
+L_9B01:
+    BRK
+L_9B02:
+    BRK
+L_9B03:
+    BRK
+L_9B04:
+    BRK
+L_9B05:
+    BRK
+L_9B06:
+    BRK
+L_9B07:
+    BRK
+L_9B08:
+    BRK
+L_9B09:
+    BRK
+L_9B0A:
+    BRK
+L_9B0B:
+    BRK
+L_9B0C:
+    BRK
+L_9B0D:
+    BRK
+L_9B0E:
+    BRK
+L_9B0F:
+    BRK
+L_9B10:
+    BRK
+L_9B11:
+    BRK
+L_9B12:
+    BRK
+L_9B13:
+    BRK
+L_9B14:
+    BRK
+L_9B15:
+    BRK
+L_9B16:
+    BRK
+L_9B17:
+    BRK
+L_9B18:
+    BRK
+L_9B19:
+    BRK
+L_9B1A:
+    BRK
+L_9B1B:
+    BRK
+L_9B1C:
+    BRK
+L_9B1D:
+    BRK
+L_9B1E:
+    BRK
+L_9B1F:
+    BRK
+L_9B20:
+    BRK
+L_9B21:
+    BRK
+L_9B22:
+    BRK
+L_9B23:
+    BRK
+L_9B24:
+    BRK
+L_9B25:
+    BRK
+L_9B26:
+    BRK
+L_9B27:
+    BRK
+L_9B28:
+    BRK
+L_9B29:
+    BRK
+L_9B2A:
+    BRK
+L_9B2B:
+    BRK
+L_9B2C:
+    BRK
+L_9B2D:
+    BRK
+L_9B2E:
+    BRK
+L_9B2F:
+    BRK
+L_9B30:
+    BRK
+L_9B31:
+    BRK
+L_9B32:
+    BRK
+L_9B33:
+    BRK
+L_9B34:
+    BRK
+L_9B35:
+    BRK
+L_9B36:
+    BRK
+L_9B37:
+    BRK
+L_9B38:
+    BRK
+L_9B39:
+    BRK
+L_9B3A:
+    BRK
+L_9B3B:
+    BRK
+L_9B3C:
+    BRK
+L_9B3D:
+    BRK
+L_9B3E:
+    BRK
+L_9B3F:
+    BRK
+L_9B40:
+    BRK
+L_9B41:
+    BRK
+L_9B42:
+    BRK
+L_9B43:
+    BRK
+L_9B44:
+    BRK
+L_9B45:
+    BRK
+L_9B46:
+    BRK
+L_9B47:
+    BRK
+L_9B48:
+    BRK
+L_9B49:
+    BRK
+L_9B4A:
+    BRK
+L_9B4B:
+    BRK
+L_9B4C:
+    BRK
+L_9B4D:
+    BRK
+L_9B4E:
+    BRK
+L_9B4F:
+    BRK
+L_9B50:
+    BRK
+L_9B51:
+    BRK
+L_9B52:
+    BRK
+L_9B53:
+    BRK
+L_9B54:
+    BRK
+L_9B55:
+    BRK
+L_9B56:
+    BRK
+L_9B57:
+    BRK
+L_9B58:
+    BRK
+L_9B59:
+    BRK
+L_9B5A:
+    BRK
+L_9B5B:
+    BRK
+L_9B5C:
+    BRK
+L_9B5D:
+    BRK
+L_9B5E:
+    BRK
+L_9B5F:
+    BRK
+L_9B60:
+    BRK
+L_9B61:
+    BRK
+L_9B62:
+    BRK
+L_9B63:
+    BRK
+L_9B64:
+    BRK
+L_9B65:
+    BRK
+L_9B66:
+    BRK
+L_9B67:
+    BRK
+L_9B68:
+    BRK
+L_9B69:
+    BRK
+L_9B6A:
+    BRK
+L_9B6B:
+    BRK
+L_9B6C:
+    BRK
+L_9B6D:
+    BRK
+L_9B6E:
+    BRK
+L_9B6F:
+    BRK
+L_9B70:
+    BRK
+L_9B71:
+    BRK
+L_9B72:
+    BRK
+L_9B73:
+    BRK
+L_9B74:
+    BRK
+L_9B75:
+    BRK
+L_9B76:
+    BRK
+L_9B77:
+    BRK
+L_9B78:
+    BRK
+L_9B79:
+    BRK
+L_9B7A:
+    BRK
+L_9B7B:
+    BRK
+L_9B7C:
+    BRK
+L_9B7D:
+    BRK
+L_9B7E:
+    BRK
+L_9B7F:
+    BRK
+L_9B80:
+    BRK
+L_9B81:
+    BRK
+L_9B82:
+    BRK
+L_9B83:
+    BRK
+L_9B84:
+    BRK
+L_9B85:
+    BRK
+L_9B86:
+    BRK
+L_9B87:
+    BRK
+L_9B88:
+    BRK
+L_9B89:
+    BRK
+L_9B8A:
+    BRK
+L_9B8B:
+    BRK
+L_9B8C:
+    BRK
+L_9B8D:
+    BRK
+L_9B8E:
+    BRK
+L_9B8F:
+    BRK
+L_9B90:
+    BRK
+L_9B91:
+    BRK
+L_9B92:
+    BRK
+L_9B93:
+    BRK
+L_9B94:
+    BRK
+L_9B95:
+    BRK
+L_9B96:
+    BRK
+L_9B97:
+    BRK
+L_9B98:
+    BRK
+L_9B99:
+    BRK
+L_9B9A:
+    BRK
+L_9B9B:
+    BRK
+L_9B9C:
+    BRK
+L_9B9D:
+    BRK
+L_9B9E:
+    BRK
+L_9B9F:
+    BRK
+L_9BA0:
+    BRK
+L_9BA1:
+    BRK
+L_9BA2:
+    BRK
+L_9BA3:
+    BRK
+L_9BA4:
+    BRK
+L_9BA5:
+    BRK
+L_9BA6:
+    BRK
+L_9BA7:
+    BRK
+L_9BA8:
+    BRK
+L_9BA9:
+    BRK
+L_9BAA:
+    BRK
+L_9BAB:
+    BRK
+L_9BAC:
+    BRK
+L_9BAD:
+    BRK
+L_9BAE:
+    BRK
+L_9BAF:
+    BRK
+L_9BB0:
+    BRK
+L_9BB1:
+    BRK
+L_9BB2:
+    BRK
+L_9BB3:
+    BRK
+L_9BB4:
+    BRK
+L_9BB5:
+    BRK
+L_9BB6:
+    BRK
+L_9BB7:
+    BRK
+L_9BB8:
+    BRK
+L_9BB9:
+    BRK
+L_9BBA:
+    BRK
+L_9BBB:
+    BRK
+L_9BBC:
+    BRK
+L_9BBD:
+    BRK
+L_9BBE:
+    BRK
+L_9BBF:
+    BRK
+L_9BC0:
+    BRK
+L_9BC1:
+    BRK
+L_9BC2:
+    BRK
+L_9BC3:
+    BRK
+L_9BC4:
+    BRK
+L_9BC5:
+    BRK
+L_9BC6:
+    BRK
+L_9BC7:
+    BRK
+L_9BC8:
+    BRK
+L_9BC9:
+    BRK
+L_9BCA:
+    BRK
+L_9BCB:
+    BRK
+L_9BCC:
+    BRK
+L_9BCD:
+    BRK
+L_9BCE:
+    BRK
+L_9BCF:
+    BRK
+L_9BD0:
+    BRK
+L_9BD1:
+    BRK
+L_9BD2:
+    BRK
+L_9BD3:
+    BRK
+L_9BD4:
+    BRK
+L_9BD5:
+    BRK
+L_9BD6:
+    BRK
+L_9BD7:
+    BRK
+L_9BD8:
+    BRK
+L_9BD9:
+    BRK
+L_9BDA:
+    BRK
+L_9BDB:
+    BRK
+L_9BDC:
+    BRK
+L_9BDD:
+    BRK
+L_9BDE:
+    BRK
+L_9BDF:
+    BRK
+L_9BE0:
+    BRK
+L_9BE1:
+    BRK
+L_9BE2:
+    BRK
+L_9BE3:
+    BRK
+L_9BE4:
+    BRK
+L_9BE5:
+    BRK
+L_9BE6:
+    BRK
+L_9BE7:
+    BRK
+L_9BE8:
+    BRK
+L_9BE9:
+    BRK
+L_9BEA:
+    BRK
+L_9BEB:
+    BRK
+L_9BEC:
+    BRK
+L_9BED:
+    BRK
+L_9BEE:
+    BRK
+L_9BEF:
+    BRK
+L_9BF0:
+    BRK
+L_9BF1:
+    BRK
+L_9BF2:
+    BRK
+L_9BF3:
+    BRK
+L_9BF4:
+    BRK
+L_9BF5:
+    BRK
+L_9BF6:
+    BRK
+L_9BF7:
+    BRK
+L_9BF8:
+    BRK
+L_9BF9:
+    BRK
+L_9BFA:
+    BRK
+L_9BFB:
+    BRK
+L_9BFC:
+    BRK
+L_9BFD:
+    BRK
+L_9BFE:
+    BRK
+L_9BFF:
+    BRK
+L_9C00:
+    BRK
+L_9C01:
+    BRK
+L_9C02:
+    BRK
+L_9C03:
+    BRK
+L_9C04:
+    BRK
+L_9C05:
+    BRK
+L_9C06:
+    BRK
+L_9C07:
+    BRK
+L_9C08:
+    BRK
+L_9C09:
+    BRK
+L_9C0A:
+    BRK
+L_9C0B:
+    BRK
+L_9C0C:
+    BRK
+L_9C0D:
+    BRK
+L_9C0E:
+    BRK
+L_9C0F:
+    BRK
+L_9C10:
+    BRK
+L_9C11:
+    BRK
+L_9C12:
+    BRK
+L_9C13:
+    BRK
+L_9C14:
+    BRK
+L_9C15:
+    BRK
+L_9C16:
+    BRK
+L_9C17:
+    BRK
+L_9C18:
+    BRK
+L_9C19:
+    BRK
+L_9C1A:
+    BRK
+L_9C1B:
+    BRK
+L_9C1C:
+    BRK
+L_9C1D:
+    BRK
+L_9C1E:
+    BRK
+L_9C1F:
+    BRK
+L_9C20:
+    BRK
+L_9C21:
+    BRK
+L_9C22:
+    BRK
+L_9C23:
+    BRK
+L_9C24:
+    BRK
+L_9C25:
+    BRK
+L_9C26:
+    BRK
+L_9C27:
+    BRK
+L_9C28:
+    BRK
+L_9C29:
+    BRK
+L_9C2A:
+    BRK
+L_9C2B:
+    BRK
+L_9C2C:
+    BRK
+L_9C2D:
+    BRK
+L_9C2E:
+    BRK
+L_9C2F:
+    BRK
+L_9C30:
+    BRK
+L_9C31:
+    BRK
+L_9C32:
+    BRK
+L_9C33:
+    BRK
+L_9C34:
+    BRK
+L_9C35:
+    BRK
+L_9C36:
+    BRK
+L_9C37:
+    BRK
+L_9C38:
+    BRK
+L_9C39:
+    BRK
+L_9C3A:
+    BRK
+L_9C3B:
+    BRK
+L_9C3C:
+    BRK
+L_9C3D:
+    BRK
+L_9C3E:
+    BRK
+L_9C3F:
+    BRK
+L_9C40:
+    BRK
+L_9C41:
+    BRK
+L_9C42:
+    BRK
+L_9C43:
+    BRK
+L_9C44:
+    BRK
+L_9C45:
+    BRK
+L_9C46:
+    BRK
+L_9C47:
+    BRK
+L_9C48:
+    BRK
+L_9C49:
+    BRK
+L_9C4A:
+    BRK
+L_9C4B:
+    BRK
+L_9C4C:
+    BRK
+L_9C4D:
+    BRK
+L_9C4E:
+    BRK
+L_9C4F:
+    BRK
+L_9C50:
+    BRK
+L_9C51:
+    BRK
+L_9C52:
+    BRK
+L_9C53:
+    BRK
+L_9C54:
+    BRK
+L_9C55:
+    BRK
+L_9C56:
+    BRK
+L_9C57:
+    BRK
+L_9C58:
+    BRK
+L_9C59:
+    BRK
+L_9C5A:
+    BRK
+L_9C5B:
+    BRK
+L_9C5C:
+    BRK
+L_9C5D:
+    BRK
+L_9C5E:
+    BRK
+L_9C5F:
+    BRK
+L_9C60:
+    BRK
+L_9C61:
+    BRK
+L_9C62:
+    BRK
+L_9C63:
+    BRK
+L_9C64:
+    BRK
+L_9C65:
+    BRK
+L_9C66:
+    BRK
+L_9C67:
+    BRK
+L_9C68:
+    BRK
+L_9C69:
+    BRK
+L_9C6A:
+    BRK
+L_9C6B:
+    BRK
+L_9C6C:
+    BRK
+L_9C6D:
+    BRK
+L_9C6E:
+    BRK
+L_9C6F:
+    BRK
+L_9C70:
+    BRK
+L_9C71:
+    BRK
+L_9C72:
+    BRK
+L_9C73:
+    BRK
+L_9C74:
+    BRK
+L_9C75:
+    BRK
+L_9C76:
+    BRK
+L_9C77:
+    BRK
+L_9C78:
+    BRK
+L_9C79:
+    BRK
+L_9C7A:
+    BRK
+L_9C7B:
+    BRK
+L_9C7C:
+    BRK
+L_9C7D:
+    BRK
+L_9C7E:
+    BRK
+L_9C7F:
+    BRK
+L_9C80:
+    BRK
+L_9C81:
+    BRK
+L_9C82:
+    BRK
+L_9C83:
+    BRK
+L_9C84:
+    BRK
+L_9C85:
+    BRK
+L_9C86:
+    BRK
+L_9C87:
+    BRK
+L_9C88:
+    BRK
+L_9C89:
+    BRK
+L_9C8A:
+    BRK
+L_9C8B:
+    BRK
+L_9C8C:
+    BRK
+L_9C8D:
+    BRK
+L_9C8E:
+    BRK
+L_9C8F:
+    BRK
+L_9C90:
+    BRK
+L_9C91:
+    BRK
+L_9C92:
+    BRK
+L_9C93:
+    BRK
+L_9C94:
+    BRK
+L_9C95:
+    BRK
+L_9C96:
+    BRK
+L_9C97:
+    BRK
+L_9C98:
+    BRK
+L_9C99:
+    BRK
+L_9C9A:
+    BRK
+L_9C9B:
+    BRK
+L_9C9C:
+    BRK
+L_9C9D:
+    BRK
+L_9C9E:
+    BRK
+L_9C9F:
+    BRK
+L_9CA0:
+    BRK
+L_9CA1:
+    BRK
+L_9CA2:
+    BRK
+L_9CA3:
+    BRK
+L_9CA4:
+    BRK
+L_9CA5:
+    BRK
+L_9CA6:
+    BRK
+L_9CA7:
+    BRK
+L_9CA8:
+    BRK
+L_9CA9:
+    BRK
+L_9CAA:
+    BRK
+L_9CAB:
+    BRK
+L_9CAC:
+    BRK
+L_9CAD:
+    BRK
+L_9CAE:
+    BRK
+L_9CAF:
+    BRK
+L_9CB0:
+    BRK
+L_9CB1:
+    BRK
+L_9CB2:
+    BRK
+L_9CB3:
+    BRK
+L_9CB4:
+    BRK
+L_9CB5:
+    BRK
+L_9CB6:
+    BRK
+L_9CB7:
+    BRK
+L_9CB8:
+    BRK
+L_9CB9:
+    BRK
+L_9CBA:
+    BRK
+L_9CBB:
+    BRK
+L_9CBC:
+    BRK
+L_9CBD:
+    BRK
+L_9CBE:
+    BRK
+L_9CBF:
+    BRK
+L_9CC0:
+    BRK
+L_9CC1:
+    BRK
+L_9CC2:
+    BRK
+L_9CC3:
+    BRK
+L_9CC4:
+    BRK
+L_9CC5:
+    BRK
+L_9CC6:
+    BRK
+L_9CC7:
+    BRK
+L_9CC8:
+    BRK
+L_9CC9:
+    BRK
+L_9CCA:
+    BRK
+L_9CCB:
+    BRK
+L_9CCC:
+    BRK
+L_9CCD:
+    BRK
+L_9CCE:
+    BRK
+L_9CCF:
+    BRK
+L_9CD0:
+    BRK
+L_9CD1:
+    BRK
+L_9CD2:
+    BRK
+L_9CD3:
+    BRK
+L_9CD4:
+    BRK
+L_9CD5:
+    BRK
+L_9CD6:
+    BRK
+L_9CD7:
+    BRK
+L_9CD8:
+    BRK
+L_9CD9:
+    BRK
+L_9CDA:
+    BRK
+L_9CDB:
+    BRK
+L_9CDC:
+    BRK
+L_9CDD:
+    BRK
+L_9CDE:
+    BRK
+L_9CDF:
+    BRK
+L_9CE0:
+    BRK
+L_9CE1:
+    BRK
+L_9CE2:
+    BRK
+L_9CE3:
+    BRK
+L_9CE4:
+    BRK
+L_9CE5:
+    BRK
+L_9CE6:
+    BRK
+L_9CE7:
+    BRK
+L_9CE8:
+    BRK
+L_9CE9:
+    BRK
+L_9CEA:
+    BRK
+L_9CEB:
+    BRK
+L_9CEC:
+    BRK
+L_9CED:
+    BRK
+L_9CEE:
+    BRK
+L_9CEF:
+    BRK
+L_9CF0:
+    BRK
+L_9CF1:
+    BRK
+L_9CF2:
+    BRK
+L_9CF3:
+    BRK
+L_9CF4:
+    BRK
+L_9CF5:
+    BRK
+L_9CF6:
+    BRK
+L_9CF7:
+    BRK
+L_9CF8:
+    BRK
+L_9CF9:
+    BRK
+L_9CFA:
+    BRK
+L_9CFB:
+    BRK
+L_9CFC:
+    BRK
+L_9CFD:
+    BRK
+L_9CFE:
+    BRK
+L_9CFF:
+    BRK
+L_9D00:
+    BRK
+L_9D01:
+    BRK
+L_9D02:
+    BRK
+L_9D03:
+    BRK
+L_9D04:
+    BRK
+L_9D05:
+    BRK
+L_9D06:
+    BRK
+L_9D07:
+    BRK
+L_9D08:
+    BRK
+L_9D09:
+    BRK
+L_9D0A:
+    BRK
+L_9D0B:
+    BRK
+L_9D0C:
+    BRK
+L_9D0D:
+    BRK
+L_9D0E:
+    BRK
+L_9D0F:
+    BRK
+L_9D10:
+    BRK
+L_9D11:
+    BRK
+L_9D12:
+    BRK
+L_9D13:
+    BRK
+L_9D14:
+    BRK
+L_9D15:
+    BRK
+L_9D16:
+    BRK
+L_9D17:
+    BRK
+L_9D18:
+    BRK
+L_9D19:
+    BRK
+L_9D1A:
+    BRK
+L_9D1B:
+    BRK
+L_9D1C:
+    BRK
+L_9D1D:
+    BRK
+L_9D1E:
+    BRK
+L_9D1F:
+    BRK
+L_9D20:
+    BRK
+L_9D21:
+    BRK
+L_9D22:
+    BRK
+L_9D23:
+    BRK
+L_9D24:
+    BRK
+L_9D25:
+    BRK
+L_9D26:
+    BRK
+L_9D27:
+    BRK
+L_9D28:
+    BRK
+L_9D29:
+    BRK
+L_9D2A:
+    BRK
+L_9D2B:
+    BRK
+L_9D2C:
+    BRK
+L_9D2D:
+    BRK
+L_9D2E:
+    BRK
+L_9D2F:
+    BRK
+L_9D30:
+    BRK
+L_9D31:
+    BRK
+L_9D32:
+    BRK
+L_9D33:
+    BRK
+L_9D34:
+    BRK
+L_9D35:
+    BRK
+L_9D36:
+    BRK
+L_9D37:
+    BRK
+L_9D38:
+    BRK
+L_9D39:
+    BRK
+L_9D3A:
+    BRK
+L_9D3B:
+    BRK
+L_9D3C:
+    BRK
+L_9D3D:
+    BRK
+L_9D3E:
+    BRK
+L_9D3F:
+    BRK
+L_9D40:
+    BRK
+L_9D41:
+    BRK
+L_9D42:
+    BRK
+L_9D43:
+    BRK
+L_9D44:
+    BRK
+L_9D45:
+    BRK
+L_9D46:
+    BRK
+L_9D47:
+    BRK
+L_9D48:
+    BRK
+L_9D49:
+    BRK
+L_9D4A:
+    BRK
+L_9D4B:
+    BRK
+L_9D4C:
+    BRK
+L_9D4D:
+    BRK
+L_9D4E:
+    BRK
+L_9D4F:
+    BRK
+L_9D50:
+    BRK
+L_9D51:
+    BRK
+L_9D52:
+    BRK
+L_9D53:
+    BRK
+L_9D54:
+    BRK
+L_9D55:
+    BRK
+L_9D56:
+    BRK
+L_9D57:
+    BRK
+L_9D58:
+    BRK
+L_9D59:
+    BRK
+L_9D5A:
+    BRK
+L_9D5B:
+    BRK
+L_9D5C:
+    BRK
+L_9D5D:
+    BRK
+L_9D5E:
+    BRK
+L_9D5F:
+    BRK
+L_9D60:
+    BRK
+L_9D61:
+    BRK
+L_9D62:
+    BRK
+L_9D63:
+    BRK
+L_9D64:
+    BRK
+L_9D65:
+    BRK
+L_9D66:
+    BRK
+L_9D67:
+    BRK
+L_9D68:
+    BRK
+L_9D69:
+    BRK
+L_9D6A:
+    BRK
+L_9D6B:
+    BRK
+L_9D6C:
+    BRK
+L_9D6D:
+    BRK
+L_9D6E:
+    BRK
+L_9D6F:
+    BRK
+L_9D70:
+    BRK
+L_9D71:
+    BRK
+L_9D72:
+    BRK
+L_9D73:
+    BRK
+L_9D74:
+    BRK
+L_9D75:
+    BRK
+L_9D76:
+    BRK
+L_9D77:
+    BRK
+L_9D78:
+    BRK
+L_9D79:
+    BRK
+L_9D7A:
+    BRK
+L_9D7B:
+    BRK
+L_9D7C:
+    BRK
+L_9D7D:
+    BRK
+L_9D7E:
+    BRK
+L_9D7F:
+    BRK
+L_9D80:
+    BRK
+L_9D81:
+    BRK
+L_9D82:
+    BRK
+L_9D83:
+    BRK
+L_9D84:
+    BRK
+L_9D85:
+    BRK
+L_9D86:
+    BRK
+L_9D87:
+    BRK
+L_9D88:
+    BRK
+L_9D89:
+    BRK
+L_9D8A:
+    BRK
+L_9D8B:
+    BRK
+L_9D8C:
+    BRK
+L_9D8D:
+    BRK
+L_9D8E:
+    BRK
+L_9D8F:
+    BRK
+L_9D90:
+    BRK
+L_9D91:
+    BRK
+L_9D92:
+    BRK
+L_9D93:
+    BRK
+L_9D94:
+    BRK
+L_9D95:
+    BRK
+L_9D96:
+    BRK
+L_9D97:
+    BRK
+L_9D98:
+    BRK
+L_9D99:
+    BRK
+L_9D9A:
+    BRK
+L_9D9B:
+    BRK
+L_9D9C:
+    BRK
+L_9D9D:
+    BRK
+L_9D9E:
+    BRK
+L_9D9F:
+    BRK
+L_9DA0:
+    BRK
+L_9DA1:
+    BRK
+L_9DA2:
+    BRK
+L_9DA3:
+    BRK
+L_9DA4:
+    BRK
+L_9DA5:
+    BRK
+L_9DA6:
+    BRK
+L_9DA7:
+    BRK
+L_9DA8:
+    BRK
+L_9DA9:
+    BRK
+L_9DAA:
+    BRK
+L_9DAB:
+    BRK
+L_9DAC:
+    BRK
+L_9DAD:
+    BRK
+L_9DAE:
+    BRK
+L_9DAF:
+    BRK
+L_9DB0:
+    BRK
+L_9DB1:
+    BRK
+L_9DB2:
+    BRK
+L_9DB3:
+    BRK
+L_9DB4:
+    BRK
+L_9DB5:
+    BRK
+L_9DB6:
+    BRK
+L_9DB7:
+    BRK
+L_9DB8:
+    BRK
+L_9DB9:
+    BRK
+L_9DBA:
+    BRK
+L_9DBB:
+    BRK
+L_9DBC:
+    BRK
+L_9DBD:
+    BRK
+L_9DBE:
+    BRK
+L_9DBF:
+    BRK
+L_9DC0:
+    BRK
+L_9DC1:
+    BRK
+L_9DC2:
+    BRK
+L_9DC3:
+    BRK
+L_9DC4:
+    BRK
+L_9DC5:
+    BRK
+L_9DC6:
+    BRK
+L_9DC7:
+    BRK
+L_9DC8:
+    BRK
+L_9DC9:
+    BRK
+L_9DCA:
+    BRK
+L_9DCB:
+    BRK
+L_9DCC:
+    BRK
+L_9DCD:
+    BRK
+L_9DCE:
+    BRK
+L_9DCF:
+    BRK
+L_9DD0:
+    BRK
+L_9DD1:
+    BRK
+L_9DD2:
+    BRK
+L_9DD3:
+    BRK
+L_9DD4:
+    BRK
+L_9DD5:
+    BRK
+L_9DD6:
+    BRK
+L_9DD7:
+    BRK
+L_9DD8:
+    BRK
+L_9DD9:
+    BRK
+L_9DDA:
+    BRK
+L_9DDB:
+    BRK
+L_9DDC:
+    BRK
+L_9DDD:
+    BRK
+L_9DDE:
+    BRK
+L_9DDF:
+    BRK
+L_9DE0:
+    BRK
+L_9DE1:
+    BRK
+L_9DE2:
+    BRK
+L_9DE3:
+    BRK
+L_9DE4:
+    BRK
+L_9DE5:
+    BRK
+L_9DE6:
+    BRK
+L_9DE7:
+    BRK
+L_9DE8:
+    BRK
+L_9DE9:
+    BRK
+L_9DEA:
+    BRK
+L_9DEB:
+    BRK
+L_9DEC:
+    BRK
+L_9DED:
+    BRK
+L_9DEE:
+    BRK
+L_9DEF:
+    BRK
+L_9DF0:
+    BRK
+L_9DF1:
+    BRK
+L_9DF2:
+    BRK
+L_9DF3:
+    BRK
+L_9DF4:
+    BRK
+L_9DF5:
+    BRK
+L_9DF6:
+    BRK
+L_9DF7:
+    BRK
+L_9DF8:
+    BRK
+L_9DF9:
+    BRK
+L_9DFA:
+    BRK
+L_9DFB:
+    BRK
+L_9DFC:
+    BRK
+L_9DFD:
+    BRK
+L_9DFE:
+    BRK
+L_9DFF:
+    BRK
+L_9E00:
+    BRK
+L_9E01:
+    BRK
+L_9E02:
+    BRK
+    .byte $12, $00, $37, $00, $4D, $00, $7B, $00, $91, $00, $A0, $00, $B4, $00, $C8, $00
+    .byte $DB, $01, $1D, $01, $37, $01, $60, $01, $6C, $01, $78, $01, $95, $01, $A4, $01
+    .byte $B7, $01, $D0, $01, $E9, $02, $03, $02, $1D, $02, $42, $02, $67, $02, $B3, $02
+    .byte $F8, $03, $0E, $03, $8E, $03, $B2, $03, $CB, $03, $E7, $04, $13, $04, $3D, $04
+    .byte $6A, $04, $79, $04, $9B, $04, $B1, $04, $E7, $05, $1C, $05, $4D, $05, $98, $05
+    .byte $D5, $05, $EE, $06, $29, $06, $64, $06, $85, $06, $A6, $06, $C7, $06, $E8, $07
+    .byte $23, $07, $49, $07, $8F, $07, $D6, $07, $FD, $08, $1C, $08, $49, $08, $7F, $08
+    .byte $D9, $09, $0C, $09, $72, $09, $DF, $09, $F5, $0A, $0B, $0A, $21, $0A, $43, $0A
+    .byte $57, $0A, $6B, $0B, $6D, $0C, $C8, $10, $57, $10, $B8, $13, $64, $15, $E4, $19
+    .byte $73, $1A, $33, $1A, $8B, $1B, $7D, $1B, $94, $1B, $F2, $80, $00, $80, $10, $80
+    .byte $5A, $81, $5F, $81, $69, $81, $8E, $81, $CF, $82, $0C, $82, $46, $82, $99, $82
+    .byte $B2, $82, $CC, $83, $3F, $83, $A8, $83, $B2, $83, $D8, $84, $20, $84, $69, $84
+    .byte $A5, $84, $FD, $85, $1A, $85, $57, $85, $74, $85, $D0, $86, $24, $86, $68, $86
+    .byte $A9, $86, $DD, $87, $10, $87, $32, $87, $3C, $87, $94, $87, $9E, $87, $BE, $87
+    .byte $D9, $88, $02, $88, $15, $88, $28, $88, $40, $88, $54, $88, $65, $88, $8B, $88
+    .byte $9C, $89, $AC, $8A, $14, $8A, $7A, $8B, $12, $8C, $1C, $8D, $33, $8E, $42, $8E
+    .byte $5E, $8E, $7F, $8E, $A6, $8F, $0C, $8F, $29, $8F, $77, $8F, $98, $8F, $DD, $8F
+    .byte $F8, $90, $5A, $90, $74, $90, $8F, $91, $24, $92, $2E, $92, $5D, $92, $7A, $92
+    .byte $D2, $93, $11, $93, $34, $93, $5A, $93, $C3, $94, $31, $94, $74, $94, $BF, $94
+    .byte $FE, $95, $32, $95, $6C, $95, $9E, $95, $E0, $96, $26, $96, $5A, $96, $A1, $96
+    .byte $C1, $96, $E3, $97, $00, $97, $27, $97, $CC, $97, $F2, $98, $62, $99, $72, $99
+    .byte $87, $99, $A8, $99, $BA, $99, $CC, $99, $DD, $99, $EF, $C0, $00, $C0, $3F, $C1
+    .byte $3E, $C2, $8D, $C2, $A4, $C2, $E3, $C4, $32, $C5, $6C, $C5, $AA, $C5, $F6, $C6
+    .byte $9C, $C6, $AE, $C6, $EE, $C7, $08, $C7, $B6, $C7, $D7, $C7, $F9, $C8, $47, $C9
+    .byte $50, $CA, $11, $CA, $8C, $CA, $A3, $CA, $BE, $CA, $D5, $CA, $F8, $CB, $0E, $CB
+    .byte $1F, $CB, $75, $CB, $C5, $CB, $E6, $CC, $18, $CE, $6E, $CE, $A1, $CE, $B5, $CE
+    .byte $DC, $CF, $02, $CF, $72, $D0, $82, $D0, $A4, $D0, $FC, $D1, $1E, $D1, $40, $D1
+    .byte $6D, $D1, $8E, $D1, $B4, $D1, $D6, $D4, $F6, $D5, $31, $D5, $6F, $D5, $A5, $D5
+    .byte $C7, $D5, $E9, $D6, $0B, $D6, $2D, $D6, $6A, $D6, $B8, $D6, $FB, $D7, $1C, $D7
+    .byte $81, $D7, $D7, $D8, $8B, $DB, $20, $DB, $60, $DB, $BE, $DB, $E0, $DC, $C8, $DD
+    .byte $23, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+L_A000:
+    LDA $0402
+L_A003:
+    ORA $0403
+L_A006:
+    BEQ L_A045
+L_A008:
+    JSR sub_C046
+L_A00B:
+    JSR sub_CCAB
+L_A00E:
+    JSR sub_C48E
+L_A011:
+    LDA $0567
+L_A014:
+    BEQ L_A037
+L_A016:
+    DEC $056A
+L_A019:
+    BNE L_A037
+L_A01B:
+    LDA $0569
+L_A01E:
+    LDY $0568
+L_A021:
+    CPY #$06
+L_A023:
+    BCS L_A026
+L_A025:
+    ASL
+L_A026:
+    STA $056A
+L_A029:
+    DEC $0568
+L_A02C:
+    BNE L_A037
+L_A02E:
+    LDA #$00
+L_A030:
+    STA $0567
+L_A033:
+    JSR sub_C093
+L_A036:
+    RTS
+L_A037:
+    LDA $04CB
+L_A03A:
+    ORA $04CC
+L_A03D:
+    ORA $04CD
+L_A040:
+    BNE L_A045
+L_A042:
+    STA $0403
+L_A045:
+    RTS
+L_A046:
+    LDX #$00
+L_A048:
+    LDA $0403
+L_A04B:
+    BNE L_A055
+L_A04D:
+    CPX #$09
+L_A04F:
+    BEQ L_A055
+L_A051:
+    CPX #$06
+L_A053:
+    BCS L_A07E
+L_A055:
+    TXA
+L_A056:
+    ASL
+L_A057:
+    TAY
+L_A058:
+    LDA $0021,Y
+L_A05B:
+    ORA $0022,Y
+L_A05E:
+    BEQ L_A07E
+L_A060:
+    STX $48
+L_A062:
+    STY $49
+L_A064:
+    LDA $0404,X
+L_A067:
+    BNE L_A07B
+L_A069:
+    STA $04B0
+L_A06C:
+    JSR sub_C46F
+L_A06F:
+    STA $45
+L_A071:
+    BEQ L_A084
+L_A073:
+    JSR sub_C0FF
+L_A076:
+    LDA $04B0
+L_A079:
+    BEQ L_A06C
+L_A07B:
+    DEC $0404,X
+L_A07E:
+    INX
+L_A07F:
+    CPX #$0A
+L_A081:
+    BCC L_A048
+L_A083:
+    RTS
+L_A084:
+    TXA
+L_A085:
+    ASL
+L_A086:
+    TAY
+L_A087:
+    LDA #$00
+L_A089:
+    STA $0021,Y
+L_A08C:
+    STA $0022,Y
+L_A08F:
+    CPX #$06
+L_A091:
+    BCS L_A0B3
+L_A093:
+    LDA #$00
+L_A095:
+    STA $0402
+L_A098:
+    TAX
+L_A099:
+    LDA #$00
+L_A09B:
+    JSR sub_CDE9
+L_A09E:
+    INX
+L_A09F:
+    CPX #$06
+L_A0A1:
+    BNE L_A099
+L_A0A3:
+    LDX #$00
+L_A0A5:
+    LDA #$00
+L_A0A7:
+    STA $21,X
+L_A0A9:
+    INX
+L_A0AA:
+    CPX #$0C
+L_A0AC:
+    BNE L_A0A7
+L_A0AE:
+    STA $33
+L_A0B0:
+    STA $34
+L_A0B2:
+    RTS
+L_A0B3:
+    CPX #$09
+L_A0B5:
+    BEQ L_A07E
+L_A0B7:
+    STA $04C5,X
+L_A0BA:
+    TXA
+L_A0BB:
+    SEC
+L_A0BC:
+    SBC #$06
+L_A0BE:
+    TAY
+L_A0BF:
+    LDA $C0FC,Y
+L_A0C2:
+    STA $4015
+L_A0C5:
+    LDA #$0F
+L_A0C7:
+    STA $4015
+L_A0CA:
+    JSR sub_C193
+L_A0CD:
+    LDA $0402
+L_A0D0:
+    BEQ L_A07E
+L_A0D2:
+    LDA $C0F9,Y
+L_A0D5:
+    TAY
+L_A0D6:
+    LDA #$01
+L_A0D8:
+    STA $04C5,Y
+L_A0DB:
+    LDA #$FF
+L_A0DD:
+    STA $058B,Y
+L_A0E0:
+    TYA
+L_A0E1:
+    TAX
+L_A0E2:
+    LDA $0579,X
+L_A0E5:
+    CMP #$0D
+L_A0E7:
+    BNE L_A0EE
+L_A0E9:
+    LDA #$00
+L_A0EB:
+    JMP L_C0F1
+L_A0EE:
+    LDA $0418,Y
+L_A0F1:
+    JSR sub_CDE9
+L_A0F4:
+    LDX $48
+L_A0F6:
+    JMP L_C07E
+    .byte $02, $03, $04, $0E, $0D, $07
+
+L_A0FF:
+    CMP #$C0
+L_A101:
+    BCS L_A106
+L_A103:
+    JMP L_C4AC
+L_A106:
+    CMP #$C8
+L_A108:
+    BCS L_A110
+L_A10A:
+    AND #$07
+L_A10C:
+    STA $042A,X
+L_A10F:
+    RTS
+L_A110:
+    CMP #$D0
+L_A112:
+    BCS L_A11D
+L_A114:
+    AND #$07
+L_A116:
+    CLC
+L_A117:
+    ADC #$01
+L_A119:
+    STA $0434,X
+L_A11C:
+    RTS
+L_A11D:
+    CMP #$E0
+L_A11F:
+    BCS L_A13E
+L_A121:
+    AND #$0F
+L_A123:
+    CPX #$04
+L_A125:
+    BCS L_A132
+L_A127:
+    STA $03E7,X
+L_A12A:
+    SEC
+L_A12B:
+    SBC $03E0,X
+L_A12E:
+    BCS L_A132
+L_A130:
+    LDA #$00
+L_A132:
+    STA $040E,X
+L_A135:
+    STA $0418,X
+L_A138:
+    LDA #$00
+L_A13A:
+    STA $04BB,X
+L_A13D:
+    RTS
+L_A13E:
+    PHA
+L_A13F:
+    AND #$1F
+L_A141:
+    ASL
+L_A142:
+    TAY
+L_A143:
+    LDA $C153,Y
+L_A146:
+    STA $0577
+L_A149:
+    LDA $C154,Y
+L_A14C:
+    STA $0578
+L_A14F:
+    PLA
+L_A150:
+    JMP ($0577)
+    .byte $C3, $C1, $C7, $C1, $C8, $C2, $D4, $C2, $EE, $C2, $F7, $C2, $2A, $C3, $2E, $C3
+    .byte $68, $C3, $6C, $C3, $EC, $C3, $07, $C4, $AD, $C3, $B8, $C3, $D8, $C3, $DC, $C3
+    .byte $88, $C3, $18
+
+L_A176:
+    CPY $CB
+L_A178:
+    CMP ($45,X)
+L_A17A:
+    CPY $BB
+    .byte $C2, $7E, $C3, $8A, $C2, $7E, $C3, $7E, $C3, $7E, $C3, $09, $C3, $7E, $C3, $12
+    .byte $C3, $1E, $C3, $7E, $C3, $7F, $C3
+
+L_A193:
+    TXA
+L_A194:
+    PHA
+L_A195:
+    TYA
+L_A196:
+    PHA
+L_A197:
+    LDA $BD
+L_A199:
+    PHA
+L_A19A:
+    LDA #$FC
+L_A19C:
+    STA $5115
+L_A19F:
+    LDA $0402
+L_A1A2:
+    JSR sub_EF9B
+L_A1A5:
+    PLA
+L_A1A6:
+    STA $5115
+L_A1A9:
+    LDX #$00
+L_A1AB:
+    LDA $03E7,X
+L_A1AE:
+    SEC
+L_A1AF:
+    SBC $03E0,X
+L_A1B2:
+    BCS L_A1B6
+L_A1B4:
+    LDA #$00
+L_A1B6:
+    STA $040E,X
+L_A1B9:
+    INX
+L_A1BA:
+    CPX #$05
+L_A1BC:
+    BNE L_A1AB
+L_A1BE:
+    PLA
+L_A1BF:
+    TAY
+L_A1C0:
+    PLA
+L_A1C1:
+    TAX
+L_A1C2:
+    RTS
+    .byte $FE, $2A, $04, $60, $DE, $2A, $04, $60, $20, $59, $C4, $8D, $06, $52, $A0, $00
+    .byte $E0, $05, $F0, $39, $E0, $04, $F0, $07, $E0, $08, $F0, $03, $4C, $27, $C2, $A9
+    .byte $04, $8D, $05, $52, $AD, $05, $52, $18, $69, $00, $85, $4A, $AD, $06, $52, $69
+    .byte $DB, $85, $4B, $A0, $00, $B1, $4A, $9D, $A6, $05, $C8, $B1, $4A, $9D, $AF, $05
+    .byte $C8, $B1, $4A, $9D, $B8, $05, $C8, $B1, $4A, $9D, $C1, $05, $60, $A9, $05, $8D
+    .byte $05, $52, $AD, $05, $52, $18, $69, $00, $85, $4A, $AD, $06, $52, $69, $DC, $85
+    .byte $4B, $4C, $5B, $C2, $A9, $10, $8D, $05, $52, $AD, $05, $52, $18, $69, $00, $85
+    .byte $4A, $AD, $06, $52, $69, $D7, $85, $4B, $B1, $4A, $09, $30, $9D, $22, $04, $C8
+    .byte $B1, $4A, $9D, $A6, $05, $C8, $B1, $4A, $9D, $AF, $05, $C8, $B1, $4A, $9D, $B8
+    .byte $05, $C8, $B1, $4A, $9D, $C1, $05, $C8, $B1, $4A, $9D, $70, $04, $C8, $B1, $4A
+    .byte $18, $69, $80, $9D, $90, $04, $A9, $80, $9D
+
+L_A26C:
+    PLA
+    .byte $04, $38, $F1, $4A, $9D, $98, $04, $C8, $B1, $4A, $9D, $78, $04
+
+L_A27A:
+    INY
+L_A27B:
+    LDA ($4A),Y
+L_A27D:
+    STA $0480,X
+L_A280:
+    STA $0488,X
+L_A283:
+    INY
+L_A284:
+    LDA ($4A),Y
+L_A286:
+    STA $04A0,X
+L_A289:
+    RTS
+    .byte $A4, $49, $20, $59, $C4, $30, $24, $8D, $06, $52, $A9, $08, $8D, $05, $52, $AD
+    .byte $05, $52, $18, $69, $50, $99, $35, $00, $AD, $06, $52, $69, $DC, $99, $36, $00
+    .byte $A9, $01, $9D, $BB, $04, $A9, $00, $9D, $B1, $04, $60, $A9, $00, $9D, $BB, $04
+    .byte $60, $20, $59, $C4, $9D, $48, $04, $20, $59, $C4, $9D, $50, $04, $60, $A9, $00
+    .byte $9D, $F7, $04, $9D, $29, $05, $9D, $01, $05, $60, $20, $59, $C4, $9D, $29, $05
+    .byte $20, $59, $C4, $9D, $01, $05, $29, $80, $09, $01, $9D, $F7, $04, $20, $59, $C4
+    .byte $9D, $09, $05, $60, $A9, $00, $9D, $F7, $04, $9D, $29, $05, $60, $20, $59, $C4
+    .byte $9D, $09, $05, $20, $59, $C4, $9D, $31, $05, $A9, $03, $9D, $F7, $04, $60, $A9
+    .byte $00, $9D, $F7, $04, $9D, $29, $05, $60, $20, $59, $C4, $9D, $09, $05, $A9, $85
+    .byte $9D, $F7, $04, $60, $20, $59, $C4, $9D, $09, $05, $A9, $05, $9D, $F7, $04, $60
+    .byte $A9, $89, $D0, $02, $A9, $09, $9D, $F7, $04, $20, $59, $C4, $85, $4E, $9D, $09
+    .byte $05, $20, $59, $C4, $9D, $79, $05, $20, $79, $C8, $20, $E4, $C6, $20, $59, $C4
+    .byte $9D, $11, $05, $20, $59, $C4, $9D, $41, $05, $9D, $49, $05, $20, $59, $C4, $9D
+    .byte $04, $04, $9D, $3E, $04, $20, $9E, $C5, $A9, $01, $8D, $B0, $04, $60, $A9, $07
+    .byte $D0, $02, $A9, $87, $9D, $F7, $04, $20, $59, $C4, $9D, $19, $05, $20, $59, $C4
+    .byte $9D, $09, $05, $60, $60, $A9, $01, $8D, $B0, $04, $9D, $04, $04, $60, $A6, $49
+    .byte $A1, $21, $18, $75, $21, $08, $85, $46, $F6, $21, $F0, $0E, $A1, $21, $28, $75
+    .byte $22, $95, $22, $A5, $46, $95, $21, $A6, $48, $60, $F6, $22, $A1, $21, $D6, $22
+    .byte $4C, $98, $C3, $FE, $E3, $04, $DE, $CF, $04, $F0, $1C, $4C, $88, $C3, $8A, $18
+    .byte $69, $0A, $A8, $B9, $E3, $04, $18, $69, $01, $99, $E3, $04, $B9, $CF, $04, $38
+    .byte $E9, $01, $99, $CF, $04, $D0, $B7, $20, $80, $C4, $20, $80, $C4, $60, $8A, $4C
+    .byte $E0, $C3, $8A, $18, $69, $0A, $A8, $20, $59, $C4, $D9, $E3, $04, $F0, $E8, $4C
+    .byte $88, $C3, $A9, $00, $9D, $E3, $04, $A6, $49, $A1, $21, $F6, $21, $F0, $06, $A6
+    .byte $48, $9D, $CF, $04, $60, $F6, $22, $A6, $48, $9D, $CF, $04, $60, $8A, $18, $69
+    .byte $0A, $A8, $A9, $00, $99, $E3, $04, $20, $59, $C4, $99, $CF, $04, $60, $A6, $49
+    .byte $B5, $21, $9D, $6B, $05, $B5, $22, $9D, $6C, $05, $A1, $21, $18, $6D, $8E, $06
+    .byte $08, $85, $46, $F6, $21, $F0, $0F, $A1, $21, $28, $6D, $8F, $06, $95, $22, $A5
+    .byte $46, $95, $21, $A6, $48, $60, $F6, $22, $4C, $31, $C4, $A4, $49, $B9, $6B, $05
+    .byte $18, $69, $02, $99, $21, $00, $B9, $6C, $05, $69, $00, $99, $22, $00, $60
+
+L_A459:
+    LDX $49
+L_A45B:
+    LDA ($21,X)
+L_A45D:
+    PHP
+L_A45E:
+    INC $21,X
+L_A460:
+    BNE L_A464
+L_A462:
+    INC $22,X
+L_A464:
+    LDX $48
+L_A466:
+    PLP
+L_A467:
+    RTS
+L_A468:
+    LDX $49
+L_A46A:
+    LDA ($21,X)
+L_A46C:
+    LDX $48
+L_A46E:
+    RTS
+L_A46F:
+    LDX $49
+L_A471:
+    LDA ($21,X)
+L_A473:
+    PHP
+L_A474:
+    BEQ L_A47C
+L_A476:
+    INC $21,X
+L_A478:
+    BNE L_A47C
+L_A47A:
+    INC $22,X
+L_A47C:
+    LDX $48
+L_A47E:
+    PLP
+L_A47F:
+    RTS
+    .byte $A6, $49, $F6, $21, $F0, $03, $A6, $48, $60, $F6, $22, $A6, $48, $60
+
+L_A48E:
+    DEC $05DC
+L_A491:
+    DEC $05DD
+L_A494:
+    DEC $05DE
+L_A497:
+    DEC $05DF
+L_A49A:
+    DEC $05E0
+L_A49D:
+    LDA $0403
+L_A4A0:
+    BEQ L_A4AB
+L_A4A2:
+    DEC $05E2
+L_A4A5:
+    DEC $05E3
+L_A4A8:
+    DEC $05E4
+L_A4AB:
+    RTS
+L_A4AC:
+    CPX #$04
+L_A4AE:
+    BEQ L_A4BB
+L_A4B0:
+    CPX #$08
+L_A4B2:
+    BEQ L_A4BB
+L_A4B4:
+    CPX #$09
+L_A4B6:
+    BNE L_A4BE
+L_A4B8:
+    JMP L_D013
+L_A4BB:
+    JMP L_C63E
+L_A4BE:
+    AND #$0F
+L_A4C0:
+    SEC
+L_A4C1:
+    SBC #$01
+L_A4C3:
+    CMP #$0D
+L_A4C5:
+    BNE L_A4D5
+L_A4C7:
+    LDA $0579,X
+L_A4CA:
+    STA $0582,X
+L_A4CD:
+    LDA #$0D
+L_A4CF:
+    STA $0579,X
+L_A4D2:
+    JMP L_C4FC
+L_A4D5:
+    STA $0579,X
+L_A4D8:
+    JSR sub_C764
+L_A4DB:
+    LDY $042A,X
+L_A4DE:
+    STY $4E
+L_A4E0:
+    PHA
+L_A4E1:
+    JSR sub_C785
+L_A4E4:
+    LDA $0470,X
+L_A4E7:
+    AND #$03
+L_A4E9:
+    CMP #$03
+L_A4EB:
+    BNE L_A4F5
+L_A4ED:
+    STA $0470,X
+L_A4F0:
+    LDA #$80
+L_A4F2:
+    STA $0468,X
+L_A4F5:
+    PLA
+L_A4F6:
+    JSR sub_C879
+L_A4F9:
+    JSR sub_C6E4
+L_A4FC:
+    LDA $04A0,X
+L_A4FF:
+    STA $04A8,X
+L_A502:
+    LDA $059D,X
+L_A505:
+    BEQ L_A50A
+L_A507:
+    DEC $059D,X
+L_A50A:
+    LDA #$01
+L_A50C:
+    STA $04B0
+L_A50F:
+    LDA $45
+L_A511:
+    LSR
+L_A512:
+    LSR
+L_A513:
+    LSR
+L_A514:
+    LSR
+L_A515:
+    TAY
+L_A516:
+    LDA $0551,Y
+L_A519:
+    CPX #$06
+L_A51B:
+    BCC L_A520
+L_A51D:
+    LDA $055C,Y
+L_A520:
+    STA $0404,X
+L_A523:
+    CPY #$0B
+L_A525:
+    BNE L_A52D
+L_A527:
+    JSR sub_C459
+L_A52A:
+    STA $0404,X
+L_A52D:
+    JSR sub_C468
+L_A530:
+    CMP #$F8
+L_A532:
+    BNE L_A53C
+L_A534:
+    LDA #$02
+L_A536:
+    STA $059D,X
+L_A539:
+    JSR sub_C459
+L_A53C:
+    LDA $0579,X
+L_A53F:
+    CMP #$0D
+L_A541:
+    BNE L_A544
+L_A543:
+    RTS
+L_A544:
+    LDA $0404,X
+L_A547:
+    STA $043E,X
+L_A54A:
+    LDA $0434,X
+L_A54D:
+    CMP #$08
+L_A54F:
+    BEQ L_A59E
+L_A551:
+    CPX #$05
+L_A553:
+    BNE L_A564
+L_A555:
+    LDA $059D,X
+L_A558:
+    CMP #$02
+L_A55A:
+    BNE L_A564
+L_A55C:
+    LDA #$00
+L_A55E:
+    STA $059D,X
+L_A561:
+    JMP L_C5FF
+L_A564:
+    LDA $0404,X
+L_A567:
+    BEQ L_A576
+L_A569:
+    CMP #$08
+L_A56B:
+    BCS L_A58C
+L_A56D:
+    CMP #$03
+L_A56F:
+    BCS L_A57B
+L_A571:
+    LDA #$01
+L_A573:
+    JMP L_C59B
+L_A576:
+    LDA #$20
+L_A578:
+    JMP L_C58F
+L_A57B:
+    SEC
+L_A57C:
+    SBC #$03
+L_A57E:
+    ASL
+L_A57F:
+    ASL
+L_A580:
+    ASL
+L_A581:
+    CLC
+L_A582:
+    ADC $0434,X
+L_A585:
+    TAY
+L_A586:
+    LDA $C851,Y
+L_A589:
+    JMP L_C59B
+L_A58C:
+    LSR
+L_A58D:
+    LSR
+L_A58E:
+    LSR
+L_A58F:
+    STA $5206
+L_A592:
+    LDA $0434,X
+L_A595:
+    STA $5205
+L_A598:
+    LDA $5205
+L_A59B:
+    STA $043E,X
+L_A59E:
+    LDA $0579,X
+L_A5A1:
+    CMP #$0C
+L_A5A3:
+    BEQ L_A5BB
+L_A5A5:
+    LDA $04F7,X
+L_A5A8:
+    AND #$0F
+L_A5AA:
+    BEQ L_A5BB
+L_A5AC:
+    CMP #$01
+L_A5AE:
+    BEQ L_A605
+L_A5B0:
+    CMP #$03
+L_A5B2:
+    BEQ L_A60B
+L_A5B4:
+    CMP #$05
+L_A5B6:
+    BNE L_A5BB
+L_A5B8:
+    JSR sub_C7C9
+L_A5BB:
+    CPX #$05
+L_A5BD:
+    BEQ L_A5FF
+L_A5BF:
+    LDA $059D,X
+L_A5C2:
+    CMP #$01
+L_A5C4:
+    BNE L_A5CA
+L_A5C6:
+    DEC $059D,X
+L_A5C9:
+    RTS
+L_A5CA:
+    LDA #$00
+L_A5CC:
+    STA $05E5,X
+L_A5CF:
+    LDA $05A6,X
+L_A5D2:
+    STA $4C
+L_A5D4:
+    BNE L_A5E3
+L_A5D6:
+    LDA $040E,X
+L_A5D9:
+    JSR sub_CDE9
+L_A5DC:
+    JSR sub_CDA5
+L_A5DF:
+    INC $05EE,X
+L_A5E2:
+    RTS
+L_A5E3:
+    CMP #$01
+L_A5E5:
+    BNE L_A5F4
+L_A5E7:
+    LDA $040E,X
+L_A5EA:
+    LSR
+L_A5EB:
+    JSR sub_CDE9
+L_A5EE:
+    LDY $040E,X
+L_A5F1:
+    JMP L_C611
+L_A5F4:
+    LDA #$01
+L_A5F6:
+    JSR sub_CDE9
+L_A5F9:
+    LDY $040E,X
+L_A5FC:
+    JMP L_C611
+L_A5FF:
+    LDA #$01
+L_A601:
+    JSR sub_CDE9
+L_A604:
+    RTS
+L_A605:
+    JSR sub_C79B
+L_A608:
+    JMP L_C5BB
+L_A60B:
+    JSR sub_C7D6
+L_A60E:
+    JMP L_C5BB
+L_A611:
+    DEY
+L_A612:
+    STY $5206
+L_A615:
+    LDA #$3C
+L_A617:
+    STA $5205
+L_A61A:
+    DEC $4C
+L_A61C:
+    ASL $4C
+L_A61E:
+    LDA $5205
+L_A621:
+    CLC
+L_A622:
+    ADC $4C
+L_A624:
+    STA $4A
+L_A626:
+    LDA $5206
+L_A629:
+    ADC #$D3
+L_A62B:
+    STA $4B
+L_A62D:
+    LDY #$00
+L_A62F:
+    LDA ($4A),Y
+L_A631:
+    STA $05CA,X
+L_A634:
+    INY
+L_A635:
+    LDA ($4A),Y
+L_A637:
+    STA $05DC,X
+L_A63A:
+    STA $05D3,X
+L_A63D:
+    RTS
+L_A63E:
+    PHA
+L_A63F:
+    AND #$0F
+L_A641:
+    SEC
+L_A642:
+    SBC #$01
+L_A644:
+    STA $0579,X
+L_A647:
+    CMP #$0D
+L_A649:
+    BNE L_A64F
+L_A64B:
+    PLA
+L_A64C:
+    JMP L_C4FC
+L_A64F:
+    PLA
+L_A650:
+    LDY $04C5,X
+L_A653:
+    BEQ L_A6A9
+L_A655:
+    LDY $0579,X
+L_A658:
+    CPY #$0C
+L_A65A:
+    BNE L_A669
+L_A65C:
+    LDA #$07
+L_A65E:
+    STA $4015
+L_A661:
+    LDA #$0F
+L_A663:
+    STA $4015
+L_A666:
+    JMP L_C4FC
+L_A669:
+    JSR sub_C6AC
+L_A66C:
+    LDY #$00
+L_A66E:
+    LDA ($4A),Y
+L_A670:
+    STA $400E
+L_A673:
+    INY
+L_A674:
+    LDA ($4A),Y
+L_A676:
+    STA $0434,X
+L_A679:
+    INY
+L_A67A:
+    LDA $04BB,X
+L_A67D:
+    BEQ L_A690
+L_A67F:
+    TXA
+L_A680:
+    ASL
+L_A681:
+    CLC
+L_A682:
+    ADC #$35
+L_A684:
+    STA $06F9
+L_A687:
+    LDA $04B1,X
+L_A68A:
+    JSR sub_06F7
+L_A68D:
+    JMP L_C692
+L_A690:
+    LDA ($4A),Y
+L_A692:
+    CPX #$04
+L_A694:
+    BNE L_A6A1
+L_A696:
+    STA $03EB
+L_A699:
+    SEC
+L_A69A:
+    SBC $03E4
+L_A69D:
+    BCS L_A6A1
+L_A69F:
+    LDA #$00
+L_A6A1:
+    STA $040E,X
+L_A6A4:
+    LDA #$FF
+L_A6A6:
+    STA $400F
+L_A6A9:
+    JMP L_C4FC
+L_A6AC:
+    LDA $0579,X
+L_A6AF:
+    STA $5206
+L_A6B2:
+    LDA #$03
+L_A6B4:
+    STA $5205
+L_A6B7:
+    LDA $5205
+L_A6BA:
+    STA $4D
+L_A6BC:
+    LDA $042A,X
+L_A6BF:
+    STA $5206
+L_A6C2:
+    LDA #$24
+L_A6C4:
+    STA $5205
+L_A6C7:
+    LDA $5205
+L_A6CA:
+    CLC
+L_A6CB:
+    ADC #$50
+L_A6CD:
+    STA $4A
+L_A6CF:
+    LDA $5206
+L_A6D2:
+    ADC #$DE
+L_A6D4:
+    STA $4B
+L_A6D6:
+    LDA $4D
+L_A6D8:
+    CLC
+L_A6D9:
+    ADC $4A
+L_A6DB:
+    STA $4A
+L_A6DD:
+    LDA $4B
+L_A6DF:
+    ADC #$00
+L_A6E1:
+    STA $4B
+L_A6E3:
+    RTS
+L_A6E4:
+    LDA #$FF
+L_A6E6:
+    LDY $04C5,X
+L_A6E9:
+    BEQ L_A70B
+L_A6EB:
+    LDA $4A
+L_A6ED:
+    STA $0594,X
+L_A6F0:
+    CPX #$00
+L_A6F2:
+    BEQ L_A70F
+L_A6F4:
+    CPX #$01
+L_A6F6:
+    BEQ L_A720
+L_A6F8:
+    CPX #$02
+L_A6FA:
+    BEQ L_A731
+L_A6FC:
+    CPX #$03
+L_A6FE:
+    BEQ L_A742
+L_A700:
+    CPX #$05
+L_A702:
+    BEQ L_A753
+L_A704:
+    CPX #$06
+L_A706:
+    BEQ L_A731
+L_A708:
+    JMP L_C742
+L_A70B:
+    STA $058B,X
+L_A70E:
+    RTS
+L_A70F:
+    STA $5002
+L_A712:
+    LDA $4B
+L_A714:
+    CMP $058B,X
+L_A717:
+    BNE L_A71A
+L_A719:
+    RTS
+L_A71A:
+    STA $5003
+L_A71D:
+    JMP L_C70B
+L_A720:
+    STA $5006
+L_A723:
+    LDA $4B
+L_A725:
+    CMP $058B,X
+L_A728:
+    BNE L_A72B
+L_A72A:
+    RTS
+L_A72B:
+    STA $5007
+L_A72E:
+    JMP L_C70B
+L_A731:
+    STA $4002
+L_A734:
+    LDA $4B
+L_A736:
+    CMP $058B,X
+L_A739:
+    BNE L_A73C
+L_A73B:
+    RTS
+L_A73C:
+    STA $4003
+L_A73F:
+    JMP L_C70B
+L_A742:
+    STA $4006
+L_A745:
+    LDA $4B
+L_A747:
+    CMP $058B,X
+L_A74A:
+    BNE L_A74D
+L_A74C:
+    RTS
+L_A74D:
+    STA $4007
+L_A750:
+    JMP L_C70B
+L_A753:
+    STA $400A
+L_A756:
+    LDA $4B
+L_A758:
+    CMP $058B,X
+L_A75B:
+    BNE L_A75E
+L_A75D:
+    RTS
+L_A75E:
+    STA $400B
+L_A761:
+    JMP L_C70B
+L_A764:
+    LDY $04BB,X
+L_A767:
+    BEQ L_A784
+L_A769:
+    PHA
+L_A76A:
+    TXA
+L_A76B:
+    ASL
+L_A76C:
+    CLC
+L_A76D:
+    ADC #$35
+L_A76F:
+    STA $06F9
+L_A772:
+    LDA $04B1,X
+L_A775:
+    JSR sub_06F7
+L_A778:
+    SEC
+L_A779:
+    SBC $03E0,X
+L_A77C:
+    BCS L_A780
+L_A77E:
+    LDA #$00
+L_A780:
+    STA $040E,X
+L_A783:
+    PLA
+L_A784:
+    RTS
+L_A785:
+    LDA $04F7,X
+L_A788:
+    AND #$0F
+L_A78A:
+    CMP #$01
+L_A78C:
+    BNE L_A79A
+L_A78E:
+    LDA $0501,X
+L_A791:
+    STA $0460,X
+L_A794:
+    LDA $0529,X
+L_A797:
+    STA $0458,X
+L_A79A:
+    RTS
+L_A79B:
+    LDA #$00
+L_A79D:
+    STA $0458,X
+L_A7A0:
+    STA $0460,X
+L_A7A3:
+    LDA $0509,X
+L_A7A6:
+    STA $0511,X
+L_A7A9:
+    JSR sub_C459
+L_A7AC:
+    BEQ L_A7BA
+L_A7AE:
+    STA $0519,X
+L_A7B1:
+    LDA #$01
+L_A7B3:
+    STA $0541,X
+L_A7B6:
+    STA $0549,X
+L_A7B9:
+    RTS
+L_A7BA:
+    JSR sub_C459
+L_A7BD:
+    STA $0541,X
+L_A7C0:
+    STA $0549,X
+L_A7C3:
+    LDA #$01
+L_A7C5:
+    STA $0519,X
+L_A7C8:
+    RTS
+L_A7C9:
+    LDA $0404,X
+L_A7CC:
+    SEC
+L_A7CD:
+    SBC $0509,X
+L_A7D0:
+    STA $0511,X
+L_A7D3:
+    JMP L_C7A9
+L_A7D6:
+    LDA #$01
+L_A7D8:
+    STA $0541,X
+L_A7DB:
+    STA $0549,X
+L_A7DE:
+    LDA $0531,X
+L_A7E1:
+    STA $0539,X
+L_A7E4:
+    LDA $0509,X
+L_A7E7:
+    CMP #$FF
+L_A7E9:
+    BNE L_A7EE
+L_A7EB:
+    LDA $0404,X
+L_A7EE:
+    STA $0511,X
+L_A7F1:
+    JSR sub_C459
+L_A7F4:
+    STA $4D
+L_A7F6:
+    AND #$3F
+L_A7F8:
+    BNE L_A811
+L_A7FA:
+    JSR sub_C459
+L_A7FD:
+    STA $0541,X
+L_A800:
+    STA $0549,X
+L_A803:
+    BIT $4D
+L_A805:
+    BPL L_A80C
+L_A807:
+    LDA #$FF
+L_A809:
+    JMP L_C825
+L_A80C:
+    LDA #$01
+L_A80E:
+    JMP L_C817
+L_A811:
+    BIT $4D
+L_A813:
+    BVS L_A82E
+L_A815:
+    BMI L_A820
+L_A817:
+    STA $0519,X
+L_A81A:
+    LDA #$00
+L_A81C:
+    STA $0521,X
+L_A81F:
+    RTS
+L_A820:
+    EOR #$FF
+L_A822:
+    CLC
+L_A823:
+    ADC #$01
+L_A825:
+    STA $0519,X
+L_A828:
+    LDA #$FF
+L_A82A:
+    STA $0521,X
+L_A82D:
+    RTS
+L_A82E:
+    BMI L_A83A
+L_A830:
+    STA $0521,X
+L_A833:
+    JSR sub_C459
+L_A836:
+    STA $0519,X
+L_A839:
+    RTS
+L_A83A:
+    EOR #$FF
+L_A83C:
+    STA $4D
+L_A83E:
+    JSR sub_C459
+L_A841:
+    EOR #$FF
+L_A843:
+    CLC
+L_A844:
+    ADC #$01
+L_A846:
+    STA $0519,X
+L_A849:
+    LDA #$00
+L_A84B:
+    ADC $4D
+L_A84D:
+    STA $0521,X
+L_A850:
+    RTS
+    .byte $00, $01, $01, $01, $01, $01, $02, $02, $00, $01, $01, $01, $02, $02, $03, $03
+    .byte $00, $01, $01, $01, $02, $03, $03, $04, $00, $01, $01, $02, $03, $03, $04, $05
+    .byte $00, $01, $01, $02, $03, $04, $05, $06
+
+L_A879:
+    CMP #$0C
+L_A87B:
+    BNE L_A886
+L_A87D:
+    LDA #$01
+L_A87F:
+    STA $4A
+L_A881:
+    LDA #$00
+L_A883:
+    STA $4B
+L_A885:
+    RTS
+L_A886:
+    TAY
+L_A887:
+    LDA $0448,X
+L_A88A:
+    CLC
+L_A88B:
+    ADC $0458,X
+L_A88E:
+    STA $4A
+L_A890:
+    LDA $0450,X
+L_A893:
+    ADC $0460,X
+L_A896:
+    STA $4B
+L_A898:
+    LDA $0468,X
+L_A89B:
+    SEC
+L_A89C:
+    SBC #$80
+L_A89E:
+    BMI L_A8AC
+L_A8A0:
+    CLC
+L_A8A1:
+    ADC $4A
+L_A8A3:
+    STA $4A
+L_A8A5:
+    LDA #$00
+L_A8A7:
+    ADC $4B
+L_A8A9:
+    JMP L_C8B5
+L_A8AC:
+    CLC
+L_A8AD:
+    ADC $4A
+L_A8AF:
+    STA $4A
+L_A8B1:
+    LDA $4B
+L_A8B3:
+    SBC #$00
+L_A8B5:
+    STA $4B
+L_A8B7:
+    BMI L_A8C8
+L_A8B9:
+    LDA $4A
+L_A8BB:
+    ASL
+L_A8BC:
+    ROL $4B
+L_A8BE:
+    ASL
+L_A8BF:
+    ROL $4B
+L_A8C1:
+    LSR
+L_A8C2:
+    LSR
+L_A8C3:
+    STA $4A
+L_A8C5:
+    JMP L_C8E5
+L_A8C8:
+    LDA $4A
+L_A8CA:
+    ASL
+L_A8CB:
+    ROL $4B
+L_A8CD:
+    ASL
+L_A8CE:
+    ROL $4B
+L_A8D0:
+    LDA $4A
+L_A8D2:
+    AND #$3F
+L_A8D4:
+    BEQ L_A8DA
+L_A8D6:
+    INC $4B
+L_A8D8:
+    ORA #$C0
+L_A8DA:
+    STA $4A
+L_A8DC:
+    BPL L_A8E5
+L_A8DE:
+    CLC
+L_A8DF:
+    ADC #$40
+L_A8E1:
+    STA $4A
+L_A8E3:
+    DEC $4B
+L_A8E5:
+    TYA
+L_A8E6:
+    CLC
+L_A8E7:
+    ADC $4B
+L_A8E9:
+    BPL L_A8FA
+L_A8EB:
+    DEC $4E
+L_A8ED:
+    CLC
+L_A8EE:
+    ADC #$0C
+L_A8F0:
+    BPL L_A90C
+L_A8F2:
+    DEC $4E
+L_A8F4:
+    CLC
+L_A8F5:
+    ADC #$0C
+L_A8F7:
+    JMP L_C90C
+L_A8FA:
+    CMP #$0C
+L_A8FC:
+    BCC L_A90C
+L_A8FE:
+    INC $4E
+L_A900:
+    SEC
+L_A901:
+    SBC #$0C
+L_A903:
+    CMP #$0C
+L_A905:
+    BCC L_A90C
+L_A907:
+    INC $4E
+L_A909:
+    SEC
+L_A90A:
+    SBC #$0C
+L_A90C:
+    STA $5206
+L_A90F:
+    STA $4F
+L_A911:
+    LDA #$40
+L_A913:
+    STA $5205
+L_A916:
+    LDA $4A
+L_A918:
+    BMI L_A92A
+L_A91A:
+    CLC
+L_A91B:
+    ADC $5205
+L_A91E:
+    STA $4A
+L_A920:
+    LDA $5206
+L_A923:
+    ADC #$00
+L_A925:
+    STA $4B
+L_A927:
+    JMP L_C937
+L_A92A:
+    CLC
+L_A92B:
+    ADC $5205
+L_A92E:
+    STA $4A
+L_A930:
+    LDA $5206
+L_A933:
+    SBC #$00
+L_A935:
+    STA $4B
+L_A937:
+    LDA $4A
+L_A939:
+    CLC
+L_A93A:
+    ADC #$AB
+L_A93C:
+    STA $4A
+L_A93E:
+    LDA $4B
+L_A940:
+    ADC #$C9
+L_A942:
+    STA $4B
+L_A944:
+    LDY #$00
+L_A946:
+    LDA ($4A),Y
+L_A948:
+    STA $4A
+L_A94A:
+    LDY $4F
+L_A94C:
+    LDA $C99F,Y
+L_A94F:
+    STA $4B
+L_A951:
+    LDA $C993,Y
+L_A954:
+    BEQ L_A95C
+L_A956:
+    LDA $4A
+L_A958:
+    BPL L_A95C
+L_A95A:
+    DEC $4B
+L_A95C:
+    LDA $4B
+L_A95E:
+    LDY $4E
+L_A960:
+    BEQ L_A989
+L_A962:
+    BMI L_A98A
+L_A964:
+    CPY #$05
+L_A966:
+    BCS L_A973
+L_A968:
+    LSR
+L_A969:
+    ROR $4A
+L_A96B:
+    DEY
+L_A96C:
+    BNE L_A968
+L_A96E:
+    STA $4B
+L_A970:
+    JMP L_C989
+L_A973:
+    STY $50
+L_A975:
+    LDA #$08
+L_A977:
+    SEC
+L_A978:
+    SBC $50
+L_A97A:
+    TAY
+L_A97B:
+    LDA $4A
+L_A97D:
+    ASL
+L_A97E:
+    ROL $4B
+L_A980:
+    DEY
+L_A981:
+    BNE L_A97D
+L_A983:
+    LDA $4B
+L_A985:
+    STY $4B
+L_A987:
+    STA $4A
+L_A989:
+    RTS
+L_A98A:
+    ASL $4A
+L_A98C:
+    ROL $4B
+L_A98E:
+    LDA #$00
+L_A990:
+    STA $4E
+L_A992:
+    RTS
+    .byte $00, $01, $00, $00, $00, $01, $00, $00, $01, $00, $00, $00, $06, $06, $05, $05
+    .byte $05, $05, $04, $04, $04, $03, $03, $03, $AE, $AC, $AB, $A9, $A7, $A6, $A4, $A3
+    .byte $A1, $A0, $9E, $9C, $9B, $99, $98, $96, $95, $93, $92, $90, $8F, $8D, $8B, $8A
+    .byte $88, $87, $85, $84, $82, $81, $7F, $7E, $7C, $7B, $79, $78, $76, $75, $73, $72
+    .byte $70, $6F, $6E, $6C, $6B, $69, $68, $66, $65, $63, $62, $60, $5F, $5D, $5C, $5B
+    .byte $59, $58, $56, $55, $53, $52, $51, $4F, $4E, $4C, $4B, $49, $48, $46, $45, $43
+    .byte $42, $40, $3F, $3D, $3C, $3A, $39, $38, $36, $35, $33, $32, $30, $2F, $2D, $2C
+    .byte $2B, $29, $28, $26, $25, $23, $22, $21, $1F, $1E, $1C, $1B, $1A, $18, $17, $15
+    .byte $14, $13, $11, $10, $0E, $0D, $0C, $0A, $09, $07, $06, $05, $03, $02, $01, $FF
+    .byte $FE, $FD, $FB, $FA, $F9, $F7, $F6, $F4, $F3, $F2, $F0, $EF, $EE, $EC, $EB, $E9
+    .byte $E8, $E7, $E5, $E4, $E2, $E1, $E0, $DE, $DD, $DB, $DA, $D9, $D7, $D6, $D5, $D3
+    .byte $D2, $D1, $CF, $CE, $CD, $CB, $CA, $C8, $C7, $C6, $C4, $C3, $C2, $C1, $BF, $BE
+    .byte $BD, $BB, $BA, $B9, $B7, $B6, $B5, $B3, $B2, $B1, $B0, $AE, $AD, $AC, $AA, $A9
+    .byte $A8, $A7, $A5, $A4, $A3, $A1, $A0, $9F, $9E, $9C, $9B, $9A, $98, $97, $96, $94
+    .byte $93, $92, $90, $8F, $8E, $8C, $8B, $8A, $89, $87, $86, $85, $83, $82, $81, $80
+    .byte $7E, $7D, $7C, $7A, $79, $78, $77, $75, $74, $73, $72, $70, $6F, $6E, $6D, $6B
+    .byte $6A, $69, $68, $66, $65, $64, $63, $61, $60, $5F, $5E, $5D, $5B, $5A, $59, $58
+    .byte $57, $55, $54, $53, $52, $50, $4F, $4E, $4D, $4C, $4A, $49, $48, $47, $45, $44
+    .byte $43, $42, $40, $3F, $3E, $3D, $3B, $3A, $39, $38, $37, $35, $34, $33, $32, $31
+    .byte $2F, $2E, $2D, $2C, $2B, $29, $28, $27, $26, $25, $23, $22, $21, $20, $1F, $1D
+    .byte $1C, $1B, $1A, $19, $18, $16, $15, $14, $13, $12, $11, $10, $0E, $0D, $0C, $0B
+    .byte $0A, $09, $08, $06, $05, $04, $03, $02, $01, $00, $FE, $FD, $FC, $FB, $FA, $F8
+    .byte $F7, $F6, $F5, $F4, $F3, $F1, $F0, $EF, $EE, $ED, $EC, $EB, $E9, $E8, $E7, $E6
+    .byte $E5, $E4, $E3, $E1, $E0, $DF, $DE, $DD, $DC, $DB, $D9, $D8, $D7, $D6, $D5, $D4
+    .byte $D3, $D2, $D1, $D0, $CE, $CD, $CC, $CB, $CA, $C9, $C8, $C7, $C6, $C5, $C4, $C2
+    .byte $C1, $C0, $BF, $BE, $BD, $BC, $BB, $BA, $B9, $B8, $B7, $B5, $B4, $B3, $B2, $B1
+    .byte $B0, $AF, $AE, $AD, $AB, $AA, $A9, $A8, $A7, $A6, $A5, $A4, $A3, $A2, $A1, $A0
+    .byte $9E, $9D, $9C, $9B, $9A, $99, $98, $97, $96, $95, $94, $93, $92, $91, $90, $8F
+    .byte $8D, $8C, $8B, $8A, $89, $88, $87, $86, $85, $84, $83, $82, $81, $80, $7F, $7E
+    .byte $7D, $7C, $7B, $7A, $79, $78, $77, $76, $75, $74, $73, $72, $71, $70, $6F, $6E
+    .byte $6D, $6B, $6A, $69, $68, $67, $66, $65, $64, $63, $62, $61, $60, $5F, $5E, $5D
+    .byte $5C, $5B, $5A, $59, $58, $57, $56, $55, $54, $53, $52, $51, $50, $4F, $4E, $4D
+    .byte $4C, $4B, $4A, $49, $48, $47, $46, $45, $44, $43, $42, $41, $40, $3F, $3E, $3D
+    .byte $3C, $3C, $3B, $3A, $39, $38, $37, $36, $35, $34, $33, $32, $31, $30, $2F, $2E
+    .byte $2D, $2C, $2B, $2A, $29, $28, $27, $26, $25, $24, $23, $22, $21, $20, $1F, $1E
+    .byte $1D, $1C, $1B, $1A, $1A, $19, $18, $17, $16, $15, $14, $13, $12, $11, $10, $0F
+    .byte $0E, $0D, $0C, $0B, $0B, $0A, $09, $08, $07, $06, $05, $04, $03, $02, $01, $01
+    .byte $00, $FF, $FE, $FD, $FC, $FB, $FA, $F9, $F8, $F7, $F7, $F6, $F5, $F4, $F3, $F2
+    .byte $F1, $F0, $EF, $EE, $ED, $EC, $EB, $EA, $EA, $E9, $E8, $E7, $E6, $E5, $E4, $E3
+    .byte $E2, $E1, $E0, $E0, $DF, $DE, $DD, $DC, $DB, $DA, $D9, $D8, $D8, $D7, $D6, $D5
+    .byte $D4, $D3, $D2, $D1, $D0, $D0, $CF, $CE, $CD, $CC, $CB, $CA, $CA, $C9, $C8, $C7
+    .byte $C6, $C5, $C4, $C4, $C3, $C2, $C1, $C0, $BF, $BE, $BE, $BD, $BC, $BB, $BA, $B9
+    .byte $B8, $B7, $B7, $B6, $B5, $B4, $B3, $B2, $B1, $B0, $B0, $AF, $AE, $AD, $AC, $AB
+    .byte $AA, $AA, $A9, $A8, $A7, $A6, $A5, $A4, $A4, $A3, $A2, $A1, $A0, $9F, $9F, $9E
+    .byte $9D, $9C, $9B, $9A, $9A, $99, $98, $97, $96, $96, $95, $94, $93, $92, $91, $91
+    .byte $90, $8F, $8E, $8D, $8D, $8C, $8B, $8A, $89, $89, $88, $87, $86, $85, $84, $84
+    .byte $83, $82, $81, $80, $7F, $7F, $7E, $7D, $7C, $7B, $7B, $7A, $79, $78, $77, $77
+    .byte $76, $75, $74, $73, $73, $72, $71, $70, $6F, $6F, $6E, $6D, $6C, $6B, $6B, $6A
+    .byte $69, $68, $67, $67, $66, $65, $64, $64, $63, $62, $61, $60, $60, $5F, $5E, $5D
+    .byte $5D, $5C, $5B, $5A, $5A, $59, $58, $57
+
+L_ACAB:
+    LDX #$00
+L_ACAD:
+    TXA
+L_ACAE:
+    ASL
+L_ACAF:
+    TAY
+L_ACB0:
+    LDA $0021,Y
+L_ACB3:
+    ORA $0022,Y
+L_ACB6:
+    BEQ L_ACD8
+L_ACB8:
+    JSR sub_CCF4
+L_ACBB:
+    LDA $04F7,X
+L_ACBE:
+    AND #$0F
+L_ACC0:
+    BEQ L_ACD2
+L_ACC2:
+    LSR
+L_ACC3:
+    BEQ L_ACE8
+L_ACC5:
+    TAY
+L_ACC6:
+    DEY
+L_ACC7:
+    BEQ L_ACEB
+L_ACC9:
+    DEY
+L_ACCA:
+    BEQ L_ACEE
+L_ACCC:
+    DEY
+L_ACCD:
+    BEQ L_ACF1
+L_ACCF:
+    JSR sub_CFC2
+L_ACD2:
+    JSR sub_CE45
+L_ACD5:
+    DEC $043E,X
+L_ACD8:
+    INX
+L_ACD9:
+    LDA $0403
+L_ACDC:
+    BNE L_ACE3
+L_ACDE:
+    CPX #$06
+L_ACE0:
+    BNE L_ACAD
+L_ACE2:
+    RTS
+L_ACE3:
+    CPX #$09
+L_ACE5:
+    BNE L_ACAD
+L_ACE7:
+    RTS
+L_ACE8:
+    JMP L_CEBC
+L_ACEB:
+    JMP L_CF34
+L_ACEE:
+    JMP L_CF16
+L_ACF1:
+    JMP L_CF6F
+L_ACF4:
+    CPX #$05
+L_ACF6:
+    BEQ L_AD0E
+L_ACF8:
+    LDA $043E,X
+L_ACFB:
+    BNE L_AD00
+L_ACFD:
+    JMP L_CD86
+L_AD00:
+    LDA $05E5,X
+L_AD03:
+    BEQ L_AD19
+L_AD05:
+    CMP #$01
+L_AD07:
+    BEQ L_AD3D
+L_AD09:
+    CMP #$02
+L_AD0B:
+    BEQ L_AD67
+L_AD0D:
+    RTS
+L_AD0E:
+    LDA $043E,X
+L_AD11:
+    BNE L_AD18
+L_AD13:
+    LDA #$00
+L_AD15:
+    JSR sub_CDE9
+L_AD18:
+    RTS
+L_AD19:
+    LDA $05DC,X
+L_AD1C:
+    BNE L_AD3C
+L_AD1E:
+    LDA $0418,X
+L_AD21:
+    CLC
+L_AD22:
+    ADC $05CA,X
+L_AD25:
+    CMP $040E,X
+L_AD28:
+    BCC L_AD33
+L_AD2A:
+    LDA $040E,X
+L_AD2D:
+    JSR sub_CDE9
+L_AD30:
+    JMP L_CDA5
+L_AD33:
+    JSR sub_CDE9
+L_AD36:
+    LDA $05D3,X
+L_AD39:
+    STA $05DC,X
+L_AD3C:
+    RTS
+L_AD3D:
+    LDA $05EE,X
+L_AD40:
+    BNE L_AD48
+L_AD42:
+    LDA #$80
+L_AD44:
+    STA $05E5,X
+L_AD47:
+    RTS
+L_AD48:
+    LDA $05DC,X
+L_AD4B:
+    BNE L_AD63
+L_AD4D:
+    LDA $05D3,X
+L_AD50:
+    STA $05DC,X
+L_AD53:
+    LDA $0418,X
+L_AD56:
+    SEC
+L_AD57:
+    SBC $05CA,X
+L_AD5A:
+    BEQ L_AD5E
+L_AD5C:
+    BPL L_AD60
+L_AD5E:
+    LDA #$01
+L_AD60:
+    JSR sub_CDE9
+L_AD63:
+    DEC $05EE,X
+L_AD66:
+    RTS
+L_AD67:
+    LDA $05DC,X
+L_AD6A:
+    BNE L_AD85
+L_AD6C:
+    LDA $05D3,X
+L_AD6F:
+    STA $05DC,X
+L_AD72:
+    LDA $0418,X
+L_AD75:
+    SEC
+L_AD76:
+    SBC $05CA,X
+L_AD79:
+    BEQ L_AD7D
+L_AD7B:
+    BPL L_AD82
+L_AD7D:
+    LDA #$00
+L_AD7F:
+    INC $05E5,X
+L_AD82:
+    JSR sub_CDE9
+L_AD85:
+    RTS
+L_AD86:
+    LDA $059D,X
+L_AD89:
+    CMP #$02
+L_AD8B:
+    BEQ L_ADA4
+L_AD8D:
+    LDY $0418,X
+L_AD90:
+    LDA $05B8,X
+L_AD93:
+    BNE L_AD9A
+L_AD95:
+    LDA #$00
+L_AD97:
+    JMP L_CDE9
+L_AD9A:
+    STA $4C
+L_AD9C:
+    JSR sub_C611
+L_AD9F:
+    LDA #$02
+L_ADA1:
+    STA $05E5,X
+L_ADA4:
+    RTS
+L_ADA5:
+    LDA #$01
+L_ADA7:
+    STA $05E5,X
+L_ADAA:
+    LDY $05C1,X
+L_ADAD:
+    BEQ L_ADBE
+L_ADAF:
+    LDY $040E,X
+L_ADB2:
+    INY
+L_ADB3:
+    TYA
+L_ADB4:
+    LDY $05C1,X
+L_ADB7:
+    LSR
+L_ADB8:
+    DEY
+L_ADB9:
+    BNE L_ADB7
+L_ADBB:
+    JMP L_CDCA
+L_ADBE:
+    LDY $040E,X
+L_ADC1:
+    INY
+L_ADC2:
+    TYA
+L_ADC3:
+    LSR
+L_ADC4:
+    STA $51
+L_ADC6:
+    LSR
+L_ADC7:
+    CLC
+L_ADC8:
+    ADC $51
+L_ADCA:
+    TAY
+L_ADCB:
+    LDA $05AF,X
+L_ADCE:
+    BEQ L_ADD8
+L_ADD0:
+    STA $05EE,X
+L_ADD3:
+    STA $4C
+L_ADD5:
+    JMP L_C611
+L_ADD8:
+    STY $51
+L_ADDA:
+    LDA $0418,X
+L_ADDD:
+    SEC
+L_ADDE:
+    SBC $51
+L_ADE0:
+    JSR sub_CDE9
+L_ADE3:
+    LDA #$80
+L_ADE5:
+    STA $05E5,X
+L_ADE8:
+    RTS
+L_ADE9:
+    CPX #$05
+L_ADEB:
+    BEQ L_AE23
+L_ADED:
+    CPX #$06
+L_ADEF:
+    BCS L_ADFE
+L_ADF1:
+    LDY $0567
+L_ADF4:
+    BEQ L_ADFE
+L_ADF6:
+    CMP $0568
+L_ADF9:
+    BCC L_ADFE
+L_ADFB:
+    LDA $0568
+L_ADFE:
+    STA $0418,X
+L_AE01:
+    LDY $04C5,X
+L_AE04:
+    BEQ L_AE3C
+L_AE06:
+    CPX #$04
+L_AE08:
+    BEQ L_AE37
+L_AE0A:
+    CPX #$08
+L_AE0C:
+    BEQ L_AE37
+L_AE0E:
+    LDY $CE3D,X
+L_AE11:
+    LDA $0418,X
+L_AE14:
+    ORA $0422,X
+L_AE17:
+    CPX #$02
+L_AE19:
+    BCC L_AE1F
+L_AE1B:
+    STA $4000,Y
+L_AE1E:
+    RTS
+L_AE1F:
+    STA $5000,Y
+L_AE22:
+    RTS
+L_AE23:
+    LDY $0567
+L_AE26:
+    BEQ L_AE31
+L_AE28:
+    LDY $0568
+L_AE2B:
+    CPY #$0A
+L_AE2D:
+    BCS L_AE31
+L_AE2F:
+    LDA #$00
+L_AE31:
+    ORA #$80
+L_AE33:
+    STA $4008
+L_AE36:
+    RTS
+L_AE37:
+    ORA #$30
+L_AE39:
+    STA $400C
+L_AE3C:
+    RTS
+    .byte $00, $04, $00, $04, $00, $00, $00, $04
+
+L_AE45:
+    CPX #$04
+L_AE47:
+    BEQ L_AEBB
+L_AE49:
+    CPX #$08
+L_AE4B:
+    BEQ L_AEBB
+L_AE4D:
+    LDA $0470,X
+L_AE50:
+    AND #$03
+L_AE52:
+    BEQ L_AEBB
+L_AE54:
+    LDA $04A8,X
+L_AE57:
+    BEQ L_AE5F
+L_AE59:
+    DEC $04A8,X
+L_AE5C:
+    JMP L_CEBB
+L_AE5F:
+    LDA $0488,X
+L_AE62:
+    BNE L_AEB8
+L_AE64:
+    LDA $0480,X
+L_AE67:
+    STA $0488,X
+L_AE6A:
+    LDA $0470,X
+L_AE6D:
+    BMI L_AE89
+L_AE6F:
+    LDA $0468,X
+L_AE72:
+    CLC
+L_AE73:
+    ADC $0478,X
+L_AE76:
+    CMP $0490,X
+L_AE79:
+    BCC L_AEA0
+L_AE7B:
+    LDA $0470,X
+L_AE7E:
+    EOR #$80
+L_AE80:
+    STA $0470,X
+L_AE83:
+    LDA $0490,X
+L_AE86:
+    JMP L_CEA0
+L_AE89:
+    LDA $0468,X
+L_AE8C:
+    SEC
+L_AE8D:
+    SBC $0478,X
+L_AE90:
+    CMP $0498,X
+L_AE93:
+    BCS L_AEA0
+L_AE95:
+    LDA $0470,X
+L_AE98:
+    EOR #$80
+L_AE9A:
+    STA $0470,X
+L_AE9D:
+    LDA $0498,X
+L_AEA0:
+    STA $0468,X
+L_AEA3:
+    LDA $0579,X
+L_AEA6:
+    CMP #$0D
+L_AEA8:
+    BNE L_AEAD
+L_AEAA:
+    LDA $0582,X
+L_AEAD:
+    LDY $042A,X
+L_AEB0:
+    STY $4E
+L_AEB2:
+    JSR sub_C879
+L_AEB5:
+    JSR sub_C6E4
+L_AEB8:
+    DEC $0488,X
+L_AEBB:
+    RTS
+L_AEBC:
+    LDA $0511,X
+L_AEBF:
+    BMI L_AF0D
+L_AEC1:
+    BNE L_AED4
+L_AEC3:
+    DEC $0511,X
+L_AEC6:
+    LDA $0579,X
+L_AEC9:
+    LDY $042A,X
+L_AECC:
+    STY $4E
+L_AECE:
+    JSR sub_C879
+L_AED1:
+    JMP L_CF0A
+L_AED4:
+    DEC $0511,X
+L_AED7:
+    LDA $0549,X
+L_AEDA:
+    BNE L_AF10
+L_AEDC:
+    LDA $0541,X
+L_AEDF:
+    STA $0549,X
+L_AEE2:
+    LDA $04F7,X
+L_AEE5:
+    BMI L_AEFA
+L_AEE7:
+    LDA $0594,X
+L_AEEA:
+    CLC
+L_AEEB:
+    ADC $0519,X
+L_AEEE:
+    STA $4A
+L_AEF0:
+    LDA $058B,X
+L_AEF3:
+    ADC #$00
+L_AEF5:
+    STA $4B
+L_AEF7:
+    JMP L_CF0A
+L_AEFA:
+    LDA $0594,X
+L_AEFD:
+    SEC
+L_AEFE:
+    SBC $0519,X
+L_AF01:
+    STA $4A
+L_AF03:
+    LDA $058B,X
+L_AF06:
+    SBC #$00
+L_AF08:
+    STA $4B
+L_AF0A:
+    JSR sub_C6E4
+L_AF0D:
+    JMP L_CCD2
+L_AF10:
+    DEC $0549,X
+L_AF13:
+    JMP L_CCD2
+L_AF16:
+    LDA $0511,X
+L_AF19:
+    BNE L_AF2E
+L_AF1B:
+    LDA $0549,X
+L_AF1E:
+    BNE L_AF10
+L_AF20:
+    LDA $0541,X
+L_AF23:
+    STA $0549,X
+L_AF26:
+    LDA $04F7,X
+L_AF29:
+    BPL L_AEE7
+L_AF2B:
+    JMP L_CEFA
+L_AF2E:
+    DEC $0511,X
+L_AF31:
+    JMP L_CCD2
+L_AF34:
+    LDA $0539,X
+L_AF37:
+    BNE L_AF69
+L_AF39:
+    LDA $0511,X
+L_AF3C:
+    BEQ L_AF6C
+L_AF3E:
+    DEC $0511,X
+L_AF41:
+    LDA $0549,X
+L_AF44:
+    BNE L_AF63
+L_AF46:
+    LDA $0541,X
+L_AF49:
+    STA $0549,X
+L_AF4C:
+    LDA $0594,X
+L_AF4F:
+    CLC
+L_AF50:
+    ADC $0519,X
+L_AF53:
+    STA $4A
+L_AF55:
+    LDA $058B,X
+L_AF58:
+    ADC $0521,X
+L_AF5B:
+    STA $4B
+L_AF5D:
+    JSR sub_C6E4
+L_AF60:
+    JMP L_CCD2
+L_AF63:
+    DEC $0549,X
+L_AF66:
+    JMP L_CCD2
+L_AF69:
+    DEC $0539,X
+L_AF6C:
+    JMP L_CCD2
+L_AF6F:
+    LDA $0509,X
+L_AF72:
+    BEQ L_AFB6
+L_AF74:
+    LDA $04F7,X
+L_AF77:
+    BPL L_AF8B
+L_AF79:
+    LDA $0458,X
+L_AF7C:
+    CLC
+L_AF7D:
+    ADC $0519,X
+L_AF80:
+    STA $0458,X
+L_AF83:
+    LDA $0460,X
+L_AF86:
+    ADC #$00
+L_AF88:
+    JMP L_CF9A
+L_AF8B:
+    LDA $0458,X
+L_AF8E:
+    SEC
+L_AF8F:
+    SBC $0519,X
+L_AF92:
+    STA $0458,X
+L_AF95:
+    LDA $0460,X
+L_AF98:
+    SBC #$00
+L_AF9A:
+    STA $0460,X
+L_AF9D:
+    DEC $0509,X
+L_AFA0:
+    LDA $0470,X
+L_AFA3:
+    BNE L_AFB3
+L_AFA5:
+    LDA $0579,X
+L_AFA8:
+    LDY $042A,X
+L_AFAB:
+    STY $4E
+L_AFAD:
+    JSR sub_C879
+L_AFB0:
+    JSR sub_C6E4
+L_AFB3:
+    JMP L_CCD2
+L_AFB6:
+    STA $04F7,X
+L_AFB9:
+    STA $0458,X
+L_AFBC:
+    STA $0460,X
+L_AFBF:
+    JMP L_CCD2
+L_AFC2:
+    LDA $0511,X
+L_AFC5:
+    BEQ L_B00F
+L_AFC7:
+    LDA $0549,X
+L_AFCA:
+    BNE L_B00B
+L_AFCC:
+    LDA $0541,X
+L_AFCF:
+    STA $0549,X
+L_AFD2:
+    LDA $04F7,X
+L_AFD5:
+    BMI L_AFDD
+L_AFD7:
+    INC $0579,X
+L_AFDA:
+    JMP L_CFE0
+L_AFDD:
+    DEC $0579,X
+L_AFE0:
+    LDA $0579,X
+L_AFE3:
+    BPL L_AFF0
+L_AFE5:
+    LDA #$0B
+L_AFE7:
+    STA $0579,X
+L_AFEA:
+    DEC $0509,X
+L_AFED:
+    JMP L_CFFC
+L_AFF0:
+    CMP #$0C
+L_AFF2:
+    BCC L_AFFC
+L_AFF4:
+    LDA #$00
+L_AFF6:
+    STA $0579,X
+L_AFF9:
+    INC $0509,X
+L_AFFC:
+    LDY $0509,X
+L_AFFF:
+    STY $4E
+L_B001:
+    JSR sub_C879
+L_B004:
+    JSR sub_C6E4
+L_B007:
+    DEC $0511,X
+L_B00A:
+    RTS
+L_B00B:
+    DEC $0549,X
+L_B00E:
+    RTS
+L_B00F:
+    STA $04F7,X
+L_B012:
+    RTS
+L_B013:
+    LDA #$01
+L_B015:
+    STA $04B0
+L_B018:
+    LDA $45
+L_B01A:
+    LSR
+L_B01B:
+    LSR
+L_B01C:
+    LSR
+L_B01D:
+    LSR
+L_B01E:
+    TAY
+L_B01F:
+    LDA $0551,Y
+L_B022:
+    STA $0404,X
+L_B025:
+    CPY #$0B
+L_B027:
+    BNE L_B02F
+L_B029:
+    JSR sub_C459
+L_B02C:
+    STA $0404,X
+L_B02F:
+    LDA $45
+L_B031:
+    AND #$0F
+L_B033:
+    CMP #$0E
+L_B035:
+    BEQ L_B06B
+L_B037:
+    CMP #$0D
+L_B039:
+    BEQ L_B06B
+L_B03B:
+    SEC
+L_B03C:
+    SBC #$01
+L_B03E:
+    ASL
+L_B03F:
+    ASL
+L_B040:
+    TAY
+L_B041:
+    LDA $0567
+L_B044:
+    BNE L_B06B
+L_B046:
+    LDA $D06E,Y
+L_B049:
+    STA $4013
+L_B04C:
+    LDA $D06C,Y
+L_B04F:
+    STA $4012
+L_B052:
+    LDA $D06D,Y
+L_B055:
+    STA $4010
+L_B058:
+    LDA $05F7
+L_B05B:
+    AND #$EF
+L_B05D:
+    STA $4015
+L_B060:
+    LDA #$00
+L_B062:
+    STA $4011
+L_B065:
+    LDA $05F7
+L_B068:
+    STA $4015
+L_B06B:
+    RTS
+    .byte $C0, $0F, $20, $00, $C0, $0F, $10, $00, $C8, $0F, $30, $00, $C8, $0F, $20, $00
+    .byte $D4, $0F, $30, $00, $E0, $0F, $30, $00, $E0, $0F, $20, $00, $D4, $0F, $20, $00
+    .byte $C0, $0E, $20, $00, $C8, $0E, $30, $00, $D4, $0E, $30, $00, $E0, $0E, $20, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $01, $C8, $04, $72, $06, $BE, $0C, $5B, $0E, $D9
+    .byte $12, $63, $15, $E4, $18, $3B, $1A, $D3, $1D, $C9, $40, $00, $41, $3F, $42, $A4
+    .byte $44, $D3, $46, $75, $48, $88, $49, $A8, $4A, $02, $4B, $A9, $4C, $C7, $54, $24
+    .byte $5A, $96, $5B, $0A, $5B, $5A, $5B, $C2, $5C, $19, $80, $00, $84, $73, $8B, $38
+    .byte $92, $6F, $C0, $00, $D1, $25, $D3, $81, $D4, $B5, $D5, $18, $D5, $48, $D5, $E3
+    .byte $D6, $FE, $D8, $19, $D9, $34, $D9, $84, $DA, $30, $DA, $DF, $DB, $04, $DC, $06
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $2E, $F2, $01, $01, $01, $02, $01, $03, $01, $04, $01, $05, $01, $06
+    .byte $01, $07, $01, $08, $01, $09, $01, $0A, $01, $0B, $01, $0C, $01, $0D, $01, $0E
+    .byte $01, $0F, $01, $10, $01, $11, $01, $12, $01, $13, $01, $14, $01, $15, $01, $16
+    .byte $01, $17, $01, $18, $01, $19, $01, $1A, $01, $1B, $01, $1C, $01, $1D, $01, $1E
+    .byte $02, $01, $01, $01, $01, $02, $01, $02, $01, $03, $01, $03, $01, $04, $01, $04
+    .byte $01, $05, $01, $05, $01, $06, $01, $06, $01, $07, $01, $07, $01, $08, $01, $08
+    .byte $01, $09, $01, $09, $01, $0A, $01, $0A, $01, $0B, $01, $0B, $01, $0C, $01, $0C
+    .byte $01, $0D, $01, $0D, $01, $0E, $01, $0E, $01, $0F, $01, $0F, $03, $01, $01, $01
+    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03, $01, $03, $01, $04
+    .byte $01, $04, $01, $04, $01, $05, $01, $05, $01, $05, $01, $06, $01, $06, $01, $06
+    .byte $01, $07, $01, $07, $01, $07, $01, $08, $01, $08, $01, $08, $01, $09, $01, $09
+    .byte $01, $09, $01, $0A, $01, $0A, $01, $0A, $04, $01, $02, $01, $01, $01, $01, $01
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03, $01, $03, $01, $03
+    .byte $01, $04
+
+L_B3CE:
+    ORA ($04,X)
+L_B3D0:
+    ORA ($04,X)
+L_B3D2:
+    ORA ($04,X)
+L_B3D4:
+    ORA ($05,X)
+L_B3D6:
+    ORA ($05,X)
+L_B3D8:
+    ORA ($05,X)
+L_B3DA:
+    ORA ($05,X)
+L_B3DC:
+    ORA ($06,X)
+L_B3DE:
+    ORA ($06,X)
+L_B3E0:
+    ORA ($06,X)
+L_B3E2:
+    ORA ($06,X)
+L_B3E4:
+    ORA ($07,X)
+L_B3E6:
+    ORA ($07,X)
+L_B3E8:
+    ORA ($07,X)
+L_B3EA:
+    ORA ($07,X)
+L_B3EC:
+    ORA ($08,X)
+L_B3EE:
+    ORA ($08,X)
+L_B3F0:
+    ORA $01
+    .byte $02, $01, $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $04, $01, $04
+    .byte $01, $04, $01, $04, $01, $04, $01, $05, $01, $05, $01, $05, $01, $05, $01, $05
+    .byte $01, $06, $01, $06, $01, $06, $01, $06, $01, $06, $06, $01, $03, $01, $02, $01
+    .byte $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $04
+    .byte $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $05, $01, $05, $01, $05
+    .byte $01, $05, $01, $05, $01, $05, $07, $01, $03, $01, $02, $01, $01, $01, $01, $01
+    .byte $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03
+    .byte $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $05
+    .byte $01, $05, $08, $01, $04, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03
+    .byte $01, $03, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $01, $04, $09, $01
+    .byte $04, $01, $03, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03
+    .byte $01, $03, $01, $03, $01, $04, $01, $04, $01, $04, $0A, $01, $05, $01, $03, $01
+    .byte $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02
+
+L_B53A:
+    ORA ($02,X)
+L_B53C:
+    ORA ($02,X)
+L_B53E:
+    ORA ($02,X)
+L_B540:
+    ORA ($02,X)
+L_B542:
+    ORA ($02,X)
+L_B544:
+    ORA ($03,X)
+L_B546:
+    ORA ($03,X)
+L_B548:
+    ORA ($03,X)
+L_B54A:
+    ORA ($03,X)
+L_B54C:
+    ORA ($03,X)
+L_B54E:
+    ORA ($03,X)
+L_B550:
+    ORA ($03,X)
+L_B552:
+    ORA ($03,X)
+L_B554:
+    ORA ($03,X)
+L_B556:
+    ORA ($03,X)
+    .byte $0B, $01, $05, $01, $03, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $01, $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03
+    .byte $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $01, $03, $0C, $01, $06, $01
+    .byte $04, $01, $03, $01, $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $01, $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03
+    .byte $01, $03, $01, $03, $01, $03, $01, $03, $0D, $01, $06, $01, $04, $01, $03, $01
+    .byte $02, $01, $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $01, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03
+    .byte $01, $03, $01, $03, $0E, $01, $07, $01, $04, $01, $03, $01, $02, $01, $02, $01
+    .byte $02, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $03, $01, $03
+    .byte $0F, $01, $07, $01, $05, $01, $03, $01, $03, $01, $02, $01, $02, $01, $01, $01
+    .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02
+    .byte $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $01, $02, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $06, $02, $00, $06, $06
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $02, $02, $09, $02, $03, $06, $03
+    .byte $01, $15, $00, $00, $00, $00, $00, $00, $40, $01, $02, $09, $02, $00, $1D, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $01, $00, $06, $06
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $02, $03, $06, $06
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $01, $00, $06, $01, $03, $06, $06
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $40, $00, $01, $03, $01, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $00, $02, $01, $03, $07, $07
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $01, $00, $03, $07, $07
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $17, $03, $00, $1D, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $17, $01, $03, $06, $06
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $00, $1D, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $14, $01, $03, $06, $04
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $00, $06, $06
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $03, $06, $04
+    .byte $01, $26, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $03, $09, $06
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $03, $0C, $0C
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $02, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $01, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $02, $00, $03, $01
+    .byte $01, $23, $00, $00, $00, $00, $00, $00, $00, $07, $02, $06, $02, $03, $08, $08
+    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $00, $00, $02, $09, $03, $03, $07, $03
+    .byte $01, $16, $00, $00, $00, $00, $00, $00, $00, $02, $02, $06, $02, $03, $08, $08
+    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $00, $07, $02, $2D, $02, $03, $08, $08
+    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $80, $00, $02, $1E, $01, $03, $0F, $0F
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $03, $02, $03, $1C, $0E
+    .byte $01, $12, $00, $00, $00, $00, $00, $00, $00, $01, $02, $06, $02, $03, $0A, $05
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $02, $03, $0A, $05
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $00, $00, $01, $14, $02, $00, $09, $06
+    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $00, $01, $14, $02, $03, $0A, $06
+    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $11, $01, $14, $02, $03, $0A, $06
+    .byte $01, $26, $00, $00, $00, $00, $00, $00, $00, $13, $01, $14, $02, $03, $06, $04
+    .byte $01, $26, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $19, $03, $03, $09, $04
+    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $00, $02, $09, $01, $00, $04, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $02, $06, $02, $03, $0B, $0B
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $19, $03, $03, $0B, $05
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $05, $03, $03, $09, $04
+    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $00, $01, $07, $01, $00, $04, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05
+    .byte $01, $16, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $01, $05, $03, $03, $05, $02
+    .byte $01, $19, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $03, $03, $0A, $05
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $80, $01, $02, $06, $03, $03, $0A, $05
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $14, $02, $06, $03, $03, $0A, $05
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $40, $0B, $02, $09, $03, $00, $05, $02
+    .byte $01, $0A, $00, $00, $00, $00, $00, $00, $40, $00, $02, $09, $03, $00, $05, $02
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $01, $02, $23, $03, $03, $0A, $05
+    .byte $01, $14, $00, $00, $00, $00, $00, $00, $00, $00, $02, $06, $03, $03, $06, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $06, $03, $03, $06, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $06, $03, $00, $06, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $07, $03, $03, $04, $04
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $01, $04, $03, $03, $08, $05
+    .byte $01, $19, $00, $00, $00, $00, $00, $00, $40, $0D, $01, $04, $03, $03, $08, $05
+    .byte $01, $19, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $06, $03, $03, $06, $03
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $02, $06, $03, $03, $07, $05
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $C0, $00, $03, $05, $03, $00, $13, $27
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $00, $02, $06, $03, $03, $11, $11
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $06, $03, $03, $12, $07
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $07, $02, $06, $02, $03, $04, $04
+    .byte $01, $0F, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $40, $00, $02, $04, $03, $03, $18, $09
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $80, $04, $01, $06, $02, $00, $06, $06
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $80, $01, $02, $09, $02, $01, $31, $31
+    .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $01, $0A, $02
+    .byte $00, $01, $5A, $02, $1E, $01, $5A, $02, $0F, $01, $5A, $02, $00, $00, $0A, $03
+    .byte $01, $00, $0A, $03, $02, $00, $0A, $03, $03, $00, $0A, $03, $04, $00, $0A, $03
+    .byte $00, $01, $5A, $00, $00, $01, $5A, $01, $00, $01, $5A, $02, $00, $01, $5A, $03
+    .byte $00, $00, $0A, $03, $00, $01, $1E, $00, $00, $01, $1E, $01, $00, $01, $1E, $02
+    .byte $00, $01, $1E, $03, $00, $00, $00, $00, $00, $03, $5A, $00, $00, $03, $5A, $01
+    .byte $00, $03, $5A, $02, $00, $03, $5A, $03, $00, $00, $00, $00, $00, $03, $1E, $00
+    .byte $00, $03, $1E, $01, $00, $03, $1E, $02, $00, $03, $1E, $03, $00, $00, $00, $00
+    .byte $00, $0A, $5A, $00, $00, $0A, $5A, $01, $00, $0A, $5A, $02, $00, $0A, $5A, $03
+    .byte $00, $00, $00, $00, $00, $0A, $1E, $00, $00, $0A, $1E, $01, $00, $0A, $1E, $02
+    .byte $00, $0A, $1E, $03, $00, $00, $00, $00, $0F, $01, $5A, $00, $0F, $01, $5A, $01
+    .byte $0F, $01, $5A, $02, $0F, $01, $5A, $03, $00, $00, $00, $00, $0F, $01, $1E, $00
+    .byte $0F, $01, $1E, $01, $0F, $01, $1E, $02, $0F, $01, $1E, $03, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $03, $09, $09, $01, $5A, $03, $0C, $0C
+    .byte $01, $00, $00, $1E, $06, $01, $00, $03, $06, $04, $01, $55, $03, $09, $06, $01
+    .byte $26, $03, $03, $01, $01, $23, $03, $19, $19, $01, $00, $03, $04, $04, $01, $00
+    .byte $03, $06, $06, $01, $00, $03, $11, $11, $01, $00, $03, $06, $03, $01, $15, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $04, $05, $05, $06, $06, $06, $07, $07
+    .byte $08, $07, $07, $06, $06, $05, $05, $04, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $08, $06, $05, $04, $00, $00, $00, $00, $08, $06, $00, $00, $00, $00, $00, $00
+    .byte $08, $06, $05, $04, $03, $02, $02, $01, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $07, $08, $09, $0A, $0B, $0C, $0D, $0E, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $06, $07, $08, $09, $0A, $0B, $0C, $0D, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $0E, $0D, $0C, $0B, $0A, $09, $08, $07, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $0D, $0C, $0B, $0A, $09, $08, $07, $06, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $0F, $0E, $0D, $0B, $0A, $09, $08, $09, $0A, $0B, $0D, $0E, $0F, $0F, $0F, $00
+    .byte $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $0F, $00, $00, $00, $00, $00, $00, $00
+    .byte $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $0F, $0F, $0F, $00, $00, $00, $00, $00
+    .byte $0B, $08, $00, $00, $00, $00, $00, $00, $0B, $08, $05, $03, $00, $00, $00, $00
+    .byte $0B, $08, $00, $00, $00, $00, $00, $00, $0C, $09, $00, $00, $00, $00, $00, $00
+    .byte $0D, $07, $06, $05, $04, $03, $02, $01, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $0D, $07, $05, $00, $00, $00, $00, $00, $0D, $07, $05, $03, $01, $00, $00, $00
+    .byte $0F, $0E, $0D, $0C, $0B, $0A, $09, $08, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $04, $01, $0D, $01, $06, $08, $08, $07
+    .byte $0F, $03, $01, $08, $07, $04, $0D, $04, $05, $0D, $06, $02, $0D, $07, $07, $0F
+    .byte $07, $04, $0C, $04, $02, $0D, $04, $05, $08, $04, $01, $08, $04, $02, $08, $01
+    .byte $06, $08, $08, $07, $0F, $03, $01, $08, $07, $04, $0A, $04, $05, $08, $06, $02
+    .byte $08, $07, $07, $0F, $08, $06, $05, $04, $02, $0C, $04, $07, $0C, $04, $01, $08
+    .byte $08, $07, $0D, $08, $07, $0A, $08, $07, $07, $08, $07, $05, $08, $07, $02, $07
+    .byte $07, $0A, $06, $07, $0D, $05, $07, $0F, $08, $04, $05, $09, $07, $05, $0A, $07
+    .byte $05, $0B, $07, $05, $00, $07, $05, $03, $07, $05, $06, $07, $05, $09, $07, $05
+    .byte $0C, $07, $05, $0F, $07, $05, $00, $07, $0F, $03, $07, $0F, $06, $07, $0F, $09
+    .byte $07, $0F, $0C, $07, $0F, $0F, $07, $0F, $0F, $07, $0E, $0F, $07, $0D, $0F, $07
+    .byte $0C, $0F, $07, $0B, $0F, $07, $0A, $06, $08, $0F, $05, $08, $0F, $05, $08, $0F
+    .byte $03, $08, $0F, $02, $08, $0F, $01, $08, $0F, $01, $08, $01, $0C, $08, $0F, $0B
+    .byte $08, $0F, $0A, $08, $0F, $09, $08, $0F, $08, $08, $0F, $07, $08, $0F, $06, $08
+    .byte $0F, $05, $08, $0F, $04, $08, $0F, $03, $08, $0F, $02, $08, $0F, $01, $08, $0F
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00

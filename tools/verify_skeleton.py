@@ -36,7 +36,7 @@ def assemble_line(mn, operand, pc_addr):
     if operand.startswith("#$"):
         return bytes([ENC[(mn, "imm")], int(operand[2:], 16)])
     if re.match(r"^\(\$[0-9A-F]{2},X\)$", operand):
-        return bytes([ENC[(mn, "izx")], int(operand[3:5], 16)])
+        return bytes([ENC[(mn, "izx")], int(operand[2:4], 16)])
     if re.match(r"^\(\$[0-9A-F]{2}\),Y$", operand):
         return bytes([ENC[(mn, "izy")], int(operand[2:4], 16)])
     if re.match(r"^\(\$[0-9A-F]{4}\)$", operand):
