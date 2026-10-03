@@ -1,7 +1,7 @@
 ; =============================================================
 ; PRG bank $1F — auto-disassembled skeleton (v3)
 ; CPU mapping: $C000-$DFFF (via $5116=$FE) + $E000-$FFFF (fixed)
-; code bytes: 6306 / 16384
+; code bytes: 6321 / 16384
 ; NOTE: auto-generated. Refine labels & data tables by hand.
 ; =============================================================
 .segment "CODE31"
@@ -4340,7 +4340,7 @@ L_E15F:
 L_E160:
     LDA #$FC
 L_E162:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_E165:
     LDA $E5
 L_E167:
@@ -4464,11 +4464,11 @@ L_E1F2:
 L_E1F5:
     PLA
 L_E1F6:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_E1F9:
     PLA
 L_E1FA:
-    JSR trampoline_A000
+    JSR trampoline_8000
 L_E1FD:
     PLA
 L_E1FE:
@@ -4729,11 +4729,11 @@ L_E33C:
 far_call_routine:
     LDA $068C
 L_E34E:
-    JSR trampoline_A000
+    JSR trampoline_8000
 L_E351:
     LDA $068D
 L_E354:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_E357:
     LDA #$FD
 L_E359:
@@ -5722,7 +5722,7 @@ L_EB83:
 L_EB86:
     LDA #$FC
 L_EB88:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_EB8B:
     PLA
 L_EB8C:
@@ -5732,13 +5732,25 @@ winctx_restore:
 L_EB8E:
     LDA $068A
 L_EB91:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_EB94:
     PLA
 L_EB95:
     RTS
-    .byte $85, $BC, $8D, $14, $51, $60, $85, $BD, $8D, $15, $51, $60, $4C, $A2, $EB
-
+trampoline_8000:
+    STA $BC
+L_EB98:
+    STA $5114
+L_EB9B:
+    RTS
+trampoline_A000:
+    STA $BD
+L_EB9E:
+    STA $5115
+L_EBA1:
+    RTS
+L_EBA2:
+    JMP L_EBA2
 save_prep:
     PHA
 L_EBA6:
@@ -5776,11 +5788,11 @@ L_EBC6:
 L_EBC9:
     LDA $6A
 L_EBCB:
-    JSR trampoline_A000
+    JSR trampoline_8000
 L_EBCE:
     LDA $6B
 L_EBD0:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_EBD3:
     JSR sfx_flags_clear
 L_EBD6:
@@ -5860,7 +5872,7 @@ L_ECA3:
 L_ECA6:
     STA $068C
 L_ECA9:
-    JSR trampoline_A000
+    JSR trampoline_8000
 L_ECAC:
     PLA
 L_ECAD:
@@ -5884,7 +5896,7 @@ L_ECB9:
 music_bank_fetch:
     LDA #$FD
 L_ED04:
-    JSR trampoline_8000
+    JSR trampoline_A000
 L_ED07:
     LDA $B201,X
 L_ED0A:

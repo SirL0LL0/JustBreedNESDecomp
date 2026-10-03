@@ -1,4 +1,5 @@
 ; ==== cross-bank map (call site resolution) ====
+  -> bank $1E offset $022E (CPU $822E)
   -> bank $1E offset $2000 (CPU $A000)
   -> bank $1F offset $22B4 (CPU $E2B4)
   -> bank $1F offset $244C (CPU $E44C)
@@ -26,7 +27,6 @@
   ?? window $A000 target $A126 (dynamic bank)
   ?? window $A000 target $A142 (dynamic bank)
   ?? window $A000 target $A176 (dynamic bank)
-  ?? window $A000 target $A22E (dynamic bank)
   ?? window $A000 target $A26C (dynamic bank)
   ?? window $A000 target $A27A (dynamic bank)
   ?? window $A000 target $A289 (dynamic bank)
