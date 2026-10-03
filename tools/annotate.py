@@ -65,8 +65,8 @@ MAP_1F = [
     ("EACE", "music_tick"),
     ("EB80", "winctx_save"),
     ("EB8D", "winctx_restore"),
-    ("EB96", "trampoline_A000"),
-    ("EB9C", "trampoline_8000"),
+    ("EB96", "trampoline_8000"),   # STA $BC / STA $5114 (finestra $8000)
+    ("EB9C", "trampoline_A000"),   # STA $BD / STA $5115 (finestra $A000)
     ("EBA5", "save_prep"),
     ("EBE8", "save_commit"),
     ("EC9A", "music_track_load"),
@@ -91,13 +91,15 @@ MAP_1F = [
 # bank $1E (layout window: $8000-$9FFF prima meta', $A000-$BFFF seconda meta')
 # NB: il codice della seconda meta' gira a $C000-$DFFF quando $5116=$FD,
 #     ma nel file e' etichettato con gli indirizzi $Axxx.
+# Gli hook del NMI ($A757/$AFCD/$A22E) girano con $5115=$FC: prima meta' ($8xxx).
+# Gli hook del RESET ($A762/$B013) girano con $5115=$FB: seconda meta' ($Axxx/$Bxxx).
 MAP_1E = [
     ("A000", "game_farcall_entry"),   # = $C000 runtime via $FD
-    ("A757", "chr_bank_compute"),
-    ("AFCD", "chr_tile_prepare"),
-    ("A22E", "main_logic_hook"),
-    ("A762", "sys_init_hook"),
-    ("B013", "chr_init_hook"),
+    ("8757", "chr_bank_compute"),    # NMI hook
+    ("8FCD", "chr_tile_prepare"),    # NMI hook
+    ("822E", "main_logic_hook"),     # NMI hook
+    ("A762", "sys_init_hook"),       # RESET hook (via $FB)
+    ("B013", "chr_init_hook"),       # RESET hook (via $FB)
 ]
 
 def apply_map(path, pairs):

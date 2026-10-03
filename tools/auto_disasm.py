@@ -171,11 +171,13 @@ def walk(bank, entries, layout, xrefs, unresolved, winvals):
             elif mn == "JSR" and md == "abs":
                 t = bank[off+1] | (bank[off+2] << 8)
                 if t == 0xEB9C:
-                    win[0x5114] = last_imm
-                    if last_imm is not None: winvals[0x5114].add(last_imm)
-                elif t == 0xEB96:
+                    # NB dal dump: $EB9C -> STA $BD / STA $5115 = finestra $A000
                     win[0x5115] = last_imm
                     if last_imm is not None: winvals[0x5115].add(last_imm)
+                elif t == 0xEB96:
+                    # NB dal dump: $EB96 -> STA $BC / STA $5114 = finestra $8000
+                    win[0x5114] = last_imm
+                    if last_imm is not None: winvals[0x5114].add(last_imm)
                 else:
                     res = resolve_call(t, win, layout)
                     if res is not None:
@@ -287,7 +289,9 @@ def main():
     os.makedirs(outdir, exist_ok=True)
     banks = load_prg(rom)
 
-    entries = {0x1F: {0x2000, 0x2143, 0x22C4}}   # RESET, NMI, IRQ (2nd half)
+    entries = {0x1F: {0x2000, 0x2143, 0x22C4,     # RESET, NMI, IRQ (2nd half)
+                      0x2B96, 0x2B9C,            # trampolini $EB96/$EB9C
+                      0x2BA2, 0x2BAE}}            # reload ctx $EBA2 / push ctx $EBAE
     xrefs = set()
     unresolved = set()
     winvals = {0x5114: {0xFC}, 0x5115: {0xFC, 0xFD}, 0x5116: {0xFE, 0xFD}}
