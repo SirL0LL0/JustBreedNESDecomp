@@ -1,0 +1,34 @@
+; ==== banks_report â€” classificazione banche PRG ====
+; bank  %00    %FF   ASCII  PTR    RLE   ENT   TOP BYTES            CLASSIFICAZIONE
+;  $00   3.7%  0.2%  39.8% 32.0%  2.9%  7.74  $00x606, $0Ax230, $05x218, $09x210 TABELLE/PUNTATORI
+;  $01   4.3%  0.1%  43.8% 31.0%  1.0%  7.65  $00x703, $20x273, $37x265, $11x226 TABELLE/PUNTATORI
+;  $02   3.5%  0.1%  46.7% 30.1%  1.2%  7.66  $00x568, $12x241, $11x236, $37x220 TABELLE/PUNTATORI
+;  $03   2.3%  0.3%  45.7% 29.7%  1.5%  7.69  $16x379, $00x373, $11x278, $46x252 ALTA ENTROPIA (packed/CHR/cripto?)
+;  $04   0.2% 94.7%   2.6% 95.9% 94.8%  0.69  $FFx15520, $02x34, $00x26, $01x14 FILLER (padding)
+;  $05  35.4%  0.1%  11.7% 17.6% 50.4%  5.16  $00x5800, $02x972, $03x906, $01x867 DATI STRUTTURATI (tabelle/mappa)
+;  $06   2.0%  0.1%  40.2% 32.5%  4.2%  6.83  $40x1628, $41x612, $89x602, $81x439 TABELLE/PUNTATORI
+;  $07   4.4% 50.1%  18.7% 65.4% 54.2%  3.97  $FFx8202, $0Ax1071, $73x1066, $00x728 DATI STRUTTURATI (tabelle/mappa)
+;  $08   1.7%  0.6%  37.3% 50.4%  0.9%  7.90  $00x272, $20x141, $FEx123, $DAx123 TABELLE/PUNTATORI
+;  $09   1.5%  0.5%  36.8% 50.3%  0.7%  7.91  $00x241, $DBx162, $2Dx134, $10x120 TABELLE/PUNTATORI
+;  $0A   1.4%  0.6%  36.7% 50.3%  0.6%  7.92  $00x232, $2Dx120, $44x119, $DAx118 TABELLE/PUNTATORI
+;  $0B   1.3%  0.6%  36.2% 50.5%  0.6%  7.92  $00x211, $DBx138, $DAx118, $5Fx113 TABELLE/PUNTATORI
+;  $0C   1.3%  0.5%  37.1% 50.0%  0.6%  7.91  $00x212, $D7x120, $DAx118, $FEx115 TABELLE/PUNTATORI
+;  $0D   0.5% 70.1%  10.2% 84.8% 70.0%  3.22  $FFx11481, $00x82, $FEx67, $6Bx57 RLE/RIPETITIVO (tilemap/compresso)
+;  $0E   3.1% 10.4%  26.5% 62.5% 21.0%  6.44  $FFx1704, $6Ex668, $E0x606, $E1x599 TABELLE/PUNTATORI
+;  $0F   4.7% 24.8%  19.9% 70.8% 35.2%  5.43  $FFx4071, $00x768, $81x752, $F8x688 TABELLE/PUNTATORI
+;  $10  16.7%  1.4%  24.2% 14.7%  7.2%  6.14  $00x2740, $04x1340, $05x559, $01x546 DATI STRUTTURATI (tabelle/mappa)
+;  $11   0.0% 100.0%   0.0% 100.0% 100.0%  0.00  $FFx16384                FILLER (padding)
+;  $12  53.6%  1.0%  24.3% 11.9% 51.7%  4.35  $00x8780, $20x273, $41x220, $19x190 DATI STRUTTURATI (tabelle/mappa)
+;  $13  46.4%  1.3%  20.6% 14.5% 44.1%  4.67  $00x7594, $20x875, $01x611, $10x404 DATI STRUTTURATI (tabelle/mappa)
+;  $14  17.6% 15.2%   8.8% 63.6% 19.9%  5.54  $00x2876, $FFx2492, $F4x1508, $A1x806 TABELLE/PUNTATORI
+;  $15   8.1% 55.0%   5.5% 81.4% 56.6%  3.57  $FFx9014, $00x1324, $F4x935, $ADx340 RLE/RIPETITIVO (tilemap/compresso)
+;  $16  14.8% 17.9%   8.1% 28.2% 41.8%  4.93  $FFx2940, $00x2421, $01x1828, $03x1257 DATI STRUTTURATI (tabelle/mappa)
+;  $17   0.5% 73.2%  11.7% 79.7% 73.3%  2.93  $FFx11986, $01x111, $00x90, $03x48 RLE/RIPETITIVO (tilemap/compresso)
+;  $18   4.3%  0.3%  28.5% 32.2%  3.1%  6.76  $20x941, $01x734, $00x710, $02x632 TABELLE/PUNTATORI
+;  $19   4.5%  0.2%  29.2% 32.5%  3.3%  6.66  $20x1087, $01x849, $00x736, $02x679 TABELLE/PUNTATORI
+;  $1A  30.5%  1.0%  24.6% 35.0% 29.6%  5.81  $00x4989, $20x782, $6Dx378, $60x350 TABELLE/PUNTATORI
+;  $1B  38.1%  1.7%  18.8% 33.2% 39.9%  5.37  $00x6240, $40x318, $20x311, $9Dx292 TABELLE/PUNTATORI
+;  $1C  19.6%  2.0%  21.5% 39.3% 26.2%  6.69  $00x3218, $FFx333, $0Ax290, $20x286 TABELLE/PUNTATORI
+;  $1D   4.6%  0.5%  29.6% 49.6%  6.0%  6.86  $20x1467, $00x748, $A9x452, $02x430 TABELLE/PUNTATORI
+;  $1E  30.8%  0.1%  14.4% 27.1% 30.8%  5.54  $00x5047, $01x815, $03x696, $20x425 DATI STRUTTURATI (tabelle/mappa)
+;  $1F   5.4%  0.5%  22.5% 57.8% 16.3%  6.62  $AAx2151, $00x892, $20x686, $85x440 TABELLE/PUNTATORI

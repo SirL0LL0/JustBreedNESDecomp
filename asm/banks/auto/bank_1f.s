@@ -6,16 +6,16 @@
 ; =============================================================
 .segment "CODE31"
 
-L_C000:
+main_loop:
     LDA #$FA
 L_C002:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C005:
     LDA #$FB
 L_C007:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C00A:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_C00D:
     SED
     .byte $62, $9A, $AA, $F0, $14, $20, $43, $C8, $20, $BF, $E0, $A9, $36, $85, $DC, $A9
@@ -51,7 +51,7 @@ L_C096:
 L_C098:
     BEQ L_C0A6
 L_C09A:
-    JSR sub_DBFD
+    JSR rand_next
 L_C09D:
     AND #$1F
 L_C09F:
@@ -61,7 +61,7 @@ L_C0A1:
 L_C0A3:
     STA $6E8F
 L_C0A6:
-    JSR sub_C349
+    JSR party_scan
 L_C0A9:
     LDA $6E8F
 L_C0AC:
@@ -85,7 +85,7 @@ L_C0BE:
 L_C0C0:
     BEQ L_C0D9
 L_C0C2:
-    JSR sub_DBFD
+    JSR rand_next
 L_C0C5:
     AND #$1F
 L_C0C7:
@@ -168,32 +168,32 @@ L_C181:
     BNE L_C17F
 L_C183:
     RTS
-L_C184:
+set_win8000_a:
     STA $BC
 L_C186:
     STA $5114
 L_C189:
     RTS
 L_C18A:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C18D:
     STA $BC
 L_C18F:
     STA $5114
 L_C192:
     RTS
-L_C193:
+set_winA000_a:
     STA $BD
 L_C195:
     STA $5115
 L_C198:
     RTS
-L_C199:
+jsr_indirect:
     JMP ($00C0)
     .byte $60, $0A, $A8, $68, $85, $C0, $68, $85, $C1, $C8, $B1, $C0, $48, $C8, $B1, $C0
     .byte $85, $C1, $68, $85, $C0, $6C, $C0, $00
 
-L_C1B4:
+stack_save_x:
     TXA
 L_C1B5:
     CLC
@@ -215,7 +215,7 @@ L_C1C2:
     BNE L_C1BB
 L_C1C4:
     RTS
-L_C1C5:
+stack_load_x:
     LDY $C6
 L_C1C7:
     DEY
@@ -235,15 +235,15 @@ L_C1D2:
     .byte $90, $02, $E6, $BF, $CA, $D0, $EC, $60
 
 L_C1EB:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C1EE:
     STA $C4
 L_C1F0:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C1F3:
     STA $C2
 L_C1F5:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C1F8:
     STA $C3
 L_C1FA:
@@ -253,7 +253,7 @@ L_C1FC:
 L_C1FD:
     LDA $C4
 L_C1FF:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C202:
     LDA ($C2),Y
 L_C204:
@@ -267,7 +267,7 @@ L_C20B:
 L_C20C:
     LDA #$F9
 L_C20E:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C211:
     LDA $8FA2,Y
 L_C214:
@@ -278,18 +278,18 @@ L_C219:
     TAY
 L_C21A:
     JMP L_C249
-L_C21D:
+far_args_fetch:
     STA $C4
 L_C21F:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C222:
     STA $C5
 L_C224:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C227:
     STA $C0
 L_C229:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C22C:
     STA $C1
 L_C22E:
@@ -303,45 +303,45 @@ L_C233:
 L_C234:
     LDA $C5
 L_C236:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C239:
     LDA #$FB
 L_C23B:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C23E:
     LDA $C4
 L_C240:
-    JSR sub_C199
+    JSR jsr_indirect
 L_C243:
     STA $C4
 L_C245:
     PLA
 L_C246:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C249:
     PLA
 L_C24A:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C24D:
     LDA $C4
 L_C24F:
     RTS
-L_C250:
+far_copy_bytes:
     STA $C4
 L_C252:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C255:
     STA $C0
 L_C257:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C25A:
     STA $C1
 L_C25C:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C25F:
     STA $C2
 L_C261:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_C264:
     STA $C3
 L_C266:
@@ -368,7 +368,7 @@ L_C275:
     LDA $C4
 L_C277:
     RTS
-L_C278:
+retaddr_fetch:
     PHA
 L_C279:
     TXA
@@ -477,7 +477,7 @@ L_C2ED:
     .byte $0F, $6F, $60, $8A, $29, $07, $AA, $BD, $41, $C3, $49, $FF, $2D, $0F, $6F, $8D
     .byte $0F, $6F, $60, $01, $02, $04, $08, $10, $20, $40, $80
 
-L_C349:
+party_scan:
     LDX $6E8F
 L_C34C:
     BEQ L_C356
@@ -582,11 +582,11 @@ L_C3A5:
 L_C3A7:
     PLA
 L_C3A8:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C3AB:
     PLA
 L_C3AC:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C3AF:
     LDA $D0
 L_C3B1:
@@ -714,15 +714,15 @@ L_C42C:
 L_C42E:
     PLA
 L_C42F:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C432:
     PLA
 L_C433:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C436:
-    JSR sub_C57B
+    JSR unit_data_clear
 L_C439:
-    JMP L_C349
+    JMP party_scan
 L_C43C:
     INY
 L_C43D:
@@ -738,7 +738,7 @@ L_C444:
 L_C446:
     LDA #$E4
 L_C448:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C44B:
     LDX #$30
 L_C44D:
@@ -948,15 +948,15 @@ L_C50E:
 L_C510:
     PLA
 L_C511:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C514:
     PLA
 L_C515:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C518:
     JSR sub_C758
 L_C51B:
-    JMP L_C349
+    JMP party_scan
 L_C51E:
     LDA #$00
 L_C520:
@@ -1047,7 +1047,7 @@ L_C572:
     RTS
     .byte $A9, $80, $8D, $46, $6F, $4C, $80, $C5
 
-L_C57B:
+unit_data_clear:
     LDA #$00
 L_C57D:
     STA $6F46
@@ -1066,7 +1066,7 @@ L_C58C:
 L_C58D:
     BNE L_C589
 L_C58F:
-    JSR sub_C946
+    JSR unit_refresh
 L_C592:
     LDA $D1
 L_C594:
@@ -1308,11 +1308,11 @@ L_C694:
 L_C696:
     PLA
 L_C697:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C69A:
     PLA
 L_C69B:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C69E:
     LDA $6F31
 L_C6A1:
@@ -1400,7 +1400,7 @@ L_C6FF:
 L_C701:
     STA $E0
 L_C703:
-    JSR sub_C21D
+    JSR far_args_fetch
     .byte $F7, $A4, $87, $A5, $D0
 
 L_C70B:
@@ -1474,7 +1474,7 @@ L_C758:
 L_C75A:
     STA $6F46
 L_C75D:
-    JSR sub_C946
+    JSR unit_refresh
 L_C760:
     LDA #$00
 L_C762:
@@ -1514,7 +1514,7 @@ L_C78A:
 L_C78B:
     BCS L_C79D
 L_C78D:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_C790:
     SBC $96B2,Y
 L_C793:
@@ -1622,7 +1622,7 @@ L_C80B:
 L_C80D:
     STA $E0
 L_C80F:
-    JSR sub_C21D
+    JSR far_args_fetch
     .byte $F7, $A4, $87, $20, $34
 
 L_C817:
@@ -1652,7 +1652,7 @@ L_C82F:
 L_C831:
     LDA #$03
 L_C833:
-    JSR sub_C9AA
+    JSR spr_priority_check
 L_C836:
     DEX
 L_C837:
@@ -1669,7 +1669,7 @@ L_C842:
     .byte $8D, $43, $6F, $A9, $00, $85, $E0, $20, $1D, $C2, $F7, $5E, $88, $20, $A8, $96
     .byte $4C, $2D, $C7
 
-L_C866:
+unit_data_load:
     LDA #$FF
 L_C868:
     STA $6F2D
@@ -1694,7 +1694,7 @@ L_C87C:
 L_C87F:
     BPL L_C887
 L_C881:
-    JSR sub_C21D
+    JSR far_args_fetch
     .byte $F7, $CA, $86
 
 L_C887:
@@ -1776,15 +1776,15 @@ L_C8D3:
 L_C8D6:
     PLA
 L_C8D7:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C8DA:
     PLA
 L_C8DB:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C8DE:
     RTS
 L_C8DF:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_C8E2:
     SBC $9D51,Y
 L_C8E5:
@@ -1852,14 +1852,14 @@ L_C938:
 L_C93B:
     LDA #$E0
 L_C93D:
-    JSR sub_C184
+    JSR set_win8000_a
 L_C940:
     LDA #$E1
 L_C942:
-    JSR sub_C193
+    JSR set_winA000_a
 L_C945:
     RTS
-L_C946:
+unit_refresh:
     LDA #$0F
 L_C948:
     STA $0390
@@ -1870,9 +1870,9 @@ L_C94E:
 L_C951:
     STA $039C
 L_C954:
-    JSR sub_EA0D
+    JSR sprite_frame_step
 L_C957:
-    JSR sub_C866
+    JSR unit_data_load
 L_C95A:
     LDA $6F44
 L_C95D:
@@ -1888,7 +1888,7 @@ L_C968:
 L_C96A:
     LDA #$01
 L_C96C:
-    JSR sub_EF3D
+    JSR sfx_play
 L_C96F:
     LDA $6F47
 L_C972:
@@ -1904,7 +1904,7 @@ L_C97B:
 L_C97D:
     STA $6F44
 L_C980:
-    JSR sub_EBA5
+    JSR save_prep
 L_C983:
     RTS
     .byte $8A, $48, $A9, $01, $8D
@@ -1931,7 +1931,7 @@ L_C99D:
     RTS
     .byte $48, $20, $84, $C9, $68, $20, $AA, $C9, $20, $20, $CB, $60
 
-L_C9AA:
+spr_priority_check:
     STA $FA
 L_C9AC:
     LDA $6980,X
@@ -1956,13 +1956,13 @@ L_C9C0:
 L_C9C2:
     STX $DA
 L_C9C4:
-    JSR sub_CB18
+    JSR get_unit_pos
 L_C9C7:
     STX $D8
 L_C9C9:
     STY $D9
 L_C9CB:
-    JSR sub_D6E6
+    JSR map_cell_read
 L_C9CE:
     LDX $DA
 L_C9D0:
@@ -1996,7 +1996,7 @@ L_C9EF:
 L_C9F1:
     JSR sub_D6F9
 L_C9F4:
-    JSR sub_CA56
+    JSR metasprite_draw
 L_C9F7:
     LDX $DA
 L_C9F9:
@@ -2016,7 +2016,7 @@ L_CA01:
     .byte $D8, $84, $D9, $20, $F9, $D6, $20, $84, $C9, $20, $56, $CA, $20, $20, $CB, $60
     .byte $86, $D8, $84, $D9
 
-L_CA56:
+metasprite_draw:
     LDX $D8
 L_CA58:
     LDY $D9
@@ -2053,7 +2053,7 @@ L_CA6F:
 L_CA71:
     PHA
 L_CA72:
-    JSR sub_D5C5
+    JSR sprite_draw_core
 L_CA75:
     JSR sub_CA98
 L_CA78:
@@ -2163,7 +2163,7 @@ L_CAE4:
 L_CAE6:
     BCC L_CAEF
 L_CAE8:
-    JSR sub_E58C
+    JSR metasprite_blit
 L_CAEB:
     LDA #$00
 L_CAED:
@@ -2173,7 +2173,7 @@ L_CAEF:
 L_CAF0:
     LDX $D3
 L_CAF2:
-    JSR sub_CB18
+    JSR get_unit_pos
 L_CAF5:
     TXA
 L_CAF6:
@@ -2212,7 +2212,7 @@ L_CB14:
     LDY $6ED6
 L_CB17:
     RTS
-L_CB18:
+get_unit_pos:
     LDA $6780,X
 L_CB1B:
     LDY $67C0,X
@@ -2229,7 +2229,7 @@ L_CB22:
 L_CB24:
     BEQ L_CB29
 L_CB26:
-    JSR sub_E58C
+    JSR metasprite_blit
 L_CB29:
     LDA #$00
 L_CB2B:
@@ -2240,7 +2240,7 @@ L_CB2F:
     TAX
 L_CB30:
     RTS
-L_CB31:
+sprite_select:
     LDA $6980,X
 L_CB34:
     CMP #$5A
@@ -2349,7 +2349,7 @@ L_CBA4:
 L_CBA5:
     LDY $6980,X
 L_CBA8:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_CBAB:
     SBC $9785,Y
 L_CBAE:
@@ -2455,7 +2455,7 @@ L_CC26:
 L_CC29:
     STA $6F7F
 L_CC2C:
-    JSR sub_C250
+    JSR far_copy_bytes
     .byte $7C, $6F, $99, $6F, $AE, $94, $6F, $20, $10, $CF, $20, $22, $CD, $AE, $95, $6F
     .byte $20, $10, $CF, $20, $22, $CD, $AE, $96, $6F, $20, $10, $CF, $20, $22, $CD, $AE
     .byte $93, $6F, $20, $10, $CF, $20, $50, $C2, $A3, $6F, $97, $6F, $68, $AA, $AD, $93
@@ -2468,7 +2468,7 @@ L_CC2C:
 L_CCA0:
     LDY $6980,X
 L_CCA3:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_CCA6:
     SBC $9785,Y
 L_CCA9:
@@ -2518,7 +2518,7 @@ L_CCD7:
 L_CCDA:
     STA $6F96
 L_CCDD:
-    JSR sub_C250
+    JSR far_copy_bytes
     .byte $7A, $6F, $97, $6F, $AE, $8E, $6F, $E0, $D3, $F0, $08, $E0, $D4, $F0, $04, $E0
     .byte $6C, $B0, $16, $20
 
@@ -2539,7 +2539,7 @@ L_CD03:
 L_CD06:
     STA $6F98
 L_CD09:
-    JSR sub_C250
+    JSR far_copy_bytes
     .byte $7C, $6F, $99, $6F, $AD, $85, $6F, $A8, $29, $10, $8D, $8C, $6F, $B9, $D0, $DD
     .byte $8D, $8D, $6F, $68, $AA, $60, $A0, $00, $18, $B9, $99, $6F, $79, $A3, $6F, $99
     .byte $99, $6F, $B9, $9A, $6F, $79, $A4, $6F, $99, $9A, $6F, $B9, $99, $6F, $C9, $E7
@@ -2666,7 +2666,7 @@ L_CE6F:
 L_CE70:
     LDX #$01
 L_CE72:
-    JSR sub_CB31
+    JSR sprite_select
 L_CE75:
     PLA
 L_CE76:
@@ -2678,7 +2678,7 @@ L_CE7A:
 L_CE7B:
     PHA
 L_CE7C:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_CE7F:
     SBC $9785,Y
 L_CE82:
@@ -2686,7 +2686,7 @@ L_CE82:
 L_CE83:
     TAX
 L_CE84:
-    JSR sub_C250
+    JSR far_copy_bytes
     .byte $72, $6F, $70, $6F, $20, $50, $C2, $76, $6F, $74, $6F, $C0, $25, $B0, $1B, $20
     .byte $EB, $C1, $F9, $B0, $88, $8D, $93, $6F, $20, $EB, $C1, $F9, $24, $89, $8D, $94
     .byte $6F, $20, $EB, $C1, $F9, $98, $89, $8D, $95, $6F, $20, $68, $CD
@@ -2695,12 +2695,12 @@ L_CEB4:
     RTS
     .byte $20, $78, $C2, $9D, $40, $69
 
-L_CEBB:
-    JSR sub_C278
+spr_attr_set:
+    JSR retaddr_fetch
 L_CEBE:
     STA $6740,X
 L_CEC1:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_CEC4:
     STA $6500,X
 L_CEC7:
@@ -2733,7 +2733,7 @@ L_CF09:
 L_CF0B:
     PLA
 L_CF0C:
-    JSR sub_C184
+    JSR set_win8000_a
 L_CF0F:
     RTS
     .byte $A5, $BC, $48, $20, $8A, $C1
@@ -2821,12 +2821,12 @@ L_CF85:
 L_CF88:
     PLA
 L_CF89:
-    JSR sub_C184
+    JSR set_win8000_a
 L_CF8C:
     RTS
     .byte $85, $BE, $09, $80, $AA, $20, $DB, $C2, $D0, $04, $A9, $1E, $85
 
-L_CF9A:
+anim_table_load:
     LDX $BEA5,Y
 L_CF9D:
     ASL
@@ -2887,7 +2887,7 @@ L_CFCB:
 L_CFCD:
     PLA
 L_CFCE:
-    JSR sub_C184
+    JSR set_win8000_a
 L_CFD1:
     RTS
     .byte $A5, $BC, $48, $20, $8A, $C1, $E6, $A4, $D0, $BD, $EA, $93, $C5, $D0
@@ -2925,12 +2925,12 @@ L_D003:
 L_D005:
     PLA
 L_D006:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D009:
-    JSR sub_D00D
+    JSR npc_id_dispatch
 L_D00C:
     RTS
-L_D00D:
+npc_id_dispatch:
     LDA $D0
 L_D00F:
     CMP #$24
@@ -3045,15 +3045,15 @@ L_D081:
 L_D083:
     RTS
 L_D084:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_D087:
     STA $D4
 L_D089:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_D08C:
     STA $D5
 L_D08E:
-    JSR sub_C278
+    JSR retaddr_fetch
 L_D091:
     STA $D6
 L_D093:
@@ -3078,7 +3078,7 @@ L_D093:
     .byte $06, $F0, $F0, $01, $60, $48, $20, $B3, $D1, $38, $2A, $85, $F0, $68, $60, $A0
     .byte $00, $B1, $BE, $E6, $BE, $D0, $02, $E6, $BF, $60
 
-L_D1BE:
+nmi_mid_hook:
     LDX $52
 L_D1C0:
     DEX
@@ -3103,7 +3103,7 @@ L_D1D0:
 L_D1D1:
     LDA #$F8
 L_D1D3:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D1D6:
     LDA $BD
 L_D1D8:
@@ -3111,7 +3111,7 @@ L_D1D8:
 L_D1D9:
     LDA #$FB
 L_D1DB:
-    JSR sub_C193
+    JSR set_winA000_a
 L_D1DE:
     LDA $C0
 L_D1E0:
@@ -3159,7 +3159,7 @@ L_D201:
 L_D203:
     BEQ L_D20F
 L_D205:
-    JSR sub_C21D
+    JSR far_args_fetch
 L_D208:
     INC $00,X
     .byte $80, $C6, $E1, $D0, $F6
@@ -3249,7 +3249,7 @@ L_D268:
 L_D26B:
     STA $F1
 L_D26D:
-    JSR sub_D2D9
+    JSR dir_index_calc
 L_D270:
     PHA
 L_D271:
@@ -3271,7 +3271,7 @@ L_D27E:
 L_D27F:
     PLA
 L_D280:
-    JSR sub_E63F
+    JSR camera_update
 L_D283:
     LDA $E0
 L_D285:
@@ -3341,16 +3341,16 @@ L_D2BE:
 L_D2C0:
     PLA
 L_D2C1:
-    JSR sub_C193
+    JSR set_winA000_a
 L_D2C4:
     PLA
 L_D2C5:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D2C8:
     RTS
     .byte $01, $04, $02, $03, $04, $01, $03, $02, $06, $07, $05, $08, $06, $07, $05, $08
 
-L_D2D9:
+dir_index_calc:
     LDA $F0
 L_D2DB:
     CMP $DE
@@ -3426,7 +3426,7 @@ L_D319:
     LDA #$00
 L_D31B:
     RTS
-L_D31C:
+irq_work:
     BIT $E3
 L_D31E:
     BPL L_D326
@@ -3481,7 +3481,7 @@ L_D326:
     .byte $A5, $F5, $9D, $01, $03, $A5, $F7, $9D, $40, $03, $A5, $F9, $9D, $41, $03, $E8
     .byte $E8, $E0, $1E, $90, $D9, $60, $AA, $A5, $BC, $48, $8A, $4C, $E3, $D5
 
-L_D5C5:
+sprite_draw_core:
     LDA $BC
 L_D5C7:
     PHA
@@ -3514,7 +3514,7 @@ L_D5DD:
 L_D5DF:
     DEY
 L_D5E0:
-    JSR sub_D6E6
+    JSR map_cell_read
 L_D5E3:
     BIT $D7
 L_D5E5:
@@ -3540,7 +3540,7 @@ L_D5F8:
 L_D5FB:
     LDA #$F9
 L_D5FD:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D600:
     LDA $83B4,Y
 L_D603:
@@ -3566,7 +3566,7 @@ L_D615:
 L_D617:
     LDA #$EC
 L_D619:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D61C:
     LDY #$00
 L_D61E:
@@ -3638,7 +3638,7 @@ L_D658:
 L_D65A:
     PLA
 L_D65B:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D65E:
     RTS
 L_D65F:
@@ -3648,7 +3648,7 @@ L_D662:
 L_D663:
     LDA #$CA
 L_D665:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D668:
     LDA ($E9),Y
 L_D66A:
@@ -3656,7 +3656,7 @@ L_D66A:
 L_D66C:
     LDA #$CB
 L_D66E:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D671:
     LDA ($E9),Y
 L_D673:
@@ -3690,7 +3690,7 @@ L_D686:
 L_D687:
     ADC #$CC
 L_D689:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D68C:
     LDY #$00
 L_D68E:
@@ -3742,14 +3742,14 @@ L_D6B3:
 L_D6B5:
     PLA
 L_D6B6:
-    JSR sub_C184
+    JSR set_win8000_a
 L_D6B9:
     RTS
     .byte $10, $50, $90, $D0, $A9, $FF, $85, $F6, $85, $F7, $85, $F8, $85, $F9, $60, $8A
     .byte $30, $F2, $E4, $E7, $B0, $EE, $98, $30, $EB, $C4, $E8, $B0, $E7, $20, $E6, $D6
     .byte $C9, $C0, $B0, $E0, $AA, $A5, $BC, $48, $8A, $4C, $62, $D6
 
-L_D6E6:
+map_cell_read:
     TXA
 L_D6E7:
     CLC
@@ -3856,7 +3856,7 @@ L_D70D:
     .byte $F0, $E6, $F0, $F0, $01, $60, $E6, $F1, $60, $06, $F2, $F0, $01, $60, $48, $A0
     .byte $00, $B1, $F0, $38, $2A, $85, $F2, $68, $E6, $F0, $F0, $01, $60, $E6, $F1, $60
 
-L_DAEE:
+mul16:
     CMP #$01
 L_DAF0:
     BCC L_DB11
@@ -3920,7 +3920,7 @@ L_DB17:
     .byte $20, $D0, $03, $E8, $D0, $F6, $A0, $00, $BD, $00, $07, $99, $EB, $6E, $F0, $04
     .byte $E8, $C8, $D0, $F4, $60
 
-L_DBFD:
+rand_next:
     TXA
 L_DBFE:
     PHA
@@ -3979,9 +3979,9 @@ L_DC2B:
 L_DC2C:
     PHA
 L_DC2D:
-    JSR sub_DBFD
+    JSR rand_next
 L_DC30:
-    JSR sub_DAEE
+    JSR mul16
 L_DC33:
     PLA
 L_DC34:
@@ -4020,11 +4020,11 @@ L_DC64:
 L_DC66:
     LDA #$F0
 L_DC68:
-    JSR sub_C184
+    JSR set_win8000_a
 L_DC6B:
     LDA #$F1
 L_DC6D:
-    JSR sub_C193
+    JSR set_winA000_a
 L_DC70:
     JSR sub_8000
 L_DC73:
@@ -4032,11 +4032,11 @@ L_DC73:
 L_DC76:
     LDA #$F2
 L_DC78:
-    JSR sub_C184
+    JSR set_win8000_a
 L_DC7B:
     LDA #$F3
 L_DC7D:
-    JSR sub_C193
+    JSR set_winA000_a
 L_DC80:
     JSR sub_8000
 L_DC83:
@@ -4046,11 +4046,11 @@ L_DC84:
 L_DC87:
     PLA
 L_DC88:
-    JSR sub_C193
+    JSR set_winA000_a
 L_DC8B:
     PLA
 L_DC8C:
-    JSR sub_C184
+    JSR set_win8000_a
 L_DC8F:
     RTS
     .byte $E0, $E1, $E2, $E3, $E4, $E5, $E6, $E7, $E8, $E9, $EA, $EB, $EC, $ED, $EE, $EF
@@ -4109,7 +4109,7 @@ L_DC8F:
     .byte $0D, $0D, $0D, $13, $13, $13, $13, $13, $13, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
-L_E000:
+RESET:
     SEI
 L_E001:
     CLD
@@ -4228,7 +4228,7 @@ L_E08B:
 L_E08D:
     STA $5202
 L_E090:
-    JSR sub_EB80
+    JSR winctx_save
 L_E093:
     JSR sub_B013
 L_E096:
@@ -4246,9 +4246,9 @@ L_E0A3:
 L_E0A5:
     STA $03DB
 L_E0A8:
-    JSR sub_EDD0
+    JSR audio_init
 L_E0AB:
-    JSR sub_E103
+    JSR nametable_clear
 L_E0AE:
     LDA #$E8
 L_E0B0:
@@ -4262,14 +4262,14 @@ L_E0B7:
 L_E0B9:
     STA $2000
 L_E0BC:
-    JMP L_C000
+    JMP main_loop
     .byte $A9, $00, $8D, $FC, $05, $A9, $DC, $8D, $03, $52, $8D, $FD, $05, $A9, $80, $8D
     .byte $04, $52, $58, $60, $C9, $00, $D0, $06, $A5, $01, $09, $06, $D0, $04, $A5, $01
     .byte $29, $F9, $85, $01, $8D, $01, $20, $60, $C9, $00, $F0, $06, $A5, $01, $09, $01
     .byte $D0, $04, $A5, $01, $29, $FE, $85, $01, $8D, $01, $20, $60, $AD, $02, $20, $A9
     .byte $20, $4C, $08, $E1
 
-L_E103:
+nametable_clear:
     LDA $2002
 L_E106:
     LDA #$24
@@ -4301,7 +4301,7 @@ L_E11F:
     .byte $E8, $D0, $F1, $60, $A9, $00, $20, $A5, $EB, $20, $80, $EB, $20, $68, $A7, $20
     .byte $8D, $EB, $60
 
-L_E143:
+NMI_handler:
     INC $52
 L_E145:
     PHA
@@ -4340,7 +4340,7 @@ L_E15F:
 L_E160:
     LDA #$FC
 L_E162:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_E165:
     LDA $E5
 L_E167:
@@ -4386,13 +4386,13 @@ L_E197:
 L_E199:
     STA $E5
 L_E19B:
-    JSR sub_E680
+    JSR scroll_ppu_update
 L_E19E:
     LDA $53
 L_E1A0:
     BEQ L_E1A9
 L_E1A2:
-    JSR sub_E25D
+    JSR hud_dispatch
 L_E1A5:
     LDA #$00
 L_E1A7:
@@ -4400,7 +4400,7 @@ L_E1A7:
 L_E1A9:
     CLI
 L_E1AA:
-    JSR sub_E908
+    JSR oam_dma
 L_E1AD:
     PHA
 L_E1AE:
@@ -4410,7 +4410,7 @@ L_E1B0:
 L_E1B3:
     PLA
 L_E1B4:
-    JSR sub_E205
+    JSR pad_read
 L_E1B7:
     JSR sub_A22E
 L_E1BA:
@@ -4432,9 +4432,9 @@ L_E1CB:
 L_E1CD:
     STX $62
 L_E1CF:
-    JSR sub_E7A0
+    JSR split_update
 L_E1D2:
-    JSR sub_E34B
+    JSR far_call_routine
 L_E1D5:
     LDA $0402
 L_E1D8:
@@ -4444,31 +4444,31 @@ L_E1DA:
 L_E1DC:
     BEQ L_E1E1
 L_E1DE:
-    JSR sub_EBE8
+    JSR save_commit
 L_E1E1:
     LDA #$FE
 L_E1E3:
     STA $5116
 L_E1E6:
-    JSR sub_D1BE
+    JSR nmi_mid_hook
 L_E1E9:
     LDX #$10
 L_E1EB:
-    JSR sub_C1C5
+    JSR stack_load_x
 L_E1EE:
     LDA #$00
 L_E1F0:
     STA $63
 L_E1F2:
-    JSR sub_EACE
+    JSR music_tick
 L_E1F5:
     PLA
 L_E1F6:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_E1F9:
     PLA
 L_E1FA:
-    JSR sub_EB96
+    JSR trampoline_A000
 L_E1FD:
     PLA
 L_E1FE:
@@ -4483,7 +4483,7 @@ L_E202:
     DEC $52
 L_E204:
     RTI
-L_E205:
+pad_read:
     LDA $63
 L_E207:
     BEQ L_E210
@@ -4502,7 +4502,7 @@ L_E212:
 L_E214:
     LDX #$10
 L_E216:
-    JMP L_C1B4
+    JMP stack_save_x
 L_E219:
     LDA $05FB
 L_E21C:
@@ -4510,14 +4510,14 @@ L_E21C:
 L_E21E:
     RTS
 L_E21F:
-    JSR sub_E228
+    JSR irq_vec_dispatch
 L_E222:
     LDA #$00
 L_E224:
     STA $05FB
 L_E227:
     RTS
-L_E228:
+irq_vec_dispatch:
     ASL
 L_E229:
     TAX
@@ -4540,7 +4540,7 @@ L_E23C:
     .byte $00, $00, $19, $AE, $46, $AE, $6F, $AE, $92, $AE, $C9, $AE, $FC, $AE, $C8, $B0
     .byte $B8, $B1, $7D, $B2, $0C, $B3, $07, $A0, $08, $A0, $09, $A0, $08, $AE
 
-L_E25D:
+hud_dispatch:
     ASL
 L_E25E:
     TAX
@@ -4560,7 +4560,7 @@ L_E26C:
     .byte $45, $EA, $F6, $AF, $00, $00, $00, $00, $AD, $B0, $AA, $B2, $60, $A9, $01, $D0
     .byte $26, $A9, $02, $D0, $22, $A9, $04, $D0, $1E, $A9, $05, $D0, $1A
 
-L_E29C:
+hud_flag_set:
     LDA #$06
 L_E29E:
     BNE L_E2B6
@@ -4584,7 +4584,7 @@ L_E2B0:
     LDA #$0D
 L_E2B2:
     BNE L_E2B6
-L_E2B4:
+hud_wait:
     LDA #$03
 L_E2B6:
     STA $53
@@ -4594,15 +4594,15 @@ L_E2BA:
     BNE L_E2B8
 L_E2BC:
     RTS
-L_E2BD:
-    JSR sub_E2B4
+hud_frame_delay:
+    JSR hud_wait
 L_E2C0:
     DEX
 L_E2C1:
-    BNE L_E2BD
+    BNE hud_frame_delay
 L_E2C3:
     RTS
-L_E2C4:
+IRQ_handler:
     SEI
 L_E2C5:
     PHA
@@ -4641,7 +4641,7 @@ L_E2E5:
 L_E2E6:
     CLI
 L_E2E7:
-    JMP L_D31C
+    JMP irq_work
 L_E2EA:
     TXA
 L_E2EB:
@@ -4726,20 +4726,20 @@ L_E33C:
     RTI
     .byte $11, $21, $31, $41, $51, $61, $71, $81, $91, $A1, $B1, $C1, $D1, $E1
 
-L_E34B:
+far_call_routine:
     LDA $068C
 L_E34E:
-    JSR sub_EB96
+    JSR trampoline_A000
 L_E351:
     LDA $068D
 L_E354:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_E357:
     LDA #$FD
 L_E359:
     STA $5116
 L_E35C:
-    JSR sub_C000
+    JSR main_loop
 L_E35F:
     RTS
     .byte $20, $03, $A0, $8E, $02, $06, $8D, $03, $06, $A4, $56, $8C, $00, $06, $A4, $57
@@ -4758,7 +4758,7 @@ L_E35F:
     .byte $8D, $05, $51, $A9, $02, $8D, $04, $51, $60, $A9, $01, $8D, $C0, $03, $60, $86
     .byte $56, $84, $57, $20, $E8, $E9, $A9, $02, $8D, $C0, $03, $60
 
-L_E44C:
+oam_buffer_clear:
     LDX #$00
 L_E44E:
     LDA #$F0
@@ -4896,7 +4896,7 @@ L_E55C:
     .byte $03, $29, $23, $18, $69, $3C, $85, $10, $98, $48, $29, $07, $A8, $8A, $18, $79
     .byte $84, $E5, $85, $0F, $68, $A8, $60, $00, $20, $40, $60, $80, $A0, $C0, $E0
 
-L_E58C:
+metasprite_blit:
     STX $0676
 L_E58F:
     LDX #$00
@@ -4945,7 +4945,7 @@ L_E5BB:
 L_E5BE:
     BNE L_E591
 L_E5C0:
-    JSR sub_E29C
+    JSR hud_flag_set
 L_E5C3:
     RTS
     .byte $8E, $76, $06, $A2, $00, $BD, $06, $06, $85, $08, $BD, $0E, $06, $85, $09, $20
@@ -4957,7 +4957,7 @@ L_E5C3:
     .byte $10, $07, $A5, $03, $9D, $30, $07, $A5, $04, $9D, $50, $07, $A5, $05, $9D, $70
     .byte $07, $E8, $EC, $76, $06, $D0, $8E, $20, $B0, $E2, $60
 
-L_E63F:
+camera_update:
     STA $5E
 L_E641:
     CMP #$00
@@ -4976,7 +4976,7 @@ L_E64B:
 L_E64C:
     STA $61
 L_E64E:
-    JSR sub_E826
+    JSR camera_step
 L_E651:
     LDA #$00
 L_E653:
@@ -4993,7 +4993,7 @@ L_E65C:
     .byte $09, $05, $00, $03, $12, $0A, $06, $00, $00, $13, $0B, $07, $00, $00, $1F, $10
     .byte $08, $00, $04
 
-L_E680:
+scroll_ppu_update:
     LDA $55
 L_E682:
     BEQ L_E687
@@ -5070,11 +5070,11 @@ L_E6D0:
 L_E6D3:
     BEQ L_E6D9
 L_E6D5:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E6D8:
     RTS
 L_E6D9:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E6DC:
     LDA $61
 L_E6DE:
@@ -5088,7 +5088,7 @@ L_E6E3:
 L_E6E5:
     RTS
 L_E6E6:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E6E9:
     LDA #$10
 L_E6EB:
@@ -5096,7 +5096,7 @@ L_E6EB:
 L_E6EE:
     RTS
 L_E6EF:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E6F2:
     LDA #$20
 L_E6F4:
@@ -5106,7 +5106,7 @@ L_E6F7:
 L_E6F8:
     PHA
 L_E6F9:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E6FC:
     LDA #$30
 L_E6FE:
@@ -5168,13 +5168,13 @@ L_E732:
 L_E735:
     STA $0680
 L_E738:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E73B:
     JMP ($067F)
 L_E73E:
     PHA
 L_E73F:
-    JSR sub_E205
+    JSR pad_read
 L_E742:
     PLA
 L_E743:
@@ -5205,7 +5205,7 @@ L_E779:
 L_E77B:
     RTS
 L_E77C:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E77F:
     LDA #$10
 L_E781:
@@ -5223,7 +5223,7 @@ L_E78E:
 L_E790:
     JMP L_E79D
 L_E793:
-    JSR sub_E868
+    JSR camera_dispatch
 L_E796:
     LDA #$30
 L_E798:
@@ -5234,7 +5234,7 @@ L_E79D:
     STA $62
 L_E79F:
     RTS
-L_E7A0:
+split_update:
     CMP #$03
 L_E7A2:
     BEQ L_E7B2
@@ -5267,7 +5267,7 @@ L_E7BE:
 L_E7C1:
     STA $0680
 L_E7C4:
-    JSR sub_E205
+    JSR pad_read
 L_E7C7:
     JMP ($067F)
 L_E7CA:
@@ -5277,7 +5277,7 @@ L_E7CC:
 L_E7CE:
     PHA
 L_E7CF:
-    JSR sub_E205
+    JSR pad_read
 L_E7D2:
     PLA
 L_E7D3:
@@ -5301,7 +5301,7 @@ L_E7E3:
     .byte $97, $FC, $52, $FC, $14, $FC, $D7, $FC, $6B, $FD, $A1, $FD, $FB, $FD, $5B, $FE
     .byte $D6, $B0, $DE, $B0, $DE, $B0, $D6, $B0, $DE, $B0, $DE, $B0, $DE, $B0, $DE, $B0
 
-L_E826:
+camera_step:
     LDA $5E
 L_E828:
     CMP #$04
@@ -5363,7 +5363,7 @@ L_E862:
     JSR sub_E84D
 L_E865:
     JMP L_E84A
-L_E868:
+camera_dispatch:
     LDA $61
 L_E86A:
     BNE L_E877
@@ -5376,7 +5376,7 @@ L_E870:
 L_E872:
     BNE L_E877
 L_E874:
-    JMP L_E908
+    JMP oam_dma
 L_E877:
     LDX $5F
 L_E879:
@@ -5404,7 +5404,7 @@ L_E889:
     .byte $20, $BD, $E8, $4C, $AC, $E8, $20, $BD, $E8, $4C, $CD, $E8, $01, $02, $04, $F0
     .byte $F1, $F3, $00, $01, $03, $A5, $00, $49, $01, $85, $00, $60
 
-L_E908:
+oam_dma:
     LDA $2002
 L_E90B:
     LDA $64
@@ -5500,7 +5500,7 @@ L_E95E:
     .byte $A2, $00, $20, $00, $EA, $E8, $E8, $E6, $56, $C6, $71, $D0, $F5, $68, $85, $56
     .byte $60, $86, $70, $8A, $A6, $56, $A4, $57, $20, $27, $D3, $A6, $70, $60
 
-L_EA0D:
+sprite_frame_step:
     LDA #$00
 L_EA0F:
     STA $74
@@ -5515,7 +5515,7 @@ L_EA17:
 L_EA1A:
     LDX $0688
 L_EA1D:
-    JSR sub_E2BD
+    JSR hud_frame_delay
 L_EA20:
     DEC $74
 L_EA22:
@@ -5541,7 +5541,7 @@ L_EA33:
 L_EA36:
     LDX $0688
 L_EA39:
-    JSR sub_E2BD
+    JSR hud_frame_delay
 L_EA3C:
     INC $74
 L_EA3E:
@@ -5555,7 +5555,7 @@ L_EA44:
     .byte $A0, $00, $98, $48, $A2, $04, $A5, $66, $20, $63, $EA, $C8, $C8, $C8, $C8, $CA
     .byte $D0, $F4, $68, $A8, $C8, $C0, $03, $D0, $E9, $A9, $01, $85, $E6, $60
 
-L_EA63:
+sprite_attr_calc:
     BMI L_EAA8
 L_EA65:
     CMP #$04
@@ -5655,7 +5655,7 @@ L_EAC9:
     LDA #$0F
 L_EACB:
     JMP L_EAA4
-L_EACE:
+music_tick:
     LDX #$00
 L_EAD0:
     LDA $0390,X
@@ -5678,7 +5678,7 @@ L_EADF:
 L_EAE1:
     LDA $67
 L_EAE3:
-    JSR sub_EA63
+    JSR sprite_attr_calc
 L_EAE6:
     INY
 L_EAE7:
@@ -5713,7 +5713,7 @@ L_EAF4:
     .byte $8C, $CB, $03, $60, $8A, $48, $A2, $3C, $20, $B4, $E2, $A5, $0B, $D0, $09, $CA
     .byte $D0, $F6, $68, $AA, $CA, $D0, $ED, $60, $68, $AA, $60
 
-L_EB80:
+winctx_save:
     PHA
 L_EB81:
     LDA $BD
@@ -5722,24 +5722,24 @@ L_EB83:
 L_EB86:
     LDA #$FC
 L_EB88:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_EB8B:
     PLA
 L_EB8C:
     RTS
-L_EB8D:
+winctx_restore:
     PHA
 L_EB8E:
     LDA $068A
 L_EB91:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_EB94:
     PLA
 L_EB95:
     RTS
     .byte $85, $BC, $8D, $14, $51, $60, $85, $BD, $8D, $15, $51, $60, $4C, $A2, $EB
 
-L_EBA5:
+save_prep:
     PHA
 L_EBA6:
     LDA #$00
@@ -5748,9 +5748,9 @@ L_EBA8:
 L_EBAA:
     STA $0567
 L_EBAD:
-    JSR sub_ED1F
+    JSR apu_reset
 L_EBB0:
-    JSR sub_ED45
+    JSR sfx_pulse_a
 L_EBB3:
     PLA
 L_EBB4:
@@ -5768,25 +5768,25 @@ L_EBBD:
 L_EBBF:
     PHA
 L_EBC0:
-    JSR sub_EC9A
+    JSR music_track_load
 L_EBC3:
-    JSR sub_EE4A
+    JSR music_seq_clear
 L_EBC6:
-    JSR sub_EE9B
+    JSR music_seq_load
 L_EBC9:
     LDA $6A
 L_EBCB:
-    JSR sub_EB96
+    JSR trampoline_A000
 L_EBCE:
     LDA $6B
 L_EBD0:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_EBD3:
-    JSR sub_EDC6
+    JSR sfx_flags_clear
 L_EBD6:
     PLA
 L_EBD7:
-    JSR sub_EF8C
+    JSR music_seq_play
 L_EBDA:
     STA $0402
 L_EBDD:
@@ -5799,24 +5799,24 @@ L_EBE4:
     STA $05F8
 L_EBE7:
     RTS
-L_EBE8:
+save_commit:
     PHA
 L_EBE9:
     JSR sub_ED27
 L_EBEC:
-    JSR sub_EDAF
+    JSR sfx_pulse_b
 L_EBEF:
     PLA
 L_EBF0:
     PHA
 L_EBF1:
-    JSR sub_EF53
+    JSR music_track_load2
 L_EBF4:
-    JSR sub_EE4A
+    JSR music_seq_clear
 L_EBF7:
-    JSR sub_EE9B
+    JSR music_seq_load
 L_EBFA:
-    JSR sub_EDC6
+    JSR sfx_flags_clear
 L_EBFD:
     LDA #$FC
 L_EBFF:
@@ -5824,7 +5824,7 @@ L_EBFF:
 L_EC02:
     PLA
 L_EC03:
-    JSR sub_EF9B
+    JSR music_seq_addr
 L_EC06:
     JSR sub_EBDA
 L_EC09:
@@ -5843,7 +5843,7 @@ L_EC0D:
     .byte $2F, $05, $30, $F0, $06, $8E, $C8, $04, $8C, $CC, $04, $A5, $31, $05, $32, $F0
     .byte $06, $8E, $C9, $04, $8C, $CD, $04, $68, $8D, $03, $04, $60
 
-L_EC9A:
+music_track_load:
     SEC
 L_EC9B:
     SBC #$01
@@ -5852,7 +5852,7 @@ L_EC9D:
 L_EC9E:
     TAX
 L_EC9F:
-    JSR sub_ED02
+    JSR music_bank_fetch
 L_ECA2:
     PHA
 L_ECA3:
@@ -5860,7 +5860,7 @@ L_ECA3:
 L_ECA6:
     STA $068C
 L_ECA9:
-    JSR sub_EB96
+    JSR trampoline_A000
 L_ECAC:
     PLA
 L_ECAD:
@@ -5881,10 +5881,10 @@ L_ECB9:
     .byte $0E, $C9, $80, $F0, $05, $A9, $EA, $4C, $FB, $EC, $A9, $E9, $4C, $FB, $EC, $A9
     .byte $E8, $8D, $8D, $06, $20, $9C, $EB, $60
 
-L_ED02:
+music_bank_fetch:
     LDA #$FD
 L_ED04:
-    JSR sub_EB9C
+    JSR trampoline_8000
 L_ED07:
     LDA $B201,X
 L_ED0A:
@@ -5913,12 +5913,12 @@ L_ED1A:
     RTS
     .byte $DC, $DD, $DE, $DF
 
-L_ED1F:
+apu_reset:
     LDA #$00
 L_ED21:
     STA $0402
 L_ED24:
-    JSR sub_E2B4
+    JSR hud_wait
 L_ED27:
     LDA #$00
 L_ED29:
@@ -5947,8 +5947,8 @@ L_ED42:
     BNE L_ED3D
 L_ED44:
     RTS
-L_ED45:
-    JSR sub_E2B4
+sfx_pulse_a:
+    JSR hud_wait
 L_ED48:
     LDA #$00
 L_ED4A:
@@ -6026,10 +6026,10 @@ L_EDA6:
 L_EDA8:
     STA $400C
 L_EDAB:
-    JSR sub_E2B4
+    JSR hud_wait
 L_EDAE:
     RTS
-L_EDAF:
+sfx_pulse_b:
     LDA #$00
 L_EDB1:
     STA $04CB
@@ -6047,15 +6047,15 @@ L_EDC2:
     STA $04C9
 L_EDC5:
     RTS
-L_EDC6:
-    JSR sub_EDAF
+sfx_flags_clear:
+    JSR sfx_pulse_b
 L_EDC9:
     STA $04C5
 L_EDCC:
     STA $04C6
 L_EDCF:
     RTS
-L_EDD0:
+audio_init:
     LDA #$00
 L_EDD2:
     STA $4015
@@ -6145,10 +6145,10 @@ L_EE3D:
     RTS
     .byte $9D, $B1, $04, $A8, $B1, $00, $F0, $F8, $FE, $B1, $04, $60
 
-L_EE4A:
+music_seq_clear:
     LDX #$00
 L_EE4C:
-    JSR sub_EE7B
+    JSR music_chan_init
 L_EE4F:
     LDA #$00
 L_EE51:
@@ -6170,7 +6170,7 @@ L_EE61:
     .byte $A2, $06, $20, $7B, $EE, $E8, $E0, $09, $D0, $F8, $A9, $00, $8D, $4E, $04, $8D
     .byte $4F, $04, $8D, $56, $04, $8D, $57, $04, $60
 
-L_EE7B:
+music_chan_init:
     LDA #$00
 L_EE7D:
     STA $0404,X
@@ -6196,12 +6196,12 @@ L_EE97:
     STA $0418,X
 L_EE9A:
     RTS
-L_EE9B:
+music_seq_load:
     LDY #$00
 L_EE9D:
     LDX #$00
 L_EE9F:
-    JSR sub_EEC6
+    JSR music_track_read
 L_EEA2:
     CPX #$0C
 L_EEA4:
@@ -6209,19 +6209,19 @@ L_EEA4:
 L_EEA6:
     LDX #$12
 L_EEA8:
-    JSR sub_EEC6
+    JSR music_track_read
 L_EEAB:
     LDA ($6D),Y
 L_EEAD:
     LDX #$00
 L_EEAF:
-    JSR sub_EEE4
+    JSR music_vol_calc
 L_EEB2:
     RTS
     .byte $A0, $00, $A2, $0C, $20, $C6, $EE, $E0, $12, $D0, $F9, $B1, $6D, $A2, $0B, $20
     .byte $E4, $EE, $60
 
-L_EEC6:
+music_track_read:
     LDA ($6D),Y
 L_EEC8:
     STA $21,X
@@ -6257,7 +6257,7 @@ L_EEE2:
     INX
 L_EEE3:
     RTS
-L_EEE4:
+music_vol_calc:
     STA $0551,X
 L_EEE7:
     CMP #$00
@@ -6335,7 +6335,7 @@ L_EF39:
     STA $055B,X
 L_EF3C:
     RTS
-L_EF3D:
+sfx_play:
     LDY $0402
 L_EF40:
     BEQ L_EF52
@@ -6353,7 +6353,7 @@ L_EF4F:
     STA $0567
 L_EF52:
     RTS
-L_EF53:
+music_track_load2:
     SEC
 L_EF54:
     SBC #$01
@@ -6362,7 +6362,7 @@ L_EF56:
 L_EF57:
     TAX
 L_EF58:
-    JSR sub_EF73
+    JSR music_bank_fetch2
 L_EF5B:
     PHA
 L_EF5C:
@@ -6385,7 +6385,7 @@ L_EF6F:
     STA $068E
 L_EF72:
     RTS
-L_EF73:
+music_bank_fetch2:
     LDA #$FD
 L_EF75:
     STA $5115
@@ -6415,19 +6415,19 @@ L_EF89:
     AND #$1F
 L_EF8B:
     RTS
-L_EF8C:
+music_seq_play:
     LDX $0690
 L_EF8F:
     BNE L_EF9A
 L_EF91:
-    JSR sub_EB80
+    JSR winctx_save
 L_EF94:
-    JSR sub_EF9B
+    JSR music_seq_addr
 L_EF97:
-    JSR sub_EB8D
+    JSR winctx_restore
 L_EF9A:
     RTS
-L_EF9B:
+music_seq_addr:
     PHA
 L_EF9C:
     TAX
